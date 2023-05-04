@@ -12,9 +12,7 @@ const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/";
 // when getSpecificProduct is dispatched, the styles also need to be updated, and the current style needs to be set to the zeroth style in the styles array
 
 const initialState = {
-  productOverview: {
-
-  },
+  id: '',
   productInformation: {
 
   },
@@ -69,7 +67,7 @@ export const productSlice = createSlice({
     builder
       .addCase(getInitialData.fulfilled, (state, action) => {
         // default product is the first product in the products arr
-        state.productOverview = action.payload[0];
+        state.id = action.payload[0].id;
         state.isLoading = false;
       })
       .addCase(getInitialData.rejected, (state, action) => {
@@ -85,7 +83,10 @@ export const productSlice = createSlice({
       })
 
       .addCase(getSpecificProduct.fulfilled, (state, action) => {
+        state.id = action.payload.id;
         state.productInformation = action.payload;
+        state.availableStyles = [];
+        state.currentStyle = {};
         state.isLoading = false;
       })
       .addCase(getSpecificProduct.rejected, (state, action) => {
