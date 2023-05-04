@@ -3,7 +3,7 @@ import React from 'react';
 const StyleSelector = () => {
 
   return (
-    <div>
+    <div className="styleSelector">
 
     </div>
   )

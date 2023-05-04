@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getInitialData, getSpecificProduct, getStyles } from '../../slices/productSlice.jsx';
 import ImageGallery from './imageGallery';
 import StyleSelector from './styleSelector';
+import ProductDetails from './productDetails.jsx';
+import AddToCart from './addToCart.jsx';
 // actions to get started
   // get product information
   // get review information
@@ -38,7 +40,7 @@ const Overview = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!product.id) { // if no product has been loaded, this is the initial render, and we need to fetch the default data
+    if (!product.id) { // if no product has been loaded, then this is the initial render, and we need to fetch the default data
       dispatch(getInitialData()) // get initial data and set the id in the state
       .then(() => dispatch(getSpecificProduct(product.id))) // then get product information for that id
       .then(() => dispatch(getStyles())); // then get styles and update them
@@ -47,15 +49,11 @@ const Overview = () => {
 
   return (
     <div> Block in line styles
-      <div className="imageGallery">
         <ImageGallery />
-      </div>
       <div>
-        <div className="productDetail"></div>
-        <div className="styleSelector">
-          <StyleSelector />
-        </div>
-        <div className="addToCart"></div>
+        <ProductDetails />
+        <StyleSelector />
+        <AddToCart />
       </div>
     </div>
   )
