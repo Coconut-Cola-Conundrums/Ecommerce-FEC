@@ -12,7 +12,7 @@ const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/";
 // when getSpecificProduct is dispatched, the styles also need to be updated, and the current style needs to be set to the zeroth style in the styles array
 
 const initialState = {
-  id: '',
+  id: null,
   productInformation: {
 
   },
