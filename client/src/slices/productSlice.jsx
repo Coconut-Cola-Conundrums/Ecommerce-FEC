@@ -42,6 +42,12 @@ export const productSlice = createSlice({
       .addCase(getInitialData.rejected, (state, action) => {
         console.log(action.payload);
       })
+      .addCase(getSpecificProduct.fulfilled, (state, action) => {
+        state = action.payload;
+      })
+      .addCase(getSpecificProduct.rejected, (state, action) => {
+        console.log(action.payload);
+      })
   }
 })
 
