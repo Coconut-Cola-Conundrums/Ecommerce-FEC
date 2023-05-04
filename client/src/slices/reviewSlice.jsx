@@ -58,7 +58,20 @@ export const getMetaData = createAsyncThunk('reviews/meta', async(id, thunkAPI) 
 const reviewSlice = createSlice({
   name: review,
   initialState,
-  reducers: {
-
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getReviews.fulfilled, (state, action) => {
+        // state = action.payload;
+      })
+      .addCase(getReviews.rejected, (state, action) => {
+        conosle.log(action.payload);
+      })
+      .addCase(getMetaData.fulfilled, (state, action) => {
+        // state = action.payload;
+      })
+      .addCase(getMetaData.rejected, (state, action) => {
+        conosle.log(action.payload);
+      })
   }
 })
