@@ -3,7 +3,6 @@ import NewRev from './rating_components/new_rev.jsx';
 import ProductBreakdown from './rating_components/product_breakdown.jsx';
 import RatingBreakdown from './rating_components/rating_breakdown.jsx';
 import RevList from './rating_components/rev_list.jsx';
-import RevSearch from './rating_components/rev_search.jsx';
 import SortOptions from './rating_components/sort_options.jsx';
 
 
@@ -14,12 +13,10 @@ var Reviews = () => {
   return (
     <div>
       <div className = 'revList'></div>
-      <div className = 'revTile'></div>
       <div className = 'sortOptions'></div>
       <div className = 'ratingBreakdown'></div>
       <div className = 'productBreakdown'></div>
       <div className = 'newRev'></div>
-      <div className = 'revSearch'></div>
     </div>
   )
 }
