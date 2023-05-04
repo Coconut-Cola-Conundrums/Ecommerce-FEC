@@ -1,4 +1,5 @@
 
+
 import { createSlice } from '@redux/toolkit';
 
 const initialState = [
@@ -22,4 +23,5 @@ export const comparisonSlice = createSlice({
     }
   }
 })
+
 
