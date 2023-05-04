@@ -18,13 +18,14 @@ const initialState = {
   productInformation: {
 
   },
-  availableStyles: {
+  availableStyles: [
 
-  },
+  ],
   currentStyle: {
 
   },
   isError: false,
+  isLoading: false,
 };
 
 // Retrieves a list of products. API default query params gets first page and five results. Returns an array of products
