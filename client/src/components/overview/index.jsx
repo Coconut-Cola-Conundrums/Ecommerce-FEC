@@ -1,4 +1,7 @@
-
+import { React } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getInitialData, getSpecificProduct, getStyles } from '../../slices/productSlice.jsx';
 // actions to get started
   // get product information
   // get review information
@@ -27,3 +30,24 @@
   // change style
   // add to cart - select size, select quantity
   // zoom image
+
+const Overview = () => {
+  const product = useSelector(state => state.product);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!product.id) { // if no product has been loaded, this is the initial render, and we need to fetch the default data
+      dispatch(getInitialData()) // get initial data and set the id in the state
+      .then(() => dispatch(getSpecificProduct(product.id))) // then get product information for that id
+      .then(() => dispatch(getStyles())); // then get styles and update them
+    }
+  }, []);
+
+  return (
+    <div>
+
+    </div>
+  )
+}
+
+export default Overview
