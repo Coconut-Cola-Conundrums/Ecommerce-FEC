@@ -1,14 +1,77 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
 
-const initialState = {
+const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/";
 
+const initialState = {
+  reviews: [],
+  ratings: '',
+  recommended: '',
+  characteristsics: {
+    Size: {
+      id: '',
+      value: ''
+    },
+    Width: {
+      id: '',
+      value: ''
+    },
+    Comfort: {
+      id: '',
+      value: ''
+    },
+  }
 };
+
+export const getReviews = createAsyncThunk('reviews', async(id, thunkAPI) => {
+  axios.get(baseAPIURL, {
+    params: {
+      page: 1,
+      count: 5,
+      sort: 'newest',
+      product_id: id
+    }
+  }).then((res) => {
+    console.log(res.data);
+    // set the states with the returned data
+  }.catch((err) => {
+    console.log(err);
+  })
+  )
+})
+
+export const getMetaData = createAsyncThunk('reviews/meta', async(id, thunkAPI) => {
+  axios.get(baseAPIURL, {
+    params: {
+      product_id: id
+    }
+  }).then((res) => {
+    console.log(res.data);
+    // set the states with the returned data
+  }.catch((err) => {
+    console.log(err);
+  })
+  )
+})
+
 
 const reviewSlice = createSlice({
   name: review,
   initialState,
-  reducers: {
-
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getReviews.fulfilled, (state, action) => {
+        // state = action.payload;
+      })
+      .addCase(getReviews.rejected, (state, action) => {
+        conosle.log(action.payload);
+      })
+      .addCase(getMetaData.fulfilled, (state, action) => {
+        // state = action.payload;
+      })
+      .addCase(getMetaData.rejected, (state, action) => {
+        conosle.log(action.payload);
+      })
   }
 })
