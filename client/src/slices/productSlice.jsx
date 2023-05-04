@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
 
+const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/";
+
 const initialState = {
   id: '',
   name : '',
@@ -12,27 +14,27 @@ const initialState = {
 
 export const getInitialData = createAsyncThunk('product/getInitialData', async(_, thunkAPI) => {
   try {
-    axios.get('hackreactorurl/product').then((res) => {
-      axios.get(`hackreacturul/product/${res.data.id}`).then(res => res.data)
+    axios.get(`${baseAPIURL}/product`).then((res) => {
+      axios.get(`${baseAPIURL}/product/${res.data.id}`).then(res => res.data)
     })
   } catch (err) {
-    throw new Error (err);
+    thunkAPI.rejectWithValue(err);
   }
 })
 
 export const getSpecificProduct = createAsyncThunk('product/getSpecificProduct', async(id, thunkAPI) => {
   try {
-    axios.get(`hackreacturul/product/${id}`).then(res => res.data)
+    axios.get(`${baseAPIURL}/product/${id}`).then(res => res.data)
   } catch (err) {
-    throw new Error (err);
+    thunkAPI.rejectWithValue(err);
   }
 });
+
 export const productSlice = createSlice({
   name: 'product',
   initialState: initialState,
   reducers: {
-    // update to specific product id
-    // get initial data (when we don't have any data in the state)
+
   },
   extraReducers: (builder) => {
     builder
