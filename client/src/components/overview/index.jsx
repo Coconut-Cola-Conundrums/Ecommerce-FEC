@@ -2,6 +2,8 @@ import { React } from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getInitialData, getSpecificProduct, getStyles } from '../../slices/productSlice.jsx';
+import ImageGallery from './imageGallery';
+import StyleSelector from './styleSelector';
 // actions to get started
   // get product information
   // get review information
@@ -44,8 +46,17 @@ const Overview = () => {
   }, []);
 
   return (
-    <div>
-
+    <div> Block in line styles
+      <div className="imageGallery">
+        <ImageGallery />
+      </div>
+      <div>
+        <div className="productDetail"></div>
+        <div className="styleSelector">
+          <StyleSelector />
+        </div>
+        <div className="addToCart"></div>
+      </div>
     </div>
   )
 }
