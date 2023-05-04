@@ -3,6 +3,12 @@ import axios from "axios";
 
 const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/";
 
+// important pieces of product state
+  // current product overview
+  // current product information
+  // all styles available
+  // current style selected
+
 const initialState = {
   id: '',
   name : '',
