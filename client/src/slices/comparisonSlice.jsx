@@ -14,6 +14,7 @@ const initialState = {
       features: []
     }
   ],
+  productStyles: [],
   error: null
 }
 
@@ -34,6 +35,15 @@ export const getRelatedProduct = createAsyncThunk('products/getRelatedProduct', 
     thunkAPI.rejectWithValue(err);
   }
 });
+
+//need another aysnc thunk func to axios.get /products/:product_id/styles and store it into your slice
+export const getProductStyle = createAsyncThunk('/products/getProductStyle', await(id, thunkAPI) => {
+  try {
+    axios.get(`${baseAPIURL}/products/${id}/styles`).then(res => res.data)
+  } catch (err) {
+    thunkAPI.rejectWithValue(err);
+  }
+})
 
 
 export const comparisonSlice = createSlice({
