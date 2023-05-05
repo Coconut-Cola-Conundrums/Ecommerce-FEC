@@ -5,7 +5,9 @@ const { getProducts, getProductById, getProductStylesById, getRelatedProductsByI
 
 const { getReviews, getMeta, postReview, putReviewHelpful, putReviewReport } = require('./controllers/reviews.js');
 
-const { getQuestionsById, getAnswersById, postQuestion, postAnswerForQuestionById, putQuestionHelpfulById, putQuestionReportById, putAnswerHelpfulById, putAnswerReportById } = require('./controllers/questionsAnswers');
+const { getQuestions, getAnswersById, postQuestion, postAnswerForQuestionById, putQuestionHelpfulById, putQuestionReportById, putAnswerHelpfulById, putAnswerReportById } = require('./controllers/questionsAnswers');
+
+const { getCartByUser, addProductToCart } = require('./controllers/cart.js');
 
 
 const express = require('express');
@@ -39,7 +41,7 @@ router.put('/reviews/:review_id/helpful', putReviewHelpful);
 router.put('/reviews/:review_id/report', putReviewReport);
 
 //Questions and answers related routes
-router.get('/qa/questions', getQuestionsById);
+router.get('/qa/questions', getQuestions);
 router.get('/qa/questions/:question_id/answers', getAnswersById);
 router.post('/qa/questions', postQuestion);
 router.post('/qa/questions/:question_id/answers', postAnswerForQuestionById);
@@ -47,6 +49,11 @@ router.put('/qa/questions/:question_id/helpful', putQuestionHelpfulById);
 router.put('/qa/questions/:question_id/report', putQuestionReportById);
 router.put('/qa/answers/:answer_id/helpful', putAnswerHelpfulById);
 router.put('/qa/answers/:answer_id/report', putAnswerReportById);
+
+//cart related routes
+router.get('/cart', getCartByUser);
+router.post('/cart', addProductToCart);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

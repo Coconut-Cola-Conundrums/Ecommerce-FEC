@@ -9,7 +9,7 @@ const headers = {
 
 
 module.exports = {
-  getQuestionsById: (req, res) => {
+  getQuestions: (req, res) => {
     //TODO
   },
 
@@ -40,6 +40,6 @@ module.exports = {
   putAnswerReportById: (req, res) => {
     //TODO
   }
-  
+
 }
 
