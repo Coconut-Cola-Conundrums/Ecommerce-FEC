@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@redux/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
@@ -18,11 +18,11 @@ const initialState = {
   error: null
 }
 
-const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp"
+const baseAPIURL = "http://localhost:3000"
 
 export const getRelatedIds = createAsyncThunk('products/getRelatedIds', async(id, thunkAPI) => {
   try {
-    axios.get(`${baseAPIURL}/product/${id}/related`).then(res => res.data)
+    axios.get(`${baseAPIURL}/products/${id}/related`).then(res => res.data)
   } catch (err) {
     thunkAPI.rejectWithValue(err);
   }
@@ -30,14 +30,14 @@ export const getRelatedIds = createAsyncThunk('products/getRelatedIds', async(id
 
 export const getRelatedProduct = createAsyncThunk('products/getRelatedProduct', async(id, thunkAPI) => {
   try {
-    axios.get(`${baseAPIURL}/product/${id}`).then(res => res.data)
+    axios.get(`${baseAPIURL}/products/${id}`).then(res => res.data)
   } catch (err) {
     thunkAPI.rejectWithValue(err);
   }
 });
 
 //need another aysnc thunk func to axios.get /products/:product_id/styles and store it into your slice
-export const getProductStyle = createAsyncThunk('/products/getProductStyle', await(id, thunkAPI) => {
+export const getProductStyle = createAsyncThunk('/products/getProductStyle', async(id, thunkAPI) => {
   try {
     axios.get(`${baseAPIURL}/products/${id}/styles`).then(res => res.data)
   } catch (err) {

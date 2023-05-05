@@ -1,4 +1,6 @@
 import React from 'react';
+import Overview from './overview/index.jsx';
+import Comparison from './comparison/RelatedItems.jsx';
 
 export default function App() {
   // useEffect cascade of get requests to store state information, using .then() notation
@@ -17,6 +19,8 @@ export default function App() {
   return (
     <div id="App">
       <p>Hello, world!</p>
+      <Overview />
+      <Comparison />
     </div>
   );
 }
