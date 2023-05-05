@@ -9,6 +9,8 @@ const { getQuestions, getAnswersById, postQuestion, postAnswerForQuestionById, p
 
 const { getCartByUser, addProductToCart } = require('./controllers/cart.js');
 
+const { addInteraction } = require('./controllers/interaction.js');
+
 
 const express = require('express');
 const morgan = require('morgan');
@@ -54,6 +56,8 @@ router.put('/qa/answers/:answer_id/report', putAnswerReportById);
 router.get('/cart', getCartByUser);
 router.post('/cart', addProductToCart);
 
+//interaction related routes
+router.post('/interactions', addInteraction);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
