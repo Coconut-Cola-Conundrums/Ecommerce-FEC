@@ -1,5 +1,5 @@
 const axios = require('axios');
-const URL =  `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/`;
+const URL =  `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp`;
 
 const headers = {
   Authorization: process.env.PAT,
@@ -14,7 +14,7 @@ module.exports = {
       console.log('Successful getProducts call to the API');
     })
     .catch(error => {
-      console.error('Error fetching products from API: ', error);
+      console.log('Error fetching products from API: ', error);
       res.status(500);
     });
   },
@@ -27,7 +27,7 @@ module.exports = {
         console.log(`Sucessfully fetched product data with ID ${productId}`);
       })
       .catch(error => {
-        console.error(`Error fetching product with ID ${productId}`, error);
+        console.log(`Error fetching product with ID ${productId}`, error);
         res.status(500)
       });
   },
@@ -40,7 +40,7 @@ module.exports = {
         console.log(`Sucessfully fetched style data from product ID ${productId}`);
       })
       .catch(error => {
-        console.error(`Error fetching style data with ID ${productId}`, error);
+        console.log(`Error fetching style data with ID ${productId}`, error);
         res.status(500)
       });
   },
@@ -53,7 +53,7 @@ module.exports = {
         console.log(`Sucessfully fetched related products from product ID ${productId}`);
       })
       .catch(error => {
-        console.error(`Error fetching related products from ID ${productId}`, error);
+        console.log(`Error fetching related products from ID ${productId}`, error);
         res.status(500)
       });
   },
