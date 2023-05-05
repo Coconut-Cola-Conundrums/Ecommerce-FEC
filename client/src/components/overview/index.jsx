@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getInitialData, getSpecificProduct, getStyles } from '../../slices/productSlice.jsx';
@@ -37,6 +37,7 @@ import AddToCart from './addToCart.jsx';
 
 const Overview = () => {
   const product = useSelector(state => state.product);
+  console.log('what is this product: ', product);
   const dispatch = useDispatch();
 
   useEffect(() => {

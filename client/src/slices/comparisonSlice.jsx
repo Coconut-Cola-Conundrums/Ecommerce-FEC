@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@redux/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
@@ -37,7 +37,7 @@ export const getRelatedProduct = createAsyncThunk('products/getRelatedProduct', 
 });
 
 //need another aysnc thunk func to axios.get /products/:product_id/styles and store it into your slice
-export const getProductStyle = createAsyncThunk('/products/getProductStyle', await(id, thunkAPI) => {
+export const getProductStyle = createAsyncThunk('/products/getProductStyle', async(id, thunkAPI) => {
   try {
     axios.get(`${baseAPIURL}/products/${id}/styles`).then(res => res.data)
   } catch (err) {
