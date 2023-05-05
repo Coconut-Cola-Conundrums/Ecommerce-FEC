@@ -1,7 +1,11 @@
 require('dotenv').config();
 const path = require('path');
+
 const { getProducts, getProductById, getProductStylesById, getRelatedProductsById } = require('./controllers/products.js');
-const { getReviews, getMeta, postReview } = require('./controllers/reviews.js');
+
+const { getReviews, getMeta, postReview, putReviewHelpful, putReviewReport } = require('./controllers/reviews.js');
+
+const { getQuestionsById, getAnswersById, postQuestion, postAnswerForQuestionById, putQuestionHelpfulById, putQuestionReportById, putAnswerHelpfulById, putAnswerReportById } = require('./controllers/questionsAnswers');
 
 
 const express = require('express');
@@ -31,6 +35,18 @@ router.get('/products/:product_id/related', getRelatedProductsById);
 router.get('/reviews', getReviews);
 router.get('/reviews/meta', getMeta);
 router.post('/reviews', postReview);
+router.put('/reviews/:review_id/helpful', putReviewHelpful);
+router.put('/reviews/:review_id/report', putReviewReport);
+
+//Questions and answers related routes
+router.get('/qa/questions', getQuestionsById);
+router.get('/qa/questions/:question_id/answers', getAnswersById);
+router.post('/qa/questions', postQuestion);
+router.post('/qa/questions/:question_id/answers', postAnswerForQuestionById);
+router.put('/qa/questions/:question_id/helpful', putQuestionHelpfulById);
+router.put('/qa/questions/:question_id/report', putQuestionReportById);
+router.put('/qa/answers/:answer_id/helpful', putAnswerHelpfulById);
+router.put('/qa/answers/:answer_id/report', putAnswerReportById);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

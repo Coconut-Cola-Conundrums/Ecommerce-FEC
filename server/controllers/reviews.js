@@ -47,12 +47,21 @@ module.exports = {
 
     axios.post(`${URL}/reviews`, data, { headers })
     .then(response => {
+      res.json(response.data);
       console.log('Successfully added review to API');
     })
     .catch(error => {
       console.log('Error adding review to API: ', error);
       res.status(500);
     });
+  },
+
+  putReviewHelpful: (req, res) => {
+    //TODO
+  },
+
+  putReviewReport:(req, res) => {
+    //TODO
   }
 
 };
