@@ -9,21 +9,24 @@ import Card from './Card.jsx';
 const RelatedItems = () => {
 
   const dispatch = useDispatch();
-  let relatedProducts = useSelector((state) => state.relatedItems.relatedProducts)
+  let relatedProducts = useSelector((state) => state.relatedItems)
   let product = useSelector((state) => state.product.id);
   //make another useSelector to select styles State
 
   //everytime the id changes, we will get use the newID to dispatch the 2 async thunks to update our relatedProducts
   //if related product conditional
   useEffect(() => {
-    dispatch(getRelatedIds(2))
-    .then((action) => {
-      const relatedIds = action.payload;
-      relatedIds.forEach((id) => {
-        dispatch(getRelatedProduct(id));
-        //no need to update relatedProducts state here, it's being done in extraReducers once fullfilled
-      });
-    })
+    if (product) {
+      dispatch(getRelatedIds(product))
+      .then(() => {
+        console.log('related proudcts: ', relatedProducts)
+        const relatedIds = relatedProducts.relatedIds;
+        relatedIds.forEach((id) => {
+          dispatch(getRelatedProduct(id));
+          //no need to update relatedProducts state here, it's being done in extraReducers once fullfilled
+        });
+      })
+    }
   }, [product])
 
 
@@ -38,7 +41,7 @@ const RelatedItems = () => {
 
   return (
     <div>
-      {relatedProducts.map((product, i) => <Card key={i} product={product}/>)}
+      {/* {relatedProducts.map((product, i) => <Card key={i} product={product}/>)} */}
     </div>
   )
 };

@@ -41,10 +41,10 @@ export const getInitialData = createAsyncThunk('product/getInitialData', async(_
 // Retrieves a single product object from the path parameter, productId
 export const getSpecificProduct = createAsyncThunk('product/getSpecificProduct', async(productId, thunkAPI) => {
   try {
-    console.log('waht is productId: ', productId);
+
     if (!productId) {
       productId = thunkAPI.getState().product.id;
-      // console.log('what is this new productID: ', productId);
+
     }
     return axios.get(`${baseAPIURL}/products/${productId}`)
     .then(res => res.data)
@@ -78,7 +78,7 @@ export const productSlice = createSlice({
     builder
       .addCase(getInitialData.fulfilled, (state, action) => {
         // default product is the first product in the products arr
-        console.log('what is this action.payload: ', action.payload)
+
         state.id = action.payload[0].id;
         state.isLoading = false;
       })
@@ -95,7 +95,7 @@ export const productSlice = createSlice({
       })
 
       .addCase(getSpecificProduct.fulfilled, (state, action) => {
-        console.log('what is this action.payload for specific proudct: ', action.payload)
+
         state.id = action.payload.id;
         state.productInformation = action.payload;
         state.availableStyles = [];
@@ -103,7 +103,7 @@ export const productSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getSpecificProduct.rejected, (state, action) => {
-        console.log(action.payload);
+
         state.isLoading = false;
       })
       .addCase(getSpecificProduct.pending, (state) => {
