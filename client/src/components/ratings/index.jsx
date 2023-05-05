@@ -12,11 +12,11 @@ var Reviews = () => {
 
   return (
     <div>
-      <div className = 'revList'></div>
-      <div className = 'sortOptions'></div>
-      <div className = 'ratingBreakdown'></div>
-      <div className = 'productBreakdown'></div>
-      <div className = 'newRev'></div>
+      <div className = 'revList'><RevList/></div>
+      <div className = 'sortOptions'><SortOptions/></div>
+      <div className = 'ratingBreakdown'><RatingBreakdown/></div>
+      <div className = 'productBreakdown'><ProductBreakdown/></div>
+      <div className = 'newRev'><NewRev/></div>
     </div>
   )
 }

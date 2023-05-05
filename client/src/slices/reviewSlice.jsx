@@ -1,30 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
 
-const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/";
+const baseAPIURL = "http://localhost:3000/";
 
 const initialState = {
   reviews: [],
   ratings: '',
   recommended: '',
-  characteristsics: {
-    Size: {
-      id: '',
-      value: ''
-    },
-    Width: {
-      id: '',
-      value: ''
-    },
-    Comfort: {
-      id: '',
-      value: ''
-    },
-  }
+  characteristics: {}
 };
 
-export const getReviews = createAsyncThunk('reviews', async(id, thunkAPI) => {
-  axios.get(baseAPIURL, {
+export const getReviews = createAsyncThunk('/reviews', async(id, thunkAPI) => {
+  return axios.get(baseAPIURL, {
     params: {
       page: 1,
       count: 5,
@@ -33,45 +20,46 @@ export const getReviews = createAsyncThunk('reviews', async(id, thunkAPI) => {
     }
   }).then((res) => {
     console.log(res.data);
-    // set the states with the returned data
-  }.catch((err) => {
+    return res.data;
+  }).catch((err) => {
     console.log(err);
   })
-  )
 })
 
-export const getMetaData = createAsyncThunk('reviews/meta', async(id, thunkAPI) => {
-  axios.get(baseAPIURL, {
+export const getMetaData = createAsyncThunk('/reviews/meta', async(id, thunkAPI) => {
+  return axios.get(baseAPIURL, {
     params: {
       product_id: id
     }
   }).then((res) => {
     console.log(res.data);
-    // set the states with the returned data
-  }.catch((err) => {
+    return res.data;
+  }).catch((err) => {
     console.log(err);
   })
-  )
 })
 
 
-const reviewSlice = createSlice({
-  name: review,
+export const reviewSlice = createSlice({
+  name: 'review',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getReviews.fulfilled, (state, action) => {
         // state = action.payload;
+        state.reviews = action.payload;
       })
       .addCase(getReviews.rejected, (state, action) => {
-        conosle.log(action.payload);
+        console.log(action.payload);
       })
       .addCase(getMetaData.fulfilled, (state, action) => {
-        // state = action.payload;
+        state.ratings = action.payload.ratings;
+        state.recommended = action.payload.recommended;
+        state.characteristics = action.payload.characteristics;
       })
       .addCase(getMetaData.rejected, (state, action) => {
-        conosle.log(action.payload);
+        console.log(action.payload);
       })
   }
 })
