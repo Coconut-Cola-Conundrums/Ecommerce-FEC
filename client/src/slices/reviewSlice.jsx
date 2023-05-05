@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const getReviews = createAsyncThunk('/reviews', async(id, thunkAPI) => {
-  axios.get(baseAPIURL, {
+  return axios.get(baseAPIURL, {
     params: {
       page: 1,
       count: 5,
@@ -27,22 +27,21 @@ export const getReviews = createAsyncThunk('/reviews', async(id, thunkAPI) => {
 })
 
 export const getMetaData = createAsyncThunk('/reviews/meta', async(id, thunkAPI) => {
-  axios.get(baseAPIURL, {
+  return axios.get(baseAPIURL, {
     params: {
       product_id: id
     }
   }).then((res) => {
     console.log(res.data);
     return res.data;
-  }.catch((err) => {
+  }).catch((err) => {
     console.log(err);
   })
-  )
 })
 
 
 export const reviewSlice = createSlice({
-  name: review,
+  name: 'review',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -52,15 +51,15 @@ export const reviewSlice = createSlice({
         state.reviews = action.payload;
       })
       .addCase(getReviews.rejected, (state, action) => {
-        conosle.log(action.payload);
+        console.log(action.payload);
       })
       .addCase(getMetaData.fulfilled, (state, action) => {
         state.ratings = action.payload.ratings;
         state.recommended = action.payload.recommended;
-        state.characteristics = aciton.payload.characteristics;
+        state.characteristics = action.payload.characteristics;
       })
       .addCase(getMetaData.rejected, (state, action) => {
-        conosle.log(action.payload);
+        console.log(action.payload);
       })
   }
 })
