@@ -9,6 +9,7 @@ const headers = {
 
 module.exports = {
   getProducts: (req, res) => {
+    //would need to extract page and count from req and include it as a parameter inside the URL
     axios.get(`${URL}/products`, { headers })
     .then(response => {
       res.json(response.data);
@@ -57,5 +58,5 @@ module.exports = {
         console.log(`Error fetching related products from ID ${productId}`, error);
         res.status(500)
       });
-  },
+  }
 };

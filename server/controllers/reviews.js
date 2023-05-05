@@ -9,6 +9,7 @@ const headers = {
 
 module.exports = {
   getReviews: (req, res) => {
+    //would need to extract page, count, sort? and product ID from req 
     axios.get(`${URL}/reviews`, { headers })
     .then(response => {
       res.json(response.data);
