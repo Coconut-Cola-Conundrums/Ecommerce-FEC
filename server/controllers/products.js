@@ -1,9 +1,14 @@
 const axios = require('axios');
 const URL =  `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/`;
 
+const headers = {
+  Authorization: process.env.PAT,
+  'Content-Type': 'application/json',
+};
+
 module.exports = {
   getProducts: (req, res) => {
-    axios.get(`${URL}/products`)
+    axios.get(`${URL}/products`, { headers })
     .then(response => {
       res.json(response.data);
       console.log('Successful getProducts call to the API');
@@ -16,9 +21,9 @@ module.exports = {
 
   getProductById: (req, res) => {
     const productId = req.params.product_id;
-    axios.get(`${URL}/products/${productId}`)
+    axios.get(`${URL}/products/${productId}`, { headers })
       .then(response => {
-        res.send(response.data);
+        res.json(response.data);
         console.log(`Sucessfully fetched product data with ID ${productId}`);
       })
       .catch(error => {
@@ -29,9 +34,9 @@ module.exports = {
 
   getProductStylesById: (req, res) => {
     const productId = req.params.product_id;
-    axios.get(`${URL}/products/${productId}/styles`)
+    axios.get(`${URL}/products/${productId}/styles`, { headers })
       .then(response => {
-        res.send(response.data);
+        res.json(response.data);
         console.log(`Sucessfully fetched style data from product ID ${productId}`);
       })
       .catch(error => {
@@ -42,9 +47,9 @@ module.exports = {
 
   getRelatedProductsById: (req, res) => {
     const productId = req.params.product_id;
-    axios.get(`${URL}/products/${productId}/related`)
+    axios.get(`${URL}/products/${productId}/related`, { headers })
       .then(response => {
-        res.send(response.data);
+        res.json(response.data);
         console.log(`Sucessfully fetched related products from product ID ${productId}`);
       })
       .catch(error => {
