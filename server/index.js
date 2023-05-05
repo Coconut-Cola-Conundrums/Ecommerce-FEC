@@ -1,7 +1,7 @@
 require('dotenv').config();
 const path = require('path');
 const { getProducts, getProductById, getProductStylesById, getRelatedProductsById } = require('./controllers/products.js');
-const { getReviews, getMeta } = require('./controllers/reviews.js');
+const { getReviews, getMeta, postReview } = require('./controllers/reviews.js');
 
 
 const express = require('express');
@@ -30,6 +30,7 @@ router.get('/products/:product_id/related', getRelatedProductsById);
 //reviews related routes
 router.get('/reviews', getReviews);
 router.get('/reviews/meta', getMeta);
+router.post('/reviews', postReview);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
