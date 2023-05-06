@@ -94,7 +94,7 @@ export const comparisonSlice = createSlice({
           };
         });
 
-        // console.log('Updated products: ', updatedProducts); //doesn't work
+        console.log('Updated products: ', updatedProducts); //doesn't work
 
         return {
           ...state,
