@@ -11,10 +11,10 @@ const initialState = {
       descriptions: '',
       category: '',
       default_price: '',
-      features: []
+      features: [],
+      productStyles: []
     }
   ],
-  productStyles: [],
   error: null
 }
 
@@ -50,7 +50,6 @@ export const comparisonSlice = createSlice({
   name: 'relatedItems',
   initialState,
   reducers: {
-
   },
   extraReducers: (builder) => {
     builder
@@ -65,6 +64,44 @@ export const comparisonSlice = createSlice({
         state.relatedProducts.push(action.payload);
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
+        console.log('error with payload: ', action.payload);
+        state.error = action.error.message;
+      })
+      .addCase(getProductStyle.fulfilled, (state, action) => {
+        const { product_id, results } = action.payload;
+        console.log('Product ID:', product_id); //works
+        console.log('Results:', results); //works
+
+        const styles = results.map((result) => ({
+          style_id: result.style_id,
+          name: result.name,
+          original_price: result.original_price,
+          sale_price: result.sale_price,
+          photos: result.photos
+        }));
+        console.log('Updated product styles: ', styles); //works
+
+        const updatedProducts = state.relatedProducts.map((product) => {
+          if (product.id === product_id) {
+            return {
+              ...product,
+              productStyles: styles
+            };
+          }
+          return {
+            ...product,
+            productStyles: []
+          };
+        });
+
+        console.log('Updated products: ', updatedProducts); //doesn't work
+
+        return {
+          ...state,
+          relatedProducts: updatedProducts
+        };
+      })
+      .addCase(getProductStyle.rejected, (state, action) => {
         console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })

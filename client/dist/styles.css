@@ -1,0 +1,14 @@
+.relatedItemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.relatedItemCard {
+  width: 200px; 
+  height: 300px;
+  margin-right: 10px;
+  background-color: #FAEDCA;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 10px;
+}

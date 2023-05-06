@@ -1,7 +1,7 @@
 import React from "react";
 // import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import { getRelatedIds, getRelatedProduct} from '../../slices/comparisonSlice.jsx'; //import getProductStyles
+import { getRelatedIds, getRelatedProduct, getProductStyle } from '../../slices/comparisonSlice.jsx';
 import { useEffect } from 'react'
 import Card from './Card.jsx';
 
@@ -9,25 +9,36 @@ import Card from './Card.jsx';
 const RelatedItems = () => {
 
   const dispatch = useDispatch();
-  let relatedProducts = useSelector((state) => state.relatedItems)
-  let product = useSelector((state) => state.product.id);
+  let comparisonState = useSelector((state) => state.relatedItems)
+  let productId = useSelector((state) => state.product.id);
   //make another useSelector to select styles State
 
-  //everytime the id changes, we will get use the newID to dispatch the 2 async thunks to update our relatedProducts
-  //if related product conditional
+  //everytime productID of overview changes... we getRelatedIds
   useEffect(() => {
-    if (product) {
-      dispatch(getRelatedIds(product))
-      .then(() => {
-        console.log('related proudcts: ', relatedProducts)
-        const relatedIds = relatedProducts.relatedIds;
-        relatedIds.forEach((id) => {
-          dispatch(getRelatedProduct(id));
-          //no need to update relatedProducts state here, it's being done in extraReducers once fullfilled
-        });
-      })
+    if (productId) {
+      dispatch(getRelatedIds(productId));
     }
-  }, [product])
+  }, [productId]);
+
+  //everytime relatedIds state changes... we getRelatedProducts
+  useEffect(() => {
+    if (comparisonState.relatedIds.length > 0) {
+      comparisonState.relatedIds.forEach((id) => {
+        dispatch(getRelatedProduct(id));
+      });
+    }
+  }, [comparisonState.relatedIds]);
+
+  useEffect(() => {
+    if (
+      comparisonState.relatedIds.length > 0 &&
+      comparisonState.relatedProducts.length === comparisonState.relatedIds.length
+    ) {
+      comparisonState.relatedIds.forEach((id) => {
+        dispatch(getProductStyle(id));
+      });
+    }
+  }, [comparisonState.relatedIds, comparisonState.relatedProducts]);
 
 
 
@@ -40,8 +51,8 @@ const RelatedItems = () => {
   //conditional render below
 
   return (
-    <div>
-      {/* {relatedProducts.map((product, i) => <Card key={i} product={product}/>)} */}
+    <div className="relatedItemsContainer">
+      {comparisonState.relatedProducts.map((product, i) => <Card key={i} product={product}/>)}
     </div>
   )
 };
