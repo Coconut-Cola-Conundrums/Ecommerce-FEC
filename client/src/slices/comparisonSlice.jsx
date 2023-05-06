@@ -69,9 +69,7 @@ export const comparisonSlice = createSlice({
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {
         const { product_id, results } = action.payload;
-        // console.log('Product ID:', product_id); //works
-        // console.log('Results:', results); //works
-
+        console.log('what is this proudct id: ', product_id);
         const styles = results.map((result) => ({
           style_id: result.style_id,
           name: result.name,
@@ -79,7 +77,11 @@ export const comparisonSlice = createSlice({
           sale_price: result.sale_price,
           photos: result.photos
         }));
-        // console.log('Updated product styles: ', styles); //works
+
+        console.log('whatis this stylesfes: ', styles);
+
+        // let copyOfStateArray = state.relatedProducts.slice();
+        // console.log("please work: ", copyOfStateArray);
 
         const updatedProducts = state.relatedProducts.map((product) => {
           if (product.id === product_id) {
@@ -88,18 +90,19 @@ export const comparisonSlice = createSlice({
               productStyles: styles
             };
           }
-          return {
-            ...product,
-            productStyles: []
-          };
+          return product;
         });
 
-        console.log('Updated products: ', updatedProducts); //doesn't work
+        // console.log('what is this updatedProducts: ', updatedProducts)
+        // state.relatedProducts = updatedProducts; //doesn't work???
 
-        return {
-          ...state,
-          relatedProducts: updatedProducts
-        };
+        /*
+        // return {
+        //   ...state,
+        //   relatedProducts: updatedProducts
+        // };
+
+        */
       })
       .addCase(getProductStyle.rejected, (state, action) => {
         console.log('error with payload: ', action.payload);
