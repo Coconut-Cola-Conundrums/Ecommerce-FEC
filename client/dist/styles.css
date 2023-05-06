@@ -15,11 +15,11 @@
   padding: 10px;
 }
 
-.relatedItemCard .fa-star {
+.relatedItemCard .fa-caret-up {
   color: #95a8c6;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
 }
 
 .imageContainer {

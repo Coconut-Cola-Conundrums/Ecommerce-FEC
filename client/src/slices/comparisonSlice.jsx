@@ -69,8 +69,8 @@ export const comparisonSlice = createSlice({
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {
         const { product_id, results } = action.payload;
-        console.log('Product ID:', product_id); //works
-        console.log('Results:', results); //works
+        // console.log('Product ID:', product_id); //works
+        // console.log('Results:', results); //works
 
         const styles = results.map((result) => ({
           style_id: result.style_id,
@@ -79,7 +79,7 @@ export const comparisonSlice = createSlice({
           sale_price: result.sale_price,
           photos: result.photos
         }));
-        console.log('Updated product styles: ', styles); //works
+        // console.log('Updated product styles: ', styles); //works
 
         const updatedProducts = state.relatedProducts.map((product) => {
           if (product.id === product_id) {
@@ -94,7 +94,7 @@ export const comparisonSlice = createSlice({
           };
         });
 
-        console.log('Updated products: ', updatedProducts); //doesn't work
+        // console.log('Updated products: ', updatedProducts); //doesn't work
 
         return {
           ...state,
