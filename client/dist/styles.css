@@ -31,3 +31,16 @@
   width: 100%;
   height: auto;
 }
+
+/* .modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.productComparison {
+  display: flex;
+}
+
+.productColumn {
+  flex: 1;
+}
