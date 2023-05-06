@@ -19,7 +19,7 @@ const RelatedItems = () => {
     if (product) {
       dispatch(getRelatedIds(product))
       .then(() => {
-        console.log('related proudcts: ', relatedProducts)
+        // console.log('related proudcts: ', relatedProducts)
         const relatedIds = relatedProducts.relatedIds;
         relatedIds.forEach((id) => {
           dispatch(getRelatedProduct(id));

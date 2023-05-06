@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const getReviews = createAsyncThunk('/reviews', async(id, thunkAPI) => {
-  return axios.get(baseAPIURL, {
+  return axios.get(`${baseAPIURL}reviews`, {
     params: {
       page: 1,
       count: 5,
@@ -19,20 +19,20 @@ export const getReviews = createAsyncThunk('/reviews', async(id, thunkAPI) => {
       product_id: id
     }
   }).then((res) => {
-    console.log(res.data);
-    return res.data;
+    // console.log('The review get request worked:', res.data.results);
+    return res.data.results;
   }).catch((err) => {
-    console.log(err);
+    console.log('Error when getting Reviews');
   })
 })
 
 export const getMetaData = createAsyncThunk('/reviews/meta', async(id, thunkAPI) => {
-  return axios.get(baseAPIURL, {
+  return axios.get(baseAPIURL + 'reviews/meta', {
     params: {
       product_id: id
     }
   }).then((res) => {
-    console.log(res.data);
+    // console.log(res.data);
     return res.data;
   }).catch((err) => {
     console.log(err);
@@ -48,6 +48,7 @@ export const reviewSlice = createSlice({
     builder
       .addCase(getReviews.fulfilled, (state, action) => {
         // state = action.payload;
+        // console.log('this is the action payload', action.payload)
         state.reviews = action.payload;
       })
       .addCase(getReviews.rejected, (state, action) => {
