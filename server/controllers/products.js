@@ -42,7 +42,7 @@ module.exports = {
         console.log(`Sucessfully fetched style data from product ID ${productId}`);
       })
       .catch(error => {
-        // console.log(`Error fetching style data with ID ${productId}`, error);
+        console.log(`Error fetching style data with ID ${productId}`, error);
         res.status(500)
       });
   },

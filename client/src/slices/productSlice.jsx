@@ -31,7 +31,8 @@ const initialState = {
 export const getInitialData = createAsyncThunk('product/getInitialData', async(_, thunkAPI) => {
   try {
     return axios.get(`${baseAPIURL}/products`)
-    .then((res) => res.data);
+    .then((res) => res.data)
+    .catch((err) => {throw new Error (err)});
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
@@ -45,6 +46,7 @@ export const getSpecificProduct = createAsyncThunk('product/getSpecificProduct',
     }
     return axios.get(`${baseAPIURL}/products/${productId}`)
     .then(res => res.data)
+    .catch((err) => {throw new Error (err)});
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
@@ -57,7 +59,8 @@ export const getStyles = createAsyncThunk('product/getStyles', async(productId, 
       productId = thunkAPI.getState().product.id;
     }
     return axios.get(`${baseAPIURL}/products/${productId}/styles`)
-    .then(res => res.data);
+    .then(res => res.data)
+    .catch((err) => {throw new Error (err)});
   } catch(err) {
     return thunkAPI.rejectWithValue(err);
   }
