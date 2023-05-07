@@ -50,9 +50,11 @@ const Overview = () => {
   return (
     <div className="wrapper">
         <ImageGallery />
-        <ProductDetails />
-        <StyleSelector />
-        <AddToCart />
+        <div className="block">
+          <ProductDetails />
+          <StyleSelector />
+          <AddToCart />
+        </div>
     </div>
   )
 }

@@ -3,20 +3,25 @@
   display: flex;
 }
 
+.block {
+  display: block;
+}
+
 .photoContainer {
   display: flex;
   position: relative;
   height: 60vh;
-  width: 50vw;
+  width: 60vw;
 }
 
 .mainPhoto {
   width: 100%;
-  object-fit:contain;
+  object-fit: scale-down;
 }
 
 .absolute {
   position: absolute;
+  left: 0;
 }
 
 .thumbnail {
@@ -24,7 +29,20 @@
   cursor: pointer;
   position: relative;
   width: 10%;
-  object-fit: scale-down;
-  padding-bottom: 2vh;
-  vertical-align: middle;
+  margin-bottom: 2vh;
+  left: 1vw;
+  top: 1vh;
+}
+
+.selected {
+  border: 0.5vw solid blanchedalmond;
+  left: .5vw;
+}
+
+.productDetails {
+  margin-left: 1vw;
+}
+
+.styleSelector {
+  margin-left: 1vw;
 }

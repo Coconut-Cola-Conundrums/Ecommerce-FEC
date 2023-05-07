@@ -9,7 +9,7 @@ const ImageGallery = () => {
 
   const onClick = (e) => {
     e.preventDefault();
-    setMainPhoto(e.target.id);
+    setMainPhoto(Number(e.target.id));
   }
 
   useEffect(() => {
@@ -17,16 +17,16 @@ const ImageGallery = () => {
   }, [product, mainPhoto]);
 
   return (
-    <div>
+    <div className="photoContainer">
       {currentStyle.photos ?
-        <div className="photoContainer">
+          <div>
           <img className="absolute mainPhoto" src={currentStyle.photos[mainPhoto].url} alt=""/>
           <div className="absolute">
             {currentStyle.photos.map((photo, index) =>
-              <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} className="thumbnail"/>
+              <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}/>
             )}
+            </div>
           </div>
-        </div>
         : null
       }
     </div>
