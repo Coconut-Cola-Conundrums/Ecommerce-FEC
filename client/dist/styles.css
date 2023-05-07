@@ -2,3 +2,29 @@
 .wrapper {
   display: flex;
 }
+
+.photoContainer {
+  display: flex;
+  position: relative;
+  height: 60vh;
+  width: 50vw;
+}
+
+.mainPhoto {
+  width: 100%;
+  object-fit:contain;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.thumbnail {
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  width: 10%;
+  object-fit: scale-down;
+  padding-bottom: 2vh;
+  vertical-align: middle;
+}

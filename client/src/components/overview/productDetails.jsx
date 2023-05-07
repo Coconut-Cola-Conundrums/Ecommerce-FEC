@@ -13,8 +13,8 @@ const ProductDetails = () => {
   }, [product]);
 
   return (
-    <div className="productDetails">
-      <h1>{productInformation.category}</h1>
+    <div style={{display: "block", float: "right"}}>
+      <h1 style={{float: "right"}}>{productInformation.category} </h1>
       <h2>{productInformation.name}</h2>
       <h2>{currentStyle.original_price}</h2>
       {currentStyle.sale_price !== '0' ? <h2>{currentStyle.sale_price}</h2> : null}

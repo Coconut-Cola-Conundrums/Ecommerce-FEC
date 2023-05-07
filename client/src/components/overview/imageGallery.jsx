@@ -19,16 +19,13 @@ const ImageGallery = () => {
   return (
     <div>
       {currentStyle.photos ?
-        <div style={{display: "flex", height: "60vh", width: "50vw"}}>
-          <img src={currentStyle.photos[mainPhoto].url} alt="" style={{width: "100%", "objectFit":"contain"}}/>
-          {currentStyle.photos.map((photo, index) => {
-            if (index !== mainPhoto) {
-              return (
-                <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} style={{display: "inlineGrid", width: "100%", "objectFit":"contain"}}/>
-              )
-            }
-          }
-          )}
+        <div className="photoContainer">
+          <img className="absolute mainPhoto" src={currentStyle.photos[mainPhoto].url} alt=""/>
+          <div className="absolute">
+            {currentStyle.photos.map((photo, index) =>
+              <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} className="thumbnail"/>
+            )}
+          </div>
         </div>
         : null
       }
