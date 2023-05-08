@@ -2,6 +2,8 @@ import React from 'react';
 import Overview from './overview/index.jsx';
 import Comparison from './comparison/RelatedItems.jsx';
 import Questions from './questions/questions.jsx';
+import Reviews from './ratings/index.jsx'
+
 
 export default function App() {
   // useEffect cascade of get requests to store state information, using .then() notation
@@ -19,11 +21,11 @@ export default function App() {
   // .then => foreach question, make a get request to /qa/questions/:question_id/answers and update the question slice action to update the state of questions
   return (
     <div id="App">
-      <p>Hello, world!</p>
       <Overview />
       <Comparison />
+     <Questions />
+      <Reviews />
 
-      <Questions />
     </div>
   );
 }

@@ -37,24 +37,27 @@ import AddToCart from './addToCart.jsx';
 
 const Overview = () => {
   const product = useSelector(state => state.product);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!product.id) { // if no product has been loaded, then this is the initial render, and we need to fetch the default data
       dispatch(getInitialData()) // get initial data and set the id in the state
+
       .then(() => dispatch(getSpecificProduct())) // then get product information for that id
       .then(() => dispatch(getStyles())); // then get styles and update them
+
     }
   }, []);
 
   return (
-    <div> Block in line styles
+    <div className="wrapper">
         <ImageGallery />
-      <div>
-        <ProductDetails />
-        <StyleSelector />
-        <AddToCart />
-      </div>
+        <div className="block">
+          <ProductDetails />
+          <StyleSelector />
+          <AddToCart />
+        </div>
     </div>
   )
 }

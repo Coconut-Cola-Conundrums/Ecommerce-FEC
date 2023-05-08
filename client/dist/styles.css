@@ -1,0 +1,94 @@
+
+.wrapper {
+  display: flex;
+}
+
+.block {
+  display: block;
+}
+
+.photoContainer {
+  display: flex;
+  position: relative;
+  height: 60vh;
+  width: 60vw;
+}
+
+.mainPhoto {
+  width: 100%;
+  object-fit: scale-down;
+}
+
+.absolute {
+  position: absolute;
+  left: 0;
+}
+
+.thumbnail {
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  width: 10%;
+  margin-bottom: 2vh;
+  left: 1vw;
+  top: 1vh;
+}
+
+.selected {
+  border: 0.5vw solid blanchedalmond;
+  left: .5vw;
+}
+
+.productDetails {
+  margin-left: 1vw;
+}
+
+.styleSelector {
+  margin-left: 1vw;
+}
+.relatedItemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.relatedItemCard {
+  position: relative;
+  font-family: 'Candara', Verdana, monospace;
+  width: 200px;
+  height: 300px;
+  margin-right: 10px;
+  background-color: #FAEDCA;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.relatedItemCard .fa-caret-up {
+  color: #95a8c6;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.imageContainer {
+  height: 200px;
+  overflow: hidden;
+}
+
+.sampleImage {
+  width: 100%;
+  height: auto;
+}
+
+/* .modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.productComparison {
+  display: flex;
+}
+
+.productColumn {
+  flex: 1;
+}

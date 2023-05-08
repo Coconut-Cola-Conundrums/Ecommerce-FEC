@@ -7,14 +7,14 @@ const ProductDetails = () => {
   // const reviews = useSelector(state => state.review); // for rendering out the stars
 
   const {productInformation, currentStyle} = product;
-
   useEffect(() => {
-
-  }, [product]);
+    console.log(productInformation)
+    console.log(currentStyle)
+  }, [productInformation, currentStyle]); // product information will change when new product is clicked, currentstyle will change the price when a new style is clicked
 
   return (
     <div className="productDetails">
-      <h1>{productInformation.category}</h1>
+      <h1 >{productInformation.category} </h1>
       <h2>{productInformation.name}</h2>
       <h2>{currentStyle.original_price}</h2>
       {currentStyle.sale_price !== '0' ? <h2>{currentStyle.sale_price}</h2> : null}
