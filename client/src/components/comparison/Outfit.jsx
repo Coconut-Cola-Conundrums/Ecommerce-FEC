@@ -1,11 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { comparisonSlice } from '../../slices/comparisonSlice';
 
 const Outfit = ({outfit}) => {
+  const dispatch = useDispatch();
+
+  const handleXclick = () => {
+    console.log('clicked')
+    dispatch(comparisonSlice.actions.removeOutfit(outfit.id));
+  };
 
   if (outfit.productStyles) {
     return (
       <div className="relatedItemCard">
-        <i className="fa-solid fa-caret-up fa-2x"></i>
+        <i className="fa-sharp fa-solid fa-circle-xmark" onClick={handleXclick}></i>
         <div className="imageContainer">
           <img
             className="sampleImage"

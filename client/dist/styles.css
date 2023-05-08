@@ -63,8 +63,13 @@
   padding: 10px;
 }
 
-.relatedItemCard .fa-caret-up {
-  color: #95a8c6;
+.fa {
+  border: 1px solid #808080;
+}
+
+.relatedItemCard .fa-caret-up,
+.relatedItemCard .fa-sharp.fa-solid.fa-circle-xmark {
+  color: #808080;
   position: absolute;
   top: 15px;
   right: 15px;

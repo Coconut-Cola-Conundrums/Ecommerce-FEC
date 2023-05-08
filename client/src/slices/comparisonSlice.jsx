@@ -49,6 +49,10 @@ export const comparisonSlice = createSlice({
   name: 'relatedItems',
   initialState,
   reducers: {
+    removeOutfit: (state, action) => {
+      const outfitId = action.payload;
+      state.outfits = state.outfits.filter((outfit) => outfit.id !== outfitId);
+    },
   },
   extraReducers: (builder) => {
     builder
