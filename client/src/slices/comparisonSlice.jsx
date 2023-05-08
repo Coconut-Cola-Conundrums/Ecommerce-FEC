@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
@@ -60,8 +60,6 @@ export const comparisonSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getRelatedProduct.fulfilled, (state, action) => {
-        // console.log('this is whats wrong, getRelatedProduct')
-        console.log('relatedProduct on fulfilles is', state.relatedProducts)
         state.relatedProducts = [...state.relatedProducts, action.payload];
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
@@ -70,7 +68,6 @@ export const comparisonSlice = createSlice({
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {
         const { product_id, results } = action.payload;
-        console.log('what is this proudct id: ', product_id);
         const styles = results.map((result) => ({
           style_id: result.style_id,
           name: result.name,
@@ -79,12 +76,7 @@ export const comparisonSlice = createSlice({
           photos: result.photos
         }));
 
-        // console.log('whatis this stylesfes: ', styles);
-
-        // let copyOfStateArray = state.relatedProducts.slice();
-        // console.log("please work: ", copyOfStateArray);
-
-        const updatedProducts = state.relatedProducts.map((product) => {
+        const updatedProducts = current(state.relatedProducts).map((product) => {
           if (product.id === Number(product_id)) {
             return {
               ...product,
@@ -93,6 +85,7 @@ export const comparisonSlice = createSlice({
           }
           return product;
         });
+
         state.relatedProducts = updatedProducts;
 
       })

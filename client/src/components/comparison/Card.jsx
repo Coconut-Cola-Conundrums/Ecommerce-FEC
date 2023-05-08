@@ -30,7 +30,7 @@ const Card = ({ product }) => {
 
   return (
     <div className="relatedItemCard">
-      <i className="fa-solid fa-caret-up" onClick={handleCardClick}></i>
+      <i className="fa-solid fa-caret-up fa-2x" onClick={handleCardClick}></i>
       <div className="imageContainer">
         <img
           className="sampleImage"

@@ -2,7 +2,7 @@ import React from "react";
 // import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit } from '../../slices/comparisonSlice.jsx';
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Card from './Card.jsx';
 import Outfit from './Outfit.jsx';
 
@@ -21,31 +21,26 @@ const RelatedItems = () => {
   useEffect(() => {
 
     if (productId) {
-      dispatch(getRelatedIds(productId));
+      dispatch(getRelatedIds(productId))
 
     }
   }, [productId]);
 
-  //everytime relatedIds state changes... we getRelatedProducts
+  //everytime relatedIds state changes... we getRelatedProducts and then getProductStyles after
   useEffect(() => {
     if (comparisonState.relatedIds.length > 0) {
-      console.log('this should be relatedIDS state arr: ', comparisonState.relatedIds)
-      comparisonState.relatedIds.forEach((id) => {
-        dispatch(getRelatedProduct(id));
-      });
+      Promise.all(comparisonState.relatedIds.map((id) => dispatch(getRelatedProduct(id))))
+        .then(() => {
+          comparisonState.relatedIds.forEach((id) => {
+            dispatch(getProductStyle(id));
+          });
+        })
+        .catch((error) => {
+          console.error('Error fetching related products:', error);
+        });
     }
   }, [comparisonState.relatedIds]);
 
-  useEffect(() => {
-    if (comparisonState.relatedIds.length > 0) {
-      comparisonState.relatedIds.forEach((id) => {
-        dispatch(getProductStyle(id));
-      });
-    }
-  }, [comparisonState.relatedIds]);
-
-  //pass in productStyles down below as well
-  //conditional render below...?
 
   return (
     <div>
