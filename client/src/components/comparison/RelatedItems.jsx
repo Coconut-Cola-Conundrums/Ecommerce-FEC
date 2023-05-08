@@ -1,9 +1,10 @@
 import React from "react";
 // import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import { getRelatedIds, getRelatedProduct, getProductStyle } from '../../slices/comparisonSlice.jsx';
+import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit } from '../../slices/comparisonSlice.jsx';
 import { useEffect } from 'react'
 import Card from './Card.jsx';
+import Outfit from './Outfit.jsx';
 
 //need to pass in ID from jac's state, not in store yet
 const RelatedItems = () => {
@@ -12,6 +13,9 @@ const RelatedItems = () => {
   let comparisonState = useSelector((state) => state.relatedItems)
   let productId = useSelector((state) => state.product.id);
 
+  const handleOutfitClick = (id) => {
+    dispatch(getOutfit(id));
+  }
 
   //everytime productID of overview changes... we getRelatedIds
   useEffect(() => {
@@ -46,11 +50,17 @@ const RelatedItems = () => {
   //conditional render below...?
 
   return (
+    <div>
     <div className="relatedItemsContainer">
       {comparisonState.relatedProducts.map((product, i) => <Card key={i} product={product}/>)}
     </div>
+    <button onClick={() => handleOutfitClick(productId)}>add to outfit</button>
+    <div className="outfitsContainer">
+      {comparisonState.outfits.map((outfit, i) => <Outfit key={i} outfit={outfit}/>)}
+    </div>
+    </div>
+
   )
 };
 
 export default RelatedItems;
-

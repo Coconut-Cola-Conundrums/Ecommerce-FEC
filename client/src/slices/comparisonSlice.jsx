@@ -15,6 +15,7 @@ const initialState = {
       productStyles: []
     }
   ],
+  outfits: [],
   error: null
 }
 
@@ -24,7 +25,7 @@ export const getRelatedIds = createAsyncThunk('products/getRelatedIds', async(id
   try {
     return axios.get(`${baseAPIURL}/products/${id}/related`).then(res => res.data)
   } catch (err) {
-    thunkAPI.rejectWithValue(err);
+    return thunkAPI.rejectWithValue(err);
   }
 });
 
@@ -32,7 +33,15 @@ export const getRelatedProduct = createAsyncThunk('products/getRelatedProduct', 
   try {
     return axios.get(`${baseAPIURL}/products/${id}`).then(res => res.data)
   } catch (err) {
-    thunkAPI.rejectWithValue(err);
+    return thunkAPI.rejectWithValue(err);
+  }
+});
+
+export const getOutfit = createAsyncThunk('products/getOutfit', async(id, thunkAPI) => {
+  try {
+    return axios.get(`${baseAPIURL}/products/${id}`).then(res => res.data)
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err);
   }
 });
 
@@ -41,7 +50,7 @@ export const getProductStyle = createAsyncThunk('products/getProductStyle', asyn
   try {
     return axios.get(`${baseAPIURL}/products/${id}/styles`).then(res => res.data)
   } catch (err) {
-    thunkAPI.rejectWithValue(err);
+    return thunkAPI.rejectWithValue(err);
   }
 })
 
@@ -61,10 +70,11 @@ export const comparisonSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getRelatedProduct.fulfilled, (state, action) => {
+        console.log('this is whats wrong, getRelatedProduct')
         state.relatedProducts.push(action.payload);
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        console.log('error with payload hehehehe: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {
@@ -108,7 +118,12 @@ export const comparisonSlice = createSlice({
         console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
+      .addCase(getOutfit.fulfilled, (state, action) => {
+        state.outfits.push(action.payload);
+      })
+      .addCase(getOutfit.rejected, (state, action) => {
+        console.log('error with payload: ', action.payload);
+        state.error = action.error.message;
+      })
   }
 })
-
-
