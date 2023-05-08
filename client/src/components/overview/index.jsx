@@ -51,13 +51,13 @@ const Overview = () => {
   }, []);
 
   return (
-    <div> Block in line styles
+    <div className="wrapper">
         <ImageGallery />
-      <div>
-        <ProductDetails />
-        <StyleSelector />
-        <AddToCart />
-      </div>
+        <div className="block">
+          <ProductDetails />
+          <StyleSelector />
+          <AddToCart />
+        </div>
     </div>
   )
 }

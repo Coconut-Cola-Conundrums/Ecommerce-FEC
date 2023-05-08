@@ -19,7 +19,6 @@ export default function App() {
   // .then => foreach question, make a get request to /qa/questions/:question_id/answers and update the question slice action to update the state of questions
   return (
     <div id="App">
-      <p>Hello, world!</p>
       <Overview />
       <Comparison />
       <Reviews />
