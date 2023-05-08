@@ -74,7 +74,7 @@ export const comparisonSlice = createSlice({
         state.relatedProducts.push(action.payload);
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
-        console.log('error with payload hehehehe: ', action.payload);
+        console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {

@@ -2,7 +2,7 @@ import React from "react";
 // import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit } from '../../slices/comparisonSlice.jsx';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Card from './Card.jsx';
 import Outfit from './Outfit.jsx';
 
@@ -55,8 +55,8 @@ const RelatedItems = () => {
       {comparisonState.relatedProducts.map((product, i) => <Card key={i} product={product}/>)}
     </div>
     <button onClick={() => handleOutfitClick(productId)}>add to outfit</button>
-    <div className="outfitsContainer">
-      {comparisonState.outfits.map((outfit, i) => <Outfit key={i} outfit={outfit}/>)}
+    <div className="relatedItemsContainer">
+        {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} outfit={outfit} /> ))}
     </div>
     </div>
 
