@@ -33,11 +33,11 @@ const Reviews = () => {
 
   return (
     <div>
-      <div className = 'revList'><RevList summary = {reviewState.reviews}/></div>
+      <div className = 'newRev'><NewRev/></div>
       <div className = 'sortOptions'><SortOptions/></div>
+      <div className = 'revList'><RevList/></div>
       <div className = 'ratingBreakdown'><RatingBreakdown ratings = {reviewState.ratings}/></div>
       <div className = 'productBreakdown'><ProductBreakdown characteristics = {reviewState.characteristics}/></div>
-      <div className = 'newRev'><NewRev/></div>
     </div>
   )
 }
