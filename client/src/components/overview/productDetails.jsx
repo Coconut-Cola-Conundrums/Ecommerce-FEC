@@ -8,8 +8,7 @@ const ProductDetails = () => {
 
   const {productInformation, currentStyle} = product;
   useEffect(() => {
-    // console.log(productInformation)
-    // console.log(currentStyle)
+
   }, [productInformation, currentStyle]); // product information will change when new product is clicked, currentstyle will change the price when a new style is clicked
 
   return (

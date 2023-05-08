@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
-const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/";
+const baseAPIURL = "http://localhost:3000/";
 
 const initialState = {
   product_id: '',

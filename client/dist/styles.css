@@ -10,18 +10,19 @@
 .photoContainer {
   display: flex;
   position: relative;
-  height: 60vh;
-  width: 60vw;
+  height: 40%;
+  width: 40%;
 }
 
 .mainPhoto {
   width: 100%;
-  object-fit: scale-down;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
 }
 
 .absolute {
   position: absolute;
-  left: 0;
 }
 
 .thumbnail {
@@ -29,6 +30,8 @@
   cursor: pointer;
   position: relative;
   width: 10%;
+  height: 12%;
+  object-fit: contain;
   margin-bottom: 2vh;
   left: 1vw;
   top: 1vh;

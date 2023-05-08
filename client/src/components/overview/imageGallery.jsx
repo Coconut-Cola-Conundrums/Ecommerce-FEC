@@ -20,8 +20,8 @@ const ImageGallery = () => {
     <div className="photoContainer">
       {currentStyle.photos ?
           <div>
-          <img className="absolute mainPhoto" src={currentStyle.photos[mainPhoto].url} alt=""/>
           <div className="absolute">
+            <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url} alt="" />
             {currentStyle.photos.map((photo, index) =>
               <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}/>
             )}
