@@ -17,7 +17,7 @@ const Reviews = () => {
     // console.log('review running')
     if (product.id) {
       dispatch(getReviews(product.id))
-      // .then(dispatch(getMetaData(product.id)))
+      .then(dispatch(getMetaData(product.id)))
       .then(() => {
         // console.log('This is reviewState =====>', reviewState)
       }).catch((err) => {console.log(err)})
@@ -25,9 +25,9 @@ const Reviews = () => {
     }
   }, [product.id])
 
-  // useEffect(() => {
-  //   console.log(reviewState)
-  // }, [reviewState]);
+  useEffect(() => {
+    console.log(reviewState)
+  }, [reviewState]);
 
 // on render set initial state with the current product ID.
 
@@ -35,8 +35,8 @@ const Reviews = () => {
     <div>
       <div className = 'revList'><RevList summary = {reviewState.reviews}/></div>
       <div className = 'sortOptions'><SortOptions/></div>
-      <div className = 'ratingBreakdown'><RatingBreakdown/></div>
-      <div className = 'productBreakdown'><ProductBreakdown/></div>
+      <div className = 'ratingBreakdown'><RatingBreakdown ratings = {reviewState.ratings}/></div>
+      <div className = 'productBreakdown'><ProductBreakdown characteristics = {reviewState.characteristics}/></div>
       <div className = 'newRev'><NewRev/></div>
     </div>
   )

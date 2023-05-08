@@ -27,7 +27,7 @@ export const getReviews = createAsyncThunk('/reviews', async(id, thunkAPI) => {
 })
 
 export const getMetaData = createAsyncThunk('/reviews/meta', async(id, thunkAPI) => {
-  return axios.get(baseAPIURL + 'reviews/meta', {
+  return axios.get(`${baseAPIURL}reviews/meta`, {
     params: {
       product_id: id
     }
