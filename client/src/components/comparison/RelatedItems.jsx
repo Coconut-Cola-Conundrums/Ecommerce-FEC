@@ -19,8 +19,10 @@ const RelatedItems = () => {
 
   //everytime productID of overview changes... we getRelatedIds
   useEffect(() => {
+
     if (productId) {
       dispatch(getRelatedIds(productId));
+
     }
   }, [productId]);
 

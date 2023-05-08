@@ -33,7 +33,7 @@ router.get('/products/:product_id/styles', getProductStylesById);
 router.get('/products/:product_id/related', getRelatedProductsById);
 
 //reviews related routes
-router.get('/reviews', getReviews);
+router.get('/reviews/', getReviews);
 router.get('/reviews/meta', getMeta);
 router.post('/reviews', postReview);
 router.put('/reviews/:review_id/helpful', putReviewHelpful);
@@ -55,7 +55,7 @@ router.post('/cart', addProductToCart);
 
 //interaction related routes
 router.post('/interactions', addInteraction);
-
+console.log('this is the port', process.env.PORT)
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server available at http://localhost:${PORT}`);
