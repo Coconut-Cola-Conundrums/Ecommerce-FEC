@@ -10,8 +10,8 @@
 .photoContainer {
   display: flex;
   position: relative;
-  height: 40%;
-  width: 40%;
+  height: 40vh;
+  width: 40vh;
 }
 
 .mainPhoto {
@@ -30,11 +30,11 @@
   cursor: pointer;
   position: relative;
   width: 10%;
-  height: 12%;
-  object-fit: contain;
+  height: 10%;
+  object-fit: cover;
   margin-bottom: 2vh;
   left: 1vw;
-  top: 1vh;
+  top: 1vw;
 }
 
 .selected {
@@ -52,6 +52,8 @@
 .relatedItemsContainer {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+  top: 20vh;
 }
 
 .relatedItemCard {
