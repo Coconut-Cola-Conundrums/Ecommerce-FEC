@@ -9,8 +9,7 @@ export const store = configureStore({
   reducer: {
     product: productSlice.reducer,
     relatedItems: comparisonSlice.reducer,
-
-questions: questionsSlice.reducer
+    questions: questionsSlice.reducer,
     reviews: reviewSlice.reducer
 
   },
