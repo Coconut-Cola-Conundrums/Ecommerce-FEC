@@ -45,7 +45,7 @@ const Overview = () => {
       .then(() => dispatch(getSpecificProduct())) // then get product information for that id
       .then(() => dispatch(getStyles())); // then get styles and update them
     }
-  }, [product]);
+  }, []);
 
   return (
     <div className="wrapper">

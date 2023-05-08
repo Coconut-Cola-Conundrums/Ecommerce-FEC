@@ -14,7 +14,7 @@ const ImageGallery = () => {
 
   useEffect(() => {
 
-  }, [product, mainPhoto]);
+  }, []);
 
   return (
     <div className="photoContainer">

@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 
 const StyleSelector = () => {
   const product = useSelector((state) => state.product)
+  const {availableStyles, currentStyle} = product;
 
   useEffect(() => {
-
-  }, [product])
+    console.log(currentStyle)
+  }, [availableStyles])
 
   return (
     <div className="styleSelector">
