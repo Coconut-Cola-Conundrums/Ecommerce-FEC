@@ -29,7 +29,7 @@ module.exports = {
         console.log(`Sucessfully fetched product data with ID ${productId}`);
       })
       .catch(error => {
-        console.log(`Error fetching product with ID ${productId}`, error);
+        console.log(`Error fetching product with ID ${productId}`, error.code);
         res.status(500)
       });
   },

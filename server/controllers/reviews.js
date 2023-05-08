@@ -9,8 +9,13 @@ const headers = {
 
 module.exports = {
   getReviews: (req, res) => {
-    //would need to extract page, count, sort? and product ID from req 
-    axios.get(`${URL}/reviews`, { headers })
+    const product_id = req.query.product_id;
+    const count = req.query.count;
+    const page = req.query.page;
+    const sort = req.query.sort;
+    console.log(product_id);
+    //would need to extract page, count, sort? and product ID from req
+    axios.get(`${URL}/reviews/`, { headers, params: {page: page, count: count, sort: sort, product_id: product_id } })
     .then(response => {
       res.json(response.data);
       console.log('Successful getReviews call to the API');
@@ -22,7 +27,9 @@ module.exports = {
   },
 
   getMeta: (req, res) => {
-    axios.get(`${URL}/reviews/meta`, { headers })
+    console.log('this is the request for meta data====', req.query.product_id)
+    const product_id = req.query.product_id;
+    axios.get(`${URL}/reviews/meta`, { headers, params: {product_id: product_id }})
     .then(response => {
       res.json(response.data)
       console.log('successfully retrieved meta data from API')

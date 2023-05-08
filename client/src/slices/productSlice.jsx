@@ -82,6 +82,7 @@ export const productSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getInitialData.rejected, (state, action) => {
+
         state.isLoading = false;
         state.isError = true;
         state.errorMessage = action.payload;

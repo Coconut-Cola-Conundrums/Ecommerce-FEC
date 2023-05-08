@@ -46,3 +46,49 @@
 .styleSelector {
   margin-left: 1vw;
 }
+.relatedItemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.relatedItemCard {
+  position: relative;
+  font-family: 'Candara', Verdana, monospace;
+  width: 200px;
+  height: 300px;
+  margin-right: 10px;
+  background-color: #FAEDCA;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.relatedItemCard .fa-caret-up {
+  color: #95a8c6;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.imageContainer {
+  height: 200px;
+  overflow: hidden;
+}
+
+.sampleImage {
+  width: 100%;
+  height: auto;
+}
+
+/* .modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.productComparison {
+  display: flex;
+}
+
+.productColumn {
+  flex: 1;
+}
