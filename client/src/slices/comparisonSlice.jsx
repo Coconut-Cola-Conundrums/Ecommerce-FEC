@@ -76,7 +76,7 @@ export const comparisonSlice = createSlice({
           photos: result.photos
         }));
 
-        const updatedProducts = current(state.relatedProducts).map((product) => {
+        const updatedProducts = state.relatedProducts.map((product) => {
           if (product.id === Number(product_id)) {
             return {
               ...product,
@@ -88,6 +88,17 @@ export const comparisonSlice = createSlice({
 
         state.relatedProducts = updatedProducts;
 
+        const updatedOutfits = state.outfits.map((outfit) => {
+          if (outfit.id === Number(product_id)) {
+            return {
+              ...outfit,
+              productStyles: styles
+            };
+          }
+          return outfit;
+        });
+
+        state.outfits = updatedOutfits;
       })
       .addCase(getProductStyle.rejected, (state, action) => {
         console.log('error with payload: ', action.payload);
@@ -95,6 +106,7 @@ export const comparisonSlice = createSlice({
       })
       .addCase(getOutfit.fulfilled, (state, action) => {
         state.outfits.push(action.payload);
+
       })
       .addCase(getOutfit.rejected, (state, action) => {
         console.log('error with payload: ', action.payload);

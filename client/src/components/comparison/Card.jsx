@@ -28,39 +28,43 @@ const Card = ({ product }) => {
     }
   };
 
-  return (
-    <div className="relatedItemCard">
-      <i className="fa-solid fa-caret-up fa-2x" onClick={handleCardClick}></i>
-      <div className="imageContainer">
-        <img
-          className="sampleImage"
-          src="https://cdn.shopify.com/s/files/1/2538/1942/products/Black-Blank3_1.png?v=1665434810"
-          alt="Product Image"
-        />
-      </div>
-      <div>{product.category}</div>
-      <div>
-        <strong>{product.name}</strong>
-      </div>
-      <div>
-        <small>${product.default_price}</small>
-      </div>
-      <div>Product Ratings...</div>
-
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Product Details Modal"
-        ariaHideApp={false}
-        style={modalStyles}
-      >
-        <div className="modalContainer">
-          <h2>{product.name}</h2>
-          <h2>Product 2</h2>
+  if (product.productStyles) {
+    return (
+      <div className="relatedItemCard">
+        <i className="fa-solid fa-caret-up fa-2x" onClick={handleCardClick}></i>
+        <div className="imageContainer">
+          <img
+            className="sampleImage"
+            src={product.productStyles[0].photos[0].url}
+            alt="Product Image"
+          />
         </div>
-      </Modal>
-    </div>
-  );
+        <div>{product.category}</div>
+        <div>
+          <strong>{product.name}</strong>
+        </div>
+        <div>
+          <small>${product.default_price}</small>
+        </div>
+        <div>Product Ratings...</div>
+
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          contentLabel="Product Details Modal"
+          ariaHideApp={false}
+          style={modalStyles}
+        >
+          <div className="modalContainer">
+            <h2>{product.name}</h2>
+            <h2>Product 2</h2>
+          </div>
+        </Modal>
+      </div>
+    );
+  } else {
+    return (<div></div>)
+  }
 };
 
 export default Card;
