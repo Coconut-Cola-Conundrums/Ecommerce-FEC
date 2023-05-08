@@ -2,7 +2,7 @@ import React from "react";
 // import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit } from '../../slices/comparisonSlice.jsx';
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Card from './Card.jsx';
 import Outfit from './Outfit.jsx';
 
@@ -16,10 +16,15 @@ const RelatedItems = () => {
   let productId = useSelector((state) => state.product.id);
 
   const handleOutfitClick = (id) => {
-    dispatch(getOutfit(id))
-    .then(() => {
+  const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);
+  if (!outfitExists) {
+    dispatch(getOutfit(id)).then(() => {
       dispatch(getProductStyle(id));
-    })
+    });
+  } else {
+    //kindly alert that an outfit is already in the store
+    console.log('outfit is already in the store');
+  }
   }
 
   //everytime productID of overview changes... we getRelatedIds
