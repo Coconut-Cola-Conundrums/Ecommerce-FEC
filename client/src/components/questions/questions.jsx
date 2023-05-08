@@ -33,10 +33,10 @@ let Questions = () => {
     if (product) {
       dispatch(getQuestions(product))
       .then(() => {
-        console.log('questions: ', questions)
+        // console.log('questions: ', questions)
         const answers = questions.answers;
         answers.forEach((answer) => {
-          console.log('Answer: ', answer)
+          // console.log('Answer: ', answer)
           dispatch(getAnswers(answer.id));
           //no need to update relatedProducts state here, it's being done in extraReducers once fullfilled
         });

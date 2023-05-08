@@ -1,20 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+
 const initialState = {
   relatedIds: [],
-  relatedProducts: [
-    {
-      id: '',
-      name : '',
-      slogan: '',
-      descriptions: '',
-      category: '',
-      default_price: '',
-      features: [],
-      productStyles: []
-    }
-  ],
+  relatedProducts: [],
   outfits: [],
   error: null
 }
@@ -70,8 +60,9 @@ export const comparisonSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getRelatedProduct.fulfilled, (state, action) => {
-        console.log('this is whats wrong, getRelatedProduct')
-        state.relatedProducts.push(action.payload);
+        // console.log('this is whats wrong, getRelatedProduct')
+        console.log('relatedProduct on fulfilles is', state.relatedProducts)
+        state.relatedProducts = [...state.relatedProducts, action.payload];
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
         console.log('error with payload: ', action.payload);
@@ -88,13 +79,13 @@ export const comparisonSlice = createSlice({
           photos: result.photos
         }));
 
-        console.log('whatis this stylesfes: ', styles);
+        // console.log('whatis this stylesfes: ', styles);
 
         // let copyOfStateArray = state.relatedProducts.slice();
         // console.log("please work: ", copyOfStateArray);
 
         const updatedProducts = state.relatedProducts.map((product) => {
-          if (product.id === product_id) {
+          if (product.id === Number(product_id)) {
             return {
               ...product,
               productStyles: styles
@@ -102,17 +93,8 @@ export const comparisonSlice = createSlice({
           }
           return product;
         });
+        state.relatedProducts = updatedProducts;
 
-        // console.log('what is this updatedProducts: ', updatedProducts)
-        // state.relatedProducts = updatedProducts; //doesn't work???
-
-        /*
-        // return {
-        //   ...state,
-        //   relatedProducts: updatedProducts
-        // };
-
-        */
       })
       .addCase(getProductStyle.rejected, (state, action) => {
         console.log('error with payload: ', action.payload);
