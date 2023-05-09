@@ -6,6 +6,7 @@ const Card = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   let mainProductInfo = useSelector((state) => state.product.productInformation);
   let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
+  let mainAvailableStyles = useSelector((state) => state.product.availableStyles);
 
   const handleCardClick = () => {
     setIsModalOpen(true);
@@ -89,6 +90,11 @@ const Card = ({ product }) => {
                     <td>{mainCurrentStyle.sale_price || 'N/A'}</td>
                     <td>Sale Price</td>
                     <td>{product.productStyles[0].sale_price || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td>{mainAvailableStyles.length || 'N/A'}</td>
+                    <td># of Available Styles</td>
+                    <td>{product.productStyles.length || 'N/A'}</td>
                   </tr>
                 </tbody>
               </table>
