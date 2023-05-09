@@ -18,7 +18,6 @@ const ProductDetails = () => {
   useEffect(() => {
 
   }, [productInformation, currentStyle, reviews]); // product information will change when new product is clicked, currentstyle will change the price when a new style is clicked
-  console.log(currentStyle);
   return (
     <div className="productDetails">
       <Stars rating={avgRatings.toFixed(2)} />
@@ -32,7 +31,6 @@ const ProductDetails = () => {
         :
         <h2>${currentStyle.original_price}</h2>
       }
-      <p>{productInformation.description}</p>
     </div>
   )
 }
