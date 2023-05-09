@@ -23,7 +23,7 @@ export default function App() {
     <div id="App">
       <Overview />
       <Comparison />
-     {/* <Questions /> */}
+      <Questions />
       <Reviews />
 
     </div>

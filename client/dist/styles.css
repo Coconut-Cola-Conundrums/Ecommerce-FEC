@@ -7,48 +7,129 @@
   display: block;
 }
 
+.inlineBlock {
+  display: inline-block;
+  position: relative;
+  /* padding-right: 2vh; */
+}
+
 .photoContainer {
   display: flex;
   position: relative;
-  height: 60vh;
-  width: 60vw;
+  width: 45vh;
+  height: 67.5vh;
 }
 
 .mainPhoto {
   width: 100%;
-  object-fit: scale-down;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
 }
 
 .absolute {
   position: absolute;
-  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.thumbnailArrow {
+  position: relative;
+  cursor: pointer;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  left: 1vh;
+  object-fit: cover;
+  max-width: 2vh;
+  max-height: 3vh;
 }
 
 .thumbnail {
   display: flex;
   cursor: pointer;
   position: relative;
-  width: 10%;
+  max-width: 2vh;
+  max-height: 3vh;
+  object-fit: contain;
   margin-bottom: 2vh;
-  left: 1vw;
+  left: 1vh;
   top: 1vh;
 }
 
 .selected {
-  border: 0.5vw solid blanchedalmond;
-  left: .5vw;
+  border: 0.5vh solid blanchedalmond;
+  left: 0.5vh;
 }
 
-.productDetails {
-  margin-left: 1vw;
+.mainPhotoArrowBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainPhotoArrow {
+  position: relative;
+  cursor: pointer;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  object-fit: cover;
+  max-width: 4vh;
+  max-height: 6vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 2vh;
+  padding-right: 3vh;
+}
+
+.mainPhotoArrow:active, .thumbnailArrow:active {
+  color: blanchedalmond;
+}
+
+.rightOverviewDivs {
+  position: absolute;
+  left: 45vh;
+  margin-left: 3vh;
 }
 
 .styleSelector {
-  margin-left: 1vw;
+  margin-bottom: 20vh;
 }
+
+.styleElement {
+  height: 5vh;
+  width: 5vh;
+  object-fit: cover;
+  margin-left: 1vh;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+
+.selectedStyleElement {
+  margin: 0vh;
+  padding: 0vh;
+}
+
+.checkSelectedStyleElement {
+  padding: 0vh;
+  position: relative;
+  left: 1vh;
+  z-index: 100;
+}
+
+.originalPriceOnSale {
+  text-decoration-line: 'line-through';
+  text-decoration-style: 'solid';
+}
+
 .relatedItemsContainer {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .relatedItemCard {
