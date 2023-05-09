@@ -122,8 +122,13 @@
 }
 
 .originalPriceOnSale {
-  text-decoration-line: 'line-through';
-  text-decoration-style: 'solid';
+  text-decoration: line-through;
+}
+
+.verticleLine {
+  height: '100%';
+  width: 1;
+  background-color: '#909090';
 }
 
 .relatedItemsContainer {

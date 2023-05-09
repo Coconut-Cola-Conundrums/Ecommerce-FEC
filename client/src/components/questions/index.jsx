@@ -37,7 +37,7 @@ let Questions = () => {
     if (product) {
       dispatch(getQuestions(product))
       .then(() => {
-        console.log('questions: ', questions)
+        // console.log('questions: ', questions)
         const answers = questions.answers;
         //answers.forEach((answer) => {
           // console.log('Answer: ', answer)
@@ -52,13 +52,13 @@ let Questions = () => {
     const result = questions.results;
     //console.log(questions);
         result.forEach((question) => {
-          console.log('Answer: ', question)
+          // console.log('Answer: ', question)
           dispatch(getAnswers(question.question_id));
         });
   },[questions.results]);
 
-  console.log('Results Array---',questions.results);
-  console.log('Answers---',answers);
+  // console.log('Results Array---',questions.results);
+  // console.log('Answers---',answers);
   //console.log(product);
   return (
     <div>
