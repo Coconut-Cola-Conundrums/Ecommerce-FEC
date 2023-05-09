@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { useSelector } from 'react-redux';
 
 const Card = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  let mainProductInfo = useSelector((state) => state.product.productInformation);
+  let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
 
   const handleCardClick = () => {
     setIsModalOpen(true);
@@ -20,8 +23,8 @@ const Card = ({ product }) => {
     },
     content: {
       position: 'auto',
-      width: '400px',
-      height: '300px',
+      width: '500px',
+      height: '400px',
       padding: '20px',
       backgroundColor: '#fff',
       borderRadius: '4px'
@@ -56,8 +59,40 @@ const Card = ({ product }) => {
           style={modalStyles}
         >
           <div className="modalContainer">
-            <h2>{product.name}</h2>
-            <h2>Product 2</h2>
+          <h2>Comparing</h2>
+            <div className="comparisonTable">
+              <table>
+                <thead>
+                  <tr>
+                    <th>{mainProductInfo.name}</th>
+                    <th></th>
+                    <th>{product.name}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{mainProductInfo.description}</td>
+                    <td>Description</td>
+                    <td>{product.description}</td>
+                  </tr>
+                  <tr>
+                    <td>{mainProductInfo.category}</td>
+                    <td>Category</td>
+                    <td>{product.category}</td>
+                  </tr>
+                  <tr>
+                    <td>{mainProductInfo.default_price}</td>
+                    <td>Default Price</td>
+                    <td>{product.default_price}</td>
+                  </tr>
+                  <tr>
+                    <td>{mainCurrentStyle.sale_price || 'N/A'}</td>
+                    <td>Sale Price</td>
+                    <td>{product.productStyles[0].sale_price || 'N/A'}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </Modal>
       </div>
