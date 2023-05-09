@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const ImageGallery = () => {
   const product = useSelector((state) => state.product);
@@ -48,7 +48,11 @@ const ImageGallery = () => {
               <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}/>
             )}
             <FaArrowDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails}/>
+            <div className="mainPhotoArrow">
+              <FaArrowLeft className="thumbnailArrow"/>
+              <FaArrowRight className="thumbnailArrow"/>
             </div>
+          </div>
         : null
       }
     </div>
