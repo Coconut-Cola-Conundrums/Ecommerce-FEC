@@ -12,7 +12,6 @@ const StyleSelector = () => {
   const onClickStyle = (e) => {
     e.preventDefault();
     const id = e.target.id;
-    console.log(id);
     dispatch(setCurrentStyle(id));
   }
 
