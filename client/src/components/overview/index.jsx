@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getInitialData, getSpecificProduct, getStyles } from '../../slices/productSlice.jsx';
 import ImageGallery from './imageGallery';
-import StyleSelector from './styleSelector';
+import StyleSelector from './styleSelector.jsx';
 import ProductDetails from './productDetails.jsx';
 import AddToCart from './addToCart.jsx';
 import ProductDescription from './productDescription'
