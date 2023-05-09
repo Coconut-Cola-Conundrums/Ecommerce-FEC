@@ -4,6 +4,7 @@ import axios from "axios";
 const baseAPIURL = "http://localhost:3000/";
 
 const initialState = {
+  allReviews: [],
   reviews: [],
   ratings: '',
   recommended: '',
@@ -54,6 +55,7 @@ export const reviewSlice = createSlice({
         // state = action.payload;
         // console.log('this is the action payload', action.payload)
         state.reviews = action.payload;
+        state.allReviews = action.payload;
       })
       .addCase(getReviews.rejected, (state, action) => {
         console.log(action.payload);
