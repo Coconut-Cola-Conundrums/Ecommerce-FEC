@@ -13,7 +13,12 @@ export const RevList = () => {
         {reviews.reviews.map((rev) =>
         <div  className = 'reviewContainer' key = {rev.review_id}><Stars rating = {rev.rating}/>
           <div>
-            From: <p className = 'user'>{rev.reviewer_name}</p> Date: {rev.date}
+            From: <p className = 'user'>{rev.reviewer_name}</p> Date: {(() => {
+              const date = new Date(rev.date);
+              const options = {year: 'numeric', month: 'long', day: 'numeric' };
+              const readableDate = date.toLocaleDateString('en-US', options);
+              return readableDate
+              })()}
           </div>
             Summary: {rev.summary}
           <p>
