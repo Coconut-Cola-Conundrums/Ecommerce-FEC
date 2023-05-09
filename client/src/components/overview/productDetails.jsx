@@ -25,8 +25,8 @@ const ProductDetails = () => {
       <h2>{productInformation.name}</h2>
       {currentStyle.sale_price ?
         <>
-          <h2 className="originalPriceOnSale">${currentStyle.original_price}</h2>
-          <h2>${currentStyle.sale_price}</h2>
+          <h2 className="originalPriceOnSale"> Original Price: ${currentStyle.original_price}</h2>
+          <h2>Sale Price: ${currentStyle.sale_price}</h2>
         </>
         :
         <h2>${currentStyle.original_price}</h2>

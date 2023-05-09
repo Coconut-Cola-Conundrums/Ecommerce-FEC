@@ -19,7 +19,7 @@ const StyleSelector = () => {
   useEffect(() => {
 
   }, [availableStyles]);
-  console.log(availableStyles);
+
   return (
     <div className="relative">
       {product.availableStyles.length ?
