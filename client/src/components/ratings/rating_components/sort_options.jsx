@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 export const SortOptions = () => {
   const [search, setSearch] = useState('');
   const reviews = useSelector(state => state.reviews);
-  console.log('search====', reviews)
+  // console.log('search====', reviews)
 
   var subHandler = () => {
     //change the state.reviews to things that match the search

@@ -6,7 +6,7 @@ const StyleSelector = () => {
   const {availableStyles, currentStyle} = product;
 
   useEffect(() => {
-    // console.log(currentStyle)
+
   }, [availableStyles])
 
   return (

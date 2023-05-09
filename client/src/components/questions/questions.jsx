@@ -44,7 +44,7 @@ let Questions = () => {
     }
   }, [product])
 
-  console.log(questions);
+  // console.log(questions);
 
   return (
     <div> Hello World </div>

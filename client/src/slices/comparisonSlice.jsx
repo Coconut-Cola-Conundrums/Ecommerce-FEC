@@ -61,7 +61,6 @@ export const comparisonSlice = createSlice({
       })
       .addCase(getRelatedProduct.fulfilled, (state, action) => {
         // console.log('this is whats wrong, getRelatedProduct')
-        console.log('relatedProduct on fulfilles is', state.relatedProducts)
         state.relatedProducts = [...state.relatedProducts, action.payload];
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
@@ -70,7 +69,6 @@ export const comparisonSlice = createSlice({
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {
         const { product_id, results } = action.payload;
-        console.log('what is this proudct id: ', product_id);
         const styles = results.map((result) => ({
           style_id: result.style_id,
           name: result.name,

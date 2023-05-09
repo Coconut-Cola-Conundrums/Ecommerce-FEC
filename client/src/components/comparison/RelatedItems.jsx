@@ -29,7 +29,7 @@ const RelatedItems = () => {
   //everytime relatedIds state changes... we getRelatedProducts
   useEffect(() => {
     if (comparisonState.relatedIds.length > 0) {
-      console.log('this should be relatedIDS state arr: ', comparisonState.relatedIds)
+      // console.log('this should be relatedIDS state arr: ', comparisonState.relatedIds)
       comparisonState.relatedIds.forEach((id) => {
         dispatch(getRelatedProduct(id));
       });
