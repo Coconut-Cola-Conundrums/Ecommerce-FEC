@@ -19,12 +19,25 @@ export const SortOptions = () => {
     dispatch(reducers.updateReviews(filteredReviews));
   }
 
+  var handleSort = (e) => {
+    console.log(e.target.value)
+    dispatch(reducers.updateSort(e.target.value));
+
+  }
+
   return (
     <div>
       <form onSubmit = {subHandler}>
         <input placeholder = 'Keyword' onChange = {(e) =>{setSearch(e.target.value)}}></input>
         <button>Search</button>
       </form>
+      <label >Sorted by:</label>
+      <select id="sort" name="sort" onChange = {handleSort}>
+        <option value = 'newest'>Newest</option>
+        <option value = 'helpful'>Helpful</option>
+        <option value = 'relevant'>Relevant</option>
+      </select>
+
     </div>
   )
 }

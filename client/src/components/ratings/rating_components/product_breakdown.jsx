@@ -6,17 +6,17 @@ import {Stars} from './stars.jsx'
 export const ProductBreakdown = () => {
   const characteristics = useSelector(state => state.reviews.characteristics);
   if (characteristics.Comfort){
-  console.log(characteristics);
+  // console.log(characteristics);
   }
   if (characteristics.Comfort) {
   return (
     <div>
       <h1>Product Breakdown</h1>
 
-      <p>Comfort<Stars rating = {characteristics.Comfort.value}/></p>
-      <p>Fit<Stars rating = {characteristics.Fit.value}/></p>
-      <p>Length<Stars rating = {characteristics.Length.value}/></p>
-      <p>Quality<Stars rating = {characteristics.Quality.value}/></p>
+      <div>Comfort<Stars rating = {characteristics.Comfort.value}/></div>
+      <div>Fit<Stars rating = {characteristics.Fit.value}/></div>
+      <div>Length<Stars rating = {characteristics.Length.value}/></div>
+      <div>Quality<Stars rating = {characteristics.Quality.value}/></div>
 
     </div>
   )

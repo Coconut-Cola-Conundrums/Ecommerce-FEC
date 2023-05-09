@@ -12,14 +12,17 @@ export const RevList = () => {
       <div >
         {reviews.reviews.map((rev) =>
         <div  className = 'reviewContainer' key = {rev.review_id}><Stars rating = {rev.rating}/>
-          <div>From: <p className = 'user'>{rev.reviewer_name}</p> Date: {rev.date}</div>
-          Summary: {rev.summary}
-          <p>{rev.body}</p>
+          <div>
+            From: <p className = 'user'>{rev.reviewer_name}</p> Date: {rev.date}
+          </div>
+            Summary: {rev.summary}
+          <p>
+            {rev.body}
+          </p>
           {rev.photos.map((photo) => {
           // eslint-disable-next-line react/jsx-key
-          return <img  src = {photo.url} width = '150'/>
+          return <img key = {photo.url} src = {photo.url} width = '150'/>
           })}
-
         </div>)}
       </div>
     </div>
