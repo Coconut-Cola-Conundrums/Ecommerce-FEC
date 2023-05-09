@@ -54,8 +54,8 @@
 .relatedItemCard {
   position: relative;
   font-family: 'Candara', Verdana, monospace;
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 400px;
   margin-right: 10px;
   background-color: #FAEDCA;
   border: 1px solid #ccc;
@@ -63,21 +63,72 @@
   padding: 10px;
 }
 
-.relatedItemCard .fa-caret-up {
-  color: #95a8c6;
+.relatedItemCard .fa-regular.fa-square-plus.fa-2xl {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  cursor: pointer;
+}
+.fa {
+  border: 1px solid #808080;
+}
+
+.relatedItemCard .fa-caret-up,
+.relatedItemCard .fa-sharp.fa-solid.fa-circle-xmark {
+  color: #808080;
   position: absolute;
   top: 15px;
   right: 15px;
+  cursor: pointer;
+  font-size: 40px;
 }
 
 .imageContainer {
-  height: 200px;
+  height: 270px;
   overflow: hidden;
 }
 
 .sampleImage {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 90%;
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.comparisonTable th,
+.comparisonTable td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.comparisonTable thead {
+  background-color: #f5f5f5;
+}
+
+.comparisonTable th {
+  font-weight: bold;
+  text-align: left;
+}
+
+.comparisonTable td:nth-child(2) {
+  text-align: center;
+}
+
+.comparisonTable td:last-child {
+  text-align: right;
+}
+
+.comparisonTable td.na {
+  color: #888;
+  font-style: italic;
 }
 
 /* .modal-overlay {
@@ -104,3 +155,4 @@
 .user {
   font-family: cursive;
 }
+
