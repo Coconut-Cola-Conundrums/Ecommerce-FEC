@@ -22,7 +22,7 @@ export const getReviews = createAsyncThunk('/reviews', async(id, thunkAPI) => {
     // console.log('The review get request worked:', res.data.results);
     return res.data.results;
   }).catch((err) => {
-    console.log('Error when getting Reviews');
+    console.log('Error when getting Reviews', err);
   })
 })
 
@@ -43,7 +43,11 @@ export const getMetaData = createAsyncThunk('/reviews/meta', async(id, thunkAPI)
 export const reviewSlice = createSlice({
   name: 'review',
   initialState,
-  reducers: {},
+  reducers: {
+    updateReviews: (state, action) => {
+      state.reviews = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getReviews.fulfilled, (state, action) => {
@@ -64,3 +68,5 @@ export const reviewSlice = createSlice({
       })
   }
 })
+
+export const reducers = reviewSlice.actions;
