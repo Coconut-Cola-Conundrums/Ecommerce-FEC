@@ -62,7 +62,7 @@ const ImageGallery = () => {
 
   useEffect(() => {
 
-  }, []);
+  }, [product.id, product.currentStyle]);
 
   return (
     <div className="photoContainer">

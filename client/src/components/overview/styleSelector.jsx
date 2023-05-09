@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaCheckCircle } from 'react-icons/fa';
+import setCurrentStyle from '../../slices/productSlice';
 
 const StyleSelector = () => {
   const product = useSelector((state) => state.product);
   const {availableStyles, currentStyle} = product;
 
+  const dispatch = useDispatch();
+
   const onClickStyle = (e) => {
     e.preventDefault();
+    const id = e.target.id;
+    // dispatch(setCurrentStyle(id));
   }
 
   useEffect(() => {

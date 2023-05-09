@@ -4,13 +4,10 @@ import {getReviews, getMetaData, reducers} from '../../../slices/reviewSlice.jsx
 
 export const SortOptions = () => {
   const [search, setSearch] = useState('');
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   const reviews = useSelector(state => state.reviews);
   // console.log('search====', reviews)
-=======
-=======
->>>>>>> 1f0e03f8141c7bf06bfde98d87f4ce8a454e5fd7
+
   const reviews = useSelector(state => state.reviews.allReviews);
   const dispatch = useDispatch();
 
@@ -29,11 +26,6 @@ export const SortOptions = () => {
   var handleSort = (e) => {
     console.log(e.target.value)
     dispatch(reducers.updateSort(e.target.value));
-<<<<<<< HEAD
->>>>>>> be60cb0d40ae1f37eef44b06a7d302ab5dc11f4f
-=======
->>>>>>> 1f0e03f8141c7bf06bfde98d87f4ce8a454e5fd7
-
   }
 
   return (

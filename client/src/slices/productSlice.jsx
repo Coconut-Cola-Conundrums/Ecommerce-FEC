@@ -72,7 +72,9 @@ export const productSlice = createSlice({
   reducers: {
     // When a user clicks on the style to see, the state.currentStyle will be updated
     setCurrentStyle: (state, action) => {
-      state.currentStyle = state.availableStyle[action.payload]
+      const id = action.payload;
+      const style = state.availableStyles.filter((style) => style.style_id === id);
+      state.currentStyle = style[0];
     }
   },
   extraReducers: (builder) => {
@@ -128,3 +130,5 @@ export const productSlice = createSlice({
       })
   }
 })
+
+export const setCurrentStyle = productSlice.actions;
