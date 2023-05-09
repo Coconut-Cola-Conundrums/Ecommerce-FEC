@@ -53,7 +53,7 @@ const Overview = () => {
 
   return (
     <div className="wrapper">
-      <div>
+      <div style={{position: "relative"}}>
         <ImageGallery />
         <ProductDescription />
       </div>
