@@ -19,7 +19,7 @@ const ProductDetails = () => {
 
   }, [productInformation, currentStyle, reviews]); // product information will change when new product is clicked, currentstyle will change the price when a new style is clicked
   return (
-    <div className="productDetails">
+    <div className="rightOverviewDivs productDetails">
       <Stars rating={avgRatings.toFixed(2)} />
       <h1 >{productInformation.category} </h1>
       <h2>{productInformation.name}</h2>

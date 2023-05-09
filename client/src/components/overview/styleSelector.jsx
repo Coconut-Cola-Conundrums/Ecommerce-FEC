@@ -11,15 +11,15 @@ const StyleSelector = () => {
   }, [availableStyles]);
 
   return (
-    <div className="styleSelector">
+    <div className="rightOverviewDivs styleSelector">
       {product.availableStyles.length ?
-      <div className="absolute inlineBlock">
+      <div>
         <h3>STYLE {currentStyle.name} </h3>
         {availableStyles.map((style, index) =>
           {return style.style_id === currentStyle.style_id ?
             <div className="inlineBlock">
-            <FaCheckCircle id={index} style={{display:"relative", left: "2vh", top: "1vh"}}/>
-            <img className="styleElement" src={style.photos[0].thumbnail_url} alt="" key={style.product_id}/>
+            <FaCheckCircle className="checkSelectedStyleElement" id={index} />
+            <img className="styleElement selectedStyleElement" src={style.photos[0].thumbnail_url} alt="" key={style.product_id}/>
             </div>
             :
             <img className="styleElement" src={style.photos[0].thumbnail_url} alt="" key={style.product_id}/>

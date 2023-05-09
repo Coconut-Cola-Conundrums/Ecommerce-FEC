@@ -5,11 +5,12 @@
 
 .block {
   display: block;
-  float: left;
 }
 
 .inlineBlock {
   display: inline-block;
+  position: relative;
+  /* padding-right: 2vh; */
 }
 
 .photoContainer {
@@ -84,12 +85,13 @@
   color: blanchedalmond;
 }
 
-.productDetails {
-  margin-left: 1vw;
+.rightOverviewDivs {
+  position: relative;
+  left: 45vh;
+  margin-left: 3vh;
 }
 
 .styleSelector {
-  margin-left: 1vw;
   margin-bottom: 20vh;
 }
 
@@ -97,9 +99,21 @@
   height: 5vh;
   width: 5vh;
   object-fit: cover;
-  margin-right: 1vh;
+  margin-left: 1vh;
   border-radius: 50%;
   position: relative;
+}
+
+.selectedStyleElement {
+  margin: 0vh;
+  padding: 0vh;
+}
+
+.checkSelectedStyleElement {
+  padding: 0vh;
+  position: relative;
+  left: 1vh;
+  z-index: 100;
 }
 
 .originalPriceOnSale {

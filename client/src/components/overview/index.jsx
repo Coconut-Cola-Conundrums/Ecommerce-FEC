@@ -53,13 +53,11 @@ const Overview = () => {
 
   return (
     <div className="wrapper">
-      <div style={{display: "inLineBlock"}}>
+      <div>
         <ImageGallery />
-        <div className="block">
-          <ProductDescription />
-        </div>
+        <ProductDescription />
       </div>
-      <div className="block">
+      <div style={{position: "absolute"}}>
         <ProductDetails />
         <StyleSelector />
         <AddToCart />
