@@ -1,20 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+
 const initialState = {
   relatedIds: [],
-  relatedProducts: [
-    {
-      id: '',
-      name : '',
-      slogan: '',
-      descriptions: '',
-      category: '',
-      default_price: '',
-      features: [],
-      productStyles: []
-    }
-  ],
+  relatedProducts: [],
   outfits: [],
   error: null
 }
@@ -59,6 +49,14 @@ export const comparisonSlice = createSlice({
   name: 'relatedItems',
   initialState,
   reducers: {
+    removeOutfit: (state, action) => {
+      const outfitId = action.payload;
+      state.outfits = state.outfits.filter((outfit) => outfit.id !== outfitId);
+    },
+    addOutfits: (state, action) => {
+      const outfits = action.payload;
+      state.outfits = [...state.outfits, ...outfits];
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -66,20 +64,18 @@ export const comparisonSlice = createSlice({
         state.relatedIds = action.payload
       })
       .addCase(getRelatedIds.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getRelatedProduct.fulfilled, (state, action) => {
-        console.log('this is whats wrong, getRelatedProduct')
-        state.relatedProducts.push(action.payload);
+        state.relatedProducts = [...state.relatedProducts, action.payload];
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {
         const { product_id, results } = action.payload;
-        console.log('what is this proudct id: ', product_id);
         const styles = results.map((result) => ({
           style_id: result.style_id,
           name: result.name,
@@ -88,13 +84,8 @@ export const comparisonSlice = createSlice({
           photos: result.photos
         }));
 
-        //console.log('whatis this stylesfes: ', styles);
-
-        // let copyOfStateArray = state.relatedProducts.slice();
-        // console.log("please work: ", copyOfStateArray);
-
         const updatedProducts = state.relatedProducts.map((product) => {
-          if (product.id === product_id) {
+          if (product.id === Number(product_id)) {
             return {
               ...product,
               productStyles: styles
@@ -103,26 +94,30 @@ export const comparisonSlice = createSlice({
           return product;
         });
 
-        // console.log('what is this updatedProducts: ', updatedProducts)
-        // state.relatedProducts = updatedProducts; //doesn't work???
+        state.relatedProducts = updatedProducts;
 
-        /*
-        // return {
-        //   ...state,
-        //   relatedProducts: updatedProducts
-        // };
+        const updatedOutfits = state.outfits.map((outfit) => {
+          if (outfit.id === Number(product_id)) {
+            return {
+              ...outfit,
+              productStyles: styles
+            };
+          }
+          return outfit;
+        });
 
-        */
+        state.outfits = updatedOutfits;
       })
       .addCase(getProductStyle.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getOutfit.fulfilled, (state, action) => {
         state.outfits.push(action.payload);
+
       })
       .addCase(getOutfit.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
   }

@@ -6,6 +6,7 @@ import ImageGallery from './imageGallery';
 import StyleSelector from './styleSelector';
 import ProductDetails from './productDetails.jsx';
 import AddToCart from './addToCart.jsx';
+import ProductDescription from './productDescription'
 // actions to get started
   // get product information
   // get review information
@@ -52,12 +53,15 @@ const Overview = () => {
 
   return (
     <div className="wrapper">
+      <div style={{position: "relative"}}>
         <ImageGallery />
-        <div className="block">
-          <ProductDetails />
-          <StyleSelector />
-          <AddToCart />
-        </div>
+        <ProductDescription />
+      </div>
+      <div className="absolute rightOverviewDivs">
+        <ProductDetails />
+        <StyleSelector />
+        <AddToCart />
+      </div>
     </div>
   )
 }

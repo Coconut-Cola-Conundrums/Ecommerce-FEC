@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Coconut-Cola-Conundrums/FEC-Coconut#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
@@ -29,6 +30,7 @@
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
     "react-modal": "^3.16.1",
     "react-redux": "^8.0.5"
   },

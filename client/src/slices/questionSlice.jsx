@@ -62,14 +62,14 @@ export const questionsSlice = createSlice({
         state.results = action.payload;
       })
       .addCase(getQuestions.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getAnswers.fulfilled, (state, action) => {
         state.answers = action.payload;
       })
       .addCase(getAnswers.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
   }

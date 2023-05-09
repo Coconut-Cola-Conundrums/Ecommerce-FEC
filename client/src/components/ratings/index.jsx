@@ -16,28 +16,28 @@ const Reviews = () => {
   useEffect(() => {
     // console.log('review running')
     if (product.id) {
-      dispatch(getReviews(product.id))
+      dispatch(getReviews(product.id, reviewState.sort))
       .then(dispatch(getMetaData(product.id)))
       .then(() => {
         // console.log('This is reviewState =====>', reviewState)
       }).catch((err) => {console.log(err)})
 
     }
-  }, [product.id])
+  }, [product.id, reviewState.sort])
 
   useEffect(() => {
-    console.log(reviewState)
+    // console.log(reviewState)
   }, [reviewState]);
 
 // on render set initial state with the current product ID.
 
   return (
     <div>
-      <div className = 'revList'><RevList summary = {reviewState.reviews}/></div>
+      <div className = 'newRev'><NewRev/></div>
       <div className = 'sortOptions'><SortOptions/></div>
+      <div className = 'revList'><RevList/></div>
       <div className = 'ratingBreakdown'><RatingBreakdown ratings = {reviewState.ratings}/></div>
       <div className = 'productBreakdown'><ProductBreakdown characteristics = {reviewState.characteristics}/></div>
-      <div className = 'newRev'><NewRev/></div>
     </div>
   )
 }
