@@ -32,27 +32,29 @@ const ImageGallery = () => {
 
   const onScrollThumbnails = (e) => {
     e.preventDefault();
-    let direction = e.target.id === "down" ? 0 : 1;
-    onAdjustThumbnails(direction);
+    if (e.target.id === "down") {
+      onAdjustThumbnails(0);
+    } else if (e.target.id === "up") {
+      onAdjustThumbnails(1);
+    }
   }
 
   const onViewThumbnails = (e) => {
     e.preventDefault();
-    let direction = e.target.id === "right" ? 0 : 1;
-    if (direction) { // going right
+    if (e.target.id === "right") { // going right, aka 0
       if (mainPhoto) { // main photo is not already at the zeroth thumbnail
         let newMain = mainPhoto - 1;
         setMainPhoto(newMain);
         if (thumbnailRange.from > newMain) {
-          onAdjustThumbnails(direction);
+          onAdjustThumbnails(0);
         }
       }
-    } else { // going left
+    } else if (e.target.id === "left") { // going left, aka 1
       if (mainPhoto < (currentStyle.photos.length - 1)) { // not already viewing the last photo
         let newMain = mainPhoto + 1;
         setMainPhoto(newMain);
         if (thumbnailRange.to < newMain) { // if the thumbnails dont have mainphoto in view
-          onAdjustThumbnails(direction);
+          onAdjustThumbnails(1);
         }
       }
     }
