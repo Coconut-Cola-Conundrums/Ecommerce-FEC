@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaCheckCircle } from 'react-icons/fa';
-import setCurrentStyle from '../../slices/productSlice';
+import { setCurrentStyle } from '../../slices/productSlice';
 
 const StyleSelector = () => {
   const product = useSelector((state) => state.product);
@@ -12,13 +12,14 @@ const StyleSelector = () => {
   const onClickStyle = (e) => {
     e.preventDefault();
     const id = e.target.id;
-    // dispatch(setCurrentStyle(id));
+    console.log(id);
+    dispatch(setCurrentStyle(id));
   }
 
   useEffect(() => {
 
   }, [availableStyles]);
-
+  console.log(availableStyles);
   return (
     <div className="relative">
       {product.availableStyles.length ?
@@ -28,10 +29,10 @@ const StyleSelector = () => {
           {return style.style_id === currentStyle.style_id ?
             <div className="inlineBlock" key={index}>
             <FaCheckCircle className="checkSelectedStyleElement" id={index} />
-            <img className="styleElement selectedStyleElement" src={style.photos[0].thumbnail_url} alt="" id={style.product_id} onClick={onClickStyle}/>
+            <img className="styleElement selectedStyleElement" src={style.photos[0].thumbnail_url} alt="" id={style.style_id} onClick={onClickStyle}/>
             </div>
             :
-            <img className="styleElement" src={style.photos[0].thumbnail_url} alt="" key={index} id={style.product_id} onClick={onClickStyle}/>
+            <img className="styleElement" src={style.photos[0].thumbnail_url} alt="" key={index} id={style.style_id} onClick={onClickStyle}/>
           }
         )}
       </div>
