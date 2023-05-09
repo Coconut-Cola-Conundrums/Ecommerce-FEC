@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {reducers} from '../../../slices/reviewSlice.jsx'
+import {getReviews, getMetaData, reducers} from '../../../slices/reviewSlice.jsx'
 
 export const SortOptions = () => {
   const [search, setSearch] = useState('');
