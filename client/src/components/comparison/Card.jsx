@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { useSelector } from 'react-redux';
+import {Stars} from '../ratings/rating_components/stars.jsx';
 
 const Card = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,7 +33,18 @@ const Card = ({ product }) => {
     }
   };
 
-  if (product.productStyles) {
+  if (product.productStyles && product.productRatings) {
+    const one = Number(product.productRatings[1]);
+    const two = Number(product.productRatings[2]);
+    const three = Number(product.productRatings[3]);
+    const four = Number(product.productRatings[4]);
+    const five = Number(product.productRatings[5]);
+    const numerator = 1 * one + 2 * two + 3 * three + 4 * four + 5 * five;
+    const denominator = one + two + three + four + five;
+
+    const average = numerator / denominator;
+    const fixedAvg = average.toFixed(2);
+
     return (
       <div className="relatedItemCard">
         <i className="fa-solid fa-caret-up fa-2x" onClick={handleCardClick}></i>
@@ -50,7 +62,7 @@ const Card = ({ product }) => {
         <div>
           <small>${product.default_price}</small>
         </div>
-        <div>Product Ratings...</div>
+        <div><Stars rating={fixedAvg}/></div>
 
         <Modal
           isOpen={isModalOpen}
