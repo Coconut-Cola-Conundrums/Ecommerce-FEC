@@ -92,3 +92,15 @@
 .productColumn {
   flex: 1;
 }
+
+.reviewContainer {
+  font-family: 'Candara', Verdana, monospace;
+  background-color: #e5fafa;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  width: 600px;
+}
+
+.user {
+  font-family: cursive;
+}
