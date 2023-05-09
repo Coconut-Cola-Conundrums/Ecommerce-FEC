@@ -10,8 +10,8 @@
 .photoContainer {
   display: flex;
   position: relative;
-  height: 40vh;
   width: 40vh;
+  height: 60vh;
 }
 
 .mainPhoto {
@@ -23,23 +23,33 @@
 
 .absolute {
   position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnailArrow {
+  position: relative;
+  cursor: pointer;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  left: 1vh;
 }
 
 .thumbnail {
   display: flex;
   cursor: pointer;
   position: relative;
-  width: 10%;
-  height: 10%;
+  width: 2vh;
+  height: 3vh;
   object-fit: cover;
   margin-bottom: 2vh;
-  left: 1vw;
-  top: 1vw;
+  left: 1vh;
+  top: 1vh;
 }
 
 .selected {
-  border: 0.5vw solid blanchedalmond;
-  left: .5vw;
+  border: 0.5vh solid blanchedalmond;
+  left: 0.5vh;
 }
 
 .productDetails {
@@ -48,12 +58,13 @@
 
 .styleSelector {
   margin-left: 1vw;
+  margin-bottom: 20vh;
 }
 .relatedItemsContainer {
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  top: 20vh;
+  /* top: 20vh; */
 }
 
 .relatedItemCard {
