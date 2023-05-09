@@ -4,18 +4,20 @@ import axios from "axios";
 const baseAPIURL = "http://localhost:3000/";
 
 const initialState = {
+  sort: 'newest',
+  allReviews: [],
   reviews: [],
   ratings: '',
   recommended: '',
   characteristics: {}
 };
 
-export const getReviews = createAsyncThunk('/reviews', async(id, thunkAPI) => {
+export const getReviews = createAsyncThunk('/reviews', async(id, sort,  thunkAPI) => {
   return axios.get(`${baseAPIURL}reviews`, {
     params: {
       page: 1,
       count: 5,
-      sort: 'newest',
+      sort: sort,
       product_id: id
     }
   }).then((res) => {
@@ -45,7 +47,10 @@ export const reviewSlice = createSlice({
   initialState,
   reducers: {
     updateReviews: (state, action) => {
-      return action.payload;
+      state.reviews = action.payload;
+    },
+    updateSort: (state, action) => {
+      state.sort = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -54,6 +59,7 @@ export const reviewSlice = createSlice({
         // state = action.payload;
         // console.log('this is the action payload', action.payload)
         state.reviews = action.payload;
+        state.allReviews = action.payload;
       })
       .addCase(getReviews.rejected, (state, action) => {
         console.log(action.payload);
@@ -68,3 +74,5 @@ export const reviewSlice = createSlice({
       })
   }
 })
+
+export const reducers = reviewSlice.actions;

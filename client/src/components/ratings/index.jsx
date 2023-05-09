@@ -16,14 +16,14 @@ const Reviews = () => {
   useEffect(() => {
     // console.log('review running')
     if (product.id) {
-      dispatch(getReviews(product.id))
+      dispatch(getReviews(product.id, reviewState.sort))
       .then(dispatch(getMetaData(product.id)))
       .then(() => {
         // console.log('This is reviewState =====>', reviewState)
       }).catch((err) => {console.log(err)})
 
     }
-  }, [product.id])
+  }, [product.id, reviewState.sort])
 
   useEffect(() => {
     // console.log(reviewState)
