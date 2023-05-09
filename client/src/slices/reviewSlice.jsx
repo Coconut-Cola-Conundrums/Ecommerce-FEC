@@ -45,7 +45,7 @@ export const reviewSlice = createSlice({
   initialState,
   reducers: {
     updateReviews: (state, action) => {
-      return action.payload;
+      state.reviews = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -68,3 +68,5 @@ export const reviewSlice = createSlice({
       })
   }
 })
+
+export const reducers = reviewSlice.actions;

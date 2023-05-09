@@ -26,7 +26,7 @@ const Reviews = () => {
   }, [product.id])
 
   useEffect(() => {
-    console.log(reviewState)
+    // console.log(reviewState)
   }, [reviewState]);
 
 // on render set initial state with the current product ID.

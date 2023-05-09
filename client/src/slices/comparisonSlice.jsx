@@ -56,21 +56,23 @@ export const comparisonSlice = createSlice({
         state.relatedIds = action.payload
       })
       .addCase(getRelatedIds.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getRelatedProduct.fulfilled, (state, action) => {
         // console.log('this is whats wrong, getRelatedProduct')
-        console.log('relatedProduct on fulfilles is', state.relatedProducts)
+
+  
         state.relatedProducts = [...state.relatedProducts, action.payload];
+
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {
         const { product_id, results } = action.payload;
-        console.log('what is this proudct id: ', product_id);
+        // console.log('what is this proudct id: ', product_id);
         const styles = results.map((result) => ({
           style_id: result.style_id,
           name: result.name,
@@ -97,14 +99,14 @@ export const comparisonSlice = createSlice({
 
       })
       .addCase(getProductStyle.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getOutfit.fulfilled, (state, action) => {
         state.outfits.push(action.payload);
       })
       .addCase(getOutfit.rejected, (state, action) => {
-        console.log('error with payload: ', action.payload);
+        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
   }
