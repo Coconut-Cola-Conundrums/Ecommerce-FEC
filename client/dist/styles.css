@@ -126,9 +126,10 @@
 }
 
 .verticleLine {
-  height: '100%';
-  width: 1;
-  background-color: '#909090';
+  height: 20vh;
+  margin-left: 2vh;
+  margin-right: 2vh;
+  border-left: thin solid #909090;
 }
 
 .relatedItemsContainer {
