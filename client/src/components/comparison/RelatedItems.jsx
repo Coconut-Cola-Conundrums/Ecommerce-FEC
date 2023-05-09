@@ -18,7 +18,9 @@ const RelatedItems = () => {
     const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);
     if (!outfitExists) {
       dispatch(getOutfit(id)).then(() => {
-        dispatch(getProductStyle(id))
+        dispatch(getProductStyle(id)).then(()=> {
+          dispatch(getMeta(id))
+        })
       });
     } else {
       //kindly alert the users

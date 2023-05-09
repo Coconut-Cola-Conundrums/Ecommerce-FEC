@@ -144,6 +144,19 @@ export const comparisonSlice = createSlice({
         });
 
         state.relatedProducts = updatedProducts;
+
+
+        const updatedOutfits = state.outfits.map((outfit) => {
+          if (outfit.id === Number(product_id)) {
+            return {
+              ...outfit,
+              outfitRatings: ratings
+            };
+          }
+          return outfit;
+        });
+
+        state.outfits = updatedOutfits;
       })
       .addCase(getMeta.rejected, (state, action) => {
         // console.log('error with payload: ', action.payload);
