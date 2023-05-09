@@ -10,7 +10,7 @@ export const SortOptions = () => {
 
 
   var subHandler = (e) => {
-    event.preventDefault();
+    e.preventDefault();
     //line 15 creates a filtered set of reviews based on the search input
     var filteredReviews = reviews.filter((rev) => {
       return rev.summary.includes(search) || rev.body.includes(search);
