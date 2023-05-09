@@ -1,36 +1,34 @@
-// spec/comparison.spec.js
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import RelatedItems from '../client/src/components/comparison/RelatedItems';
 
-import { getRelatedIds } from '../client/src/slices/comparisonSlice';
-import axios from 'axios';
+const mockStore = configureStore([]);
 
-describe('getRelatedIds', () => {
-  // it('returns related IDs successfully', async () => {
-  //   const id = 123; // Example ID
+describe('RelatedItems', () => {
+  let store;
 
-  //   // Mock the axios.get() method to return a specific response
-  //   jest.spyOn(axios, 'get').mockResolvedValue({ data: [1, 2, 3] });
+  beforeEach(() => {
+    store = mockStore({
+      relatedItems: {
+        outfits: [],
+        relatedIds: [],
+        relatedProducts: [],
+      },
+      product: {
+        id: '123',
+      },
+    });
+  });
 
-  //   // Call the getRelatedIds function
-  //   const result = await getRelatedIds(id);
+  it('renders "Related Products" heading', () => {
+    render(
+      <Provider store={store}>
+        <RelatedItems />
+      </Provider>
+    );
 
-  //   // Assertions
-  //   expect(result).toEqual([1, 2, 3]);
-  //   expect(axios.get).toHaveBeenCalledWith(`http://localhost:3000/products/${id}/related`);
-  // });
-
-  it('handles error when fetching related IDs', async () => {
-    const id = 123; // Example ID
-
-    // Mock the axios.get() method to throw an error
-    jest.spyOn(axios, 'get').mockRejectedValue(new Error('API request failed'));
-
-    // Call the getRelatedIds function
-    try {
-      await getRelatedIds(id);
-    } catch (error) {
-      // Assertions
-      expect(error.message).toEqual('API request failed');
-      expect(axios.get).toHaveBeenCalledWith(`http://localhost:3000/products/${id}/related`);
-    }
+    expect(screen.getByText('Related Products')).toBeInTheDocument();
   });
 });

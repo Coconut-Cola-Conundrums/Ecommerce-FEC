@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit } from '../../slices/comparisonSlice.jsx';
+import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit, getMeta } from '../../slices/comparisonSlice.jsx';
 import { useEffect } from 'react'
 import Card from './Card.jsx';
 import Outfit from './Outfit.jsx';
@@ -56,7 +56,7 @@ const RelatedItems = () => {
         .then(() => {
           Promise.all(comparisonState.relatedIds.map((id) => dispatch(getProductStyle(id))))
         }).then(() => {
-          // setIsLoading(false);
+          Promise.all(comparisonState.relatedIds.map((id) => dispatch(getMeta(id))))
         })
         .catch((error) => {
           console.error('Error fetching related products:', error);
