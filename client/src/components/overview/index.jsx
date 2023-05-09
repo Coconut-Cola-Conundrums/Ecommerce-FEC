@@ -57,7 +57,7 @@ const Overview = () => {
         <ImageGallery />
         <ProductDescription />
       </div>
-      <div style={{position: "absolute"}}>
+      <div className="absolute rightOverviewDivs">
         <ProductDetails />
         <StyleSelector />
         <AddToCart />

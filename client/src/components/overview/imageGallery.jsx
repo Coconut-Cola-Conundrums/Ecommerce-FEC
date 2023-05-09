@@ -21,11 +21,11 @@ const ImageGallery = () => {
     // 0 is down, 1 is up. 0 is right, 1 is left. Respective of photo array.
     if (!id) { // going down/right, so moving TO greater indices
       if (thumbnailRange.to <= (currentStyle.photos.length - 1)) { // if we aren't already at the highest index photo
-        setThumbnailRange((prevState) => ({...prevState, to: prevState.to+ 1}))
+        setThumbnailRange((prevState) => ({to: prevState.to+ 1, from: prevState.from + 1}))
       }
     } else { // going up, so moving FROM a higher index to a lower index of thumbnails to view
       if (thumbnailRange.from > 0) { // aren't already viewing the zeroth thumbnail
-        setThumbnailRange((prevState) => ({...prevState, from: prevState.from - 1}))
+        setThumbnailRange((prevState) => ({to: prevState.to - 1, from: prevState.from - 1}))
       }
     }
   }
