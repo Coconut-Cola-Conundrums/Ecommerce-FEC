@@ -87,14 +87,14 @@ const Card = ({ product }) => {
                     <td>{product.default_price}</td>
                   </tr>
                   <tr>
-                    <td>{mainCurrentStyle.sale_price || 'N/A'}</td>
+                    <td>{mainCurrentStyle.sale_price}</td>
                     <td>Sale Price</td>
-                    <td>{product.productStyles[0].sale_price || 'N/A'}</td>
+                    <td>{product.productStyles[0].sale_price}</td>
                   </tr>
                   <tr>
-                    <td>{mainAvailableStyles.length || 'N/A'}</td>
+                    <td>{mainAvailableStyles.length}</td>
                     <td># of Available Styles</td>
-                    <td>{product.productStyles.length || 'N/A'}</td>
+                    <td>{product.productStyles.length}</td>
                   </tr>
                 </tbody>
               </table>

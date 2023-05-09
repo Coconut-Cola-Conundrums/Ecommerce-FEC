@@ -52,12 +52,16 @@ const RelatedItems = () => {
 
     return (
       <div>
+      <h1>Related Products</h1>
       <div className="relatedItemsContainer">
         {comparisonState.relatedProducts.map((product, i) => <Card key={i} product={product}/>)}
       </div>
-      <button onClick={() => handleOutfitClick(productId)}>add to outfit</button>
+      <h1>Your Outfits</h1>
       <div className="relatedItemsContainer">
-          {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} outfit={outfit} /> ))}
+        <div className="relatedItemCard">
+        <i className="fa-regular fa-square-plus fa-2xl" onClick={() => handleOutfitClick(productId)}></i>
+        </div>
+        {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} outfit={outfit} /> ))}
       </div>
       </div>
     )

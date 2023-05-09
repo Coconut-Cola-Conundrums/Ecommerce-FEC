@@ -63,6 +63,14 @@
   padding: 10px;
 }
 
+.relatedItemCard .fa-regular.fa-square-plus.fa-2xl {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+  cursor: pointer;
+}
 .fa {
   border: 1px solid #808080;
 }
