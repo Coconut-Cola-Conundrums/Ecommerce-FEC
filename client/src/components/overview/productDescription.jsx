@@ -7,7 +7,7 @@ const ProductDescription = () => {
   useEffect(() => {
 
   }, [])
-  console.log(productInformation);
+
   return (
     <div>
       {productInformation.slogan ?
