@@ -17,10 +17,9 @@ const ImageGallery = () => {
     setMainPhoto(Number(e.target.id));
   }
 
-  const onScrollThumbnails = (e) => {
-    e.preventDefault();
-    let direction = e.target.id === "up" ? 1 : 0;
-    if (!direction) { // going down, so moving TO greater indices
+  const onAdjustThumbnails = (id) => {
+    // 0 is down, 1 is up. 0 is right, 1 is left. Respective of photo array.
+    if (!id) { // going down/right, so moving TO greater indices
       if (thumbnailRange.to <= (currentStyle.photos.length - 1)) { // if we aren't already at the highest index photo
         setThumbnailRange((prevState) => ({...prevState, to: prevState.to+ 1}))
       }
@@ -31,17 +30,30 @@ const ImageGallery = () => {
     }
   }
 
+  const onScrollThumbnails = (e) => {
+    e.preventDefault();
+    let direction = e.target.id === "down" ? 0 : 1;
+    onAdjustThumbnails(direction);
+  }
+
   const onViewThumbnails = (e) => {
     e.preventDefault();
-    console.log('e.target.id', e.target.id, 'mainphoto', mainPhoto)
-    if (e.target.id === "left") {
-      console.log('going left main photo is', mainPhoto)
+    let direction = e.target.id === "right" ? 0 : 1;
+    if (direction) { // going right
       if (mainPhoto) { // main photo is not already at the zeroth thumbnail
-        setMainPhoto(prevState => (prevState - 1));
+        let newMain = mainPhoto - 1;
+        setMainPhoto(newMain);
+        if (thumbnailRange.from > newMain) {
+          onAdjustThumbnails(direction);
+        }
       }
-    } else if (e.target.id === "right") {
+    } else { // going left
       if (mainPhoto < (currentStyle.photos.length - 1)) { // not already viewing the last photo
-        setMainPhoto(prevState => (prevState + 1))
+        let newMain = mainPhoto + 1;
+        setMainPhoto(newMain);
+        if (thumbnailRange.to < newMain) { // if the thumbnails dont have mainphoto in view
+          onAdjustThumbnails(direction);
+        }
       }
     }
   }

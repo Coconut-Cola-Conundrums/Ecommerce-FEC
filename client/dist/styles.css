@@ -50,13 +50,19 @@
   cursor: pointer;
   margin-top: 1vh;
   margin-bottom: 1vh;
-  left: 1vh;
+  /* left: 1vh; */
   object-fit: cover;
   max-width: 4vh;
   max-height: 6vh;
   /* margin-right: 3vh; */
-  padding: 1vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 2vh;
   padding-right: 3vh;
+}
+
+.mainPhotoArrow:active, .thumbnailArrow:active {
+  color: blanchedalmond;
 }
 
 .thumbnail {
