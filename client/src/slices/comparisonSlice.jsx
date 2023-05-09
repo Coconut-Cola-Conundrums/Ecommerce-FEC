@@ -69,9 +69,12 @@ export const comparisonSlice = createSlice({
       })
       .addCase(getRelatedProduct.fulfilled, (state, action) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // console.log('this is whats wrong, getRelatedProduct')
 =======
 >>>>>>> be60cb0d40ae1f37eef44b06a7d302ab5dc11f4f
+=======
+>>>>>>> 1f0e03f8141c7bf06bfde98d87f4ce8a454e5fd7
         state.relatedProducts = [...state.relatedProducts, action.payload];
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {

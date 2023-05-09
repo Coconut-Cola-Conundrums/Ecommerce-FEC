@@ -53,11 +53,14 @@ const RelatedItems = () => {
   useEffect(() => {
     if (comparisonState.relatedIds.length > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       // console.log('this should be relatedIDS state arr: ', comparisonState.relatedIds)
       comparisonState.relatedIds.forEach((id) => {
         dispatch(getRelatedProduct(id));
       });
 =======
+=======
+>>>>>>> 1f0e03f8141c7bf06bfde98d87f4ce8a454e5fd7
       Promise.all(comparisonState.relatedIds.map((id) => dispatch(getRelatedProduct(id))))
         .then(() => {
           Promise.all(comparisonState.relatedIds.map((id) => dispatch(getProductStyle(id))))
@@ -67,7 +70,10 @@ const RelatedItems = () => {
         .catch((error) => {
           console.error('Error fetching related products:', error);
         });
+<<<<<<< HEAD
 >>>>>>> be60cb0d40ae1f37eef44b06a7d302ab5dc11f4f
+=======
+>>>>>>> 1f0e03f8141c7bf06bfde98d87f4ce8a454e5fd7
     }
   }, [comparisonState.relatedIds]);
 
