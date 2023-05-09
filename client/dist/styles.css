@@ -54,8 +54,8 @@
 .relatedItemCard {
   position: relative;
   font-family: 'Candara', Verdana, monospace;
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 400px;
   margin-right: 10px;
   background-color: #FAEDCA;
   border: 1px solid #ccc;
@@ -82,10 +82,11 @@
   top: 15px;
   right: 15px;
   cursor: pointer;
+  font-size: 40px;
 }
 
 .imageContainer {
-  height: 200px;
+  height: 270px;
   overflow: hidden;
 }
 
@@ -93,7 +94,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-
+  object-position: center 90%;
 }
 
 .comparisonTable {

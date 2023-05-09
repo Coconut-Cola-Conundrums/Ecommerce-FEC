@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 
@@ -53,6 +53,10 @@ export const comparisonSlice = createSlice({
       const outfitId = action.payload;
       state.outfits = state.outfits.filter((outfit) => outfit.id !== outfitId);
     },
+    addOutfits: (state, action) => {
+      const outfits = action.payload;
+      state.outfits = [...state.outfits, ...outfits];
+    }
   },
   extraReducers: (builder) => {
     builder

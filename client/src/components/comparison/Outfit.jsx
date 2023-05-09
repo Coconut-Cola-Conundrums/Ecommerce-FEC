@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { comparisonSlice } from '../../slices/comparisonSlice';
+import { removeOutfit } from './outfitStorage.js';
 
-const Outfit = ({outfit}) => {
+const Outfit = ({ outfit }) => {
   const dispatch = useDispatch();
 
   const handleXclick = () => {
-    console.log('clicked')
-    dispatch(comparisonSlice.actions.removeOutfit(outfit.id));
+    dispatch(comparisonSlice.actions.removeOutfit(outfit.id)); //removes from state
+    removeOutfit(); //removes from local storage
   };
 
   if (outfit.productStyles) {

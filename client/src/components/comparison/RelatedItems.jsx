@@ -1,31 +1,46 @@
 import React from "react";
-// import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit } from '../../slices/comparisonSlice.jsx';
 import { useEffect } from 'react'
 import Card from './Card.jsx';
 import Outfit from './Outfit.jsx';
+import { saveOutfits, grabOutfits } from './outfitStorage.js';
+import { comparisonSlice } from '../../slices/comparisonSlice';
 
-//need to pass in ID from jac's state, not in store yet
+
 const RelatedItems = () => {
-
-  // const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
   let comparisonState = useSelector((state) => state.relatedItems)
   let productId = useSelector((state) => state.product.id);
 
   const handleOutfitClick = (id) => {
-  const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);
-  if (!outfitExists) {
-    dispatch(getOutfit(id)).then(() => {
-      dispatch(getProductStyle(id));
-    });
-  } else {
-    //kindly alert that an outfit is already in the store
-    console.log('outfit is already in the store');
-  }
-  }
+    const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);
+    if (!outfitExists) {
+      dispatch(getOutfit(id)).then(() => {
+        dispatch(getProductStyle(id))
+      });
+    } else {
+      //kindly alert the users
+      console.log('Outfit is already in the store');
+    }
+  };
+
+  //only save outfits to localStorage when relatedItems.outfits is updated
+  useEffect(() => {
+    if (comparisonState.outfits.length > 0) {
+      const updatedOutfits = [...comparisonState.outfits];
+      saveOutfits(updatedOutfits);
+    }
+  }, [comparisonState.outfits]);
+
+  //initalization to populate relatedItems.outfits after refresh
+  useEffect(() => {
+    const persistedOutfits = grabOutfits();
+    if (persistedOutfits && persistedOutfits.length > 0) {
+      dispatch(comparisonSlice.actions.addOutfits(persistedOutfits));
+    }
+  }, []);
 
   //everytime productID of overview changes... we getRelatedIds
   useEffect(() => {
