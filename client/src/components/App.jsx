@@ -1,7 +1,7 @@
 import React from 'react';
 import Overview from './overview/index.jsx';
 import Comparison from './comparison/RelatedItems.jsx';
-import Questions from './questions/questions.jsx';
+import Questions from './questions/index.jsx';
 import Reviews from './ratings/index.jsx'
 
 
