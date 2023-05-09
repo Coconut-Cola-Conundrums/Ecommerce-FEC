@@ -52,6 +52,10 @@ const RelatedItems = () => {
   //everytime relatedIds state changes... we getRelatedProducts and then getProductStyles after
   useEffect(() => {
     if (comparisonState.relatedIds.length > 0) {
+      comparisonState.relatedIds.forEach((id) => {
+        dispatch(getRelatedProduct(id));
+      });
+
       Promise.all(comparisonState.relatedIds.map((id) => dispatch(getRelatedProduct(id))))
         .then(() => {
           Promise.all(comparisonState.relatedIds.map((id) => dispatch(getProductStyle(id))))

@@ -52,9 +52,9 @@
   display: flex;
   cursor: pointer;
   position: relative;
-  max-width: 2vh;
-  max-height: 3vh;
-  object-fit: contain;
+  width: 2vh;
+  height: 3vh;
+  object-fit: cover;
   margin-bottom: 2vh;
   left: 1vh;
   top: 1vh;

@@ -17,9 +17,9 @@ const ImageGallery = () => {
     setMainPhoto(Number(e.target.id));
   }
 
-  const onAdjustThumbnails = (id) => {
+  const onAdjustThumbnails = (dir) => {
     // 0 is down, 1 is up. 0 is right, 1 is left. Respective of photo array.
-    if (!id) { // going down/right, so moving TO greater indices
+    if (!dir) { // going down/right, so moving TO greater indices
       if (thumbnailRange.to <= (currentStyle.photos.length - 1)) { // if we aren't already at the highest index photo
         setThumbnailRange((prevState) => ({to: prevState.to+ 1, from: prevState.from + 1}))
       }
@@ -41,20 +41,20 @@ const ImageGallery = () => {
 
   const onViewThumbnails = (e) => {
     e.preventDefault();
-    if (e.target.id === "right") { // going right, aka 0
+    if (e.target.id === "left") { // going left, aka 1
       if (mainPhoto) { // main photo is not already at the zeroth thumbnail
         let newMain = mainPhoto - 1;
         setMainPhoto(newMain);
         if (thumbnailRange.from > newMain) {
-          onAdjustThumbnails(0);
+          onAdjustThumbnails(1);
         }
       }
-    } else if (e.target.id === "left") { // going left, aka 1
+    } else if (e.target.id === "right") { // going right, aka 0
       if (mainPhoto < (currentStyle.photos.length - 1)) { // not already viewing the last photo
         let newMain = mainPhoto + 1;
         setMainPhoto(newMain);
         if (thumbnailRange.to < newMain) { // if the thumbnails dont have mainphoto in view
-          onAdjustThumbnails(1);
+          onAdjustThumbnails(0);
         }
       }
     }
@@ -62,7 +62,7 @@ const ImageGallery = () => {
 
   useEffect(() => {
 
-  }, []);
+  }, [product.id, product.currentStyle]);
 
   return (
     <div className="photoContainer">

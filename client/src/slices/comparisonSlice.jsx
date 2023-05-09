@@ -64,14 +64,12 @@ export const comparisonSlice = createSlice({
         state.relatedIds = action.payload
       })
       .addCase(getRelatedIds.rejected, (state, action) => {
-        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getRelatedProduct.fulfilled, (state, action) => {
         state.relatedProducts = [...state.relatedProducts, action.payload];
       })
       .addCase(getRelatedProduct.rejected, (state, action) => {
-        // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getProductStyle.fulfilled, (state, action) => {
