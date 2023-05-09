@@ -88,7 +88,7 @@ export const comparisonSlice = createSlice({
           photos: result.photos
         }));
 
-        console.log('whatis this stylesfes: ', styles);
+        //console.log('whatis this stylesfes: ', styles);
 
         // let copyOfStateArray = state.relatedProducts.slice();
         // console.log("please work: ", copyOfStateArray);

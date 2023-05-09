@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
-const baseAPIURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/";
+const baseAPIURL = "http://localhost:3000/";
 
 const initialState = {
   product_id: '',
@@ -11,11 +11,18 @@ const initialState = {
 
 export const getQuestions = createAsyncThunk('questions/getQuestions', async(id, thunkAPI) => {
   try {
-    axios.get(`${baseAPIURL}qa/questions/`,{
-      param: {
+    return axios.get(`${baseAPIURL}qa/questions/`,{
+      params: {
         product_id: id,
+        page: 1,
+        count: 5
       }
-    }).then(res => res.data)
+    }).then((res) => {
+      //console.log(res.data);
+      return res.data;
+    }).catch((err)=>{
+      throw new Error (err);
+    })
   } catch (err) {
     thunkAPI.rejectWithValue(err);
   }
@@ -23,7 +30,18 @@ export const getQuestions = createAsyncThunk('questions/getQuestions', async(id,
 
 export const getAnswers = createAsyncThunk('questions/getAnswers', async(id, thunkAPI) => {
   try {
-    axios.get(`${baseAPIURL}qa/questions/${id}/answers`).then(res => res.data)
+   return axios.get(`${baseAPIURL}qa/questions/${id}/answers`,{
+    params: {
+      page: 1,
+      count: 5
+    }
+    }).then((res) => {
+      //console.log(res.data);
+      return res.data
+    }).catch((err)=> {
+        throw new Error(err)
+    })
+
   } catch (err) {
     thunkAPI.rejectWithValue(err);
   }
@@ -40,14 +58,15 @@ export const questionsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getQuestions.fulfilled, (state, action) => {
-        state.questions = action.payload
+        //console.log(action.payload);
+        state.results = action.payload;
       })
       .addCase(getQuestions.rejected, (state, action) => {
         console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })
       .addCase(getAnswers.fulfilled, (state, action) => {
-        state.answers.push(action.payload);
+        state.answers = action.payload;
       })
       .addCase(getAnswers.rejected, (state, action) => {
         console.log('error with payload: ', action.payload);
