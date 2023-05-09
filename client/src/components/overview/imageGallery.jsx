@@ -19,9 +19,7 @@ const ImageGallery = () => {
 
   const onScrollThumbnails = (e) => {
     e.preventDefault();
-    console.log(e.target.id)
     let direction = e.target.id === "up" ? 1 : 0;
-    console.log(direction)
     if (!direction) { // going down, so moving TO greater indices
       if (thumbnailRange.to <= (currentStyle.photos.length - 1)) { // if we aren't already at the highest index photo
         setThumbnailRange((prevState) => ({...prevState, to: prevState.to+ 1}))
@@ -31,7 +29,21 @@ const ImageGallery = () => {
         setThumbnailRange((prevState) => ({...prevState, from: prevState.from - 1}))
       }
     }
-    console.log(thumbnailRange)
+  }
+
+  const onViewThumbnails = (e) => {
+    e.preventDefault();
+    console.log('e.target.id', e.target.id, 'mainphoto', mainPhoto)
+    if (e.target.id === "left") {
+      console.log('going left main photo is', mainPhoto)
+      if (mainPhoto) { // main photo is not already at the zeroth thumbnail
+        setMainPhoto(prevState => (prevState - 1));
+      }
+    } else if (e.target.id === "right") {
+      if (mainPhoto < (currentStyle.photos.length - 1)) { // not already viewing the last photo
+        setMainPhoto(prevState => (prevState + 1))
+      }
+    }
   }
 
   useEffect(() => {
@@ -48,9 +60,9 @@ const ImageGallery = () => {
               <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}/>
             )}
             <FaArrowDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails}/>
-            <div className="mainPhotoArrow">
-              <FaArrowLeft className="thumbnailArrow"/>
-              <FaArrowRight className="thumbnailArrow"/>
+            <div className="mainPhotoArrowBox">
+              <FaArrowLeft  className="mainPhotoArrow" id="left" onClick={onViewThumbnails}/>
+              <FaArrowRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails}/>
             </div>
           </div>
         : null

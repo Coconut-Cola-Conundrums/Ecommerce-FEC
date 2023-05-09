@@ -38,15 +38,25 @@
   max-height: 3vh;
 }
 
-.mainPhotoArrow {
+.mainPhotoArrowBox {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  object-fit: cover;
-  margin: 1vh;
-  margin-right: 3vh;
+  /* margin: 1vh; */
+}
 
+.mainPhotoArrow {
+  position: relative;
+  cursor: pointer;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  left: 1vh;
+  object-fit: cover;
+  max-width: 4vh;
+  max-height: 6vh;
+  /* margin-right: 3vh; */
+  padding: 1vh;
+  padding-right: 3vh;
 }
 
 .thumbnail {
