@@ -29,7 +29,7 @@ const RelatedItems = () => {
   //everytime relatedIds state changes... we getRelatedProducts
   useEffect(() => {
     if (comparisonState.relatedIds.length > 0) {
-      // console.log('this should be relatedIDS state arr: ', comparisonState.relatedIds)
+      console.log('this should be relatedIDS state arr: ', comparisonState.relatedIds)
       comparisonState.relatedIds.forEach((id) => {
         dispatch(getRelatedProduct(id));
       });
@@ -37,16 +37,12 @@ const RelatedItems = () => {
   }, [comparisonState.relatedIds]);
 
   useEffect(() => {
-    if (
-      comparisonState.relatedIds.length > 0 &&
-      comparisonState.relatedProducts.length === comparisonState.relatedIds.length
-    ) {
-      // console.log('hello') this is working
+    if (comparisonState.relatedIds.length > 0) {
       comparisonState.relatedIds.forEach((id) => {
         dispatch(getProductStyle(id));
       });
     }
-  }, [comparisonState.relatedIds, comparisonState.relatedProducts]);
+  }, [comparisonState.relatedIds]);
 
   //pass in productStyles down below as well
   //conditional render below...?
