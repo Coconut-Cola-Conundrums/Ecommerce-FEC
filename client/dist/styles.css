@@ -5,6 +5,11 @@
 
 .block {
   display: block;
+  float: left;
+}
+
+.inlineBlock {
+  display: inline-block;
 }
 
 .photoContainer {
@@ -38,33 +43,6 @@
   max-height: 3vh;
 }
 
-.mainPhotoArrowBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* margin: 1vh; */
-}
-
-.mainPhotoArrow {
-  position: relative;
-  cursor: pointer;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  /* left: 1vh; */
-  object-fit: cover;
-  max-width: 4vh;
-  max-height: 6vh;
-  /* margin-right: 3vh; */
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  padding-left: 2vh;
-  padding-right: 3vh;
-}
-
-.mainPhotoArrow:active, .thumbnailArrow:active {
-  color: blanchedalmond;
-}
-
 .thumbnail {
   display: flex;
   cursor: pointer;
@@ -82,6 +60,30 @@
   left: 0.5vh;
 }
 
+.mainPhotoArrowBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainPhotoArrow {
+  position: relative;
+  cursor: pointer;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  object-fit: cover;
+  max-width: 4vh;
+  max-height: 6vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  padding-left: 2vh;
+  padding-right: 3vh;
+}
+
+.mainPhotoArrow:active, .thumbnailArrow:active {
+  color: blanchedalmond;
+}
+
 .productDetails {
   margin-left: 1vw;
 }
@@ -97,6 +99,7 @@
   object-fit: cover;
   margin-right: 1vh;
   border-radius: 50%;
+  position: relative;
 }
 
 .originalPriceOnSale {
@@ -108,7 +111,6 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  /* top: 20vh; */
 }
 
 .relatedItemCard {
