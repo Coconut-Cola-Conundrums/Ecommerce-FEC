@@ -38,9 +38,9 @@ module.exports = {
     //would need to extract page and count from req and include it as a parameter inside the URL
     axios.get(`${URL}/qa/questions/${question_id}/answers`, { headers, params: {count:count, page: page } })
     .then(response => {
-     console.log(response.data.results);
+    //  console.log(response.data.results);
       res.json(response.data.results);
-      console.log('Successful getAnswers call to the API');
+      // console.log('Successful getAnswers call to the API');
     })
     .catch(error => {
       console.log('Error fetching products from API: ', error);

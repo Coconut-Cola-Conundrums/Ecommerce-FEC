@@ -41,25 +41,14 @@ module.exports = {
   },
 
   postReview: (req, res) => {
-    const data = {
-      product_id: req.body.product_id,
-      rating: req.body.rating,
-      summary: req.body.summary,
-      body: req.body.body,
-      recommend: req.body.recommend,
-      name: req.body.name,
-      email: req.body.email,
-      photos: req.body.photos,
-      characteristics: req.body.characteristics
-    };
-
-    axios.post(`${URL}/reviews`, data, { headers })
+    console.log('postReview Request====>',req.body)
+    axios.post(`${URL}/reviews`, req.body, {headers})
     .then(response => {
-      res.json(response.data);
+      res.sendStatus(201);
       console.log('Successfully added review to API');
     })
     .catch(error => {
-      console.log('Error adding review to API: ', error);
+      console.log('Error adding review to API: ', error.response);
       res.status(500);
     });
   },

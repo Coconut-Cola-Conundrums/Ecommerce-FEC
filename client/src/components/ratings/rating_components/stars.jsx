@@ -11,26 +11,27 @@ export const Stars = ({rating}) => {
   var emptyStar = 5 - wholeNum;
 
   return (
-    <div>
-      <div>{(() => {
-        var result = '';
-        for (var i = 1; i <= wholeNum; i++) {
-          result += '<img src = "' + starImage + '" width = "20"/> ';
-        }
-        if (remainder< 0.5 && wholeNum !== 5) {
+
+    <div>{(() => {
+      var result = '';
+      for (var i = 1; i <= wholeNum; i++) {
+        result += '<img src = "' + starImage + '" width = "20"/> ';
+      }
+      if (remainder< 0.5 && wholeNum !== 5) {
+        result += '<img src = "' + noStar + '" width = "20"/> ';
+    } else if (wholeNum !== 5){
+        result += '<img src = "' + halfStar + '" width = "20"/> ';
+      }
+      if (emptyStar >= 2 && wholeNum !== 5) {
+        for (var j = 2; j <= emptyStar; j ++){
           result += '<img src = "' + noStar + '" width = "20"/> ';
-      } else if (wholeNum !== 5){
-          result += '<img src = "' + halfStar + '" width = "20"/> ';
         }
-        if (emptyStar >= 2 && wholeNum !== 5) {
-          for (var j = 2; j <= emptyStar; j ++){
-            result += '<img src = "' + noStar + '" width = "20"/> ';
-          }
-        }
+      }
 
 
-        return <p dangerouslySetInnerHTML={{ __html: result }} ></p>;
-      })()}</div>
+      return <div id = 'stars' dangerouslySetInnerHTML={{ __html: result }} ></div>;
+    })()}
     </div>
+
   )
 }
