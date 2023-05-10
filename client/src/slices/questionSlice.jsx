@@ -5,7 +5,7 @@ const baseAPIURL = "http://localhost:3000/";
 const initialState = {
   product_id: '',
   results: [],
-  answers: {},
+  answers: [],
 
 };
 
