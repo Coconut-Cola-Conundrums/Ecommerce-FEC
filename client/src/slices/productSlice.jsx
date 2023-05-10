@@ -82,12 +82,10 @@ export const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getInitialData.fulfilled, (state, action) => {
-        // state.id = action.payload[0].id;
-        state.id = 40346;
+        state.id = action.payload[0].id;
         state.isLoading = false;
       })
       .addCase(getInitialData.rejected, (state, action) => {
-
         state.isLoading = false;
         state.isError = true;
         state.errorMessage = action.payload;

@@ -50,6 +50,7 @@ const AddToCart = () => {
 
   }, [product.id, currentStyle]);
 
+  console.log(availableSizes, currentStyle)
   return (
     <div>
        <div className="addToCart">

@@ -62,22 +62,21 @@ const ImageGallery = () => {
   }
   useEffect(() => {
 
-  }, [product.id, product.currentStyle]);
+  }, [product.id, currentStyle]);
 
   return (
     <div className="photoContainer">
       {currentStyle.photos ?
           <div className="absolute">
             <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url} alt="" />
-            <FaArrowCircleUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails} fill="#fff"/>
+            <FaArrowCircleUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails} fill="#5f9ea0"/>
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
               <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}/>
             )}
-            <FaArrowCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} fill="#fff"/>
+            <FaArrowCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} fill="#5f9ea0"/>
             <div className="mainPhotoArrowBox">
-              <FaArrowCircleLeft className="mainPhotoArrow" id="left" onClick={onViewThumbnails} fill="#fff"/>
-              <FaArrowCircleRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails} fill="#fff"/>
-
+              <FaArrowCircleLeft className="mainPhotoArrow" id="left" onClick={onViewThumbnails} fill="#5f9ea0"/>
+              <FaArrowCircleRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails} fill="#5f9ea0"/>
               </div>
           </div>
         : null
