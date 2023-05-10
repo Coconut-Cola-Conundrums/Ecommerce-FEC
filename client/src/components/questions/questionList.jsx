@@ -7,6 +7,11 @@ let QuestionList = ({questions,answers}) => {
     return formattedDate;
   }
 
+  const [showMore, setShowMore] = useState(false);
+
+ let clickHanderAnswers = () => {
+    setShowMore(!showMore);
+  }
 
 if(questions) {
 
@@ -34,7 +39,13 @@ if(questions) {
           </div>
 
         ))}
-
+        <div>
+          {showMore ? (
+            <button onClick={clickHanderAnswers}>Show less</button>
+          ):(
+            <button onClick={clickHanderAnswers}>Show more answers</button>
+            )}
+            </div>
         </div>
        ))}
     </div>

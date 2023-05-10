@@ -248,6 +248,26 @@
   font-family: cursive;
 }
 
+.answerImg {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width:  100px;
+  height: 100px;
+  object-fit: cover
+}
+
+.answer {
+  color: #544f4f;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.answerSearch {
+
+}
+
+.searchButton {
+
+}
 #stars {
   width: 130px;
   border: 1px solid #ccc;
