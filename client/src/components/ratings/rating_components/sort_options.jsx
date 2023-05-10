@@ -21,7 +21,7 @@ export const SortOptions = () => {
   }
 
   var handleSort = (e) => {
-    console.log(e.target.value)
+
     dispatch(reducers.updateSort(e.target.value));
   }
 
