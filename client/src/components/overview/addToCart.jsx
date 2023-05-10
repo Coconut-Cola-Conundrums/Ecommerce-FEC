@@ -83,17 +83,7 @@ const AddToCart = () => {
           <option value="OUT OF STOCK">OUT OF STOCK</option>
         </select>
         }
-
-    </div>
-      {/* <div>
-        {Object.keys(currentStyle).length && Object.keys(availableSizes).length ?
-          <button className="addToBagButton" onClick={onClickAddToBag}>
-            <p>ADD TO BAG</p>
-            <FaPlus />
-          </button>
-        : null
-      }
-      </div> */}
+      </div>
     </div>
   )
 }
