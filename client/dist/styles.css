@@ -230,14 +230,18 @@
   background-color: #e5fafa;
   border: 1px solid #ccc;
   border-radius: 15px;
-  width: 600px;
+  width: 1000px;
   padding: 20px;
 }
 
 .body {
-  width: 500px;
+  width: 950px;
+  word-wrap: break-word;
   height: 100px;
   background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 
 .user {
