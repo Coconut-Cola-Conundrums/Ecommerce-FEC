@@ -14,6 +14,7 @@ const ProductDetails = () => {
     return accumulator;
   }, 0) / totalReviews;
 
+  console.log(avgRatings);
   const {productInformation, currentStyle} = product;
   useEffect(() => {
   }, [productInformation, currentStyle, reviews]); // product information will change when new product is clicked, currentstyle will change the price when a new style is clicked

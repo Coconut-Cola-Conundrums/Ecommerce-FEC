@@ -31,7 +31,7 @@ module.exports = {
     const product_id = req.query.product_id;
     axios.get(`${URL}/reviews/meta`, { headers, params: {product_id: product_id }})
     .then(response => {
-      res.json(response)
+      res.json(response.data)
       console.log('successfully retrieved meta data from API')
     })
     .catch(err => {
