@@ -40,7 +40,7 @@ module.exports = {
     .then(response => {
     //  console.log(response.data.results);
       res.json(response.data.results);
-      console.log('Successful getAnswers call to the API');
+      // console.log('Successful getAnswers call to the API');
     })
     .catch(error => {
       console.log('Error fetching products from API: ', error);

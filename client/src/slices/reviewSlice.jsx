@@ -58,6 +58,7 @@ export const reviewSlice = createSlice({
       .addCase(getReviews.fulfilled, (state, action) => {
         // state = action.payload;
         // console.log('this is the action payload', action.payload)
+        // console.log(JSON.stringify(action.payload))
         state.reviews = action.payload;
         state.allReviews = action.payload;
       })

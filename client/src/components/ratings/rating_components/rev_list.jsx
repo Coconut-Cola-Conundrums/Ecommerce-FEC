@@ -21,7 +21,7 @@ export const RevList = () => {
               })()}
           </div>
             Summary: {rev.summary}
-          <p>
+          <p className = 'body'>
             {rev.body}
           </p>
           {rev.photos.map((photo) => {
