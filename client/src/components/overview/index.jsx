@@ -52,7 +52,7 @@ const Overview = () => {
   useEffect(() => {
     dispatch(getStyles());
   }, [product.productInformation]);
-  console.log(product, product.currentStyle)
+  // console.log(product, product.currentStyle)
   return (
     <div className="wrapper">
       <div style={{position: "relative"}}>

@@ -80,7 +80,7 @@ const Card = ({ product }) => {
             <div>${product.default_price}</div>
         )}
 
-        {/* <div><Stars rating={fixedAvg}/></div> */}
+        <div><Stars rating={fixedAvg}/></div>
 
         <Modal
           isOpen={isModalOpen}
