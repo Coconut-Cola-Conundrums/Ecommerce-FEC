@@ -34,16 +34,15 @@ const SizeSelector = () => {
         {Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
           <div className="wrapper">
             <div className="inlineBlock">
-              <select onChange={onClickSize}>
+              <select className="sizeSelectors" onChange={onClickSize}>
                 <option value="SELECT SIZE">SELECT SIZE</option>
                 {Object.keys(availableSizes).map((sku, index) =>
-                // <option key={index}>sku {sku} </option>
-                <option value={sku} key={index}>{currentStyle.skus[sku].size}</option>
+                  <option value={sku} key={index}>{currentStyle.skus[sku].size}</option>
                 )}
               </select>
             </div>
             <div className="inlineBlock">
-              <select>
+              <select className="sizeSelectors">
                 {selectedSku.quantity ?
                   [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) =>
                     <option value={value} key={value}>{value}</option>
@@ -54,7 +53,7 @@ const SizeSelector = () => {
             </div>
           </div>
         :
-        <select>
+        <select className="sizeSelectors">
           <option value="OUT OF STOCK">OUT OF STOCK</option>
         </select>
         }

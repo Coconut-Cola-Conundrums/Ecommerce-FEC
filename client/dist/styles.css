@@ -133,6 +133,23 @@
   border-left: thin solid #909090;
 }
 
+.addToBagButton {
+  display: flex;
+  justify-content: space-between;
+  width: 20vh;
+  height: 4vh;
+  align-items: center;
+  margin-top: 2vh;
+  margin-right: 2vh;
+}
+
+.sizeSelectors {
+  margin-top: 2vh;
+  margin-right: 2vh;
+}
+
+
+
 .relatedItemsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -159,6 +176,7 @@
   font-size: 100px;
   cursor: pointer;
 }
+
 .fa {
   border: 1px solid #808080;
 }
