@@ -74,6 +74,7 @@ export const comparisonSlice = createSlice({
     builder
       .addCase(getRelatedIds.fulfilled, (state, action) => {
         state.relatedIds = action.payload
+        state.relatedProducts = [];
       })
       .addCase(getRelatedIds.rejected, (state, action) => {
         state.error = action.error.message;
