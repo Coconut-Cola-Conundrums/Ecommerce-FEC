@@ -113,9 +113,17 @@ const Card = ({ product }) => {
                     <td>{product.default_price}</td>
                   </tr>
                   <tr>
-                    <td>{mainCurrentStyle.sale_price}</td>
+                    <td>
+                      {mainAvailableStyles.some((style) => style.sale_price !== null) ? (
+                          <div> {mainAvailableStyles.find((style) => style.sale_price !== null).sale_price} </div>
+                        ) : <div></div>}
+                    </td>
                     <td>Sale Price</td>
-                    <td>{product.productStyles[0].sale_price}</td>
+                    <td>
+                      {product.productStyles.some((style) => style.sale_price !== null) ? (
+                        <div> {product.productStyles.find((style) => style.sale_price !== null).sale_price} </div>
+                      ) : <div></div>}
+                    </td>
                   </tr>
                   <tr>
                       <td>{mainProductInfo.features.map((feature, i) => <div key={i}>{feature.feature}: {feature.value || "NA"}</div>)}</td>
