@@ -83,7 +83,7 @@ export const productSlice = createSlice({
     builder
       .addCase(getInitialData.fulfilled, (state, action) => {
         // state.id = action.payload[0].id;
-        state.id = 40345
+        state.id = 40346;
         state.isLoading = false;
       })
       .addCase(getInitialData.rejected, (state, action) => {

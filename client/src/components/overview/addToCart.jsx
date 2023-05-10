@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
+import Select from 'react-select';
 
 const AddToCart = () => {
   const product = useSelector((state) => state.product);
@@ -8,12 +9,31 @@ const AddToCart = () => {
 
   const [availableSizes, setAvailableSizes] = useState({});
   const [selectedSku, setSelectedSku] = useState({});
+  const [selectedOrder, setSelectedOrder] = useState({
+    size: '',
+    quantity: ''
+  });
 
   const onClickSize = (e) => {
     e.preventDefault();
     const { size } = currentStyle.skus[Number(e.target.value)];
     let quantity = currentStyle.skus[Number(e.target.value)].quantity > 15 ? 15 : currentStyle.skus[Number(e.target.value)].quantity
     setSelectedSku({size: size, quantity: quantity});
+    setSelectedOrder((prevState) => ({...prevState, size: size}));
+  }
+
+  const onClickQuantity = (e) => {
+    e.preventDefault();
+    let quantity = e.target.value;
+    setSelectedOrder((prevState) => ({...prevState, quantity: quantity}));
+  }
+
+  const onClickAddToBag = (e) => {
+    e.preventDefault();
+    console.log(selectedSku);
+    if (!Object.keys(selectedSku).length) { // no size has been selected
+      console.log(selectedSku);
+    }
   }
 
   useEffect(() => {
@@ -44,7 +64,7 @@ const AddToCart = () => {
               </select>
             </div>
             <div className="inlineBlock">
-              <select className="sizeSelectors">
+              <select className="sizeSelectors" id="quantity" onChange={onClickQuantity}>
                 {selectedSku.quantity ?
                   [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) =>
                     <option value={value} key={value}>{value}</option>
@@ -63,7 +83,7 @@ const AddToCart = () => {
     </div>
       <div>
         {Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]] ?
-          <button className="addToBagButton">
+          <button className="addToBagButton" onClick={onClickAddToBag}>
             <p>ADD TO BAG</p>
             <FaPlus />
           </button>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+// import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowCircleLeft, FaArrowCircleRight, FaArrowCircleUp, FaArrowCircleDown } from 'react-icons/fa';
 
 const ImageGallery = () => {
   const product = useSelector((state) => state.product);
@@ -68,15 +69,16 @@ const ImageGallery = () => {
       {currentStyle.photos ?
           <div className="absolute">
             <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url} alt="" />
-            <FaArrowUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails}/>
+            <FaArrowCircleUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails} fill="#fff"/>
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
               <img src={photo.thumbnail_url} alt="" key={index} id={index} onClick={onClick} className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}/>
             )}
-            <FaArrowDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails}/>
+            <FaArrowCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} fill="#fff"/>
             <div className="mainPhotoArrowBox">
-              <FaArrowLeft  className="mainPhotoArrow" id="left" onClick={onViewThumbnails}/>
-              <FaArrowRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails}/>
-            </div>
+              <FaArrowCircleLeft className="mainPhotoArrow" id="left" onClick={onViewThumbnails} fill="#fff"/>
+              <FaArrowCircleRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails} fill="#fff"/>
+
+              </div>
           </div>
         : null
       }
