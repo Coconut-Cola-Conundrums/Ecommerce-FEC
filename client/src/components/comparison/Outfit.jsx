@@ -1,24 +1,39 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { comparisonSlice } from '../../slices/comparisonSlice';
-import { removeOutfit } from './outfitStorage.js';
+import { saveOutfits } from './outfitStorage.js';
+import {Stars} from '../ratings/rating_components/stars.jsx';
 
-const Outfit = ({ outfit }) => {
+const Outfit = ({ outfit, index }) => {
   const dispatch = useDispatch();
+  let comparisonState = useSelector((state) => state.relatedItems)
 
-  const handleXclick = () => {
+  const handleXclick = (index) => {
+    const updatedOutfits = [...comparisonState.outfits];
+    updatedOutfits.splice(index, 1); // Remove the element at the specified index
+    saveOutfits(updatedOutfits);
     dispatch(comparisonSlice.actions.removeOutfit(outfit.id)); //removes from state
-    removeOutfit(); //removes from local storage
   };
 
-  if (outfit.productStyles) {
+  if (outfit.productStyles && outfit.outfitRatings) {
+    const one = Number(outfit.outfitRatings[1]);
+    const two = Number(outfit.outfitRatings[2]);
+    const three = Number(outfit.outfitRatings[3]);
+    const four = Number(outfit.outfitRatings[4]);
+    const five = Number(outfit.outfitRatings[5]);
+    const numerator = 1 * one + 2 * two + 3 * three + 4 * four + 5 * five;
+    const denominator = one + two + three + four + five;
+
+    const average = numerator / denominator;
+    const fixedAvg = average.toFixed(2);
+
     return (
       <div className="relatedItemCard">
-        <i className="fa-sharp fa-solid fa-circle-xmark" onClick={handleXclick}></i>
+        <i className="fa-sharp fa-solid fa-circle-xmark" onClick={() => handleXclick(index)}></i>
         <div className="imageContainer">
           <img
             className="sampleImage"
-            src={outfit.productStyles[0].photos[0].url}
+            src={outfit.productStyles[0].photos[0].url || 'https://www.warnersstellian.com/Content/images/product_image_not_available.png'}
             alt="Product Image"
           />
         </div>
@@ -27,9 +42,9 @@ const Outfit = ({ outfit }) => {
           <strong>{outfit.name}</strong>
         </div>
         <div>
-          <small>${outfit.default_price}</small>
+          <div>${outfit.default_price}</div>
         </div>
-        <div>Product Ratings...</div>
+        {/* <div><Stars rating={fixedAvg}/></div> */}
       </div>
     )
   } else {

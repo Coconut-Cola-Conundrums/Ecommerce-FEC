@@ -9,7 +9,3 @@ export const grabOutfits = () => {
     return JSON.parse(serializedOutfit);
   }
 };
-
-export const removeOutfit = () => {
-  localStorage.removeItem('customerOutfit');
-};

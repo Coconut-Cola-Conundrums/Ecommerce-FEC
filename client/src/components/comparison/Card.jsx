@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {Stars} from '../ratings/rating_components/stars.jsx';
+import { getSpecificProduct } from '../../slices/productSlice.jsx';
 
 const Card = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,7 +10,17 @@ const Card = ({ product }) => {
   let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
   let mainAvailableStyles = useSelector((state) => state.product.availableStyles);
 
-  const handleCardClick = () => {
+  const dispatch = useDispatch();
+
+  const handleCardClick = (e) => {
+    //work with jacqueline to change state
+    //import a reducer that dispatches an action to change the ID state in productSlice
+    //dispatch that action with the passed in id
+    e.preventDefault();
+    dispatch(getSpecificProduct(product.id));
+  }
+
+  const handleCaretClick = () => {
     setIsModalOpen(true);
   };
 
@@ -32,25 +44,43 @@ const Card = ({ product }) => {
     }
   };
 
-  if (product.productStyles) {
+  if (product.productStyles && product.productRatings) {
+    const one = Number(product.productRatings[1]);
+    const two = Number(product.productRatings[2]);
+    const three = Number(product.productRatings[3]);
+    const four = Number(product.productRatings[4]);
+    const five = Number(product.productRatings[5]);
+    const numerator = 1 * one + 2 * two + 3 * three + 4 * four + 5 * five;
+    const denominator = one + two + three + four + five;
+
+    const average = numerator / denominator;
+    const fixedAvg = average.toFixed(2);
+
     return (
-      <div className="relatedItemCard">
-        <i className="fa-solid fa-caret-up fa-2x" onClick={handleCardClick}></i>
+      <div className="relatedItemCard" >
+        <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
         <div className="imageContainer">
           <img
             className="sampleImage"
-            src={product.productStyles[0].photos[0].url}
+            src={product.productStyles[0].photos[0].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
             alt="Product Image"
+            onClick={handleCardClick}
           />
         </div>
         <div>{product.category}</div>
         <div>
           <strong>{product.name}</strong>
         </div>
-        <div>
-          <small>${product.default_price}</small>
-        </div>
-        <div>Product Ratings...</div>
+
+        {product.productStyles.some(style => style.sale_price !== null) ? (
+          <div>
+            <del>${product.default_price}</del> ${product.productStyles.find(style => style.sale_price !== null).sale_price}
+          </div>
+        ) : (
+            <div>${product.default_price}</div>
+        )}
+
+        {/* <div><Stars rating={fixedAvg}/></div> */}
 
         <Modal
           isOpen={isModalOpen}
@@ -82,14 +112,27 @@ const Card = ({ product }) => {
                     <td>{product.category}</td>
                   </tr>
                   <tr>
-                    <td>{mainProductInfo.default_price}</td>
+                    <td>${mainProductInfo.default_price}</td>
                     <td>Default Price</td>
-                    <td>{product.default_price}</td>
+                    <td>${product.default_price}</td>
                   </tr>
                   <tr>
-                    <td>{mainCurrentStyle.sale_price}</td>
+                    <td>
+                      {mainAvailableStyles.some((style) => style.sale_price !== null) ? (
+                          <div> ${mainAvailableStyles.find((style) => style.sale_price !== null).sale_price} </div>
+                        ) : <div></div>}
+                    </td>
                     <td>Sale Price</td>
-                    <td>{product.productStyles[0].sale_price}</td>
+                    <td>
+                      {product.productStyles.some((style) => style.sale_price !== null) ? (
+                        <div> ${product.productStyles.find((style) => style.sale_price !== null).sale_price} </div>
+                      ) : <div></div>}
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>{mainProductInfo.features.map((feature, i) => <div key={i}>{feature.feature}: {feature.value || "NA"}</div>)}</td>
+                      <td>Features</td>
+                      <td>{product.features.map((feature, i) => <div key={i}>{feature.feature}: {feature.value || "NA"}</div>)}</td>
                   </tr>
                   <tr>
                     <td>{mainAvailableStyles.length}</td>
