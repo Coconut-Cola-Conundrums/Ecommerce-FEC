@@ -53,7 +53,7 @@
   cursor: pointer;
   position: relative;
   width: 2vh;
-  height: 3vh;
+  height: 4vh;
   object-fit: cover;
   margin-bottom: 2vh;
   left: 1vh;
@@ -61,8 +61,9 @@
 }
 
 .selected {
-  border: 0.5vh solid blanchedalmond;
+  /* border: 0.5vh solid blanchedalmond; */
   left: 0.5vh;
+  filter: drop-shadow(5px 5px 5px black);
 }
 
 .mainPhotoArrowBox {
@@ -122,9 +123,32 @@
 }
 
 .originalPriceOnSale {
-  text-decoration-line: 'line-through';
-  text-decoration-style: 'solid';
+  text-decoration: line-through;
 }
+
+.verticleLine {
+  height: 20vh;
+  margin-left: 2vh;
+  margin-right: 2vh;
+  border-left: thin solid #909090;
+}
+
+.addToBagButton {
+  display: flex;
+  justify-content: space-between;
+  width: 20vh;
+  height: 4vh;
+  align-items: center;
+  margin-top: 2vh;
+  margin-right: 2vh;
+}
+
+.sizeSelectors {
+  margin-top: 2vh;
+  margin-right: 2vh;
+}
+
+
 
 .relatedItemsContainer {
   display: flex;
@@ -152,6 +176,7 @@
   font-size: 100px;
   cursor: pointer;
 }
+
 .fa {
   border: 1px solid #808080;
 }
@@ -232,6 +257,7 @@
   border-radius: 15px;
   width: 1000px;
   padding: 20px;
+  margin: 10px;
 }
 
 .body {
@@ -242,10 +268,13 @@
   padding: 5px;
   border-radius: 10px;
   border: 1px solid #ccc;
+  font-family: sans-serif;
 }
 
 .user {
   font-family: cursive;
+  display: inline-block;
+  text-decoration: underline;
 }
 
 .answerImg {
@@ -275,5 +304,51 @@
   padding: 5px;
   text-align: center;
   border-radius: 20px;
+}
+
+.date {
+  text-decoration: underline;
+  display: inline-block;
+}
+
+#review-form {
+  background-color: rgb(220, 254, 243);
+  height: 155px;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+
+}
+
+#name, #body, #rating, #img, #email{
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  justify-content: space-around;
+  text-align: left;
+  vertical-align: top;
+}
+
+#body {
+  width: 250px;
+  height: 55px;
+}
+
+#name {
+  height: 20px;
+}
+
+#rating {
+  height: 20px;
+  width: 20px;
+}
+
+.ratingBar {
+  width: 300px;
+}
+
+.productBar {
+  width: 300px;
 }
 

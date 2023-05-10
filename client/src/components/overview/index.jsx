@@ -44,17 +44,15 @@ const Overview = () => {
   useEffect(() => {
     if (!product.id) { // if no product has been loaded, then this is the initial render, and we need to fetch the default data
       dispatch(getInitialData()) // get initial data and set the id in the state
-
       .then(() => dispatch(getSpecificProduct())) // then get product information for that id
-      .then(() => dispatch(getStyles())); // then get styles and update them
-
+      // .then(() => dispatch(getStyles())); // then get styles and update them
     }
   }, []);
 
   useEffect(() => {
-    dispatch(getStyles())
-  }, [product.id])
-
+    dispatch(getStyles());
+  }, [product.productInformation]);
+  console.log(product, product.currentStyle)
   return (
     <div className="wrapper">
       <div style={{position: "relative"}}>

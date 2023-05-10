@@ -6,6 +6,7 @@ import { Stars } from '../ratings/rating_components/stars.jsx';
 const ProductDetails = () => {
   const product = useSelector(state => state.product);
   const reviews = useSelector(state => state.reviews);
+  const {productInformation, currentStyle} = product;
 
   let totalReviews = 0;
   const avgRatings = Object.keys(reviews.ratings).reduce((accumulator, key) => {
@@ -14,9 +15,10 @@ const ProductDetails = () => {
     return accumulator;
   }, 0) / totalReviews;
 
-  const {productInformation, currentStyle} = product;
+
   useEffect(() => {
   }, [productInformation, currentStyle, reviews]); // product information will change when new product is clicked, currentstyle will change the price when a new style is clicked
+
   return (
     <div className="relative productDetails">
       <Stars rating={avgRatings.toFixed(2)} />

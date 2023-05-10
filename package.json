@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --env=jsdom",
+    "test-review": "nodemon spec/ratings.spec.js",
     "dev": "npx webpack --watch --mode development & npx nodemon --watch ./server ./server/index.js",
     "build": "npx webpack --mode production",
     "start": "nodemon ./server/index.js"
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/Coconut-Cola-Conundrums/FEC-Coconut#readme",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
+    "@ramonak/react-progress-bar": "^5.0.3",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
@@ -29,11 +31,13 @@
     "file-loader": "^6.2.0",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
+    "progressbar.js": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-modal": "^3.16.1",
     "react-redux": "^8.0.5",
+    "react-select": "^5.7.3",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.4.2"
   },
