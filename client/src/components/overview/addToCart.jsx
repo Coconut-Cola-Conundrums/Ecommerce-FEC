@@ -6,6 +6,12 @@ const AddToCart = () => {
   const {currentStyle} = product;
 
   const [availableSizes, setAvailableSizes] = useState({});
+  const [selectedSize, setSelectedSize] = useState('');
+
+  const onClickSize = (e) => {
+    e.preventDefault();
+    setSelectedSize(e.target.value);
+  }
 
   useEffect(() => {
     // if product id or the current style has changed, reset the available sizes
@@ -17,16 +23,25 @@ const AddToCart = () => {
       }
   }, [product.id, currentStyle]);
 
-  console.log(currentStyle, availableSizes);
+  // console.log(currenåtStyle, availableSizes);
   return (
     <div className="addToCart">
         {Object.keys(availableSizes).length ?
-          <select>
-            <option value="SELECT SIZE">SELECT SIZE</option>
-            {Object.keys(availableSizes).map((size, index) =>
-            <option value={size} key={index}>{size}</option>
-            )}
-          </select>
+          <div className="wrapper">
+            <div className="inlineBlock">
+              <select onChange={onClickSize}>
+                <option value="SELECT SIZE">SELECT SIZE</option>
+                {Object.keys(availableSizes).map((size, index) =>
+                <option value={size} key={index}>{size}</option>
+                )}
+              </select>
+            </div>
+            <div className="inlineBlock">
+              <select>
+
+              </select>
+            </div>
+          </div>
         :
         <select>
           <option value="OUT OF STOCK">OUT OF STOCK</option>
