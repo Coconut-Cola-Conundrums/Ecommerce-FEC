@@ -123,8 +123,7 @@ export const comparisonSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getOutfit.fulfilled, (state, action) => {
-        state.outfits.push(action.payload);
-
+        state.outfits = [...state.outfits, action.payload];
       })
       .addCase(getOutfit.rejected, (state, action) => {
         // console.log('error with payload: ', action.payload);
