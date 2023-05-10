@@ -17,24 +17,27 @@ const AddToCart = () => {
 
   useEffect(() => {
     // if product id or the current style has changed, reset the available sizes
-    setAvailableSizes({});
+    setSelectedSku({});
     // if there is a current style in state, add all available sizes and quantities to available sizes
     if (currentStyle.style_id) {
+      let newSizes = {};
       Object.keys(currentStyle.skus).map((sku) => {
-        setAvailableSizes((prevState) => ({...prevState, [sku] : currentStyle.skus[sku].size}))})
-      }
+        newSizes[Number(sku)] = currentStyle.skus[sku].size
+      })
+      setAvailableSizes(newSizes);
+    }
 
-  }, [product.id, currentStyle, selectedSku]);
+  }, [product.id, currentStyle]);
 
-  console.log(currentStyle, availableSizes, selectedSku);
   return (
     <div className="addToCart">
-        {Object.keys(availableSizes).length ?
+        {Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
           <div className="wrapper">
             <div className="inlineBlock">
               <select onChange={onClickSize}>
                 <option value="SELECT SIZE">SELECT SIZE</option>
                 {Object.keys(availableSizes).map((sku, index) =>
+                // <option key={index}>sku {sku} </option>
                 <option value={sku} key={index}>{currentStyle.skus[sku].size}</option>
                 )}
               </select>
