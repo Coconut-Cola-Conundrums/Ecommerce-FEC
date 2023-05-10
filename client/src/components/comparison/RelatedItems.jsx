@@ -7,12 +7,14 @@ import Outfit from './Outfit.jsx';
 import { saveOutfits, grabOutfits } from './outfitStorage.js';
 import { comparisonSlice } from '../../slices/comparisonSlice';
 
+export const useAppDispatch = useDispatch
+export const useAppSelector = useSelector
 
 const RelatedItems = () => {
 
-  const dispatch = useDispatch();
-  let comparisonState = useSelector((state) => state.relatedItems)
-  let productId = useSelector((state) => state.product.id);
+  const dispatch = useAppDispatch()
+  let comparisonState = useAppSelector((state) => state.relatedItems)
+  let productId = useAppSelector((state) => state.product.id);
 
   const handleOutfitClick = (id) => {
     const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);

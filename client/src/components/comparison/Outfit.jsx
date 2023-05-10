@@ -4,8 +4,11 @@ import { comparisonSlice } from '../../slices/comparisonSlice';
 import { removeOutfit } from './outfitStorage.js';
 import {Stars} from '../ratings/rating_components/stars.jsx';
 
+export const useAppDispatch = useDispatch
+
+
 const Outfit = ({ outfit }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch()
 
   const handleXclick = () => {
     dispatch(comparisonSlice.actions.removeOutfit(outfit.id)); //removes from state

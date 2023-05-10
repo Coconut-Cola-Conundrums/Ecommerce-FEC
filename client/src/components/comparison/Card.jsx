@@ -3,11 +3,13 @@ import Modal from 'react-modal';
 import { useSelector } from 'react-redux';
 import {Stars} from '../ratings/rating_components/stars.jsx';
 
+export const useAppSelector = useSelector
+
 const Card = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  let mainProductInfo = useSelector((state) => state.product.productInformation);
-  let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
-  let mainAvailableStyles = useSelector((state) => state.product.availableStyles);
+  let mainProductInfo = useAppSelector((state) => state.product.productInformation);
+  let mainCurrentStyle = useAppSelector((state) => state.product.currentStyle);
+  let mainAvailableStyles = useAppSelector((state) => state.product.availableStyles);
 
   const handleCardClick = () => {
     setIsModalOpen(true);

@@ -1,36 +1,51 @@
-// spec/comparison.spec.js
+import React from 'react';
+import { render, fireEvent, screen } from '@testing-library/react';
+import RelatedItems from '../client/src/components/comparison/RelatedItems.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import '@testing-library/jest-dom/extend-expect';
 
-import { getRelatedIds } from '../client/src/slices/comparisonSlice';
-import axios from 'axios';
+// Mock the useDispatch and useSelector hooks
+jest.mock('react-redux', () => ({
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
 
-describe('getRelatedIds', () => {
-  // it('returns related IDs successfully', async () => {
-  //   const id = 123; // Example ID
+// Mock the necessary action creators and selectors
+jest.mock('../client/src/slices/comparisonSlice.jsx', () => ({
+  getRelatedIds: jest.fn(),
+  getOutfit: jest.fn(),
+  getProductStyle: jest.fn(),
+  getMeta: jest.fn(),
+  comparisonSlice: {
+    actions: {
+      addOutfits: jest.fn(),
+    },
+  },
+}));
 
-  //   // Mock the axios.get() method to return a specific response
-  //   jest.spyOn(axios, 'get').mockResolvedValue({ data: [1, 2, 3] });
+// Mock the localStorage functions
+jest.mock('../client/src/components/comparison/outfitStorage.js', () => ({
+  saveOutfits: jest.fn(),
+  grabOutfits: jest.fn(),
+}));
 
-  //   // Call the getRelatedIds function
-  //   const result = await getRelatedIds(id);
+describe('RelatedItems', () => {
+  test('renders text Related Products and Outfits to the dom', () => {
+    // Mock the useSelector hook to return the initial state
+    useSelector.mockReturnValueOnce({
+      relatedProducts: [],
+      outfits: [],
+      relatedIds: [],
+    });
 
-  //   // Assertions
-  //   expect(result).toEqual([1, 2, 3]);
-  //   expect(axios.get).toHaveBeenCalledWith(`http://localhost:3000/products/${id}/related`);
-  // });
+    render(<RelatedItems />);
 
-  it('handles error when fetching related IDs', async () => {
-    const id = 123; // Example ID
-
-    // Mock the axios.get() method to throw an error
-    jest.spyOn(axios, 'get').mockRejectedValue(new Error('API request failed'));
-
-    // Call the getRelatedIds function
-    try {
-      await getRelatedIds(id);
-    } catch (error) {
-      // Assertions
-      expect(error.message).toEqual('API request failed');
-      expect(axios.get).toHaveBeenCalledWith(`http://localhost:3000/products/${id}/related`);
-    }
+    // Verify that the component renders without errors
+    expect(screen.getByText('Related Products')).toBeInTheDocument();
+    expect(screen.getByText('Your Outfits')).toBeInTheDocument();
   });
 });
+
+
+
+

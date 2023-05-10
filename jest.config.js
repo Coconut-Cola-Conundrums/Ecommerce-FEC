@@ -4,6 +4,19 @@
  */
 
 module.exports = {
+
+  transform: {
+    '^.+\\.(js|jsx)$': 'babel-jest',
+  },
+
+  transformIgnorePatterns: [
+    "/node_modules/",
+    "\\.png$" // Exclude .png files from transformation
+  ],
+
+  moduleNameMapper: {
+    "\\.(png|jpg|jpeg|gif|svg)$": "<rootDir>/file-mock.js",
+  },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -192,5 +205,5 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-  
+
 };
