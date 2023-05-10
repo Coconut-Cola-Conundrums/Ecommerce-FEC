@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Stars} from './stars.jsx';
-
+import ProgressBar from "@ramonak/react-progress-bar";
 
 export const RatingBreakdown = ({ratings}) => {
   const one = Number(ratings[1]);
@@ -10,7 +10,8 @@ export const RatingBreakdown = ({ratings}) => {
   const five = Number(ratings[5]);
   const numerator = (1*one + 2*two + 3*three + 4*four + 5*five);
   const denominator = one + two + three + four + five;
-
+  var max = Math.max(one, two, three, four, five)
+  console.log('max===>', max)
   var average = (numerator/denominator);
   var fixedAvg = average;
   return (
@@ -18,11 +19,11 @@ export const RatingBreakdown = ({ratings}) => {
       <h1>Rating Breakdown</h1>
       <h2>Average Rating = {(fixedAvg).toFixed(2)}</h2>
       <div><Stars rating = {(fixedAvg).toFixed(2)}/></div>
-      <p>1 Star- {one}</p>
-      <p>2 Star-{two}</p>
-      <p>3 Star-{three}</p>
-      <p>4 Star-{four}</p>
-      <p>5 Star-{five}</p>
+      <p>1 Star- {<ProgressBar className = 'ratingBar' completed={((one/max)*100).toFixed(0)}/>}</p>
+      <p>2 Star-{<ProgressBar  className = 'ratingBar' completed={((two/max)*100).toFixed(0)}/>}</p>
+      <p>3 Star-{<ProgressBar  className = 'ratingBar' completed={((three/max)*100).toFixed(0)}/>}</p>
+      <p>4 Star-{<ProgressBar  className = 'ratingBar' completed={((four/max)*100).toFixed(0)}/>}</p>
+      <p>5 Star-{<ProgressBar  className = 'ratingBar' completed={((five/max)*100).toFixed(0)}/>}</p>
     </div>
   )
 }
