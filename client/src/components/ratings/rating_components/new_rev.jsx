@@ -35,20 +35,21 @@ export const NewRev = () => {
       email: email,
       photos: [img],
       characteristics: characteristicsObj
-    }).then((res) => {console.log(res)});
+    }).then((res) => {console.log(res)})
+    .catch(alert('Input is invalid'));
   }
 
 
   return (
     <div>
-      <form onSubmit = {submitHandler}>
+      <form onSubmit = {submitHandler} id = 'review-form'>
+        <button type = 'submit'>Submit</button>
+        <button onClick = {() => (setRecommend(!recommend))}>Recommend</button>
         <input placeholder = 'Name' id = 'name'></input>
         <input placeholder = 'Rating' id = 'rating'></input>
         <input placeholder = 'Body' id = 'body'></input>
         <input placeholder = 'Image URL' id = 'img'></input>
         <input placeholder = 'Email' id = 'email'></input>
-        <button type = 'submit'>Submit</button>
-        <button onClick = {() => (setRecommend(!recommend))}>Recommend</button>
       </form>
     </div>
   )
