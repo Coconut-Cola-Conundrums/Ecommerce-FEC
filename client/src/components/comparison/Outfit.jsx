@@ -42,7 +42,7 @@ const Outfit = ({ outfit, index }) => {
           <strong>{outfit.name}</strong>
         </div>
         <div>
-          <small>${outfit.default_price}</small>
+          <div>${outfit.default_price}</div>
         </div>
         <div><Stars rating={fixedAvg}/></div>
       </div>

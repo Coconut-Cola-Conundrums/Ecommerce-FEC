@@ -68,12 +68,10 @@ const Card = ({ product }) => {
 
         {product.productStyles.some(style => style.sale_price !== null) ? (
           <div>
-            <del>{product.default_price}</del> {product.productStyles.find(style => style.sale_price !== null).sale_price}
+            <del>${product.default_price}</del> ${product.productStyles.find(style => style.sale_price !== null).sale_price}
           </div>
         ) : (
-          <div>
             <div>${product.default_price}</div>
-          </div>
         )}
 
         <div><Stars rating={fixedAvg}/></div>
@@ -108,20 +106,20 @@ const Card = ({ product }) => {
                     <td>{product.category}</td>
                   </tr>
                   <tr>
-                    <td>{mainProductInfo.default_price}</td>
+                    <td>${mainProductInfo.default_price}</td>
                     <td>Default Price</td>
-                    <td>{product.default_price}</td>
+                    <td>${product.default_price}</td>
                   </tr>
                   <tr>
                     <td>
                       {mainAvailableStyles.some((style) => style.sale_price !== null) ? (
-                          <div> {mainAvailableStyles.find((style) => style.sale_price !== null).sale_price} </div>
+                          <div> ${mainAvailableStyles.find((style) => style.sale_price !== null).sale_price} </div>
                         ) : <div></div>}
                     </td>
                     <td>Sale Price</td>
                     <td>
                       {product.productStyles.some((style) => style.sale_price !== null) ? (
-                        <div> {product.productStyles.find((style) => style.sale_price !== null).sale_price} </div>
+                        <div> ${product.productStyles.find((style) => style.sale_price !== null).sale_price} </div>
                       ) : <div></div>}
                     </td>
                   </tr>
