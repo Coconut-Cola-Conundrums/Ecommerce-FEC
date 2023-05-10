@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {Stars} from '../ratings/rating_components/stars.jsx';
+import { getSpecificProduct } from '../../slices/productSlice.jsx';
 
 const Card = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,10 +10,14 @@ const Card = ({ product }) => {
   let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
   let mainAvailableStyles = useSelector((state) => state.product.availableStyles);
 
-  const handleCardClick = (id) => {
+  const dispatch = useDispatch();
+
+  const handleCardClick = (e) => {
     //work with jacqueline to change state
     //import a reducer that dispatches an action to change the ID state in productSlice
     //dispatch that action with the passed in id
+    e.preventDefault();
+    dispatch(getSpecificProduct(product.id));
   }
 
   const handleCaretClick = () => {
@@ -52,13 +57,14 @@ const Card = ({ product }) => {
     const fixedAvg = average.toFixed(2);
 
     return (
-      <div className="relatedItemCard">
+      <div className="relatedItemCard" >
         <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
         <div className="imageContainer">
           <img
             className="sampleImage"
             src={product.productStyles[0].photos[0].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
             alt="Product Image"
+            onClick={handleCardClick}
           />
         </div>
         <div>{product.category}</div>
@@ -74,7 +80,7 @@ const Card = ({ product }) => {
             <div>${product.default_price}</div>
         )}
 
-        <div><Stars rating={fixedAvg}/></div>
+        {/* <div><Stars rating={fixedAvg}/></div> */}
 
         <Modal
           isOpen={isModalOpen}

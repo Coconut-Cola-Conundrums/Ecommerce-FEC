@@ -44,7 +44,7 @@ const Outfit = ({ outfit, index }) => {
         <div>
           <div>${outfit.default_price}</div>
         </div>
-        <div><Stars rating={fixedAvg}/></div>
+        {/* <div><Stars rating={fixedAvg}/></div> */}
       </div>
     )
   } else {

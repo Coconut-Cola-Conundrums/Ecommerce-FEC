@@ -51,6 +51,10 @@ const Overview = () => {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(getStyles())
+  }, [product.id])
+
   return (
     <div className="wrapper">
       <div style={{position: "relative"}}>
