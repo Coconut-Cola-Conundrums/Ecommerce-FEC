@@ -31,7 +31,7 @@ module.exports = {
     const product_id = req.query.product_id;
     axios.get(`${URL}/reviews/meta`, { headers, params: {product_id: product_id }})
     .then(response => {
-      res.json(response.data)
+      res.json(response)
       console.log('successfully retrieved meta data from API')
     })
     .catch(err => {
@@ -50,17 +50,18 @@ module.exports = {
       name: req.body.name,
       email: req.body.email,
       photos: req.body.photos,
-      characteristics: req.body.characteristics
+      characteristics: {135219: 4.2}
     };
-
+    console.log(data);
     axios.post(`${URL}/reviews`, data, { headers })
     .then(response => {
-      res.json(response.data);
-      console.log('Successfully added review to API');
+      // res.json(response.data);
+      console.log('Successfully added review to API', response);
+      res.status(201).send('succes');
     })
     .catch(error => {
       console.log('Error adding review to API: ', error);
-      res.status(500);
+      res.status(500).send(error);
     });
   },
 
