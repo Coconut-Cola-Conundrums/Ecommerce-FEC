@@ -9,7 +9,13 @@ const Card = ({ product }) => {
   let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
   let mainAvailableStyles = useSelector((state) => state.product.availableStyles);
 
-  const handleCardClick = () => {
+  const handleCardClick = (id) => {
+    //work with jacqueline to change state
+    //import a reducer that dispatches an action to change the ID state in productSlice
+    //dispatch that action with the passed in id
+  }
+
+  const handleCaretClick = () => {
     setIsModalOpen(true);
   };
 
@@ -47,11 +53,11 @@ const Card = ({ product }) => {
 
     return (
       <div className="relatedItemCard">
-        <i className="fa-solid fa-caret-up fa-2x" onClick={handleCardClick}></i>
+        <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
         <div className="imageContainer">
           <img
             className="sampleImage"
-            src={product.productStyles[0].photos[0].url}
+            src={product.productStyles[0].photos[0].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
             alt="Product Image"
           />
         </div>
@@ -59,9 +65,17 @@ const Card = ({ product }) => {
         <div>
           <strong>{product.name}</strong>
         </div>
-        <div>
-          <small>${product.default_price}</small>
-        </div>
+
+        {product.productStyles && product.productStyles.some(style => style.sale_price !== null) ? (
+          <div>
+            <del>{product.default_price}</del> {product.productStyles.find(style => style.sale_price !== null).sale_price}
+          </div>
+        ) : (
+          <div>
+            <div>${product.default_price}</div>
+          </div>
+        )}
+        
         <div><Stars rating={fixedAvg}/></div>
 
         <Modal
@@ -102,6 +116,11 @@ const Card = ({ product }) => {
                     <td>{mainCurrentStyle.sale_price}</td>
                     <td>Sale Price</td>
                     <td>{product.productStyles[0].sale_price}</td>
+                  </tr>
+                  <tr>
+                      <td>{mainProductInfo.features.map((feature, i) => <div key={i}>{feature.feature}: {feature.value || "NA"}</div>)}</td>
+                      <td>Features</td>
+                      <td>{product.features.map((feature, i) => <div key={i}>{feature.feature}: {feature.value || "NA"}</div>)}</td>
                   </tr>
                   <tr>
                     <td>{mainAvailableStyles.length}</td>

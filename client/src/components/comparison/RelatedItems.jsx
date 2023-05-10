@@ -78,7 +78,7 @@ const RelatedItems = () => {
         <div className="relatedItemCard">
         <i className="fa-regular fa-square-plus fa-2xl" onClick={() => handleOutfitClick(productId)}></i>
         </div>
-        {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} outfit={outfit} /> ))}
+        {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} index={i} outfit={outfit} /> ))}
       </div>
       </div>
     )

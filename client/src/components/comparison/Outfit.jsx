@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { comparisonSlice } from '../../slices/comparisonSlice';
-import { removeOutfit } from './outfitStorage.js';
+import { saveOutfits } from './outfitStorage.js';
 import {Stars} from '../ratings/rating_components/stars.jsx';
 
-const Outfit = ({ outfit }) => {
+const Outfit = ({ outfit, index }) => {
   const dispatch = useDispatch();
+  let comparisonState = useSelector((state) => state.relatedItems)
 
-  const handleXclick = () => {
+  const handleXclick = (index) => {
+    const updatedOutfits = [...comparisonState.outfits];
+    updatedOutfits.splice(index, 1); // Remove the element at the specified index
+    saveOutfits(updatedOutfits);
     dispatch(comparisonSlice.actions.removeOutfit(outfit.id)); //removes from state
-    removeOutfit(); //removes from local storage
   };
 
   if (outfit.productStyles && outfit.outfitRatings) {
@@ -26,11 +29,11 @@ const Outfit = ({ outfit }) => {
 
     return (
       <div className="relatedItemCard">
-        <i className="fa-sharp fa-solid fa-circle-xmark" onClick={handleXclick}></i>
+        <i className="fa-sharp fa-solid fa-circle-xmark" onClick={() => handleXclick(index)}></i>
         <div className="imageContainer">
           <img
             className="sampleImage"
-            src={outfit.productStyles[0].photos[0].url}
+            src={outfit.productStyles[0].photos[0].url || 'https://www.warnersstellian.com/Content/images/product_image_not_available.png'}
             alt="Product Image"
           />
         </div>
