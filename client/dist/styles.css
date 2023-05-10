@@ -152,8 +152,12 @@
 
 .relatedItemsContainer {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Prevent items from wrapping onto multiple lines */
+  justify-content: flex-start; /* Align items to the start (left) */
+  align-items: flex-start; /* Align items to the top */
   position: relative;
+  max-width: 100%; /* Allow the container to take full width */
+  margin: 0 auto;
 }
 
 .relatedItemCard {
