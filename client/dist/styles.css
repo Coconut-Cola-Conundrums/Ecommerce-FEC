@@ -135,6 +135,7 @@
 
 .addToBagButton {
   display: flex;
+
   justify-content: space-between;
   width: 20vh;
   height: 4vh;

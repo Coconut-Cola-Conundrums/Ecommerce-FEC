@@ -54,7 +54,7 @@ const AddToCart = () => {
     <div>
        <div className="addToCart">
         {Object.keys(currentStyle).length && Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
-          <div className="wrapper">
+          <div className="block">
             <div className="inlineBlock">
               <select className="sizeSelectors" onChange={onClickSize}>
                 <option value="SELECT SIZE">SELECT SIZE</option>
@@ -73,6 +73,10 @@ const AddToCart = () => {
                 }
               </select>
             </div>
+            <button className="addToBagButton" onClick={onClickAddToBag} >
+              <p>ADD TO BAG</p>
+              <FaPlus />
+            </button>
           </div>
         :
         <select className="sizeSelectors">
@@ -81,7 +85,7 @@ const AddToCart = () => {
         }
 
     </div>
-      <div>
+      {/* <div>
         {Object.keys(currentStyle).length && Object.keys(availableSizes).length ?
           <button className="addToBagButton" onClick={onClickAddToBag}>
             <p>ADD TO BAG</p>
@@ -89,7 +93,7 @@ const AddToCart = () => {
           </button>
         : null
       }
-      </div>
+      </div> */}
     </div>
   )
 }
