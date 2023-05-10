@@ -66,7 +66,7 @@ const Card = ({ product }) => {
           <strong>{product.name}</strong>
         </div>
 
-        {product.productStyles && product.productStyles.some(style => style.sale_price !== null) ? (
+        {product.productStyles.some(style => style.sale_price !== null) ? (
           <div>
             <del>{product.default_price}</del> {product.productStyles.find(style => style.sale_price !== null).sale_price}
           </div>
@@ -75,7 +75,7 @@ const Card = ({ product }) => {
             <div>${product.default_price}</div>
           </div>
         )}
-        
+
         <div><Stars rating={fixedAvg}/></div>
 
         <Modal
