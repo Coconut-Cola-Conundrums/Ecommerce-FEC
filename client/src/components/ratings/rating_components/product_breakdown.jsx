@@ -5,6 +5,8 @@ import {Stars} from './stars.jsx'
 
 export const ProductBreakdown = () => {
   const characteristics = useSelector(state => state.reviews.characteristics);
+
+  console.log('please show up: ', characteristics);
   if (characteristics.Comfort){
   // console.log(characteristics);
   }
