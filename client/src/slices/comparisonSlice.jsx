@@ -44,6 +44,18 @@ export const getProductStyle = createAsyncThunk('products/getProductStyle', asyn
   }
 })
 
+export const getMeta = createAsyncThunk('/products/getMeta', async(id, thunkAPI) => {
+  return axios.get(`${baseAPIURL}/reviews/meta`, {
+    params: {
+      product_id: id
+    }
+  }).then((res) => {
+    return res.data;
+  }).catch((err) => {
+    console.log(err);
+  })
+})
+
 
 export const comparisonSlice = createSlice({
   name: 'relatedItems',
@@ -62,6 +74,7 @@ export const comparisonSlice = createSlice({
     builder
       .addCase(getRelatedIds.fulfilled, (state, action) => {
         state.relatedIds = action.payload
+        state.relatedProducts = [];
       })
       .addCase(getRelatedIds.rejected, (state, action) => {
         state.error = action.error.message;
@@ -111,10 +124,41 @@ export const comparisonSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getOutfit.fulfilled, (state, action) => {
-        state.outfits.push(action.payload);
-
+        state.outfits = [...state.outfits, action.payload];
       })
       .addCase(getOutfit.rejected, (state, action) => {
+        // console.log('error with payload: ', action.payload);
+        state.error = action.error.message;
+      })
+      .addCase(getMeta.fulfilled, (state, action) => {
+        const { product_id, ratings } = action.payload;
+
+        const updatedProducts = state.relatedProducts.map((product) => {
+          if (product.id === Number(product_id)) {
+            return {
+              ...product,
+              productRatings: ratings
+            };
+          }
+          return product;
+        });
+
+        state.relatedProducts = updatedProducts;
+
+
+        const updatedOutfits = state.outfits.map((outfit) => {
+          if (outfit.id === Number(product_id)) {
+            return {
+              ...outfit,
+              outfitRatings: ratings
+            };
+          }
+          return outfit;
+        });
+
+        state.outfits = updatedOutfits;
+      })
+      .addCase(getMeta.rejected, (state, action) => {
         // console.log('error with payload: ', action.payload);
         state.error = action.error.message;
       })

@@ -53,7 +53,7 @@
   cursor: pointer;
   position: relative;
   width: 2vh;
-  height: 3vh;
+  height: 4vh;
   object-fit: cover;
   margin-bottom: 2vh;
   left: 1vh;
@@ -61,8 +61,9 @@
 }
 
 .selected {
-  border: 0.5vh solid blanchedalmond;
+  /* border: 0.5vh solid blanchedalmond; */
   left: 0.5vh;
+  filter: drop-shadow(5px 5px 5px black);
 }
 
 .mainPhotoArrowBox {
@@ -122,9 +123,32 @@
 }
 
 .originalPriceOnSale {
-  text-decoration-line: 'line-through';
-  text-decoration-style: 'solid';
+  text-decoration: line-through;
 }
+
+.verticleLine {
+  height: 20vh;
+  margin-left: 2vh;
+  margin-right: 2vh;
+  border-left: thin solid #909090;
+}
+
+.addToBagButton {
+  display: flex;
+  justify-content: space-between;
+  width: 20vh;
+  height: 4vh;
+  align-items: center;
+  margin-top: 2vh;
+  margin-right: 2vh;
+}
+
+.sizeSelectors {
+  margin-top: 2vh;
+  margin-right: 2vh;
+}
+
+
 
 .relatedItemsContainer {
   display: flex;
@@ -152,6 +176,7 @@
   font-size: 100px;
   cursor: pointer;
 }
+
 .fa {
   border: 1px solid #808080;
 }

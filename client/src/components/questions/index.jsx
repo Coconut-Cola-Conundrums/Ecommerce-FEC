@@ -46,9 +46,7 @@ let Questions = () => {
         //});
       })
       .catch(()=>{console.log('err')});
-    }
-
-  }, [product])
+  }}, [product])
 
   useEffect(()=> {
     const result = questions.results;
