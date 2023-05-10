@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit } from '../../slices/comparisonSlice.jsx';
+import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit, getMeta } from '../../slices/comparisonSlice.jsx';
 import { useEffect } from 'react'
 import Card from './Card.jsx';
 import Outfit from './Outfit.jsx';
@@ -18,7 +18,9 @@ const RelatedItems = () => {
     const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);
     if (!outfitExists) {
       dispatch(getOutfit(id)).then(() => {
-        dispatch(getProductStyle(id))
+        dispatch(getProductStyle(id)).then(()=> {
+          dispatch(getMeta(id))
+        })
       });
     } else {
       //kindly alert the users
@@ -52,15 +54,11 @@ const RelatedItems = () => {
   //everytime relatedIds state changes... we getRelatedProducts and then getProductStyles after
   useEffect(() => {
     if (comparisonState.relatedIds.length > 0) {
-      comparisonState.relatedIds.forEach((id) => {
-        dispatch(getRelatedProduct(id));
-      });
-
       Promise.all(comparisonState.relatedIds.map((id) => dispatch(getRelatedProduct(id))))
         .then(() => {
           Promise.all(comparisonState.relatedIds.map((id) => dispatch(getProductStyle(id))))
         }).then(() => {
-          // setIsLoading(false);
+          Promise.all(comparisonState.relatedIds.map((id) => dispatch(getMeta(id))))
         })
         .catch((error) => {
           console.error('Error fetching related products:', error);
