@@ -8,13 +8,13 @@ export const NewRev = () => {
   const product = useSelector(state => state.product);
   const characteristics = useSelector(state => state.reviews.characteristics);
   const [recommend, setRecommend] = useState(false)
-  console.log('char===>', Object.values(characteristics))
+
   var characteristicsArray = Object.values(characteristics);
   var characteristicsObj = {};
   characteristicsArray.forEach((char) => {
     characteristicsObj[char.id] = Number(char.value);
   })
-  console.log(characteristicsObj)
+
 
   var submitHandler = (e) => {
     e.preventDefault();

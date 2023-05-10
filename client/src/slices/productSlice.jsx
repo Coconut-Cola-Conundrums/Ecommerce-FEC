@@ -73,9 +73,9 @@ export const productSlice = createSlice({
     // When a user clicks on the style to see, the state.currentStyle will be updated
     setCurrentStyle: (state, action) => {
       const id = Number(action.payload);
-      console.log(id)
+      // console.log(id)
       const style = state.availableStyles.filter((style) => style.style_id === id);
-      console.log(style);
+      // console.log(style);
       if (style.length) {
         state.currentStyle = style[0];
       }

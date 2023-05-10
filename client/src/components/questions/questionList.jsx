@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 
 let QuestionList = ({questions}) => {
-console.log(questions);
+// console.log(questions);
   return (
     <div>
       <span>Questions</span>

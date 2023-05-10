@@ -231,9 +231,25 @@
   border: 1px solid #ccc;
   border-radius: 15px;
   width: 600px;
+  padding: 20px;
+}
+
+.body {
+  width: 500px;
+  height: 100px;
+  background-color: white;
 }
 
 .user {
   font-family: cursive;
+}
+
+#stars {
+  width: 130px;
+  border: 1px solid #ccc;
+  background-color: rgb(238, 245, 246);
+  padding: 5px;
+  text-align: center;
+  border-radius: 20px;
 }
 
