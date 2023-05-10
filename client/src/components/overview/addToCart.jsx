@@ -62,10 +62,13 @@ const AddToCart = () => {
 
     </div>
       <div>
+        {Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]] ?
           <button className="addToBagButton">
             <p>ADD TO BAG</p>
             <FaPlus />
           </button>
+        : null
+      }
       </div>
     </div>
   )
