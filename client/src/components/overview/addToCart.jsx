@@ -50,11 +50,10 @@ const AddToCart = () => {
 
   }, [product.id, currentStyle]);
 
-  console.log(availableSizes, currentStyle)
   return (
     <div>
        <div className="addToCart">
-        {Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
+        {Object.keys(currentStyle).length && Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
           <div className="wrapper">
             <div className="inlineBlock">
               <select className="sizeSelectors" onChange={onClickSize}>
@@ -83,7 +82,7 @@ const AddToCart = () => {
 
     </div>
       <div>
-        {Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]] ?
+        {Object.keys(currentStyle).length && Object.keys(availableSizes).length ?
           <button className="addToBagButton" onClick={onClickAddToBag}>
             <p>ADD TO BAG</p>
             <FaPlus />
@@ -95,4 +94,5 @@ const AddToCart = () => {
   )
 }
 
+//  && currentStyle.skus[Object.keys(availableSizes)[0]]
 export default AddToCart;
