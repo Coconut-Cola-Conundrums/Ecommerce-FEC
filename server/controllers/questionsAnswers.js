@@ -11,7 +11,7 @@ const headers = {
 module.exports = {
   getQuestions: (req, res) => {
     //TODO
-    const product_id = 40730;
+    const product_id = req.query.product_id;
     const count = req.query.count;
     const page = req.query.page;
     //console.log(req.query);
