@@ -9,9 +9,8 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 export const ProductBreakdown = () => {
   const characteristics = useSelector(state => state.reviews.characteristics);
-  
   if (characteristics.Comfort){
-  console.log(characteristics);
+  // console.log(characteristics);
   }
   var keys = Object.keys(characteristics)
   return (
@@ -20,7 +19,12 @@ export const ProductBreakdown = () => {
       <div>{keys.map((char) => {
         return <div key = {char}>
         {char}
-        <ProgressBar  className = 'productBar' completed={(characteristics[char].value/5*100).toFixed(0)}/>
+        <ProgressBar
+        className = "productBar"
+        completed={(characteristics[char].value/5*100).toFixed(0)}
+        bgColor="#64B8B5"
+
+        />
         </div>
       })}</div>
     </div>

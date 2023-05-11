@@ -31,8 +31,8 @@ const initialState = {
 export const getInitialData = createAsyncThunk('product/getInitialData', async(_, thunkAPI) => {
   try {
     return axios.get(`${baseAPIURL}/products`)
-    .then((res) => res.data)
-    .catch((err) => {throw new Error (err)});
+    .then(res => res.data)
+    .catch(err => {throw new Error (err)});
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
@@ -46,7 +46,7 @@ export const getSpecificProduct = createAsyncThunk('product/getSpecificProduct',
     }
     return axios.get(`${baseAPIURL}/products/${productId}`)
     .then(res => res.data)
-    .catch((err) => {throw new Error (err)});
+    .catch(err => {throw new Error (err)});
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
@@ -59,9 +59,19 @@ export const getStyles = createAsyncThunk('product/getStyles', async(productId, 
       productId = thunkAPI.getState().product.id;
     }
     return axios.get(`${baseAPIURL}/products/${productId}/styles`)
-    .then(res => res.data)
-    .catch((err) => {throw new Error (err)});
+      .then(res => res.data)
+      .catch(err => {throw new Error (err)});
   } catch(err) {
+    return thunkAPI.rejectWithValue(err);
+  }
+})
+
+export const addToCart = createAsyncThunk('product/addToCart', async(skuID, thunkAPI) => {
+  try {
+    return axios.post(`${baseAPIURL}/cart`, skuID)
+      .then(res => res.data)
+      .catch(err => {throw new Error(err)})
+  } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
 })
@@ -128,6 +138,13 @@ export const productSlice = createSlice({
         state.isLoading = true;
         state.isError = false;
         state.errorMessage = '';
+      })
+
+      .addCase(addToCart.fulfilled, (state, action) => {
+        console.log(action.payload);
+      })
+      .addCase(addToCart.rejected, (state, action) => {
+        console.log(action.payload);
       })
   }
 })

@@ -10,7 +10,7 @@ export const store = configureStore({
     product: productSlice.reducer,
     relatedItems: comparisonSlice.reducer,
     questions: questionsSlice.reducer,
-    reviews: reviewSlice.reducer,
+    reviews: reviewSlice.reducer
   },
   middleware: [...getDefaultMiddleware(), thunk],
 });
