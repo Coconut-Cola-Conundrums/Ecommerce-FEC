@@ -57,7 +57,7 @@ const Card = ({ product }) => {
     const fixedAvg = average.toFixed(2);
 
     return (
-      <div className="relatedItemCard carouselCard" >
+      <div className="individualCard" >
         <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
         <div className="imageContainer">
           <img

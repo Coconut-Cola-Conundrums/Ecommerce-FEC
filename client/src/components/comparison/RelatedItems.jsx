@@ -76,17 +76,19 @@ const RelatedItems = () => {
     const container = carouselRef.current;
     if (container) {
       const scrollLeft = container.scrollLeft;
+      const maxScrollLeft = container.scrollWidth - container.offsetWidth - 50;
       setScrollPosition(scrollLeft);
       setShowLeftArrow(scrollLeft > 0);
-      setShowRightArrow(scrollLeft + container.offsetWidth < container.scrollWidth);
+      setShowRightArrow(scrollLeft < maxScrollLeft);
     }
   };
 
   const scrollToLeft = () => {
     const container = carouselRef.current;
     if (container) {
+      const cardWidth = container.querySelector('.relatedItemCard').offsetWidth;
       container.scrollTo({
-        left: scrollPosition - container.offsetWidth,
+        left: scrollPosition - cardWidth,
         behavior: 'smooth',
       });
     }
@@ -95,8 +97,9 @@ const RelatedItems = () => {
   const scrollToRight = () => {
     const container = carouselRef.current;
     if (container) {
+      const cardWidth = container.querySelector('.relatedItemCard').offsetWidth;
       container.scrollTo({
-        left: scrollPosition + container.offsetWidth,
+        left: scrollPosition + cardWidth,
         behavior: 'smooth',
       });
     }
@@ -109,23 +112,26 @@ const RelatedItems = () => {
 
       <div className="relatedItemsContainer">
 
+      {showLeftArrow && (
+        <button className="carouselArrow leftArrow" onClick={scrollToLeft}>
+          &lt;
+        </button>
+      )}
+
       <div ref={carouselRef} className="carouselContainer" onScroll={handleScroll}>
-          {comparisonState.relatedProducts.map((product, i) => (
-            <Card key={i} product={product} /> // Apply the necessary CSS class for each card
-          ))}
-        </div>
+        {comparisonState.relatedProducts.map((product, i) => (
+          <div key={i} className="relatedItemCard">
+            <Card product={product} />
+          </div>
+        ))}
+      </div>
 
-        {showLeftArrow && (
-          <button className="carouselArrow" onClick={scrollToLeft}>
-            &lt;
-          </button>
-        )}
 
-        {showRightArrow && (
-          <button className="carouselArrow" onClick={scrollToRight}>
-            &gt;
-          </button>
-        )}
+      {showRightArrow && (
+        <button className="carouselArrow rightArrow" onClick={scrollToRight}>
+          &gt;
+        </button>
+      )}
 
       </div>
 
