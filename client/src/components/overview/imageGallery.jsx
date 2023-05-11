@@ -92,7 +92,6 @@ const ImageGallery = () => {
 
   }, [product.id, currentStyle]);
 
-  console.log(currentStyle, thumbnailRange, 'main photo: ', mainPhoto);
   return (
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
@@ -104,7 +103,11 @@ const ImageGallery = () => {
                 src={photo.thumbnail_url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
                 alt="" key={index} id={photo.thumbnail_url ? photo.thumbnail_url : 0}
                 onClick={onClick}
-                onError={"this.onerror=null;this.src='https://www.warnersstellian.com/Content/images/product_image_not_available.png'"}
+                onError={({image})=> {
+                  console.log(image);
+                  image.onerror = null;
+                  image.src="https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+                }
               />
             )}
             <FaRegArrowAltCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} />
@@ -125,4 +128,4 @@ export default ImageGallery
 // ({image}) => {
 //   console.log(image);
 //   image.onerror = null;
-//   image.src="https://www.warnersstellian.com/Content/images/product_image_not_available.png"
+//   image.src="https://www.warnersstellian.com/Content/images/product_image_not_available.png"}

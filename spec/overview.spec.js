@@ -25,12 +25,10 @@ const create = () => {
   return { store, next, invoke};
 }
 
-const dispatch = useDispatch();
 describe('testing if async works', () => {
   test('works?', () => {
     const { store, invoke } = create();
     const fn = jest.fn(getInitialData);
-    console.log(dispatch(getInitialData()));
 
     invoke((dispatch, getState) => {
       console.log(dispatch(fn()));
