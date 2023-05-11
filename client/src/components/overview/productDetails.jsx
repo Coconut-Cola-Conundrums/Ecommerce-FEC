@@ -22,7 +22,7 @@ const ProductDetails = () => {
   return (
     <div className="relative productDetails">
       <Stars rating={avgRatings.toFixed(2)} />
-      <h1 >{productInformation.category} </h1>
+      <p>{productInformation.category} </p>
       <h2>{productInformation.name}</h2>
       {currentStyle.sale_price ?
         <>

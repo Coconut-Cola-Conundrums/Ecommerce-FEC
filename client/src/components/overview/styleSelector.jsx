@@ -23,7 +23,7 @@ const StyleSelector = () => {
     <div className="relative">
       {product.availableStyles.length ?
       <div>
-        <h3>STYLE {`>`} {currentStyle.name} </h3>
+        <h4>STYLE {`>`} {currentStyle.name} </h4>
         {availableStyles.map((style, index) =>
           {return style.style_id === currentStyle.style_id ?
             <div className="inlineBlock" key={index}>
