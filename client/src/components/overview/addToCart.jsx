@@ -22,7 +22,7 @@ const AddToCart = () => {
   const onClickSize = (option) => {
     const size = option.label;
     let quantity = currentStyle.skus[Number(option.value)].quantity > 15 ? 15 : currentStyle.skus[Number(option.value)].quantity
-    setSelectedSku({sku: option.value, size: size, quantity: quantity});
+    setSelectedSku({sku: option.value,quantity: quantity});
     setSelectedOrder((prevState) => ({...prevState, size: size}));
     setMessage("");
     setOpenMenu(false);
@@ -35,7 +35,8 @@ const AddToCart = () => {
 
   const onClickAddToBag = (e) => {
     e.preventDefault();
-    if (!selectedSku.size) { // no size has been selected
+    console.log(selectedSku, selectedOrder);
+    if (!selectedOrder.size.length) { // no size has been selected
       setMessage("Please select a size before adding to bag.");
       setOpenMenu(true);
     } else {
@@ -93,30 +94,11 @@ const AddToCart = () => {
             </button>
           </div>
         :
-        <Select className="sizeSelectors" placeholder="OUT OF STOCK" />
-        // <select className="sizeSelectors">
-        //   <option value="OUT OF STOCK">OUT OF STOCK</option>
-        // </select>
+          <Select className="sizeSelectors" placeholder="OUT OF STOCK" />
         }
       </div>
     </div>
   )
 }
 
-//  && currentStyle.skus[Object.keys(availableSizes)[0]]
-{/* <select className="sizeSelectors" onChange={onClickSize}>
-  <option value="SELECT SIZE">SELECT SIZE</option>
-  {Object.keys(availableSizes).map((sku, index) =>
-    <option value={sku} key={index}>{currentStyle.skus[sku].size}</option>
-  )}
-</select> */}
-{/* <select className="sizeSelectors" id="quantity" onChange={onClickQuantity}>
-  {selectedSku.quantity ?
-    [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) =>
-      <option value={value} key={value}>{value}</option>
-    )
-  : <option value="1">1</option>
-  }
-</select> */}
-// options={[{value: "OUT OF STOCK", label: "OUT OF STOCK"}]}
 export default AddToCart;
