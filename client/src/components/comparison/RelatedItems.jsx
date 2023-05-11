@@ -69,21 +69,21 @@ const RelatedItems = () => {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const carouselRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(true);
+  const [showLeftArrowForRelated, setShowLeftArrowForRelated] = useState(false);
+  const [showRightArrowForRelated, setShowRightArrowForRelated] = useState(true);
 
-  const handleScroll = () => {
+  const handleScrollForRelated = () => {
     const container = carouselRef.current;
     if (container) {
       const scrollLeft = container.scrollLeft;
       const maxScrollLeft = container.scrollWidth - container.offsetWidth - 50;
       setScrollPosition(scrollLeft);
-      setShowLeftArrow(scrollLeft > 0);
-      setShowRightArrow(scrollLeft < maxScrollLeft);
+      setShowLeftArrowForRelated(scrollLeft > 0);
+      setShowRightArrowForRelated(scrollLeft < maxScrollLeft);
     }
   };
 
-  const scrollToLeft = () => {
+  const scrollToLeftInRelated = () => {
     const container = carouselRef.current;
     if (container) {
       const cardWidth = container.querySelector('.relatedItemCard').offsetWidth;
@@ -94,7 +94,7 @@ const RelatedItems = () => {
     }
   };
 
-  const scrollToRight = () => {
+  const scrollToRightInRelated = () => {
     const container = carouselRef.current;
     if (container) {
       const cardWidth = container.querySelector('.relatedItemCard').offsetWidth;
@@ -112,13 +112,13 @@ const RelatedItems = () => {
 
       <div className="relatedItemsContainer">
 
-      {showLeftArrow && (
-        <button className="carouselArrow leftArrow" onClick={scrollToLeft}>
+      {showLeftArrowForRelated && (
+        <button className="carouselArrow leftArrow" onClick={scrollToLeftInRelated}>
           &lt;
         </button>
       )}
 
-      <div ref={carouselRef} className="carouselContainer" onScroll={handleScroll}>
+      <div ref={carouselRef} className="carouselContainer" onScroll={handleScrollForRelated}>
         {comparisonState.relatedProducts.map((product, i) => (
           <div key={i} className="relatedItemCard">
             <Card product={product} />
@@ -127,8 +127,8 @@ const RelatedItems = () => {
       </div>
 
 
-      {showRightArrow && (
-        <button className="carouselArrow rightArrow" onClick={scrollToRight}>
+      {showRightArrowForRelated && (
+        <button className="carouselArrow rightArrow" onClick={scrollToRightInRelated}>
           &gt;
         </button>
       )}
