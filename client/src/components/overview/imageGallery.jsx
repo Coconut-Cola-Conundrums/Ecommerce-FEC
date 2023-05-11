@@ -24,28 +24,6 @@ const ImageGallery = () => {
     setMainPhoto(Number(photoIndex));
   }
 
-  // const onAdjustThumbnails = (dir) => {
-  //   // 0 is down, 1 is up. 0 is right, 1 is left. Respective of photo array.
-  //   if (!dir) { // going down/right, so moving TO greater indices
-  //     if (thumbnailRange.to <= (currentStyle.photos.length - 1)) { // if we aren't already at the highest index photo
-  //       setThumbnailRange((prevState) => ({to: prevState.to+ 1, from: prevState.from + 1}))
-  //     }
-  //   } else { // going up, so moving FROM a higher index to a lower index of thumbnails to view
-  //     if (thumbnailRange.from > 0) { // aren't already viewing the zeroth thumbnail
-  //       setThumbnailRange((prevState) => ({to: prevState.to - 1, from: prevState.from - 1}))
-  //     }
-  //   }
-  // }
-
-  // const onScrollThumbnails = (e) => {
-  //   e.preventDefault();
-  //   if (e.target.id === "down") {
-  //     onAdjustThumbnails(0);
-  //   } else if (e.target.id === "up") {
-  //     onAdjustThumbnails(1);
-  //   }
-  // }
-
   const onViewThumbnails = (e) => {
     e.preventDefault();
     if (e.target.id === "left") { // go to a lower index photo, ie towards the photo at index 0
