@@ -4,6 +4,10 @@ import Modal from 'react-modal';
 import { FaArrowCircleLeft, FaArrowCircleRight, FaArrowCircleUp, FaArrowCircleDown } from 'react-icons/fa';
 
 const ImageGallery = () => {
+  // something to keep in mind is that the main photo will directly match the photo's index in the currentStyle.photos array, but the thumbnail range will not necessarily. The thumbnail images are mapped from this range by slicing the original
+  // currentStyle.photos array in the manner: currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to)... and with slicing, the 'to' is EXCLUSIVE (meaning, it does not include the element at the index in the second argument, so the to value needs
+  // to be one higher than the index we're actually grabbing the photos from. For example, a currentStyle.photos with length 6 has 6 images that go from index 0 to index 5. This would translate to a thumbnailRange {from: 0, to: 6} to ensure
+  // we get a visual of the sixth photo (which is AT index 5).
   const product = useSelector((state) => state.product);
   const {currentStyle} = product;
 
@@ -42,27 +46,6 @@ const ImageGallery = () => {
   //   }
   // }
 
-  // const onViewThumbnails = (e) => {
-  //   e.preventDefault();
-  //   if (e.target.id === "left") { // going left, aka 1
-  //     if (mainPhoto) { // main photo is not already at the zeroth thumbnail
-  //       let newMain = mainPhoto - 1;
-  //       setMainPhoto(newMain);
-  //       if (thumbnailRange.from > newMain) {
-  //         onAdjustThumbnails(1);
-  //       }
-  //     }
-  //   } else if (e.target.id === "right") { // going right, aka 0
-  //     if (mainPhoto < (currentStyle.photos.length - 1)) { // not already viewing the last photo
-  //       let newMain = mainPhoto + 1;
-  //       setMainPhoto(newMain);
-  //       if (thumbnailRange.to < newMain) { // if the thumbnails dont have mainphoto in view
-  //         onAdjustThumbnails(0);
-  //       }
-  //     }
-  //   }
-  // }
-
   const onViewThumbnails = (e) => {
     e.preventDefault();
     if (e.target.id === "left") { // go to a lower index photo, ie towards the photo at index 0
@@ -74,7 +57,7 @@ const ImageGallery = () => {
         }
       }
     } else if (e.target.id === "right") { // go to a higher index photo, ie towards the photo at currentStyle.photos[mainPhoto].length
-      if (mainPhoto < (currentStyle.photos.length - 1)) { // not already viewing the last photo
+      if (mainPhoto < (currentStyle.photos.length - 1)) { // we are not already viewing the last photo
         let newMain = mainPhoto + 1;
         setMainPhoto(newMain);
         if (thumbnailRange.to < (newMain + 1)) { // if you're viewing photos 1-7 and want to view photo 8, we need to stage forward the thumbnail range
@@ -83,13 +66,29 @@ const ImageGallery = () => {
       }
     }
   }
+
   const onScrollThumbnails = (e) => {
     e.preventDefault();
+    if (e.target.id === "down") { // scrolling down, to higher indices and away from index 0
+      if (thumbnailRange.to < currentStyle.photos.length) { // if thumbnail range is 3 - 8 for a photo array length of 8, then the thumbnail range already includes the last photo. So this is checking that the thumbnail range does NOT already include the last photo
+        if (mainPhoto < (thumbnailRange.from + 1)) { // if we are viewing the second photo (index 1) with a thumbnail range 1 - 7, and are going to move to see photos 2 - 8, we need to increase the mainPhoto to view the third photo (index 2)
+          setMainPhoto(thumbnailRange.from + 1);
+        }
+        setThumbnailRange((prevState) => ({from: prevState.from + 1, to: prevState.to + 1})); // and now we can increase the thumbnails in view by shifting everything over by an index
+      }
+    } else if (e.target.id === "up") { // we are scrolling up, to view lower indices towards index 0
+      if (mainPhoto) { // not already viewing the zeroth photo (mainPhoto is zero if you're already viewing the zeorth photo)
+        if (mainPhoto === (thumbnailRange.to - 1)) { // if we are viewing photo at index 7 (the eighth photo) from a thumbnail range 2 - 8, then we are viewing the last photo in that range and when we shift upwards to a range of 1 - 7, we need to view phot at index 6. Remember there's that weird thing where we are indexing differently
+          setMainPhoto(thumbnailRange.to - 2);
+        }
+        setThumbnailRange((prevState) => ({from: prevState.from - 1, to: prevState.to - 1})); // and now we can decrease the thumbnails in view by shifting everything over by an index
+      }
+    }
   }
 
   useEffect(() => {
     if (currentStyle.photos) {
-      if (mainPhoto > (currentStyle.photos.length - 1)) { // when we change styles, if the new style has less photos than the index we were viewing on the last style, set the main photo to the photo at last index on new style
+      if (mainPhoto > (currentStyle.photos.length - 1)) { // when we change styles, if the new style has less photos than the index we were viewing on the last style, set the main photo to the photo at the last index on new style
         console.log('setting a new main photo', )
         setMainPhoto(currentStyle.photos.length - 1);
         // we'd also need to update the thumbnail range accordingly as well
