@@ -161,7 +161,7 @@
 
 .relatedItemsContainer {
   position: relative;
-  width: 2100px; /*???????????????????????????????????????????   */
+  width: 2100px;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -182,7 +182,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
-  width: 2100px; /* Allow the container to take full width */
+  width: 2100px;
   margin: 0 auto;
 }
 
@@ -240,12 +240,12 @@
   border-radius: 15px;
   padding: 10px;
   scroll-snap-align: start;
+  transition: box-shadow 0.3s ease;
 }
-
-
 
 .outfitCard {
   position: relative;
+  font-family: 'Candara', Verdana, monospace;
   flex: 0 0 auto; /* Let the card grow and shrink based on content */
   min-width: 300px; /* Set a minimum width */
   max-width: 100%; /* Allow the card to take full width */
@@ -256,6 +256,43 @@
   border-radius: 15px;
   padding: 10px;
   scroll-snap-align: start;
+  transition: box-shadow 0.3s ease;
+}
+.outfitCard:hover,
+.relatedItemCard:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.outfitCard:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 50px;
+  bottom: 20px;
+  height: 1px;
+  width: 0;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.relatedItemCard:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 50px;
+  bottom: 20px;
+  height: 2px;
+  width: 0;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.outfitCard:hover:before {
+  width: calc(20%);
+}
+
+.relatedItemCard:hover:before {
+  width: calc(20%);
 }
 
 .individualCard {
