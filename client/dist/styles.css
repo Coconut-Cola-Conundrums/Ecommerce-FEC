@@ -161,7 +161,7 @@
 } */
 .relatedItemsContainer {
   position: relative;
-  min-width: calc(31.33%); /* Adjust the width as needed */
+  min-width: calc(31.33%); /*???????????????????????????????????????????   */
   margin: 0 auto;
   overflow: hidden;
 }
@@ -172,7 +172,7 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: calc(60%); /* Adjust the width as needed */
+  width: calc(47%);
   margin: 0 auto;
 }
 
@@ -180,7 +180,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: flex-start; /* Align items to the top */
+  align-items: flex-start;
   position: relative;
   max-width: 100%; /* Allow the container to take full width */
   margin: 0 auto;
@@ -192,7 +192,7 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: calc(60%); /* Adjust the width as needed */
+  width: calc(47%);
   margin: 0 auto;
 }
 
