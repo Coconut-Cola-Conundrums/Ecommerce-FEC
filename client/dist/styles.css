@@ -160,9 +160,73 @@
 }
 
 .relatedItemsContainer {
-  display: flex;
-  flex-wrap: wrap;
   position: relative;
+  min-width: calc(31.33%); /*???????????????????????????????????????????   */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carouselContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: calc(47%);
+  margin: 0 auto;
+}
+
+.outfitsContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  max-width: 100%; /* Allow the container to take full width */
+  margin: 0 auto;
+}
+
+.outfitsCarouselContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: calc(47%);
+  margin: 0 auto;
+}
+
+.carouselArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  color: #000;
+  cursor: pointer;
+}
+
+.leftArrow {
+  left: 0;
+}
+
+.rightArrow {
+  right: 0;
+}
+
+.carouselArrow:focus {
+  outline: none;
+}
+
+.carouselArrow:hover {
+  color: #555;
+}
+
+.carouselArrow:disabled {
+  visibility: hidden;
 }
 
 .relatedItemCard {
@@ -175,9 +239,31 @@
   border: 1px solid #ccc;
   border-radius: 15px;
   padding: 10px;
+  scroll-snap-align: start;
 }
 
-.relatedItemCard .fa-regular.fa-square-plus.fa-2xl {
+
+
+.outfitCard {
+  position: relative;
+  flex: 0 0 auto; /* Let the card grow and shrink based on content */
+  min-width: 300px; /* Set a minimum width */
+  max-width: 100%; /* Allow the card to take full width */
+  height: 400px; /* Maintain a fixed height */
+  margin-right: 10px;
+  background-color: #FAEDCA;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 10px;
+  scroll-snap-align: start;
+}
+
+.individualCard {
+  width: 300px;
+  height: 400px;
+}
+
+.outfitCard .fa-regular.fa-square-plus.fa-2xl {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -190,14 +276,22 @@
   border: 1px solid #808080;
 }
 
-.relatedItemCard .fa-caret-up,
-.relatedItemCard .fa-sharp.fa-solid.fa-circle-xmark {
+.relatedItemCard .fa-caret-up {
   color: #808080;
   position: absolute;
   top: 15px;
   right: 15px;
   cursor: pointer;
   font-size: 40px;
+}
+
+.outfitCard .fa-sharp.fa-solid.fa-circle-xmark {
+  color: #808080;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 30px;
 }
 
 .imageContainer {

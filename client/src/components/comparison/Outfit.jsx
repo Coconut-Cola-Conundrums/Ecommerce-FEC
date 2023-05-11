@@ -28,7 +28,7 @@ const Outfit = ({ outfit, index }) => {
     const fixedAvg = average.toFixed(2);
 
     return (
-      <div className="relatedItemCard">
+      <div className="individualCard">
         <i className="fa-sharp fa-solid fa-circle-xmark" onClick={() => handleXclick(index)}></i>
         <div className="imageContainer">
           <img
