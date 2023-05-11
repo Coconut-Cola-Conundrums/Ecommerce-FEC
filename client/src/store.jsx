@@ -11,6 +11,5 @@ export const store = configureStore({
     relatedItems: comparisonSlice.reducer,
     questions: questionsSlice.reducer,
     reviews: reviewSlice.reducer
-
   },
 });

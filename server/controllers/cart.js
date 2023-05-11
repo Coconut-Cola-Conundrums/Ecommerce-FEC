@@ -9,10 +9,21 @@ const headers = {
 
 module.exports = {
   getCartByUser: (req, res) => {
-    //TODO
+    try {
+      axios.get(`${URL}/cart`, { headers })
+        .then(response => res.status(200).send(response.data))
+    } catch (err) {
+      res.status(400).send(err);
+    }
   },
 
   addProductToCart: (req, res) => {
-    //TODO
+
+    try {
+      axios.post(`${URL}/cart`, req.body, { headers })
+      .then(response => res.status(201).send(response.data));
+    } catch (err) {
+      res.status(400).send(err, req.body);
+    }
   }
 }

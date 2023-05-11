@@ -1,38 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 import Select from 'react-select';
+import { addToCart } from '../../slices/productSlice';
 
 const AddToCart = () => {
   const product = useSelector((state) => state.product);
   const {currentStyle} = product;
 
+  const dispatch = useDispatch();
+
   const [availableSizes, setAvailableSizes] = useState({});
   const [selectedSku, setSelectedSku] = useState({});
   const [selectedOrder, setSelectedOrder] = useState({
     size: '',
-    quantity: ''
+    quantity: 1
   });
+  const [message, setMessage] = useState('');
+  const [openMenu, setOpenMenu] = useState(false);
 
-  const onClickSize = (e) => {
-    e.preventDefault();
-    const { size } = currentStyle.skus[Number(e.target.value)];
-    let quantity = currentStyle.skus[Number(e.target.value)].quantity > 15 ? 15 : currentStyle.skus[Number(e.target.value)].quantity
-    setSelectedSku({size: size, quantity: quantity});
+  const onClickSize = (option) => {
+    const size = option.label;
+    let quantity = currentStyle.skus[Number(option.value)].quantity > 15 ? 15 : currentStyle.skus[Number(option.value)].quantity
+    setSelectedSku({sku: option.value,quantity: quantity});
     setSelectedOrder((prevState) => ({...prevState, size: size}));
+    setMessage("");
+    setOpenMenu(false);
   }
 
-  const onClickQuantity = (e) => {
-    e.preventDefault();
-    let quantity = e.target.value;
+  const onClickQuantity = (option) => {
+    let quantity = option.value;
     setSelectedOrder((prevState) => ({...prevState, quantity: quantity}));
   }
 
   const onClickAddToBag = (e) => {
     e.preventDefault();
-    console.log(selectedSku);
-    if (!Object.keys(selectedSku).length) { // no size has been selected
-      console.log(selectedSku);
+    if (!selectedOrder.size.length) { // no size has been selected
+      setMessage("Please select a size before adding to bag.");
+      setOpenMenu(true);
+    } else {
+      dispatch(addToCart({sku_id: Number(selectedSku.sku)}));
     }
   }
 
@@ -54,45 +61,43 @@ const AddToCart = () => {
     <div>
        <div className="addToCart">
         {Object.keys(currentStyle).length && Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
-          <div className="wrapper">
+          <div className="block">
+            {message.length ? <h4>{message}</h4> : null}
             <div className="inlineBlock">
-              <select className="sizeSelectors" onChange={onClickSize}>
-                <option value="SELECT SIZE">SELECT SIZE</option>
-                {Object.keys(availableSizes).map((sku, index) =>
-                  <option value={sku} key={index}>{currentStyle.skus[sku].size}</option>
-                )}
-              </select>
+              <Select
+                className="sizeSelectors"
+                placeholder="Select Size"
+                menuIsOpen={openMenu}
+                options={Object.keys(availableSizes).map((sku) => ({value: sku, label: currentStyle.skus[sku].size}))}
+                getOptionLabel={option => option.label}
+                getOptionValue={option => option.value}
+                onChange={option => onClickSize(option)}
+                onFocus={() => setOpenMenu(true)}
+                onBlur={() => setOpenMenu(false)}
+                />
             </div>
             <div className="inlineBlock">
-              <select className="sizeSelectors" id="quantity" onChange={onClickQuantity}>
-                {selectedSku.quantity ?
-                  [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) =>
-                    <option value={value} key={value}>{value}</option>
-                  )
-                : <option value="1">1</option>
-                }
-              </select>
+              <Select
+                className="sizeSelectors"
+                inputId="quantity"
+                defaultValue={{value:1, label:1}}
+                options={selectedSku.quantity ?
+                [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) => ({label: value, value: value}))
+                : [{value:1, label:1}]}
+                getOptionValue={option => option.value}
+                onChange={option => onClickQuantity(option)}/>
             </div>
+            <button className="addToBagButton" onClick={onClickAddToBag} >
+              <p>ADD TO BAG</p>
+              <FaPlus />
+            </button>
           </div>
         :
-        <select className="sizeSelectors">
-          <option value="OUT OF STOCK">OUT OF STOCK</option>
-        </select>
+          <Select className="sizeSelectors" placeholder="OUT OF STOCK" />
         }
-
-    </div>
-      <div>
-        {Object.keys(currentStyle).length && Object.keys(availableSizes).length ?
-          <button className="addToBagButton" onClick={onClickAddToBag}>
-            <p>ADD TO BAG</p>
-            <FaPlus />
-          </button>
-        : null
-      }
       </div>
     </div>
   )
 }
 
-//  && currentStyle.skus[Object.keys(availableSizes)[0]]
 export default AddToCart;
