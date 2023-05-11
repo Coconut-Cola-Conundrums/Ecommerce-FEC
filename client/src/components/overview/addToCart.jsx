@@ -14,6 +14,7 @@ const AddToCart = () => {
     quantity: ''
   });
   const [message, setMessage] = useState('');
+  const [openMenu, setOpenMenu] = useState(false);
 
   const onClickSize = (option) => {
     const size = option.label;
@@ -21,6 +22,7 @@ const AddToCart = () => {
     setSelectedSku({size: size, quantity: quantity});
     setSelectedOrder((prevState) => ({...prevState, size: size}));
     setMessage("");
+    setOpenMenu(false);
   }
 
   const onClickQuantity = (option) => {
@@ -32,7 +34,8 @@ const AddToCart = () => {
     e.preventDefault();
     console.log(selectedOrder, selectedSku, currentStyle);
     if (!selectedSku.size) { // no size has been selected
-      setMessage("Please select a size before adding to bag.")
+      setMessage("Please select a size before adding to bag.");
+      setOpenMenu(true);
     }
   }
 
@@ -60,16 +63,20 @@ const AddToCart = () => {
               <Select
                 className="sizeSelectors"
                 placeholder="Select Size"
+                menuIsOpen={openMenu}
                 options={Object.keys(availableSizes).map((sku) => ({value: sku, label: currentStyle.skus[sku].size}))}
                 getOptionLabel={option => option.label}
                 getOptionValue={option => option.value}
-                onChange={option => onClickSize(option)}/>
+                onChange={option => onClickSize(option)}
+                onFocus={() => setOpenMenu(true)}
+                onBlur={() => setOpenMenu(false)}
+                />
             </div>
             <div className="inlineBlock">
               <Select
                 className="sizeSelectors"
                 inputId="quantity"
-                placeholder="Select Quantity"
+                defaultValue={{value:1, label:1}}
                 options={selectedSku.quantity ?
                 [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) => ({label: value, value: value}))
                 : [{value:1, label:1}]}
