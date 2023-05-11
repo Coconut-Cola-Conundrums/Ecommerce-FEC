@@ -369,5 +369,5 @@
 }
 
 .formContainer {
-  display: inline;
+  display: flex;
 }
