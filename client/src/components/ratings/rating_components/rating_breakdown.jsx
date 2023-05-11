@@ -23,7 +23,7 @@ export const RatingBreakdown = ({ratings}) => {
       <div>2 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((two/max)*100).toFixed(0)}/>}</div>
       <div>3 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((three/max)*100).toFixed(0)}/>}</div>
       <div>4 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((four/max)*100).toFixed(0)}/>}</div>
-      <div>5 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((five/max)*100).toFixed(0)}/>}</div>
+      <div>5 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((five/max)*100).toFixed(0)}/>}{five}</div>
     </div>
   )
 }
