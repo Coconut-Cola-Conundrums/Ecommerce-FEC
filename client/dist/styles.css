@@ -113,6 +113,7 @@
   border-radius: 50%;
   position: relative;
   cursor: pointer;
+  border: 0.25vh pink solid;
 }
 
 .selectedStyleElement {
@@ -140,19 +141,38 @@
 
 .addToBagButton {
   display: flex;
-
   justify-content: space-between;
   width: 20vh;
   height: 4vh;
   align-items: center;
   margin-top: 2vh;
   margin-right: 2vh;
+  border: 0.1vh pink solid;
+  background-color: white;
+  color: rgb(143, 141, 141);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.addToBagButton:hover {
+  border-color: rgb(170, 169, 169);
+}
+
+.plusIcon {
+  color:#dfdfdf;
+  transition: color 0.2s ease-in-out;
+}
+
+.plusIcon:hover {
+  color:rgb(143, 141, 141);
 }
 
 .sizeSelectors {
   margin-top: 2vh;
   margin-right: 2vh;
   max-width: 30vh;
+  cursor: pointer;
 }
 
 .relatedItemsContainer {

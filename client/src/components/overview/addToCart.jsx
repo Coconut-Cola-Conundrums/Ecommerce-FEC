@@ -65,6 +65,7 @@ const AddToCart = () => {
             {message.length ? <h4>{message}</h4> : null}
             <div className="inlineBlock">
               <Select
+                styles={{control: (baseStyles, state) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
                 className="sizeSelectors"
                 placeholder="Select Size"
                 menuIsOpen={openMenu}
@@ -78,6 +79,7 @@ const AddToCart = () => {
             </div>
             <div className="inlineBlock">
               <Select
+                styles={{control: (baseStyles, state) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
                 className="sizeSelectors"
                 inputId="quantity"
                 defaultValue={{value:1, label:1}}
@@ -89,7 +91,7 @@ const AddToCart = () => {
             </div>
             <button className="addToBagButton" onClick={onClickAddToBag} >
               <p>ADD TO BAG</p>
-              <FaPlus />
+              <FaPlus className="plusIcon"/>
             </button>
           </div>
         :
