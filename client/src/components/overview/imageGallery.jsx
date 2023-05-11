@@ -66,6 +66,7 @@ const ImageGallery = () => {
 
   useEffect(() => {
     if (currentStyle.photos) {
+      console.log('in useEffect', 'currentStyle:', currentStyle, 'mainPhoto:', mainPhoto, 'thumbnailRange:', thumbnailRange);
       if (mainPhoto > (currentStyle.photos.length - 1)) { // when we change styles, if the new style has less photos than the index we were viewing on the last style, set the main photo to the photo at the last index on new style
         console.log('setting a new main photo', )
         setMainPhoto(currentStyle.photos.length - 1);
@@ -79,13 +80,14 @@ const ImageGallery = () => {
           from: (currentStyle.photos.length - 7) > -1 ? currentStyle.photos.length - 1 : 0, // if theres 10 photos, then we'd want to view photos 4-10, but if there's only 5 photos, we want to view photos 0-4
           to: currentStyle.photos.length
         });
-      } else if ((thumbnailRange.to - thumbnailRange.from) < 7 && currentStyle.photos.length >= 7 ) { // if the old style only had 4 photos, and now we have 8 photos, we should update to view the max 7 photos. This will only happen when we are viewing a photo with 7 or less photos (which wouldn't have had its 'from' or 'to' value changed, as there aren't more photos to scroll through)
+      } else if ((thumbnailRange.to - thumbnailRange.from) < 7 && currentStyle.photos.length > (thumbnailRange.to - thumbnailRange.from)) { // if the old style only had 4 photos, and now we have 8 photos, we should update to view the max 7 photos. This will only happen when we are viewing a photo with 7 or less photos (which wouldn't have had its 'from' or 'to' value changed, as there aren't more photos to scroll through)
         setThumbnailRange({from: 0, to: 7})
       }
     }
 
   }, [product.id, currentStyle]);
 
+  // console.log(currentStyle);
   return (
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?

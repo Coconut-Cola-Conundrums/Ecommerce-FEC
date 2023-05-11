@@ -54,12 +54,6 @@ const AddToCart = () => {
         {Object.keys(currentStyle).length && Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
           <div className="block">
             <div className="inlineBlock">
-              {/* <select className="sizeSelectors" onChange={onClickSize}>
-                <option value="SELECT SIZE">SELECT SIZE</option>
-                {Object.keys(availableSizes).map((sku, index) =>
-                  <option value={sku} key={index}>{currentStyle.skus[sku].size}</option>
-                )}
-              </select> */}
               <Select className="sizeSelectors"
                 options={Object.keys(availableSizes).map((sku) => ({value: sku, label: currentStyle.skus[sku].size}))}
                 getOptionLabel={option => option.label}
@@ -67,14 +61,6 @@ const AddToCart = () => {
                 onChange={option => onClickSize(option)}/>
             </div>
             <div className="inlineBlock">
-              {/* <select className="sizeSelectors" id="quantity" onChange={onClickQuantity}>
-                {selectedSku.quantity ?
-                  [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) =>
-                    <option value={value} key={value}>{value}</option>
-                  )
-                : <option value="1">1</option>
-                }
-              </select> */}
               <Select className="sizeSelectors" inputId="quantity"
               options={selectedSku.quantity ?
                 [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) => ({label: value, value: value}))
@@ -99,4 +85,18 @@ const AddToCart = () => {
 }
 
 //  && currentStyle.skus[Object.keys(availableSizes)[0]]
+{/* <select className="sizeSelectors" onChange={onClickSize}>
+  <option value="SELECT SIZE">SELECT SIZE</option>
+  {Object.keys(availableSizes).map((sku, index) =>
+    <option value={sku} key={index}>{currentStyle.skus[sku].size}</option>
+  )}
+</select> */}
+{/* <select className="sizeSelectors" id="quantity" onChange={onClickQuantity}>
+  {selectedSku.quantity ?
+    [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) =>
+      <option value={value} key={value}>{value}</option>
+    )
+  : <option value="1">1</option>
+  }
+</select> */}
 export default AddToCart;
