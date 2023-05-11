@@ -15,15 +15,15 @@ export const RatingBreakdown = ({ratings}) => {
   var average = (numerator/denominator);
   var fixedAvg = average;
   return (
-    <div>
+    <div data-testid="rating-breakdown-div">
       <h1>Rating Breakdown</h1>
       <h2>Average Rating = {(fixedAvg).toFixed(2)}</h2>
       <div><Stars rating = {(fixedAvg).toFixed(2)}/></div>
-      <div>1 Star- {<ProgressBar className = 'ratingBar' completed={((one/max)*100).toFixed(0)}/>}</div>
-      <div>2 Star-{<ProgressBar  className = 'ratingBar' completed={((two/max)*100).toFixed(0)}/>}</div>
-      <div>3 Star-{<ProgressBar  className = 'ratingBar' completed={((three/max)*100).toFixed(0)}/>}</div>
-      <div>4 Star-{<ProgressBar  className = 'ratingBar' completed={((four/max)*100).toFixed(0)}/>}</div>
-      <div>5 Star-{<ProgressBar  className = 'ratingBar' completed={((five/max)*100).toFixed(0)}/>}</div>
+      <div>1 Star- {<ProgressBar className = 'ratingBar'  bgColor="#64B8B5" completed={((one/max)*100).toFixed(0)}/>}</div>
+      <div>2 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((two/max)*100).toFixed(0)}/>}</div>
+      <div>3 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((three/max)*100).toFixed(0)}/>}</div>
+      <div>4 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((four/max)*100).toFixed(0)}/>}</div>
+      <div>5 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((five/max)*100).toFixed(0)}/>}</div>
     </div>
   )
 }

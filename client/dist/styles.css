@@ -1,4 +1,8 @@
 
+#body {
+  background-color: rgb(235, 253, 253);
+}
+
 .wrapper {
   display: flex;
 }
@@ -313,7 +317,8 @@
 
 #review-form {
   background-color: rgb(220, 254, 243);
-  height: 155px;
+  height: 40vh;
+  width: 50vh;
   padding: 5px;
   margin: 10px;
   border-radius: 20px;
@@ -327,6 +332,7 @@
   border-radius: 5px;
   justify-content: space-around;
   text-align: left;
+  width: 85%;
   vertical-align: top;
 }
 
@@ -352,3 +358,11 @@
   width: 300px;
 }
 
+.label {
+  font-size: 20px;
+  color: green;
+}
+
+.formContainer {
+  display: inline;
+}

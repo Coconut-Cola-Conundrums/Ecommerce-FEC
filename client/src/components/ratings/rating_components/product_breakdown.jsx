@@ -21,7 +21,12 @@ export const ProductBreakdown = () => {
       <div>{keys.map((char) => {
         return <div key = {char}>
         {char}
-        <ProgressBar  className = 'productBar' completed={(characteristics[char].value/5*100).toFixed(0)}/>
+        <ProgressBar
+        className = "productBar"
+        completed={(characteristics[char].value/5*100).toFixed(0)}
+        bgColor="#64B8B5"
+
+        />
         </div>
       })}</div>
     </div>
