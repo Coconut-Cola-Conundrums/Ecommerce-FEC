@@ -35,7 +35,6 @@ const AddToCart = () => {
 
   const onClickAddToBag = (e) => {
     e.preventDefault();
-    console.log(selectedSku, selectedOrder);
     if (!selectedOrder.size.length) { // no size has been selected
       setMessage("Please select a size before adding to bag.");
       setOpenMenu(true);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Modal from 'react-modal';
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
 
 const ImageGallery = () => {
@@ -20,8 +19,14 @@ const ImageGallery = () => {
   const onClick = (e) => {
     e.preventDefault();
     let url = e.target.id;
-    let photoIndex = currentStyle.photos.findIndex((photo) => photo.thumbnail_url === url)
-    setMainPhoto(Number(photoIndex));
+    console.log(url);
+
+    if (url === '0') {
+      setMainPhoto(0);
+    } else {
+      let photoIndex = currentStyle.photos.findIndex((photo) => photo.thumbnail_url === url)
+      setMainPhoto(Number(photoIndex));
+    }
   }
 
   const onViewThumbnails = (e) => {
@@ -87,15 +92,20 @@ const ImageGallery = () => {
 
   }, [product.id, currentStyle]);
 
-  // console.log(currentStyle);
+  console.log(currentStyle, thumbnailRange, 'main photo: ', mainPhoto);
   return (
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
           <div className="absolute">
-            <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url} alt="" />
+            <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" />
             <FaRegArrowAltCircleUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails} />
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
-              <img src={photo.thumbnail_url} alt="" key={index} id={photo.thumbnail_url} onClick={onClick} className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}/>
+              <img className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}
+                src={photo.thumbnail_url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+                alt="" key={index} id={photo.thumbnail_url ? photo.thumbnail_url : 0}
+                onClick={onClick}
+                onError={"this.onerror=null;this.src='https://www.warnersstellian.com/Content/images/product_image_not_available.png'"}
+              />
             )}
             <FaRegArrowAltCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} />
             <div className="mainPhotoArrowBox">
@@ -112,3 +122,7 @@ const ImageGallery = () => {
 export default ImageGallery
 
 //FaArrowCircleLeft, FaArrowCircleRight, FaArrowCircleUp, FaArrowCircleDown,
+// ({image}) => {
+//   console.log(image);
+//   image.onerror = null;
+//   image.src="https://www.warnersstellian.com/Content/images/product_image_not_available.png"
