@@ -1,13 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { getRelatedIds, getRelatedProduct, getProductStyle, getOutfit, getMeta } from '../../slices/comparisonSlice.jsx';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Card from './Card.jsx';
 import Outfit from './Outfit.jsx';
 import { saveOutfits, grabOutfits } from './outfitStorage.js';
 import { comparisonSlice } from '../../slices/comparisonSlice';
-import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
-
 
 const RelatedItems = () => {
 
@@ -15,12 +13,6 @@ const RelatedItems = () => {
   let comparisonState = useSelector((state) => state.relatedItems)
   let productId = useSelector((state) => state.product.id);
 
-  const [scrollPositionForRelated, setScrollPositionForRelated] = useState(0);
-  const [scrollPositionForOutfits, setScrollPositionForOutfits] = useState(0);
-  const [showRelatedLeftArrow, setShowRelatedLeftArrow] = useState(false);
-  const [showRelatedRightArrow, setShowRelatedRightArrow] = useState(true);
-  const [showOutfitLeftArrow, setShowOutfitLeftArrow] = useState(false);
-  const [showOutfitRightArrow, setShowOutfitRightArrow] = useState(true);
 
   const handleOutfitClick = (id) => {
     const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);
@@ -74,108 +66,82 @@ const RelatedItems = () => {
     }
   }, [comparisonState.relatedIds]);
 
-  const handleRelatedLeftArrowClick = () => {
-    const container = document.getElementById("relatedItemsContainer");
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const carouselRef = useRef(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = () => {
+    const container = carouselRef.current;
     if (container) {
-      const containerWidth = container.offsetWidth;
-      const newPosition = scrollPositionForRelated - containerWidth;
-      setScrollPositionForRelated(newPosition);
-      setShowRelatedRightArrow(true);
-      if (newPosition <= 0) {
-        setShowRelatedLeftArrow(false);
-      }
+      const scrollLeft = container.scrollLeft;
+      setScrollPosition(scrollLeft);
+      setShowLeftArrow(scrollLeft > 0);
+      setShowRightArrow(scrollLeft + container.offsetWidth < container.scrollWidth);
     }
   };
 
-  const handleRelatedRightArrowClick = () => {
-    const container = document.getElementById("relatedItemsContainer"); //byClassName?
+  const scrollToLeft = () => {
+    const container = carouselRef.current;
     if (container) {
-      const containerWidth = container.offsetWidth;
-      const trackWidth = container.scrollWidth;
-      const newPosition = scrollPositionForRelated + containerWidth;
-      setScrollPositionForRelated(newPosition);
-      setShowRelatedLeftArrow(true);
-      if (newPosition + containerWidth >= trackWidth) {
-        setShowRelatedRightArrow(false);
-      }
+      container.scrollTo({
+        left: scrollPosition - container.offsetWidth,
+        behavior: 'smooth',
+      });
     }
   };
 
-  const handleOutfitLeftArrowClick = () => {
-    const container = document.getElementById("outfitsContainer");
+  const scrollToRight = () => {
+    const container = carouselRef.current;
     if (container) {
-      const containerWidth = container.offsetWidth;
-      const newPosition = scrollPositionForOutfits - containerWidth;
-      setScrollPositionForOutfits(newPosition);
-      setShowOutfitRightArrow(true);
-      if (newPosition <= 0) {
-        setShowOutfitLeftArrow(false);
-      }
+      container.scrollTo({
+        left: scrollPosition + container.offsetWidth,
+        behavior: 'smooth',
+      });
     }
   };
-
-  const handleOutfitRightArrowClick = () => {
-    const container = document.getElementById("outfitsContainer"); //byClassName?
-    if (container) {
-      const containerWidth = container.offsetWidth;
-      const trackWidth = container.scrollWidth;
-      const newPosition = scrollPositionForOutfits + containerWidth;
-      setScrollPositionForOutfits(newPosition);
-      setShowOutfitLeftArrow(true);
-      if (newPosition + containerWidth >= trackWidth) {
-        setShowOutfitRightArrow(false);
-      }
-    }
-  };
-
 
 
   return (
     <div>
       <h1>Related Products</h1>
+
       <div className="relatedItemsContainer">
-        <div className="carouselArrowLeft">
-          <FaArrowCircleLeft
-            className="carouselArrow"
-            onClick={handleRelatedLeftArrowClick}
-            style={{ visibility: showRelatedLeftArrow ? 'visible' : 'hidden' }}
-          />
+
+      <div ref={carouselRef} className="carouselContainer" onScroll={handleScroll}>
+          {comparisonState.relatedProducts.map((product, i) => (
+            <Card key={i} product={product} /> // Apply the necessary CSS class for each card
+          ))}
         </div>
 
-        {comparisonState.relatedProducts.map((product, i) => ( <Card key={i} product={product} /> ))}
+        {showLeftArrow && (
+          <button className="carouselArrow" onClick={scrollToLeft}>
+            &lt;
+          </button>
+        )}
 
-        <div className="carouselArrowRight">
-          <FaArrowCircleRight
-            className="carouselArrow"
-            onClick={handleRelatedRightArrowClick}
-            style={{ visibility: showRelatedRightArrow ? 'visible' : 'hidden' }}
-          />
-        </div>
+        {showRightArrow && (
+          <button className="carouselArrow" onClick={scrollToRight}>
+            &gt;
+          </button>
+        )}
+
       </div>
 
       <h1>Your Outfits</h1>
       <div className="outfitsContainer">
-        <div className="carouselArrowLeft">
-          <FaArrowCircleLeft
-            className="carouselArrow"
-            onClick={handleOutfitLeftArrowClick}
-            style={{ visibility: showOutfitLeftArrow ? 'visible' : 'hidden' }}
-          />
-        </div>
+
 
         <div className="relatedItemCard">
           <i className="fa-regular fa-square-plus fa-2xl" onClick={() => handleOutfitClick(productId)}></i>
         </div>
 
-        {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} index={i} outfit={outfit} /> ))}
-
-        <div className="carouselArrowRight">
-          <FaArrowCircleRight
-            className="carouselArrow"
-            onClick={handleOutfitRightArrowClick}
-            style={{ visibility: showOutfitRightArrow ? 'visible' : 'hidden' }}
-          />
+        <div className='outfitsContainer'>
+          {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} index={i} outfit={outfit} /> ))}
         </div>
+
+
       </div>
     </div>
   );

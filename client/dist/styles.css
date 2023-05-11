@@ -150,14 +150,60 @@
 
 
 
-.relatedItemsContainer {
+/* .relatedItemsContainer {
   display: flex;
-  flex-wrap: nowrap; /* Prevent items from wrapping onto multiple lines */
-  justify-content: flex-start; /* Align items to the start (left) */
-  align-items: flex-start; /* Align items to the top */
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
   position: relative;
-  max-width: 100%; /* Allow the container to take full width */
+  max-width: 100%;
   margin: 0 auto;
+} */
+.relatedItemsContainer {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carouselContainer {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-padding: 0 16px; /* Adjust the padding as needed */
+  width: 100%;
+  white-space: nowrap;
+}
+
+.carouselCard {
+  flex: 0 0 100%; /* Ensures each card takes up the full width of the container */
+  scroll-snap-align: start;
+}
+
+.carouselArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  color: #000;
+  cursor: pointer;
+}
+
+.carouselArrow:focus {
+  outline: none;
+}
+
+.carouselArrow:hover {
+  color: #555;
+}
+
+.carouselArrow:disabled {
+  visibility: hidden;
 }
 
 .outfitsContainer {
