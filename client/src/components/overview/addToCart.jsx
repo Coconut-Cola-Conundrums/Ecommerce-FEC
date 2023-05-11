@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 import Select from 'react-select';
+import { addToCart } from '../../slices/productSlice';
 
 const AddToCart = () => {
   const product = useSelector((state) => state.product);
   const {currentStyle} = product;
 
+  const dispatch = useDispatch();
+
   const [availableSizes, setAvailableSizes] = useState({});
   const [selectedSku, setSelectedSku] = useState({});
   const [selectedOrder, setSelectedOrder] = useState({
     size: '',
-    quantity: ''
+    quantity: 1
   });
   const [message, setMessage] = useState('');
   const [openMenu, setOpenMenu] = useState(false);
@@ -19,7 +22,7 @@ const AddToCart = () => {
   const onClickSize = (option) => {
     const size = option.label;
     let quantity = currentStyle.skus[Number(option.value)].quantity > 15 ? 15 : currentStyle.skus[Number(option.value)].quantity
-    setSelectedSku({size: size, quantity: quantity});
+    setSelectedSku({sku: option.value, size: size, quantity: quantity});
     setSelectedOrder((prevState) => ({...prevState, size: size}));
     setMessage("");
     setOpenMenu(false);
@@ -32,10 +35,11 @@ const AddToCart = () => {
 
   const onClickAddToBag = (e) => {
     e.preventDefault();
-    console.log(selectedOrder, selectedSku, currentStyle);
     if (!selectedSku.size) { // no size has been selected
       setMessage("Please select a size before adding to bag.");
       setOpenMenu(true);
+    } else {
+      dispatch(addToCart({sku_id: Number(selectedSku.sku)}));
     }
   }
 

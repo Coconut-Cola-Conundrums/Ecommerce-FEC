@@ -66,7 +66,7 @@ const ImageGallery = () => {
 
   useEffect(() => {
     if (currentStyle.photos) {
-      console.log('in useEffect', 'currentStyle:', currentStyle, 'mainPhoto:', mainPhoto, 'thumbnailRange:', thumbnailRange);
+      // console.log('in useEffect', 'currentStyle:', currentStyle, 'mainPhoto:', mainPhoto, 'thumbnailRange:', thumbnailRange);
       if (mainPhoto > (currentStyle.photos.length - 1)) { // when we change styles, if the new style has less photos than the index we were viewing on the last style, set the main photo to the photo at the last index on new style
         console.log('setting a new main photo', )
         setMainPhoto(currentStyle.photos.length - 1);
