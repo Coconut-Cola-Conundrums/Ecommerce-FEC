@@ -44,7 +44,8 @@
   margin-bottom: 1vh; */
   padding-top: 1vh;
   padding-bottom: 1vh;
-  left: 1vh;
+  margin-left: 1vh;
+
   object-fit: cover;
   max-width: 2vh;
   max-height: 3vh;
@@ -82,14 +83,16 @@
   object-fit: cover;
   max-width: 4vh;
   max-height: 6vh;
+  /* width: 4vh;
+  height: 6vh; */
   padding-top: 3vh;
   padding-bottom: 3vh;
-  padding-left: 2vh;
+  padding-left: 2.5vh;
   padding-right: 3vh;
 }
 
 .mainPhotoArrow:active, .thumbnailArrow:active {
-  color: blanchedalmond;
+  color: rgb(229, 229, 229);
 }
 
 .rightOverviewDivs {

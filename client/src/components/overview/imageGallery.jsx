@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Modal from 'react-modal';
-import { FaArrowCircleLeft, FaArrowCircleRight, FaArrowCircleUp, FaArrowCircleDown } from 'react-icons/fa';
+import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
 
 const ImageGallery = () => {
   // something to keep in mind is that the main photo will directly match the photo's index in the currentStyle.photos array, but the thumbnail range will not necessarily. The thumbnail images are mapped from this range by slicing the original
@@ -55,7 +55,7 @@ const ImageGallery = () => {
         setThumbnailRange((prevState) => ({from: prevState.from + 1, to: prevState.to + 1})); // and now we can increase the thumbnails in view by shifting everything over by an index
       }
     } else if (e.target.id === "up") { // we are scrolling up, to view lower indices towards index 0
-      if (mainPhoto) { // not already viewing the zeroth photo (mainPhoto is zero if you're already viewing the zeorth photo)
+      if (thumbnailRange.from !== 0) { // not already viewing the zeroth photo, ie there are more photos to scroll through
         if (mainPhoto === (thumbnailRange.to - 1)) { // if we are viewing photo at index 7 (the eighth photo) from a thumbnail range 2 - 8, then we are viewing the last photo in that range and when we shift upwards to a range of 1 - 7, we need to view phot at index 6. Remember there's that weird thing where we are indexing differently
           setMainPhoto(thumbnailRange.to - 2);
         }
@@ -91,15 +91,15 @@ const ImageGallery = () => {
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
           <div className="absolute">
             <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url} alt="" />
-            <FaArrowCircleUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails} fill="#5f9ea0"/>
+            <FaRegArrowAltCircleUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails} />
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
               <img src={photo.thumbnail_url} alt="" key={index} id={photo.thumbnail_url} onClick={onClick} className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}/>
             )}
-            <FaArrowCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} fill="#5f9ea0"/>
+            <FaRegArrowAltCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} />
             <div className="mainPhotoArrowBox">
-              <FaArrowCircleLeft className="mainPhotoArrow" id="left" onClick={onViewThumbnails} fill="#5f9ea0"/>
-              <FaArrowCircleRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails} fill="#5f9ea0"/>
-              </div>
+              <FaRegArrowAltCircleLeft className="mainPhotoArrow" id="left" onClick={onViewThumbnails} />
+              <FaRegArrowAltCircleRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails} />
+            </div>
           </div>
         : null
       }
@@ -108,3 +108,5 @@ const ImageGallery = () => {
 }
 
 export default ImageGallery
+
+//FaArrowCircleLeft, FaArrowCircleRight, FaArrowCircleUp, FaArrowCircleDown,

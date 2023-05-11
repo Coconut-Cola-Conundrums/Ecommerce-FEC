@@ -14,23 +14,21 @@ const AddToCart = () => {
     quantity: ''
   });
 
-  const onClickSize = (e) => {
-    e.preventDefault();
-    const { size } = currentStyle.skus[Number(e.target.value)];
-    let quantity = currentStyle.skus[Number(e.target.value)].quantity > 15 ? 15 : currentStyle.skus[Number(e.target.value)].quantity
+  const onClickSize = (option) => {
+    const size = option.label;
+    let quantity = currentStyle.skus[Number(option.value)].quantity > 15 ? 15 : currentStyle.skus[Number(option.value)].quantity
     setSelectedSku({size: size, quantity: quantity});
     setSelectedOrder((prevState) => ({...prevState, size: size}));
   }
 
-  const onClickQuantity = (e) => {
-    e.preventDefault();
-    let quantity = e.target.value;
+  const onClickQuantity = (option) => {
+    let quantity = option.value;
     setSelectedOrder((prevState) => ({...prevState, quantity: quantity}));
   }
 
   const onClickAddToBag = (e) => {
     e.preventDefault();
-    console.log(selectedSku);
+    console.log(selectedOrder, selectedSku, currentStyle);
     if (!Object.keys(selectedSku).length) { // no size has been selected
       console.log(selectedSku);
     }
@@ -56,22 +54,33 @@ const AddToCart = () => {
         {Object.keys(currentStyle).length && Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
           <div className="block">
             <div className="inlineBlock">
-              <select className="sizeSelectors" onChange={onClickSize}>
+              {/* <select className="sizeSelectors" onChange={onClickSize}>
                 <option value="SELECT SIZE">SELECT SIZE</option>
                 {Object.keys(availableSizes).map((sku, index) =>
                   <option value={sku} key={index}>{currentStyle.skus[sku].size}</option>
                 )}
-              </select>
+              </select> */}
+              <Select className="sizeSelectors"
+                options={Object.keys(availableSizes).map((sku) => ({value: sku, label: currentStyle.skus[sku].size}))}
+                getOptionLabel={option => option.label}
+                getOptionValue={option => option.value}
+                onChange={option => onClickSize(option)}/>
             </div>
             <div className="inlineBlock">
-              <select className="sizeSelectors" id="quantity" onChange={onClickQuantity}>
+              {/* <select className="sizeSelectors" id="quantity" onChange={onClickQuantity}>
                 {selectedSku.quantity ?
                   [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) =>
                     <option value={value} key={value}>{value}</option>
                   )
                 : <option value="1">1</option>
                 }
-              </select>
+              </select> */}
+              <Select className="sizeSelectors" inputId="quantity"
+              options={selectedSku.quantity ?
+                [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) => ({label: value, value: value}))
+                : [{value:1, label:1}]}
+                getOptionValue={option => option.value}
+                onChange={option => onClickQuantity(option)}/>
             </div>
             <button className="addToBagButton" onClick={onClickAddToBag} >
               <p>ADD TO BAG</p>
@@ -79,9 +88,10 @@ const AddToCart = () => {
             </button>
           </div>
         :
-        <select className="sizeSelectors">
-          <option value="OUT OF STOCK">OUT OF STOCK</option>
-        </select>
+        <Select className="sizeSelectors" options={[{value: "OUT OF STOCK", label: "OUT OF STOCK"}]} />
+        // <select className="sizeSelectors">
+        //   <option value="OUT OF STOCK">OUT OF STOCK</option>
+        // </select>
         }
       </div>
     </div>
