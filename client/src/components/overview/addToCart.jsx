@@ -13,12 +13,14 @@ const AddToCart = () => {
     size: '',
     quantity: ''
   });
+  const [message, setMessage] = useState('');
 
   const onClickSize = (option) => {
     const size = option.label;
     let quantity = currentStyle.skus[Number(option.value)].quantity > 15 ? 15 : currentStyle.skus[Number(option.value)].quantity
     setSelectedSku({size: size, quantity: quantity});
     setSelectedOrder((prevState) => ({...prevState, size: size}));
+    setMessage("");
   }
 
   const onClickQuantity = (option) => {
@@ -29,8 +31,8 @@ const AddToCart = () => {
   const onClickAddToBag = (e) => {
     e.preventDefault();
     console.log(selectedOrder, selectedSku, currentStyle);
-    if (!Object.keys(selectedSku).length) { // no size has been selected
-      console.log(selectedSku);
+    if (!selectedSku.size) { // no size has been selected
+      setMessage("Please select a size before adding to bag.")
     }
   }
 
@@ -53,16 +55,22 @@ const AddToCart = () => {
        <div className="addToCart">
         {Object.keys(currentStyle).length && Object.keys(availableSizes).length && currentStyle.skus[Object.keys(availableSizes)[0]]?
           <div className="block">
+            {message.length ? <h4>{message}</h4> : null}
             <div className="inlineBlock">
-              <Select className="sizeSelectors"
+              <Select
+                className="sizeSelectors"
+                placeholder="Select Size"
                 options={Object.keys(availableSizes).map((sku) => ({value: sku, label: currentStyle.skus[sku].size}))}
                 getOptionLabel={option => option.label}
                 getOptionValue={option => option.value}
                 onChange={option => onClickSize(option)}/>
             </div>
             <div className="inlineBlock">
-              <Select className="sizeSelectors" inputId="quantity"
-              options={selectedSku.quantity ?
+              <Select
+                className="sizeSelectors"
+                inputId="quantity"
+                placeholder="Select Quantity"
+                options={selectedSku.quantity ?
                 [...Array(selectedSku.quantity + 1).keys()].slice(1).map((value) => ({label: value, value: value}))
                 : [{value:1, label:1}]}
                 getOptionValue={option => option.value}
@@ -74,7 +82,7 @@ const AddToCart = () => {
             </button>
           </div>
         :
-        <Select className="sizeSelectors" options={[{value: "OUT OF STOCK", label: "OUT OF STOCK"}]} />
+        <Select className="sizeSelectors" placeholder="OUT OF STOCK" />
         // <select className="sizeSelectors">
         //   <option value="OUT OF STOCK">OUT OF STOCK</option>
         // </select>
@@ -99,4 +107,5 @@ const AddToCart = () => {
   : <option value="1">1</option>
   }
 </select> */}
+// options={[{value: "OUT OF STOCK", label: "OUT OF STOCK"}]}
 export default AddToCart;

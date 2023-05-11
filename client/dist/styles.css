@@ -152,9 +152,8 @@
 .sizeSelectors {
   margin-top: 2vh;
   margin-right: 2vh;
+  max-width: 30vh;
 }
-
-
 
 .relatedItemsContainer {
   display: flex;
