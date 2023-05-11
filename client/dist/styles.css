@@ -245,11 +245,7 @@
 
 
 .outfitCard {
-  /* Remove the fixed width and height */
-  /* width: 300px;
-  height: 400px; */
   position: relative;
-  /* Instead, use flex properties to control the size */
   flex: 0 0 auto; /* Let the card grow and shrink based on content */
   min-width: 300px; /* Set a minimum width */
   max-width: 100%; /* Allow the card to take full width */
@@ -261,6 +257,7 @@
   padding: 10px;
   scroll-snap-align: start;
 }
+
 .individualCard {
   width: 300px;
   height: 400px;
@@ -288,13 +285,13 @@
   font-size: 40px;
 }
 
-.relatedItemCard .fa-sharp.fa-solid.fa-circle-xmark {
+.outfitCard .fa-sharp.fa-solid.fa-circle-xmark {
   color: #808080;
   position: absolute;
   top: 15px;
   right: 15px;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .imageContainer {
