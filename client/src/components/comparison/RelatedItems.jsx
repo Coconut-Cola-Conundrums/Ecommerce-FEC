@@ -67,43 +67,81 @@ const RelatedItems = () => {
   }, [comparisonState.relatedIds]);
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  const carouselRef = useRef(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const carouselRefForRelated = useRef(null);
+  const carouselRefForOutfits = useRef(null);
+  const [scrollPositionForRelated, setScrollPositionForRelated] = useState(0);
+  const [scrollPositionForOutfits, setScrollPositionForOutfits] = useState(0);
   const [showLeftArrowForRelated, setShowLeftArrowForRelated] = useState(false);
   const [showRightArrowForRelated, setShowRightArrowForRelated] = useState(true);
+  const [showLeftArrowForOutfits, setShowLeftArrowForOutfits] = useState(false);
+  const [showRightArrowForOutfits, setShowRightArrowForOutfits] = useState(true);
 
   const handleScrollForRelated = () => {
-    const container = carouselRef.current;
+    const container = carouselRefForRelated.current;
     if (container) {
       const scrollLeft = container.scrollLeft;
       const maxScrollLeft = container.scrollWidth - container.offsetWidth - 50;
-      setScrollPosition(scrollLeft);
+      setScrollPositionForRelated(scrollLeft);
       setShowLeftArrowForRelated(scrollLeft > 0);
       setShowRightArrowForRelated(scrollLeft < maxScrollLeft);
     }
   };
 
   const scrollToLeftInRelated = () => {
-    const container = carouselRef.current;
+    const container = carouselRefForRelated.current;
     if (container) {
       const cardWidth = container.querySelector('.relatedItemCard').offsetWidth;
       container.scrollTo({
-        left: scrollPosition - cardWidth,
+        left: scrollPositionForRelated - cardWidth,
         behavior: 'smooth',
       });
     }
   };
 
   const scrollToRightInRelated = () => {
-    const container = carouselRef.current;
+    const container = carouselRefForRelated.current;
     if (container) {
       const cardWidth = container.querySelector('.relatedItemCard').offsetWidth;
       container.scrollTo({
-        left: scrollPosition + cardWidth,
+        left: scrollPositionForRelated + cardWidth,
         behavior: 'smooth',
       });
     }
   };
+
+  const handleScrollForOutfits = () => {
+    const container = carouselRefForOutfits.current;
+    if (container) {
+      const scrollLeft = container.scrollLeft;
+      const maxScrollLeft = container.scrollWidth - container.offsetWidth - 50;
+      setScrollPositionForOutfits(scrollLeft);
+      setShowLeftArrowForOutfits(scrollLeft > 0);
+      setShowRightArrowForOutfits(scrollLeft < maxScrollLeft);
+    }
+  };
+
+  const scrollToLeftInOutfits = () => {
+    const container = carouselRefForOutfits.current;
+    if (container) {
+      const cardWidth = container.querySelector('.outfitCard').offsetWidth;
+      container.scrollTo({
+        left: scrollPositionForOutfits - cardWidth,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const scrollToRightInOutfits = () => {
+    const container = carouselRefForOutfits.current;
+    if (container) {
+      const cardWidth = container.querySelector('.outfitCard').offsetWidth;
+      container.scrollTo({
+        left: scrollPositionForOutfits + cardWidth,
+        behavior: 'smooth',
+      });
+    }
+  };
+
 
 
   return (
@@ -118,7 +156,7 @@ const RelatedItems = () => {
         </button>
       )}
 
-      <div ref={carouselRef} className="carouselContainer" onScroll={handleScrollForRelated}>
+      <div ref={carouselRefForRelated} className="carouselContainer" onScroll={handleScrollForRelated}>
         {comparisonState.relatedProducts.map((product, i) => (
           <div key={i} className="relatedItemCard">
             <Card product={product} />
@@ -138,14 +176,31 @@ const RelatedItems = () => {
       <h1>Your Outfits</h1>
       <div className="outfitsContainer">
 
+        {showLeftArrowForOutfits && (
+          <button className="carouselArrow leftArrow" onClick={scrollToLeftInOutfits}>
+            &lt;
+          </button>
+        )}
 
-        <div className="relatedItemCard">
-          <i className="fa-regular fa-square-plus fa-2xl" onClick={() => handleOutfitClick(productId)}></i>
+        <div ref={carouselRefForOutfits} className="outfitsCarouselContainer" onScroll={handleScrollForOutfits}>
+          <div className="outfitCard">
+            <i className="fa-regular fa-square-plus fa-2xl" onClick={() => handleOutfitClick(productId)}></i>
+          </div>
+
+
+          {comparisonState.outfits.map((outfit, i) => (
+          <div key={i} className="outfitCard">
+            <Outfit key={i} index={i} outfit={outfit} />
+          </div>
+          ))}
+
         </div>
 
-        <div className='outfitsContainer'>
-          {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} index={i} outfit={outfit} /> ))}
-        </div>
+        {showRightArrowForOutfits && (
+        <button className="carouselArrow rightArrow" onClick={scrollToRightInOutfits}>
+          &gt;
+        </button>
+        )}
 
 
       </div>

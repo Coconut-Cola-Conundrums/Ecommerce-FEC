@@ -172,7 +172,27 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: calc(31.33%); /* Adjust the width as needed */
+  width: calc(60%); /* Adjust the width as needed */
+  margin: 0 auto;
+}
+
+.outfitsContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start; /* Align items to the top */
+  position: relative;
+  max-width: 100%; /* Allow the container to take full width */
+  margin: 0 auto;
+}
+
+.outfitsCarouselContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: calc(60%); /* Adjust the width as needed */
   margin: 0 auto;
 }
 
@@ -209,16 +229,6 @@
   visibility: hidden;
 }
 
-.outfitsContainer {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: flex-start; /* Align items to the top */
-  position: relative;
-  max-width: 100%; /* Allow the container to take full width */
-  margin: 0 auto;
-}
-
 .relatedItemCard {
   position: relative;
   font-family: 'Candara', Verdana, monospace;
@@ -231,12 +241,32 @@
   padding: 10px;
   scroll-snap-align: start;
 }
+
+
+
+.outfitCard {
+  /* Remove the fixed width and height */
+  /* width: 300px;
+  height: 400px; */
+  position: relative;
+  /* Instead, use flex properties to control the size */
+  flex: 0 0 auto; /* Let the card grow and shrink based on content */
+  min-width: 300px; /* Set a minimum width */
+  max-width: 100%; /* Allow the card to take full width */
+  height: 400px; /* Maintain a fixed height */
+  margin-right: 10px;
+  background-color: #FAEDCA;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 10px;
+  scroll-snap-align: start;
+}
 .individualCard {
   width: 300px;
   height: 400px;
 }
 
-.relatedItemCard .fa-regular.fa-square-plus.fa-2xl {
+.outfitCard .fa-regular.fa-square-plus.fa-2xl {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -249,7 +279,15 @@
   border: 1px solid #808080;
 }
 
-.relatedItemCard .fa-caret-up,
+.relatedItemCard .fa-caret-up {
+  color: #808080;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 40px;
+}
+
 .relatedItemCard .fa-sharp.fa-solid.fa-circle-xmark {
   color: #808080;
   position: absolute;
