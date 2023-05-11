@@ -15,23 +15,9 @@ const RelatedItems = () => {
   let comparisonState = useSelector((state) => state.relatedItems)
   let productId = useSelector((state) => state.product.id);
 
-  const [carouselPosition, setCarouselPosition] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
-  const [cardWidth, setCardWidth] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(0);
-
-  const handleLeftArrowClick = () => {
-    if (carouselPosition > 0) {
-      setCarouselPosition((prevPosition) => prevPosition - 1);
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (carouselPosition < comparisonState.relatedProducts.length - 1) {
-      setCarouselPosition((prevPosition) => prevPosition + 1);
-    }
-  };
 
   const handleOutfitClick = (id) => {
     const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);
@@ -67,9 +53,6 @@ const RelatedItems = () => {
   useEffect(() => {
     if (productId) {
       dispatch(getRelatedIds(productId))
-      setCarouselPosition(0); // Reset carousel position on new product
-      setShowLeftArrow(false); // Hide left arrow initially
-      setShowRightArrow(true); // Show right arrow initially
     }
   }, [productId]);
 
@@ -88,65 +71,79 @@ const RelatedItems = () => {
     }
   }, [comparisonState.relatedIds]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const containerElement = document.getElementById('carouselContainer');
-      const cardElement = document.getElementById('relatedCard');
-
-      if (containerElement && cardElement) {
-        setContainerWidth(containerElement.offsetWidth);
-        setCardWidth(cardElement.offsetWidth);
+  const handleLeftArrowClick = () => {
+    const container = document.getElementById("relatedItemsContainer");
+    if (container) {
+      const containerWidth = container.offsetWidth;
+      const newPosition = scrollPosition - containerWidth;
+      setScrollPosition(newPosition);
+      setShowRightArrow(true);
+      if (newPosition <= 0) {
+        setShowLeftArrow(false);
       }
-    };
+    }
+  };
 
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Initialize container and card width
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-
+  const handleRightArrowClick = () => {
+    const container = document.getElementById("relatedItemsContainer");
+    if (container) {
+      const containerWidth = container.offsetWidth;
+      const trackWidth = container.scrollWidth;
+      const newPosition = scrollPosition + containerWidth;
+      setScrollPosition(newPosition);
+      setShowLeftArrow(true);
+      if (newPosition + containerWidth >= trackWidth) {
+        setShowRightArrow(false);
+      }
+    }
+  };
 
   return (
     <div>
       <h1>Related Products</h1>
-      <div id="carouselContainer" className="carouselContainer">
-        {/* Left arrow */}
-        <FaArrowCircleLeft
-          className="carouselArrow"
-          onClick={handleLeftArrowClick}
-          style={{ visibility: showLeftArrow ? 'visible' : 'hidden' }}
-        />
-        <div className="carousel">
-          <div
-            className="carouselTrack"
-            style={{
-              transform: `translateX(${carouselPosition * -cardWidth}px)`,
-              width: `${comparisonState.relatedProducts.length * cardWidth}px`,
-            }}
-          >
-            {comparisonState.relatedProducts.map((product, i) => (
-              <Card key={i} product={product} id="relatedCard" />
-            ))}
-          </div>
+      <div className="relatedItemsContainer">
+        <div className="carouselArrowLeft">
+          <FaArrowCircleLeft
+            className="carouselArrow"
+            onClick={handleLeftArrowClick}
+            style={{ visibility: showLeftArrow ? 'visible' : 'hidden' }}
+          />
         </div>
-        {/* Right arrow */}
-        <FaArrowCircleRight
-          className="carouselArrow"
-          onClick={handleRightArrowClick}
-          style={{ visibility: showRightArrow ? 'visible' : 'hidden' }}
-        />
+
+        {comparisonState.relatedProducts.map((product, i) => ( <Card key={i} product={product} /> ))}
+
+        <div className="carouselArrowRight">
+          <FaArrowCircleRight
+            className="carouselArrow"
+            onClick={handleRightArrowClick}
+            style={{ visibility: showRightArrow ? 'visible' : 'hidden' }}
+          />
+        </div>
       </div>
+
       <h1>Your Outfits</h1>
-      <div className="relatedItemsContainer"> {/* Add the className here */}
+      <div className="relatedItemsContainer">
+        <div className="carouselArrowLeft">
+          <FaArrowCircleLeft
+            className="carouselArrow"
+            onClick={handleLeftArrowClick}
+            style={{ visibility: showLeftArrow ? 'visible' : 'hidden' }}
+          />
+        </div>
+
         <div className="relatedItemCard">
           <i className="fa-regular fa-square-plus fa-2xl" onClick={() => handleOutfitClick(productId)}></i>
         </div>
-        {comparisonState.outfits.map((outfit, i) => (
-          <Outfit key={i} index={i} outfit={outfit} />
-        ))}
+
+        {comparisonState.outfits.map((outfit, i) => ( <Outfit key={i} index={i} outfit={outfit} /> ))}
+        
+        <div className="carouselArrowRight">
+          <FaArrowCircleRight
+            className="carouselArrow"
+            onClick={handleRightArrowClick}
+            style={{ visibility: showRightArrow ? 'visible' : 'hidden' }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -154,3 +151,4 @@ const RelatedItems = () => {
 };
 
 export default RelatedItems;
+
