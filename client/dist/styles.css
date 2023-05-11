@@ -160,6 +160,16 @@
   margin: 0 auto;
 }
 
+.outfitsContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start; /* Align items to the top */
+  position: relative;
+  max-width: 100%; /* Allow the container to take full width */
+  margin: 0 auto;
+}
+
 .relatedItemCard {
   position: relative;
   font-family: 'Candara', Verdana, monospace;
