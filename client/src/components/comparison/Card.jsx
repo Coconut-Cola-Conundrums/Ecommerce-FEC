@@ -81,7 +81,7 @@ const Card = ({ product }) => {
           </div>
         ) : (
           <div>${product.default_price}</div>
-)}
+        )}
 
         <div><Stars rating={fixedAvg}/></div>
 
