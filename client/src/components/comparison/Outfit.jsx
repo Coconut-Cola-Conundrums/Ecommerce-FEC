@@ -32,7 +32,7 @@ const Outfit = ({ outfit, index }) => {
         <i className="fa-sharp fa-solid fa-x" onClick={() => handleXclick(index)}></i>
         <div className="imageContainer">
           <img
-            className="sampleImage"
+            className="outfitImage"
             src={outfit.productStyles[0].photos[0].url || 'https://www.warnersstellian.com/Content/images/product_image_not_available.png'}
             alt="Product Image"
           />

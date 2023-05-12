@@ -174,6 +174,7 @@
   scroll-behavior: smooth;
   width: calc(47%);
   margin: 0 auto;
+  overflow-y: hidden; /* Add this line */
 }
 
 .outfitsContainer {
@@ -194,6 +195,7 @@
   scroll-behavior: smooth;
   width: calc(47%);
   margin: 0 auto;
+  overflow-y: hidden; /* Add this line */
 }
 
 .carouselArrow {
@@ -344,6 +346,13 @@
   object-fit: cover;
   object-position: center 90%;
   cursor: pointer;
+}
+
+.outfitImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 90%;
 }
 
 .comparisonTable {

@@ -72,13 +72,16 @@ const Card = ({ product }) => {
           <strong>{product.name}</strong>
         </div>
 
-        {product.productStyles.some(style => style.sale_price !== null) ? (
+        {product.productStyles.some((style) => style.sale_price !== null) ? (
           <div>
-            <del>${product.default_price}</del> ${product.productStyles.find(style => style.sale_price !== null).sale_price}
+            <del>${product.default_price}</del>{" "}
+            <span style={{ color: "#FF6961" }}>
+              ${product.productStyles.find((style) => style.sale_price !== null).sale_price}
+            </span>
           </div>
         ) : (
-            <div>${product.default_price}</div>
-        )}
+          <div>${product.default_price}</div>
+)}
 
         <div><Stars rating={fixedAvg}/></div>
 
