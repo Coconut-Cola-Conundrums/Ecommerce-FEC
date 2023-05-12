@@ -206,7 +206,7 @@ a {
 
 .relatedItemsContainer {
   position: relative;
-  width: 2100px;
+  width: 2820px; /* 2100 for 3 cards, 2820 for 4 cards*/
   margin: 0 auto;
   overflow: hidden;
 }
@@ -228,7 +228,7 @@ a {
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
-  width: 2100px;
+  width: 2820px; /* 2100 for 3 cards, 2820 for 4 cards*/
   margin: 0 auto;
 }
 
@@ -240,7 +240,7 @@ a {
   scroll-behavior: smooth;
   width: calc(47%);
   margin: 0 auto;
-  overflow-y: hidden; 
+  overflow-y: hidden;
 }
 
 .carouselArrow {
