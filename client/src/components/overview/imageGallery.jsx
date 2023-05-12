@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown, FaCaretRight, FaCaretLeft } from 'react-icons/fa';
+import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown, FaCaretRight, FaCaretLeft, FaExpand } from 'react-icons/fa';
+import Modal from './mainPhotoModal.jsx';
 
 const ImageGallery = () => {
   // something to keep in mind is that the main photo will directly match the photo's index in the currentStyle.photos array, but the thumbnail range will not necessarily. The thumbnail images are mapped from this range by slicing the original
@@ -15,18 +16,23 @@ const ImageGallery = () => {
     from: 0,
     to: 7
   })
+  const [showModal, setShowModal] = useState(false);
 
   const onClick = (e) => {
     e.preventDefault();
     let url = e.target.id;
-    console.log(url);
-
     if (url === '0') {
       setMainPhoto(0);
     } else {
       let photoIndex = currentStyle.photos.findIndex((photo) => photo.thumbnail_url === url)
       setMainPhoto(Number(photoIndex));
     }
+  }
+
+  const onClickMainPhoto = (e) => {
+    e.preventDefault();
+    console.log(showModal);
+    setShowModal(!showModal);
   }
 
   const onViewThumbnails = (e) => {
@@ -73,7 +79,6 @@ const ImageGallery = () => {
     if (currentStyle.photos) {
       // console.log('in useEffect', 'currentStyle:', currentStyle, 'mainPhoto:', mainPhoto, 'thumbnailRange:', thumbnailRange);
       if (mainPhoto > (currentStyle.photos.length - 1)) { // when we change styles, if the new style has less photos than the index we were viewing on the last style, set the main photo to the photo at the last index on new style
-        console.log('setting a new main photo', )
         setMainPhoto(currentStyle.photos.length - 1);
         // we'd also need to update the thumbnail range accordingly as well
         setThumbnailRange({
@@ -96,7 +101,10 @@ const ImageGallery = () => {
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
           <div className="absolute">
-            <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" />
+
+            <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" onClick={onClickMainPhoto}/>
+          <Modal show={showModal} mainPhotoImg={<img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" onClick={onClickMainPhoto}/>}/>
+
             {thumbnailRange.from !== 0 ? <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} /> : null}
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
               <img className={currentStyle.photos[mainPhoto].thumbnail_url === photo.thumbnail_url ? "thumbnail selected" : "thumbnail"}
@@ -112,8 +120,8 @@ const ImageGallery = () => {
             )}
             {thumbnailRange.to !== currentStyle.photos.length ? <FaRegArrowAltCircleDown className="thumbnailArrow down" id="down" onClick={onScrollThumbnails} /> : null}
             <div className="mainPhotoArrowBox">
-              {mainPhoto !== 0 ? <FaCaretLeft className="mainPhotoArrow" style={{float: "left"}} id="left" size="6vh" color="black" onClick={onViewThumbnails} /> : null}
-              {mainPhoto !== (currentStyle.photos.length - 1) ? <FaCaretRight className="mainPhotoArrow" id="right" size="6vh" color="black" style={{float:"right", zIndex: "1000"}} onClick={onViewThumbnails}/> : null}
+              {mainPhoto !== 0 ? <FaCaretLeft className="mainPhotoArrow left" id="left" size="6vh" color="black" onClick={onViewThumbnails} /> : null}
+              {mainPhoto !== (currentStyle.photos.length - 1) ? <FaCaretRight className="mainPhotoArrow right" id="right" size="6vh" color="black" onClick={onViewThumbnails}/> : null}
             </div>
           </div>
         : null

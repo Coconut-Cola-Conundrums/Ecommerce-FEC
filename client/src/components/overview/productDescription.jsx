@@ -11,23 +11,21 @@ const ProductDescription = () => {
   }, [product.id])
 
   return (
-    <div style={{left: "5vh", top: "5vh", position: "relative"}}>
+    <div style={{left: "4vh", top: "5vh", position: "relative", width: "78vh"}}>
       {productInformation.slogan ?
-        <>
-          <div className="wrapper" style={{padding: "1vh"}}>
-            <div style={{borderRight: "1px solid", paddingRight: "5vh", paddingBottom: "5vh"}}>
-              <h2>{productInformation.slogan}</h2>
-              <p>{productInformation.description}</p>
-            </div>
-            {productInformation.features &&
-              <div className="inlineBlock" style={{paddingLeft: "5vh"}}>
-              {productInformation.features.map((feature, index) =>
-                <p key={index}><FaCheckCircle />{feature.feature}: {feature.value}</p>
-                )}
-              </div>
-            }
+        <div className="wrapper" style={{padding: "1vh"}}>
+          <div style={{borderRight: "1px solid", paddingRight: "5vh", paddingBottom: "5vh", }}>
+            <h2>{productInformation.slogan}</h2>
+            <p>{productInformation.description}</p>
           </div>
-        </>
+          {productInformation.features &&
+            <div className="inlineBlock" style={{paddingLeft: "5vh", width: "30vh"}}>
+            {productInformation.features.map((feature, index) =>
+              <p key={index}><FaCheckCircle />{feature.feature}: {feature.value}</p>
+              )}
+            </div>
+          }
+        </div>
       : null
       }
     </div>
