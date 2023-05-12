@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 import Select from 'react-select';
-import { addToCart } from '../../slices/productSlice';
+import { addToCart, resetMessages } from '../../slices/productSlice';
 import { FaTwitterSquare, FaFacebookSquare, FaPinterestSquare } from 'react-icons/fa';
 
 const AddToCart = () => {
@@ -42,6 +42,7 @@ const AddToCart = () => {
     } else {
       dispatch(addToCart({sku_id: Number(selectedSku.sku)}));
     }
+    setTimeout(() => {dispatch(resetMessages()); setSelectedOrder({})}, 50000)
   }
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const AddToCart = () => {
       setAvailableSizes(newSizes);
     }
 
-  }, [product.id, currentStyle]);
+  }, [product.id, currentStyle, product.successMessage]);
 
   return (
     <div>
@@ -90,10 +91,13 @@ const AddToCart = () => {
                 getOptionValue={option => option.value}
                 onChange={option => onClickQuantity(option)}/>
             </div>
-            <button className="addToBagButton" onClick={onClickAddToBag} >
-              <p style={{fontSize: "16px"}}>Add to bag</p>
-              <FaPlus className="plusIcon"/>
-            </button>
+            <div>
+              <button className="addToBagButton inlineBlock" onClick={onClickAddToBag} >
+                <p style={{fontSize: "16px"}}>Add to bag</p>
+                <FaPlus className="plusIcon"/>
+              </button>
+              {product.successMessage.length ? <div><p className="inlineBlock">{product.successMessage}</p> <p>{selectedOrder.quantity} {currentStyle.name} in {selectedOrder.size}</p> </div>: null}
+            </div>
             <div style={{display: "flex"}}>
               <a href="https://twitter.com/intent/tweet?text=Checkout%20this%20cute%20item!">
                 <FaTwitterSquare className="inlineBlock shareIcons"/>
