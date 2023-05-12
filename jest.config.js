@@ -4,6 +4,23 @@
  */
 
 module.exports = {
+  transformIgnorePatterns: [
+    "/node_modules/",
+    "\\.pnp\\.[^\\/]+$",
+    "\\.png$" // Exclude PNG files from transformation
+  ],
+
+  moduleNameMapper: {
+    "\\.(png)$": "<rootDir>/file-mock.js"
+  },
+
+  // Indicates whether the coverage information should be collected while executing the test
+  collectCoverage: true,
+
+  // The directory where Jest should output its coverage files
+  coverageDirectory: "coverage",
+
+  testEnvironment: "jsdom",
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -16,14 +33,12 @@ module.exports = {
   // Automatically clear mock calls, instances, contexts and results before every test
   // clearMocks: false,
 
-  // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
 
-  // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -88,7 +103,9 @@ module.exports = {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png)$": '<rootDir>/spec/mock.js'
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -144,6 +161,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
+
   testEnvironment: "jsdom",
   // transform: {
   //   "^.+\\.jsx?$": "babel-jest"
@@ -174,6 +192,7 @@ module.exports = {
 
   // This option allows use of a custom test runner
   // testRunner: "jest-circus/runner",
+
 
   // A map from regular expressions to paths to transformers
   // transform: undefined,

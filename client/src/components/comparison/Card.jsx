@@ -57,7 +57,7 @@ const Card = ({ product }) => {
     const fixedAvg = average.toFixed(2);
 
     return (
-      <div className="relatedItemCard" >
+      <div className="individualCard" >
         <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
         <div className="imageContainer">
           <img
@@ -80,7 +80,7 @@ const Card = ({ product }) => {
             <div>${product.default_price}</div>
         )}
 
-        {/* <div><Stars rating={fixedAvg}/></div> */}
+        <div><Stars rating={fixedAvg}/></div>
 
         <Modal
           isOpen={isModalOpen}

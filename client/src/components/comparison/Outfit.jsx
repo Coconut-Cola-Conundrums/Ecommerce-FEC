@@ -28,8 +28,8 @@ const Outfit = ({ outfit, index }) => {
     const fixedAvg = average.toFixed(2);
 
     return (
-      <div className="relatedItemCard">
-        <i className="fa-sharp fa-solid fa-circle-xmark" onClick={() => handleXclick(index)}></i>
+      <div className="individualCard">
+        <i className="fa-sharp fa-solid fa-x" onClick={() => handleXclick(index)}></i>
         <div className="imageContainer">
           <img
             className="sampleImage"
@@ -44,7 +44,7 @@ const Outfit = ({ outfit, index }) => {
         <div>
           <div>${outfit.default_price}</div>
         </div>
-        {/* <div><Stars rating={fixedAvg}/></div> */}
+        <div><Stars rating={fixedAvg}/></div>
       </div>
     )
   } else {

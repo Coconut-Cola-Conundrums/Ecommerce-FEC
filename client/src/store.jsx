@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import thunk from 'redux-thunk';
 import { productSlice } from './slices/productSlice.jsx';
 import { comparisonSlice } from './slices/comparisonSlice.jsx';
-import {reviewSlice} from './slices/reviewSlice.jsx'
-
+import { reviewSlice } from './slices/reviewSlice.jsx';
 import { questionsSlice } from './slices/questionSlice.jsx';
 
 export const store = configureStore({
@@ -12,4 +12,5 @@ export const store = configureStore({
     questions: questionsSlice.reducer,
     reviews: reviewSlice.reducer
   },
+  middleware: [...getDefaultMiddleware(), thunk],
 });
