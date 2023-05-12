@@ -91,15 +91,15 @@ const ImageGallery = () => {
     }
 
   }, [product.id, currentStyle]);
-
+  console.log(currentStyle, product.id, thumbnailRange, mainPhoto);
   return (
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
           <div className="absolute">
             <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" />
-            <FaRegArrowAltCircleUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails} />
+            {thumbnailRange.from !== 0 ? <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} /> : null}
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
-              <img className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}
+              <img className={currentStyle.photos[mainPhoto].thumbnail_url === photo.thumbnail_url ? "thumbnail selected" : "thumbnail"}
                 src={photo.thumbnail_url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
                 alt="" key={index} id={photo.thumbnail_url ? photo.thumbnail_url : 0}
                 onClick={onClick}
@@ -110,7 +110,7 @@ const ImageGallery = () => {
                 }
               />
             )}
-            <FaRegArrowAltCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} />
+            {thumbnailRange.to !== currentStyle.photos.length ? <FaRegArrowAltCircleDown className="thumbnailArrow down" id="down" onClick={onScrollThumbnails} /> : null}
             <div className="mainPhotoArrowBox">
               <FaCaretLeft className="mainPhotoArrow" id="left" size="6vh" color="black" onClick={onViewThumbnails} style={{zIndex: "1000"}}/>
               <FaCaretRight className="mainPhotoArrow" id="right" size="6vh" color="black" style={{zIndex: "1000"}} onClick={onViewThumbnails}/>

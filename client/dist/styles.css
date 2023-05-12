@@ -42,14 +42,27 @@ body {
 }
 
 .thumbnailArrow {
-  position: relative;
+  position: absolute;
   cursor: pointer;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-  margin-left: 1.15vh;
+  /* margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  margin-left: 2.2vh; */
   object-fit: cover;
   max-width: 2vh;
   max-height: 3vh;
+  background-color: #dfdfdf;
+  border-radius: 50%;
+  left: 2vh;
+}
+
+.up {
+  top: 2vh;
+}
+
+.down {
+  position: relative;
+  top: 4vh;
 }
 
 .thumbnail {
@@ -59,15 +72,21 @@ body {
   width: 2vh;
   height: 4vh;
   object-fit: cover;
-  margin-bottom: 2vh;
-  left: 1vh;
-  top: 1vh;
+  padding-bottom: 2vh;
+  left: 1.75vh;
+  top: 5vh;
 }
 
 .selected {
   /* border: 0.5vh solid blanchedalmond; */
-  left: 0.5vh;
+  left: 1vh;
   filter: drop-shadow(5px 5px 5px black);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  text-decoration: underline;
 }
 
 .mainPhotoArrowBox {
