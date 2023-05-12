@@ -66,7 +66,7 @@ const RelatedItems = () => {
     }
   }, [comparisonState.relatedIds]);
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////// code related to horizontal carousel scrolling for both related products and outfits///////////////////////
   const carouselRefForRelated = useRef(null);
   const carouselRefForOutfits = useRef(null);
   const [scrollPositionForRelated, setScrollPositionForRelated] = useState(0);
