@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 import Select from 'react-select';
 import { addToCart } from '../../slices/productSlice';
+import { FaTwitterSquare, FaFacebookSquare, FaPinterestSquare } from 'react-icons/fa';
 
 const AddToCart = () => {
   const product = useSelector((state) => state.product);
@@ -65,7 +66,7 @@ const AddToCart = () => {
             {message.length ? <h4>{message}</h4> : null}
             <div className="inlineBlock">
               <Select
-                styles={{control: (baseStyles, state) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
+                styles={{control: (baseStyles) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
                 className="sizeSelectors"
                 placeholder="Select Size"
                 menuIsOpen={openMenu}
@@ -79,7 +80,7 @@ const AddToCart = () => {
             </div>
             <div className="inlineBlock">
               <Select
-                styles={{control: (baseStyles, state) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
+                styles={{control: (baseStyles) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
                 className="sizeSelectors"
                 inputId="quantity"
                 defaultValue={{value:1, label:1}}
@@ -93,6 +94,13 @@ const AddToCart = () => {
               <p style={{fontSize: "16px"}}>Add to bag</p>
               <FaPlus className="plusIcon"/>
             </button>
+            <div style={{display: "flex"}}>
+              <a href="https://twitter.com/intent/tweet?text=Checkout%20this%20cute%20item!">
+                <FaTwitterSquare className="inlineBlock shareIcons"/>
+              </a>
+              <FaFacebookSquare className="inlineBlock shareIcons"/>
+              <FaPinterestSquare className="inlineBlock shareIcons"/>
+            </div>
           </div>
         :
           <Select className="sizeSelectors" placeholder="OUT OF STOCK" />

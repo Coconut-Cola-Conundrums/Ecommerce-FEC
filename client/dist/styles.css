@@ -98,6 +98,17 @@ a {
   top: 55vh;
 }
 
+.shareIcons {
+  padding-right: 2vh;
+  padding-top: 2vh;
+  width: 3vh;
+  height: 3vh;
+}
+
+.shareIcons:hover {
+  cursor: pointer;
+}
+
 .mainPhotoArrow {
   cursor: pointer;
   padding: 2vh;

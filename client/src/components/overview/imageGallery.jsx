@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown, FaCaretRight, FaCaretLeft } from 'react-icons/fa';
+import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown, FaCaretRight, FaCaretLeft } from 'react-icons/fa';
 
 const ImageGallery = () => {
   // something to keep in mind is that the main photo will directly match the photo's index in the currentStyle.photos array, but the thumbnail range will not necessarily. The thumbnail images are mapped from this range by slicing the original
@@ -129,3 +129,4 @@ export default ImageGallery
 //   console.log(image);
 //   image.onerror = null;
 //   image.src="https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+//FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight,
