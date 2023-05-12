@@ -117,25 +117,10 @@ const Card = ({ product }) => {
             showStatus={false}
             showIndicators={false}
             onChange={handleThumbnailChange}
-            style={{
-              height: '260px',
-              overflow: 'hidden',
-              marginTop: '15px',
-              marginBottom: '5px',
-            }}
           >
             {product.productStyles[0].photos.map((photo, index) => (
               <div key={index} onClick={(e) => handleThumbnailClick(index, e)}>
-                    <img
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        objectPosition: 'center 90%',
-                        cursor: 'pointer',
-                      }}
-                      src={photo.url}
-                      alt="Product Image"
+                    <img src={photo.url} alt="Product Image"
                     />
               </div>
             ))}

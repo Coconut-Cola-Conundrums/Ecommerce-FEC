@@ -338,38 +338,32 @@
   overflow: hidden;
   margin-top: 15px;
   margin-bottom: 5px;
+  width: 100%;
 }
 
-.carousel .slide {
+
+/* Customize the carousel container */
+.carousel-root {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 90%;
-  cursor: pointer;
+  overflow: hidden;
 }
 
+/* Customize the carousel slides */
+.carousel .slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px; /* makes the arrow centered... */
+  height: 260px; /* makes the arrow centered... */
+}
+
+/* Set the width and height of carousel images */
 .carousel .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 90%;
-  cursor: pointer;
-}
-
-.carousel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 90%;
-  cursor: pointer;
-}
-
-
-.carousel .slider-wrapper {
-  overflow: hidden;
-  margin: auto;
-  width: 100%;
-  transition: height 0.15s ease-in;
 }
 
 .sampleImage {
