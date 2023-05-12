@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
+import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown, FaCaretRight, FaCaretLeft } from 'react-icons/fa';
 
 const ImageGallery = () => {
   // something to keep in mind is that the main photo will directly match the photo's index in the currentStyle.photos array, but the thumbnail range will not necessarily. The thumbnail images are mapped from this range by slicing the original
@@ -112,8 +112,8 @@ const ImageGallery = () => {
             )}
             <FaRegArrowAltCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} />
             <div className="mainPhotoArrowBox">
-              <FaRegArrowAltCircleLeft className="mainPhotoArrow" id="left" onClick={onViewThumbnails} />
-              <FaRegArrowAltCircleRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails} />
+              <FaCaretLeft className="mainPhotoArrow" id="left" size="6vh" color="black" onClick={onViewThumbnails} style={{zIndex: "1000"}}/>
+              <FaCaretRight className="mainPhotoArrow" id="right" size="6vh" color="black" style={{zIndex: "1000"}} onClick={onViewThumbnails}/>
             </div>
           </div>
         : null

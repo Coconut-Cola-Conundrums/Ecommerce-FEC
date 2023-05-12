@@ -18,7 +18,6 @@ module.exports = {
   },
 
   addProductToCart: (req, res) => {
-
     try {
       axios.post(`${URL}/cart`, req.body, { headers })
       .then(response => res.status(201).send(response.data));

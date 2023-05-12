@@ -32,10 +32,10 @@ const Reviews = () => {
 // on render set initial state with the current product ID.
 
   return (
-    <div>
+    <div >
       <div className = 'newRev'><NewRev/></div>
       <div className = 'sortOptions'><SortOptions/></div>
-      <div className = 'revList'><RevList/></div>
+      <div id="reviewsSection" className = 'revList'><RevList/></div>
       <div className = 'ratingBreakdown'><RatingBreakdown ratings = {reviewState.ratings}/></div>
       <div className = 'productBreakdown'><ProductBreakdown characteristics = {reviewState.characteristics}/></div>
     </div>

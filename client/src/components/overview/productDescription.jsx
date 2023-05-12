@@ -10,7 +10,7 @@ const ProductDescription = () => {
   }, [product.id])
 
   return (
-    <div>
+    <div style={{left: "5vh", top: "5vh", position: "relative"}}>
       {productInformation.slogan ?
         <>
           <div className="wrapper">

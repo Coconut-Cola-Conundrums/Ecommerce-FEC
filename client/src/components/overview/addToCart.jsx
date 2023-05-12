@@ -90,7 +90,7 @@ const AddToCart = () => {
                 onChange={option => onClickQuantity(option)}/>
             </div>
             <button className="addToBagButton" onClick={onClickAddToBag} >
-              <p>ADD TO BAG</p>
+              <p style={{fontSize: "16px"}}>Add to bag</p>
               <FaPlus className="plusIcon"/>
             </button>
           </div>
