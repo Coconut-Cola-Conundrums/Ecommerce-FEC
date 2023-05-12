@@ -19,9 +19,6 @@ const ProductDescription = () => {
               <h2>{productInformation.slogan}</h2>
               <p>{productInformation.description}</p>
             </div>
-            {/* {productInformation.features &&
-              <div className="verticleLine inlineBlock"></div>
-            } */}
             {productInformation.features &&
               <div className="inlineBlock" style={{paddingLeft: "5vh"}}>
               {productInformation.features.map((feature, index) =>
