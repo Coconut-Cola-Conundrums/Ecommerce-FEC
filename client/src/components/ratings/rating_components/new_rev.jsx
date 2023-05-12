@@ -10,16 +10,18 @@ export const NewRev = () => {
   const characteristics = useSelector(state => state.reviews.characteristics);
   const [recommend, setRecommend] = useState(false)
   const [modalState, setModalState] = useState(false);
+  // console.log(characteristics);
 
-  var characteristicsArray = Object.values(characteristics);
+  // var characteristicsArray = Object.values(characteristics);
   var characteristicsObj = {};
-  characteristicsArray.forEach((char) => {
-    characteristicsObj[char.id] = Number(char.value);
-  })
+  // characteristicsArray.forEach((char) => {
+  //   characteristicsObj[char.id] = Number(char.value);
+  // })
 
 
   var submitHandler = (e) => {
     e.preventDefault();
+    // console.log('subhandler')
     var name = e.target.querySelector('#name').value;
     var rating = Number(e.target.querySelector('#rating').value);
     var body = e.target.querySelector('#body').value;
@@ -32,13 +34,13 @@ export const NewRev = () => {
       rating: rating,
       summary: summary,
       body: body,
-      recommend: true,
+      recommend: recommend,
       name: name,
       email: email,
       photos: [img],
       characteristics: characteristicsObj
-    }).then((res) => {console.log(res)})
-    .catch(alert('Input is invalid'));
+    }).then((res) => {console.log('success')})
+    .catch((err) => {alert('Input is invalid')});
   }
 
   const modalStyles = {
@@ -58,6 +60,32 @@ export const NewRev = () => {
   }
 
 
+  var handleClick = ( id, value) => {
+    event.preventDefault()
+    var button = document.getElementById(`${value}${id}`)
+    var options = [1,2,3,4,5];
+    options.forEach((option) => {
+      if (value !== option) {
+      var opt = document.getElementById(`${option}${id}`)
+      opt.style.backgroundColor = '#eee';
+      }
+    })
+    button.style.backgroundColor = 'grey';
+    characteristicsObj[id] = value;
+    // console.log(characteristicsObj)
+  }
+
+  var recommendHandler = (e) => {
+    e.preventDefault();
+    var recommendButton = document.getElementById('recommend');
+    if (recommend === false) {
+      recommendButton.style.backgroundColor = 'green'
+    } else {
+      recommendButton.style.backgroundColor = '#4e4e4e'
+    }
+    setRecommend(!recommend);
+  }
+
   return (
     <div>
       <button onClick = {() => {setModalState(!modalState)}}>Create Review!</button>
@@ -67,14 +95,28 @@ export const NewRev = () => {
                   contentLabel="Product Details Modal"
                   ariaHideApp={false}
                   style={modalStyles}>
+                    <h1>New Review</h1>
           <form onSubmit = {submitHandler} id = 'review-form'>
-            <button type = 'submit'>Submit</button>
-            <button onClick = {() => (setRecommend(!recommend))}>Recommend</button>
+            <button id = 'recommend' onClick = {recommendHandler}>Recommend</button>
             <input placeholder = 'Name' id = 'name'></input>
             <input placeholder = 'Rating' id = 'rating'></input>
-            <input placeholder = 'Body' id = 'body'></input>
+            <input placeholder = 'Body' id = 'txtbody'></input>
             <input placeholder = 'Image URL' id = 'img'></input>
             <input placeholder = 'Email' id = 'email'></input>
+
+            {Object.keys(characteristics).map((char) => {
+              var charId = characteristics[char].id
+              return (
+                <div key = {char}>{char}
+                  <button id = {'1' + charId} className = 'charButton' onClick = {() => {handleClick(charId, 1)}}>One</button>
+                  <button id = {'2' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 2)}}>Two</button>
+                  <button id = {'3' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 3)}}>Three</button>
+                  <button id = {'4' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 4)}}>Four</button>
+                  <button id = {'5' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 5)}}>Five</button>
+                </div>
+              )
+            })}
+            <button id = 'subButton' type = 'submit'>Submit</button>
           </form>
         </Modal>
     </div>

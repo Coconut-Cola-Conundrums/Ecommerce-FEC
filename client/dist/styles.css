@@ -380,11 +380,7 @@
   font-style: italic;
 }
 
-/* .modal-overlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+
 .productComparison {
   display: flex;
 }
@@ -398,15 +394,16 @@
   background-color: #e5fafa;
   border: 1px solid #ccc;
   border-radius: 15px;
-  width: 1000px;
+  width: 700px;
   padding: 20px;
   margin: 10px;
 }
 
-.body {
-  width: 950px;
+#txtbody {
+  width: 400px;
   word-wrap: break-word;
   height: 100px;
+  margin: 20px;
   background-color: white;
   padding: 5px;
   border-radius: 10px;
@@ -456,29 +453,26 @@
 
 #review-form {
   background-color: rgb(220, 254, 243);
-  height: 40vh;
+  height: 70vh;
   width: 50vh;
   padding: 5px;
   margin: 10px;
   border-radius: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
 
 }
 
-#name, #body, #rating, #img, #email{
+#name, #txtbody, #rating, #img, #email{
   padding: 5px;
-  margin: 5px;
+  margin: 10px;
   border-radius: 5px;
+  border: 2px solid black;
   justify-content: space-around;
   text-align: left;
   width: 85%;
   vertical-align: top;
 }
 
-#body {
-  width: 250px;
-  height: 55px;
-}
 
 #name {
   height: 20px;
@@ -491,6 +485,11 @@
 
 .ratingBar {
   width: 300px;
+  cursor: pointer;
+}
+
+.ratingBar:hover {
+  cursor: pointer;
 }
 
 .productBar {
@@ -504,4 +503,59 @@
 
 .formContainer {
   display: flex;
+}
+
+.charButton {
+  padding: 8px 16px;
+  border-radius: 20px;
+  width: 70px;
+  border: 1px solid #000000;
+  background-color: #eee;
+  color: #333;
+  font-size: 14px;
+}
+
+.charButton:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+#subButton {
+  background-color: #4e4e4e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+#subButton:hover {
+  background-color: #ff5733;
+  cursor: pointer;
+}
+
+#recommend {
+  background-color: #4e4e4e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+#recommend:hover {
+  background-color: #ff5733;
+  cursor: pointer;
+}
+
+.body {
+  width: 600px;
+  word-wrap: break-word;
+  height: 100px;
+  margin: 20px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: sans-serif;
 }
