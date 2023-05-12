@@ -50,7 +50,7 @@ const Outfit = ({ outfit, index }) => {
             </span>
           </div>
         ) : (
-          <div>${product.default_price}</div>
+          <div>${outfit.default_price}</div>
         )}
         </div>
         <div><Stars rating={fixedAvg}/></div>
