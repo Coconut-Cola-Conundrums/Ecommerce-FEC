@@ -49,7 +49,7 @@ module.exports = {
     })
     .catch(error => {
       console.log('Error adding review to API: ', error.response);
-      res.status(500);
+      res.sendStatus(500);
     });
   },
 
