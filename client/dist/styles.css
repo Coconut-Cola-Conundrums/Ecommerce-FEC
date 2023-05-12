@@ -38,10 +38,19 @@ body {
   object-fit: cover;
   position: absolute;
   cursor: pointer;
+
+}
+
+.zoomed {
+  object-fit: cover;
+  width: 100vw;
+  /* min-height: 100%; */
+  position: absolute;
+  cursor: pointer;
+  top: 5vh;
 }
 
 .modal {
-  width: 500px;
   background: white;
   border: 1px solid #ccc;
   transition: 1.1s ease-out;
@@ -52,9 +61,43 @@ body {
   visibility: visible;
   width: 100vw;
   height: 100vh;
-  z-index: 1000;
-  position: absolute;
+  z-index: 100;
   left: -5vh;
+  top: -5vh;
+  position: absolute;
+  /* left: -5vh; */
+}
+
+.mainPhotoArrowBox {
+  position: absolute;
+  width: 70vh;
+  left: -7.5vh;
+  top: 55vh;
+}
+
+.mainPhotoBoxOverModal {
+  position: absolute;
+  top: 0vh;
+  width: 25vw;
+  z-index: 10000;
+}
+
+.mainPhotoArrow {
+  cursor: pointer;
+  padding: 2vh;
+  z-index: 1000000;
+}
+
+.mainPhotoArrowOverModal {
+  cursor: pointer;
+  z-index: 100000;
+  position: relative;
+  top: -5vh;
+}
+
+.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active {
+  color:  rgb(81, 80, 80);
+  transform: scale(0.8);
 }
 
 .absolute {
@@ -70,10 +113,6 @@ body {
 .thumbnailArrow {
   position: absolute;
   cursor: pointer;
-  /* margin-top: 1vh;
-  margin-bottom: 1vh;
-  margin-top: 1vh;
-  margin-left: 2.2vh; */
   object-fit: cover;
   max-width: 2vh;
   max-height: 3vh;
@@ -123,15 +162,6 @@ a {
   text-decoration: underline;
 }
 
-.mainPhotoArrowBox {
-  /* display: flex; */
-  /* justify-content: space-between; */
-  position: absolute;
-  width: 70vh;
-  left: -7.5vh;
-  top: 55vh;
-}
-
 .shareIcons {
   padding-right: 2vh;
   padding-top: 2vh;
@@ -141,16 +171,6 @@ a {
 
 .shareIcons:hover {
   cursor: pointer;
-}
-
-.mainPhotoArrow {
-  cursor: pointer;
-  padding: 2vh;
-}
-
-.mainPhotoArrow:active, .thumbnailArrow:active {
-  color:  rgb(81, 80, 80);
-  transform: scale(0.8);
 }
 
 .rightOverviewDivs {
@@ -184,7 +204,7 @@ a {
   padding: 0vh;
   position: relative;
   left: 1vh;
-  z-index: 100;
+  z-index: 10;
 }
 
 .originalPriceOnSale {

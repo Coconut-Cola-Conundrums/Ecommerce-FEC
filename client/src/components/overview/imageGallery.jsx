@@ -103,7 +103,8 @@ const ImageGallery = () => {
           <div className="absolute">
 
             <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" onClick={onClickMainPhoto}/>
-          <Modal show={showModal} mainPhotoImg={<img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" onClick={onClickMainPhoto}/>}/>
+
+            <Modal show={showModal} mainPhotoImg={<img className="zoomed" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" onClick={onClickMainPhoto}/>}/>
 
             {thumbnailRange.from !== 0 ? <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} /> : null}
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
@@ -119,9 +120,9 @@ const ImageGallery = () => {
               />
             )}
             {thumbnailRange.to !== currentStyle.photos.length ? <FaRegArrowAltCircleDown className="thumbnailArrow down" id="down" onClick={onScrollThumbnails} /> : null}
-            <div className="mainPhotoArrowBox">
-              {mainPhoto !== 0 ? <FaCaretLeft className="mainPhotoArrow left" id="left" size="6vh" color="black" onClick={onViewThumbnails} /> : null}
-              {mainPhoto !== (currentStyle.photos.length - 1) ? <FaCaretRight className="mainPhotoArrow right" id="right" size="6vh" color="black" onClick={onViewThumbnails}/> : null}
+            <div className={showModal ? "mainPhotoBoxOverModal" : "mainPhotoArrowBox"}>
+              {mainPhoto !== 0 ? <FaCaretLeft className={showModal ? "mainPhotoArrowOverModal left" : "mainPhotoArrow left"} id="left" size="6vh" color="black" onClick={onViewThumbnails} /> : null}
+              {mainPhoto !== (currentStyle.photos.length - 1) ? <FaCaretRight className={showModal? "mainPhotoArrowOverModal right" : "mainPhotoArrow right"} id="right" size="6vh" color="black" onClick={onViewThumbnails}/> : null}
             </div>
           </div>
         : null
