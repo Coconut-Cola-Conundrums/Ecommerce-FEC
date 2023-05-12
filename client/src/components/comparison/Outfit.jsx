@@ -29,7 +29,7 @@ const Outfit = ({ outfit, index }) => {
 
     return (
       <div className="individualCard">
-        <i className="fa-sharp fa-solid fa-circle-xmark" onClick={() => handleXclick(index)}></i>
+        <i className="fa-sharp fa-solid fa-x" onClick={() => handleXclick(index)}></i>
         <div className="imageContainer">
           <img
             className="sampleImage"
