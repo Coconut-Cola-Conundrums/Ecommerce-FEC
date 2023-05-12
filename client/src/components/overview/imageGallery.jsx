@@ -18,6 +18,8 @@ const ImageGallery = () => {
   })
   const [showModal, setShowModal] = useState(false);
 
+  let defaultUrl = "https://www.warnersstellian.com/Content/images/product_image_not_available.png";
+
   const onClick = (e) => {
     e.preventDefault();
     let url = e.target.id;
@@ -29,7 +31,7 @@ const ImageGallery = () => {
     }
   }
 
-  const onClickMainPhoto = (e) => {
+  const onClickExpandPhoto = (e) => {
     e.preventDefault();
     console.log(showModal);
     setShowModal(!showModal);
@@ -102,27 +104,40 @@ const ImageGallery = () => {
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
           <div className="absolute">
 
-            <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" onClick={onClickMainPhoto}/>
+            <FaExpand className="expandIcon right" size="3vh" onClick={onClickExpandPhoto}/>
 
-            <Modal show={showModal} mainPhotoImg={<img className="zoomed" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" onClick={onClickMainPhoto}/>}/>
+            <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || defaultUrl} alt="" />
 
-            {thumbnailRange.from !== 0 ? <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} /> : null}
+            <Modal show={showModal} mainPhotoImg={<img className="zoomed" src={currentStyle.photos[mainPhoto].url || defaultUrl} alt="" onClick={onClickExpandPhoto}/>}/>
+
+            {thumbnailRange.from !== 0 ?
+            <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} />
+            : null}
+
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
               <img className={currentStyle.photos[mainPhoto].thumbnail_url === photo.thumbnail_url ? "thumbnail selected" : "thumbnail"}
-                src={photo.thumbnail_url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+                src={photo.thumbnail_url || defaultUrl}
                 alt="" key={index} id={photo.thumbnail_url ? photo.thumbnail_url : 0}
                 onClick={onClick}
                 onError={({image})=> {
                   console.log(image);
                   image.onerror = null;
-                  image.src="https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+                  image.src=defaultUrl}
                 }
               />
             )}
-            {thumbnailRange.to !== currentStyle.photos.length ? <FaRegArrowAltCircleDown className="thumbnailArrow down" id="down" onClick={onScrollThumbnails} /> : null}
+            {thumbnailRange.to !== currentStyle.photos.length ?
+              <FaRegArrowAltCircleDown className="thumbnailArrow down" id="down" onClick={onScrollThumbnails} />
+              : null}
             <div className={showModal ? "mainPhotoBoxOverModal" : "mainPhotoArrowBox"}>
-              {mainPhoto !== 0 ? <FaCaretLeft className={showModal ? "mainPhotoArrowOverModal left" : "mainPhotoArrow left"} id="left" size="6vh" color="black" onClick={onViewThumbnails} /> : null}
-              {mainPhoto !== (currentStyle.photos.length - 1) ? <FaCaretRight className={showModal? "mainPhotoArrowOverModal right" : "mainPhotoArrow right"} id="right" size="6vh" color="black" onClick={onViewThumbnails}/> : null}
+              {mainPhoto !== 0 ?
+              <FaCaretLeft
+                className={showModal ? "mainPhotoArrowOverModal left" : "mainPhotoArrow left"} id="left" size="6vh" color="black" onClick={onViewThumbnails} />
+              : null}
+              {mainPhoto !== (currentStyle.photos.length - 1) ?
+                <FaCaretRight
+                  className={showModal? "mainPhotoArrowOverModal right" : "mainPhotoArrow right"} id="right" size="6vh" color="black" onClick={onViewThumbnails}/>
+                : null}
             </div>
           </div>
         : null
@@ -133,9 +148,5 @@ const ImageGallery = () => {
 
 export default ImageGallery
 
-//FaArrowCircleLeft, FaArrowCircleRight, FaArrowCircleUp, FaArrowCircleDown,
-// ({image}) => {
-//   console.log(image);
-//   image.onerror = null;
-//   image.src="https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
-//FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight,
+
+

@@ -25,7 +25,7 @@ body {
 }
 
 .photoContainer {
-  display: flex;
+  /* display: flex; */
   position: relative;
   width: 45vh;
   height: 67.5vh;
@@ -38,7 +38,7 @@ body {
   object-fit: cover;
   position: absolute;
   cursor: pointer;
-
+  /* z-index: 1; */
 }
 
 .zoomed {
@@ -65,7 +65,6 @@ body {
   left: -5vh;
   top: -5vh;
   position: absolute;
-  /* left: -5vh; */
 }
 
 .mainPhotoArrowBox {
@@ -79,23 +78,30 @@ body {
   position: absolute;
   top: 0vh;
   width: 25vw;
-  z-index: 10000;
+  z-index: 101;
 }
 
 .mainPhotoArrow {
   cursor: pointer;
   padding: 2vh;
-  z-index: 1000000;
+  z-index: 102;
 }
 
 .mainPhotoArrowOverModal {
   cursor: pointer;
-  z-index: 100000;
+  z-index: 103;
   position: relative;
   top: -5vh;
 }
 
-.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active {
+.expandIcon {
+  z-index: 1;
+  position: relative;
+  padding: 1vh;
+  cursor: pointer;
+}
+
+.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active {
   color:  rgb(81, 80, 80);
   transform: scale(0.8);
 }
