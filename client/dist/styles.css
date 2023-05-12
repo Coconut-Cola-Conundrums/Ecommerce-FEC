@@ -219,7 +219,7 @@ a {
   scroll-behavior: smooth;
   width: calc(47%);
   margin: 0 auto;
-  overflow-y: hidden; /* Add this line */
+  overflow-y: hidden;
 }
 
 .outfitsContainer {
@@ -240,7 +240,7 @@ a {
   scroll-behavior: smooth;
   width: calc(47%);
   margin: 0 auto;
-  overflow-y: hidden; /* Add this line */
+  overflow-y: hidden; 
 }
 
 .carouselArrow {
