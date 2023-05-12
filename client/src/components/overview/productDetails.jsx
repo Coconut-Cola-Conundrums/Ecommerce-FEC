@@ -33,7 +33,7 @@ const ProductDetails = () => {
       {Number(halfStars) > 0 ?
         <FaStarHalf /> : null
       }
-      <a href="#reviewsSection">Read All Reviews</a>
+      {totalReviews > 0 ? <a href="#reviewsSection">Read All {totalReviews} Reviews</a> : null}
       <p>{productInformation.category} </p>
       <h2>{productInformation.name}</h2>
       {currentStyle.sale_price ?

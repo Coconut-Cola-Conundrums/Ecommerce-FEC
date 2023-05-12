@@ -91,7 +91,7 @@ const ImageGallery = () => {
     }
 
   }, [product.id, currentStyle]);
-  console.log(currentStyle, product.id, thumbnailRange, mainPhoto);
+
   return (
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
