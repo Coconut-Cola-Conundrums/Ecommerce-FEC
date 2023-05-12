@@ -25,6 +25,7 @@ const initialState = {
   isError: false,
   errorMessage: '',
   isLoading: false,
+  successMessage: '',
 };
 
 // Retrieves a list of product overview objects. API default query params gets first page and five results. Returns an array of products
@@ -87,6 +88,10 @@ export const productSlice = createSlice({
       if (style.length) {
         state.currentStyle = style[0];
       }
+    },
+    resetMessages: (state) => {
+      state.errorMessage = ''
+      state.successMessage = ''
     }
   },
   extraReducers: (builder) => {
@@ -140,13 +145,13 @@ export const productSlice = createSlice({
         state.errorMessage = '';
       })
 
-      .addCase(addToCart.fulfilled, (state, action) => {
-        console.log(action.payload);
+      .addCase(addToCart.fulfilled, (state) => {
+        state.successMessage = "Successfully added product to your cart!";
       })
       .addCase(addToCart.rejected, (state, action) => {
-        console.log(action.payload);
+        state.errorMessage = action.payload;
       })
   }
 })
 
-export const { setCurrentStyle } = productSlice.actions;
+export const { setCurrentStyle, resetMessages } = productSlice.actions;

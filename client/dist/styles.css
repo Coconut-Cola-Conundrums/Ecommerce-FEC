@@ -1,3 +1,6 @@
+body {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
 #body {
   background-color: rgb(235, 253, 253);
@@ -22,6 +25,7 @@
   position: relative;
   width: 45vh;
   height: 67.5vh;
+  padding: 5vh;
 }
 
 .mainPhoto {
@@ -42,17 +46,27 @@
 }
 
 .thumbnailArrow {
-  position: relative;
+  position: absolute;
   cursor: pointer;
   /* margin-top: 1vh;
-  margin-bottom: 1vh; */
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-  margin-left: 1vh;
-
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  margin-left: 2.2vh; */
   object-fit: cover;
   max-width: 2vh;
   max-height: 3vh;
+  background-color: #dfdfdf;
+  border-radius: 50%;
+  left: 2vh;
+}
+
+.up {
+  top: 2vh;
+}
+
+.down {
+  position: relative;
+  top: 4vh;
 }
 
 .thumbnail {
@@ -62,46 +76,57 @@
   width: 2vh;
   height: 4vh;
   object-fit: cover;
-  margin-bottom: 2vh;
-  left: 1vh;
-  top: 1vh;
+  padding-bottom: 2vh;
+  left: 1.75vh;
+  top: 5vh;
 }
 
 .selected {
   /* border: 0.5vh solid blanchedalmond; */
-  left: 0.5vh;
+  left: 1vh;
   filter: drop-shadow(5px 5px 5px black);
 }
 
+a {
+  text-decoration: none;
+  color: black;
+  text-decoration: underline;
+}
+
 .mainPhotoArrowBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  position: absolute;
+  width: 70vh;
+  left: -7.5vh;
+  top: 55vh;
+}
+
+.shareIcons {
+  padding-right: 2vh;
+  padding-top: 2vh;
+  width: 3vh;
+  height: 3vh;
+}
+
+.shareIcons:hover {
+  cursor: pointer;
 }
 
 .mainPhotoArrow {
-  position: relative;
   cursor: pointer;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  object-fit: cover;
-  max-width: 4vh;
-  max-height: 6vh;
-  /* width: 4vh;
-  height: 6vh; */
-  padding-top: 3vh;
-  padding-bottom: 3vh;
-  padding-left: 2.5vh;
-  padding-right: 3vh;
+  padding: 2vh;
 }
 
 .mainPhotoArrow:active, .thumbnailArrow:active {
-  color: rgb(229, 229, 229);
+  color:  rgb(81, 80, 80);
+  transform: scale(0.8);
 }
 
 .rightOverviewDivs {
   position: absolute;
-  left: 45vh;
+  top: 6vh;
+  left: 60vh;
   margin-left: 3vh;
 }
 
@@ -117,6 +142,7 @@
   border-radius: 50%;
   position: relative;
   cursor: pointer;
+  border: 0.25vh pink solid;
 }
 
 .selectedStyleElement {
@@ -144,19 +170,38 @@
 
 .addToBagButton {
   display: flex;
-
   justify-content: space-between;
   width: 20vh;
   height: 4vh;
   align-items: center;
   margin-top: 2vh;
   margin-right: 2vh;
+  border: 0.1vh pink solid;
+  background-color: white;
+  color: rgb(143, 141, 141);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.addToBagButton:hover {
+  border-color: rgb(170, 169, 169);
+}
+
+.plusIcon {
+  color:#dfdfdf;
+  transition: color 0.2s ease-in-out;
+}
+
+.plusIcon:hover {
+  color:rgb(143, 141, 141);
 }
 
 .sizeSelectors {
   margin-top: 2vh;
   margin-right: 2vh;
   max-width: 30vh;
+  cursor: pointer;
 }
 
 .relatedItemsContainer {

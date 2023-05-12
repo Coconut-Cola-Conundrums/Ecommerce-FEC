@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 import Select from 'react-select';
-import { addToCart } from '../../slices/productSlice';
+import { addToCart, resetMessages } from '../../slices/productSlice';
+import { FaTwitterSquare, FaFacebookSquare, FaPinterestSquare } from 'react-icons/fa';
 
 const AddToCart = () => {
   const product = useSelector((state) => state.product);
@@ -41,6 +42,7 @@ const AddToCart = () => {
     } else {
       dispatch(addToCart({sku_id: Number(selectedSku.sku)}));
     }
+    setTimeout(() => {dispatch(resetMessages()); setSelectedOrder({})}, 20000)
   }
 
   useEffect(() => {
@@ -50,12 +52,14 @@ const AddToCart = () => {
     if (currentStyle.style_id) {
       let newSizes = {};
       Object.keys(currentStyle.skus).map((sku) => {
-        newSizes[Number(sku)] = currentStyle.skus[sku].size
+        if (!Object.values(newSizes).includes(currentStyle.skus[sku].size)) {
+          newSizes[Number(sku)] = currentStyle.skus[sku].size;
+        }
       })
       setAvailableSizes(newSizes);
     }
 
-  }, [product.id, currentStyle]);
+  }, [product.id, currentStyle, product.successMessage]);
 
   return (
     <div>
@@ -65,6 +69,7 @@ const AddToCart = () => {
             {message.length ? <h4>{message}</h4> : null}
             <div className="inlineBlock">
               <Select
+                styles={{control: (baseStyles) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
                 className="sizeSelectors"
                 placeholder="Select Size"
                 menuIsOpen={openMenu}
@@ -78,6 +83,7 @@ const AddToCart = () => {
             </div>
             <div className="inlineBlock">
               <Select
+                styles={{control: (baseStyles) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
                 className="sizeSelectors"
                 inputId="quantity"
                 defaultValue={{value:1, label:1}}
@@ -87,10 +93,20 @@ const AddToCart = () => {
                 getOptionValue={option => option.value}
                 onChange={option => onClickQuantity(option)}/>
             </div>
-            <button className="addToBagButton" onClick={onClickAddToBag} >
-              <p>ADD TO BAG</p>
-              <FaPlus />
-            </button>
+            <div>
+              <button className="addToBagButton inlineBlock" onClick={onClickAddToBag} >
+                <p style={{fontSize: "16px"}}>Add to bag</p>
+                <FaPlus className="plusIcon"/>
+              </button>
+              {product.successMessage.length ? <div><p className="inlineBlock">{product.successMessage}</p> <p>Added {selectedOrder.quantity} of {currentStyle.name} in size {selectedOrder.size}</p> </div>: null}
+            </div>
+            <div style={{display: "flex"}}>
+              <a href="https://twitter.com/intent/tweet?text=Checkout%20this%20cute%20item!">
+                <FaTwitterSquare className="inlineBlock shareIcons"/>
+              </a>
+              <FaFacebookSquare className="inlineBlock shareIcons"/>
+              <FaPinterestSquare className="inlineBlock shareIcons"/>
+            </div>
           </div>
         :
           <Select className="sizeSelectors" placeholder="OUT OF STOCK" />
