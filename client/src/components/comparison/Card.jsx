@@ -86,7 +86,7 @@ const Card = ({ product }) => {
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(true);
+    setIsHovered(false);
   };
 
 
