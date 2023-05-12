@@ -32,7 +32,7 @@ const Outfit = ({ outfit, index }) => {
         <i className="fa-sharp fa-solid fa-x" onClick={() => handleXclick(index)}></i>
         <div className="imageContainer">
           <img
-            className="sampleImage"
+            className="outfitImage"
             src={outfit.productStyles[0].photos[0].url || 'https://www.warnersstellian.com/Content/images/product_image_not_available.png'}
             alt="Product Image"
           />
@@ -42,7 +42,16 @@ const Outfit = ({ outfit, index }) => {
           <strong>{outfit.name}</strong>
         </div>
         <div>
-          <div>${outfit.default_price}</div>
+        {outfit.productStyles.some((style) => style.sale_price !== null) ? (
+          <div>
+            <del>${outfit.default_price}</del>{" "}
+            <span style={{ color: "#FF6961" }}>
+              ${outfit.productStyles.find((style) => style.sale_price !== null).sale_price}
+            </span>
+          </div>
+        ) : (
+          <div>${product.default_price}</div>
+        )}
         </div>
         <div><Stars rating={fixedAvg}/></div>
       </div>
