@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 // import { Stars } from '../ratings/rating_components/stars.jsx';
-import { FaStar, FaStarHalf } from 'react-icons/Fa'
+import { FaStar, FaStarHalf } from 'react-icons/fa'
 
 const ProductDetails = () => {
   const product = useSelector(state => state.product);

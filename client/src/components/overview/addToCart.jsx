@@ -42,7 +42,7 @@ const AddToCart = () => {
     } else {
       dispatch(addToCart({sku_id: Number(selectedSku.sku)}));
     }
-    setTimeout(() => {dispatch(resetMessages()); setSelectedOrder({})}, 50000)
+    setTimeout(() => {dispatch(resetMessages()); setSelectedOrder({})}, 20000)
   }
 
   useEffect(() => {
@@ -52,7 +52,9 @@ const AddToCart = () => {
     if (currentStyle.style_id) {
       let newSizes = {};
       Object.keys(currentStyle.skus).map((sku) => {
-        newSizes[Number(sku)] = currentStyle.skus[sku].size
+        if (!Object.values(newSizes).includes(currentStyle.skus[sku].size)) {
+          newSizes[Number(sku)] = currentStyle.skus[sku].size;
+        }
       })
       setAvailableSizes(newSizes);
     }
@@ -96,7 +98,7 @@ const AddToCart = () => {
                 <p style={{fontSize: "16px"}}>Add to bag</p>
                 <FaPlus className="plusIcon"/>
               </button>
-              {product.successMessage.length ? <div><p className="inlineBlock">{product.successMessage}</p> <p>{selectedOrder.quantity} {currentStyle.name} in {selectedOrder.size}</p> </div>: null}
+              {product.successMessage.length ? <div><p className="inlineBlock">{product.successMessage}</p> <p>Added {selectedOrder.quantity} of {currentStyle.name} in size {selectedOrder.size}</p> </div>: null}
             </div>
             <div style={{display: "flex"}}>
               <a href="https://twitter.com/intent/tweet?text=Checkout%20this%20cute%20item!">
