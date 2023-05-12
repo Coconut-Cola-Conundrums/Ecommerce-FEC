@@ -24,7 +24,7 @@ export const NewRev = () => {
     // console.log('subhandler')
     var name = e.target.querySelector('#name').value;
     var rating = Number(e.target.querySelector('#rating').value);
-    var body = e.target.querySelector('#body').value;
+    var body = e.target.querySelector('#txtbody').value;
     var summary = body.slice(0, 10) + '...';
     var img = e.target.querySelector('#img').value;
     var email = e.target.querySelector('#email').value;
