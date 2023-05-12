@@ -18,7 +18,7 @@ const Card = ({ product }) => {
   const handleCardClick = (e) => {
 
     e.preventDefault();
-    if (e.target.closest('.thumbnailCarousel')) {
+    if (e.target.closest('.imageContainer')) {
       // Click came from the carousel arrow, do not execute handleCardClick
       e.stopPropagation();
       return;
@@ -86,7 +86,7 @@ const Card = ({ product }) => {
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    setIsHovered(true);
   };
 
 
@@ -111,30 +111,42 @@ const Card = ({ product }) => {
       <div className="individualCard" onClick={handleCardClick}>
         <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
         <div className="imageContainer" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          {isHovered && (
-            <Carousel
-              selectedItem={selectedImageIndex}
-              showStatus={false}
-              showIndicators={false}
-              onChange={handleThumbnailChange}
-              className='thumbnailCarousel'
-            >
-              {product.productStyles[0].photos.map((photo, index) => (
-                <div key={index} onClick={(e) => handleThumbnailClick(index, e)}>
-                  <img
-                    className="sampleImage"
-                    src={photo.url}
-                    alt="Product Image"
-                  />
-                </div>
-              ))}
-            </Carousel>
-          )}
+        {isHovered ? (
+          <Carousel
+            selectedItem={selectedImageIndex}
+            showStatus={false}
+            showIndicators={false}
+            onChange={handleThumbnailChange}
+            style={{
+              height: '260px',
+              overflow: 'hidden',
+              marginTop: '15px',
+              marginBottom: '5px',
+            }}
+          >
+            {product.productStyles[0].photos.map((photo, index) => (
+              <div key={index} onClick={(e) => handleThumbnailClick(index, e)}>
+                    <img
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center 90%',
+                        cursor: 'pointer',
+                      }}
+                      src={photo.url}
+                      alt="Product Image"
+                    />
+              </div>
+            ))}
+          </Carousel>
+        ) : (
           <img
             className="sampleImage"
-            src={cardImg|| "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+            src={cardImg || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
             alt="Product Image"
           />
+        )}
         </div>
         <div>{product.category}</div>
         <div>
