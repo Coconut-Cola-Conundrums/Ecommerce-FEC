@@ -90,8 +90,8 @@ a {
 }
 
 .mainPhotoArrowBox {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   position: absolute;
   width: 70vh;
   left: -7.5vh;

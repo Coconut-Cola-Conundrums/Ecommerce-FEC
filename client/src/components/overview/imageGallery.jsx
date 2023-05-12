@@ -112,8 +112,8 @@ const ImageGallery = () => {
             )}
             {thumbnailRange.to !== currentStyle.photos.length ? <FaRegArrowAltCircleDown className="thumbnailArrow down" id="down" onClick={onScrollThumbnails} /> : null}
             <div className="mainPhotoArrowBox">
-              <FaCaretLeft className="mainPhotoArrow" id="left" size="6vh" color="black" onClick={onViewThumbnails} style={{zIndex: "1000"}}/>
-              <FaCaretRight className="mainPhotoArrow" id="right" size="6vh" color="black" style={{zIndex: "1000"}} onClick={onViewThumbnails}/>
+              {mainPhoto !== 0 ? <FaCaretLeft className="mainPhotoArrow" style={{float: "left"}} id="left" size="6vh" color="black" onClick={onViewThumbnails} /> : null}
+              {mainPhoto !== (currentStyle.photos.length - 1) ? <FaCaretRight className="mainPhotoArrow" id="right" size="6vh" color="black" style={{float:"right", zIndex: "1000"}} onClick={onViewThumbnails}/> : null}
             </div>
           </div>
         : null
