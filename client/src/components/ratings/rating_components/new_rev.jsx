@@ -51,7 +51,7 @@ export const NewRev = () => {
     },
     content: {
       position: 'auto',
-      width: '500px',
+      width: '725px',
       height: '400px',
       padding: '20px',
       backgroundColor: '#fff',
