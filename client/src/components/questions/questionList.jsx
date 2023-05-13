@@ -14,13 +14,13 @@ let QuestionList = ({questions,answers}) => {
   }
 
 if(questions) {
-
+ //if(questions.length > 1 ) {
 
   return (
     <div>
       <span>Questions</span>
       {questions.slice(0,4).map((question)=>(
-        <div key={question.question_id}>
+        <div className="questionList" key={question.question_id}>
         <h3>Q: {question.question_body}</h3>
 
         {answers.slice(0,2).map((answer)=> (
@@ -51,8 +51,9 @@ if(questions) {
     </div>
   )
       } else {
-        return <h3> No Questions</h3>
+        return <h3>** No Questions **</h3>
       }
+  //}
 }
 
 export default QuestionList;
