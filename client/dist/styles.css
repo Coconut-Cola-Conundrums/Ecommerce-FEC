@@ -103,13 +103,14 @@ body {
 .expandInZoom {
   z-index: 1000;
   position: absolute;
-  top: 0vh;
+  top: -3.5vh;
+  left: -3vh;
   cursor: pointer;
 }
 
 .enterZoomView {
   transform: scale(2.5);
-  transform-origin: center;
+  transform-origin: top left;
   object-fit: cover;
 }
 

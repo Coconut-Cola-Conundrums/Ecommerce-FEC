@@ -13,6 +13,7 @@ const Modal = ({mainPhotoImg, show, onClickZoomPhoto, zoom }) => {
     // console.log(2.5 * 100 * e.pageX/width, 2.5 * 100 * e.pageY/height, e.pageX, e.pageY)
     // console.log(2.5 * (e.clientX - x) / width, "and y transformed is", 2.5 * (e.clientY - y / height))
     // console.log(2.5 * 100 * e.pageX/width,2.5 * 100 * (e.pageY / height))
+    console.log(`${2.5 * 100 * e.pageX/width}vw ${5 + 2.5 * 100 * (e.pageY / height)}vh`)
     setStyling(prevState => ({...prevState, transformOrigin: `${2.5 * 100 * e.pageX/width}vw ${5 + 2.5 * 100 * (e.pageY / height)}vh`}))
     // console.log(2.5 * 100 * (e.pageY -y) / height, 2.5 * 100* (e.pageX - x) /width)
     // setStyling(prevState => ({...prevState, transformOrigin: `${ 2.5 * 100 * (e.pageX - x) /width}vw ${5 + 2.5 * 100 * (e.pageY -y) / height}vh`}))
