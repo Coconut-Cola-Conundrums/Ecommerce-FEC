@@ -41,7 +41,7 @@ module.exports = {
   },
 
   postReview: (req, res) => {
-    console.log('postReview Request====>',req.body)
+    // console.log('postReview Request====>',req.body)
     axios.post(`${URL}/reviews`, req.body, {headers})
     .then(response => {
       res.sendStatus(201);
@@ -49,7 +49,7 @@ module.exports = {
     })
     .catch(error => {
       console.log('Error adding review to API: ', error.response);
-      res.status(500);
+      res.sendStatus(500);
     });
   },
 

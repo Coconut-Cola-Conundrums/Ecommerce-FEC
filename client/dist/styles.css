@@ -206,7 +206,7 @@ a {
 
 .relatedItemsContainer {
   position: relative;
-  width: 2100px;
+  width: 2820px; /* 2100 for 3 cards, 2820 for 4 cards*/
   margin: 0 auto;
   overflow: hidden;
 }
@@ -219,6 +219,7 @@ a {
   scroll-behavior: smooth;
   width: calc(47%);
   margin: 0 auto;
+  overflow-y: hidden;
 }
 
 .outfitsContainer {
@@ -227,7 +228,7 @@ a {
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
-  width: 2100px;
+  width: 2820px; /* 2100 for 3 cards, 2820 for 4 cards*/
   margin: 0 auto;
 }
 
@@ -239,6 +240,7 @@ a {
   scroll-behavior: smooth;
   width: calc(47%);
   margin: 0 auto;
+  overflow-y: hidden;
 }
 
 .carouselArrow {
@@ -381,6 +383,32 @@ a {
   overflow: hidden;
   margin-top: 15px;
   margin-bottom: 5px;
+  width: 100%;
+}
+
+
+/* Customize the carousel container */
+.carousel-root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Customize the carousel slides */
+.carousel .slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px; /* makes the arrow centered... */
+  height: 260px; /* makes the arrow centered... */
+}
+
+/* Set the width and height of carousel images */
+.carousel .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 90%;
 }
 
 .sampleImage {
@@ -389,6 +417,13 @@ a {
   object-fit: cover;
   object-position: center 90%;
   cursor: pointer;
+}
+
+.outfitImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 90%;
 }
 
 .comparisonTable {
@@ -425,11 +460,7 @@ a {
   font-style: italic;
 }
 
-/* .modal-overlay {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+
 .productComparison {
   display: flex;
 }
@@ -443,15 +474,16 @@ a {
   background-color: #e5fafa;
   border: 1px solid #ccc;
   border-radius: 15px;
-  width: 1000px;
+  width: 700px;
   padding: 20px;
   margin: 10px;
 }
 
-.body {
-  width: 950px;
+#txtbody {
+  width: 400px;
   word-wrap: break-word;
   height: 100px;
+  margin: 20px;
   background-color: white;
   padding: 5px;
   border-radius: 10px;
@@ -501,29 +533,26 @@ a {
 
 #review-form {
   background-color: rgb(220, 254, 243);
-  height: 40vh;
-  width: 50vh;
+  height: 70vh;
+  width: 70vh;
   padding: 5px;
   margin: 10px;
   border-radius: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
 
 }
 
-#name, #body, #rating, #img, #email{
+#name, #txtbody, #rating, #img, #email{
   padding: 5px;
-  margin: 5px;
+  margin: 10px;
   border-radius: 5px;
+  border: 2px solid black;
   justify-content: space-around;
   text-align: left;
   width: 85%;
   vertical-align: top;
 }
 
-#body {
-  width: 250px;
-  height: 55px;
-}
 
 #name {
   height: 20px;
@@ -536,6 +565,11 @@ a {
 
 .ratingBar {
   width: 300px;
+  cursor: pointer;
+}
+
+.ratingBar:hover {
+  cursor: pointer;
 }
 
 .productBar {
@@ -549,6 +583,61 @@ a {
 
 .formContainer {
   display: flex;
+}
+
+.charButton {
+  padding: 8px 16px;
+  border-radius: 20px;
+  width: 70px;
+  border: 1px solid #000000;
+  background-color: #eee;
+  color: #333;
+  font-size: 14px;
+}
+
+.charButton:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+#subButton {
+  background-color: #4e4e4e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+#subButton:hover {
+  background-color: #ff5733;
+  cursor: pointer;
+}
+
+#recommend {
+  background-color: #4e4e4e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+#recommend:hover {
+  background-color: #ff5733;
+  cursor: pointer;
+}
+
+.body {
+  width: 600px;
+  word-wrap: break-word;
+  height: 100px;
+  margin: 20px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: sans-serif;
 }
 
 .questionList {
