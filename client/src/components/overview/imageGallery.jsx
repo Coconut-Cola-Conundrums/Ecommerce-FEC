@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
+import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown, FaCaretRight, FaCaretLeft } from 'react-icons/fa';
 
 const ImageGallery = () => {
   // something to keep in mind is that the main photo will directly match the photo's index in the currentStyle.photos array, but the thumbnail range will not necessarily. The thumbnail images are mapped from this range by slicing the original
@@ -97,9 +97,9 @@ const ImageGallery = () => {
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
           <div className="absolute">
             <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"} alt="" />
-            <FaRegArrowAltCircleUp id="up" className="thumbnailArrow" onClick={onScrollThumbnails} />
+            {thumbnailRange.from !== 0 ? <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} /> : null}
             {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
-              <img className={index === mainPhoto ? "thumbnail selected" : "thumbnail"}
+              <img className={currentStyle.photos[mainPhoto].thumbnail_url === photo.thumbnail_url ? "thumbnail selected" : "thumbnail"}
                 src={photo.thumbnail_url || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
                 alt="" key={index} id={photo.thumbnail_url ? photo.thumbnail_url : 0}
                 onClick={onClick}
@@ -110,10 +110,10 @@ const ImageGallery = () => {
                 }
               />
             )}
-            <FaRegArrowAltCircleDown className="thumbnailArrow" id="down" onClick={onScrollThumbnails} />
+            {thumbnailRange.to !== currentStyle.photos.length ? <FaRegArrowAltCircleDown className="thumbnailArrow down" id="down" onClick={onScrollThumbnails} /> : null}
             <div className="mainPhotoArrowBox">
-              <FaRegArrowAltCircleLeft className="mainPhotoArrow" id="left" onClick={onViewThumbnails} />
-              <FaRegArrowAltCircleRight className="mainPhotoArrow" id="right" onClick={onViewThumbnails} />
+              {mainPhoto !== 0 ? <FaCaretLeft className="mainPhotoArrow" style={{float: "left"}} id="left" size="6vh" color="black" onClick={onViewThumbnails} /> : null}
+              {mainPhoto !== (currentStyle.photos.length - 1) ? <FaCaretRight className="mainPhotoArrow" id="right" size="6vh" color="black" style={{float:"right", zIndex: "1000"}} onClick={onViewThumbnails}/> : null}
             </div>
           </div>
         : null
@@ -129,3 +129,4 @@ export default ImageGallery
 //   console.log(image);
 //   image.onerror = null;
 //   image.src="https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+//FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight,

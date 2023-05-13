@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { Stars } from '../ratings/rating_components/stars.jsx';
+// import { Stars } from '../ratings/rating_components/stars.jsx';
+import { FaStar, FaStarHalf } from 'react-icons/fa'
 
 const ProductDetails = () => {
   const product = useSelector(state => state.product);
@@ -15,13 +16,24 @@ const ProductDetails = () => {
     return accumulator;
   }, 0) / totalReviews;
 
+  let fullStars = Math.floor(avgRatings);
+  let halfStars = avgRatings - fullStars >= 0.5 ? 1 : 0;
 
   useEffect(() => {
   }, [productInformation, currentStyle, reviews]); // product information will change when new product is clicked, currentstyle will change the price when a new style is clicked
 
   return (
     <div className="relative productDetails">
-      <Stars rating={avgRatings.toFixed(2)} />
+      {Number(fullStars) > 0 ?
+        [...Array(fullStars).keys()].map((index) =>
+          <FaStar key={index} />
+        )
+        : null
+      }
+      {Number(halfStars) > 0 ?
+        <FaStarHalf /> : null
+      }
+      {totalReviews > 0 ? <a href="#reviewsSection">Read All {totalReviews} Reviews</a> : null}
       <p>{productInformation.category} </p>
       <h2>{productInformation.name}</h2>
       {currentStyle.sale_price ?
