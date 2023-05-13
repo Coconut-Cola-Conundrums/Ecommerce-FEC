@@ -40,7 +40,10 @@ const ImageGallery = () => {
 
   const onClickZoomPhoto = (e) => {
     e.preventDefault();
-    setZoom(true);
+    if (zoom) {
+      setShowModal(!showModal);
+    }
+    setZoom(!zoom);
   }
 
   const onViewThumbnails = (e) => {

@@ -7,12 +7,15 @@ const Modal = ({mainPhotoImg, show, onClickZoomPhoto, zoom }) => {
 
   const onMouse = (e) => {
     // console.log(e.clientX, e.clientY, imgRef.current.getBoundingClientRect(), e.pageX, e.pageY);
-    let { width, height, x, y, left, right, bottom, top } = imgRef.current.getBoundingClientRect();
-    console.log('width: ', width, 'height: ', height, 'x:', x, "y:", y, "left: ", left, "top: ", top, "right:", right, "bottom:", bottom)
+    let { width, height, x, y, right, bottom } = imgRef.current.getBoundingClientRect();
+    // console.log('width: ', width, 'height: ', height, 'x:', x, "y:", y, "right:", right, "bottom:", bottom, e.pageX, e.pageY)
     // let newStyle = {transformOrigin: `${(e.clientX - x) / width}% ${(e.clientY - y) / height}%`};
-    console.log(2.5 * 100 * e.pageX/width, 2.5 * 100 * e.pageY/height, e.pageX, e.pageY)
+    // console.log(2.5 * 100 * e.pageX/width, 2.5 * 100 * e.pageY/height, e.pageX, e.pageY)
     // console.log(2.5 * (e.clientX - x) / width, "and y transformed is", 2.5 * (e.clientY - y / height))
-    setStyling(prevState => ({...prevState, transformOrigin: `${2.5 * 100 * e.pageX/width}vw ${2.5 * 100 * e.pageY/height}vh`}))
+    // console.log(2.5 * 100 * e.pageX/width,2.5 * 100 * (e.pageY / height))
+    setStyling(prevState => ({...prevState, transformOrigin: `${2.5 * 100 * e.pageX/width}vw ${5 + 2.5 * 100 * (e.pageY / height)}vh`}))
+    // console.log(2.5 * 100 * (e.pageY -y) / height, 2.5 * 100* (e.pageX - x) /width)
+    // setStyling(prevState => ({...prevState, transformOrigin: `${ 2.5 * 100 * (e.pageX - x) /width}vw ${5 + 2.5 * 100 * (e.pageY -y) / height}vh`}))
   }
 
   if (!show) {
