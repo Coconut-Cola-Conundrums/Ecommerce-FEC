@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown, FaCaretRight, FaCaretLeft, FaExpand } from 'react-icons/fa';
 import Modal from './mainPhotoModal.jsx';
 
+
 const ImageGallery = () => {
   // something to keep in mind is that the main photo will directly match the photo's index in the currentStyle.photos array, but the thumbnail range will not necessarily. The thumbnail images are mapped from this range by slicing the original
   // currentStyle.photos array in the manner: currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to)... and with slicing, the 'to' is EXCLUSIVE (meaning, it does not include the element at the index in the second argument, so the to value needs
@@ -17,6 +18,7 @@ const ImageGallery = () => {
     to: 7
   })
   const [showModal, setShowModal] = useState(false);
+  const [zoom, setZoom] = useState(false);
 
   let defaultUrl = "https://www.warnersstellian.com/Content/images/product_image_not_available.png";
 
@@ -33,8 +35,12 @@ const ImageGallery = () => {
 
   const onClickExpandPhoto = (e) => {
     e.preventDefault();
-    console.log(showModal);
     setShowModal(!showModal);
+  }
+
+  const onClickZoomPhoto = (e) => {
+    e.preventDefault();
+    setZoom(true);
   }
 
   const onViewThumbnails = (e) => {
@@ -104,11 +110,11 @@ const ImageGallery = () => {
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
           <div className="absolute">
 
-            <FaExpand className="expandIcon right" size="3vh" onClick={onClickExpandPhoto}/>
+            <FaExpand className={showModal ? "expandInZoom" : "expandIcon right"} size="3vh" onClick={onClickExpandPhoto}/>
 
-            <img className="mainPhoto" src={currentStyle.photos[mainPhoto].url || defaultUrl} alt="" />
+            <img id="main" className="mainPhoto" src={currentStyle.photos[mainPhoto].url || defaultUrl} alt="" />
 
-            <Modal show={showModal} mainPhotoImg={<img className="zoomed" src={currentStyle.photos[mainPhoto].url || defaultUrl} alt="" onClick={onClickExpandPhoto}/>}/>
+            <Modal show={showModal} mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl} onClickZoomPhoto={onClickZoomPhoto} zoom={zoom} />
 
             {thumbnailRange.from !== 0 ?
             <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} />

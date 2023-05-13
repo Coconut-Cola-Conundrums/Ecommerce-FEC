@@ -37,7 +37,6 @@ body {
   height: 100%;
   object-fit: cover;
   position: absolute;
-  cursor: pointer;
   /* z-index: 1; */
 }
 
@@ -97,8 +96,21 @@ body {
 .expandIcon {
   z-index: 1;
   position: relative;
-  padding: 1vh;
+  padding: 2vh;
   cursor: pointer;
+}
+
+.expandInZoom {
+  z-index: 1000;
+  position: absolute;
+  top: 0vh;
+  cursor: pointer;
+}
+
+.enterZoomView {
+  transform: scale(2.5);
+  transform-origin: center;
+  object-fit: cover;
 }
 
 .mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active {
