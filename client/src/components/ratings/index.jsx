@@ -33,10 +33,13 @@ const Reviews = () => {
 
   return (
 
-    <div>
+    <div id  = 'rrContainer'>
       <div className = 'formContainer'>
-        <div className = 'ratingBreakdown'><RatingBreakdown ratings = {reviewState.ratings}/></div>
-        <div className = 'productBreakdown'><ProductBreakdown characteristics = {reviewState.characteristics}/></div>
+        <div>
+          <div className = 'ratingBreakdown'><RatingBreakdown ratings = {reviewState.ratings}/></div>
+          <div className = 'productBreakdown'><ProductBreakdown characteristics = {reviewState.characteristics}/></div>
+        </div>
+
         <div>
           <div className = 'sortOptions'><SortOptions/></div>
           <div className = 'newRev'><NewRev/></div>

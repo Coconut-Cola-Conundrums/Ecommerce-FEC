@@ -38,7 +38,7 @@ export const RatingBreakdown = ({ratings}) => {
       <div onClick = {() => {handleClick(2)}}>2 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((two/max)*100).toFixed(0)}/>}</div>
       <div onClick = {() => {handleClick(3)}}>3 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((three/max)*100).toFixed(0)}/>}</div>
       <div onClick = {() => {handleClick(4)}}>4 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((four/max)*100).toFixed(0)}/>}</div>
-      <div onClick = {() => {handleClick(5)}}>5 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((five/max)*100).toFixed(0)}/>}{five}</div>
+      <div onClick = {() => {handleClick(5)}}>5 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((five/max)*100).toFixed(0)}/>}</div>
     </div>
   )
 }
