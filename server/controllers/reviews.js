@@ -41,7 +41,7 @@ module.exports = {
   },
 
   postReview: (req, res) => {
-    console.log('postReview Request====>',req.body)
+    // console.log('postReview Request====>',req.body)
     axios.post(`${URL}/reviews`, req.body, {headers})
     .then(response => {
       res.sendStatus(201);
