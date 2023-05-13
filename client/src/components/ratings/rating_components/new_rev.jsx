@@ -10,8 +10,8 @@ export const NewRev = () => {
   const characteristics = useSelector(state => state.reviews.characteristics);
   const [recommend, setRecommend] = useState(false)
   const [modalState, setModalState] = useState(false);
+  const [rating, setRating] = useState('');
   // console.log(characteristics);
-
   // var characteristicsArray = Object.values(characteristics);
   var characteristicsObj = {};
   // characteristicsArray.forEach((char) => {
@@ -23,7 +23,7 @@ export const NewRev = () => {
     e.preventDefault();
     // console.log('subhandler')
     var name = e.target.querySelector('#name').value;
-    var rating = Number(e.target.querySelector('#rating').value);
+
     var body = e.target.querySelector('#txtbody').value;
     var summary = body.slice(0, 10) + '...';
     var img = e.target.querySelector('#img').value;
@@ -75,6 +75,20 @@ export const NewRev = () => {
     // console.log(characteristicsObj)
   }
 
+  var handleRating = (int) => {
+    event.preventDefault();
+    var ratingButton = document.getElementById(`${int}`);
+    var options = [1,2,3,4,5];
+    options.forEach((option) => {
+      if (int !== option) {
+      var opt = document.getElementById(`${option}`)
+      opt.style.backgroundColor = '#eee';
+      }
+    })
+    ratingButton.style.backgroundColor = 'grey';
+    setRating(int);
+  }
+
   var recommendHandler = (e) => {
     e.preventDefault();
     var recommendButton = document.getElementById('recommend');
@@ -99,7 +113,13 @@ export const NewRev = () => {
           <form onSubmit = {submitHandler} id = 'review-form'>
             <button id = 'recommend' onClick = {recommendHandler}>Recommend</button>
             <input placeholder = 'Name' id = 'name'></input>
-            <input placeholder = 'Rating' id = 'rating'></input>
+            <div >Rating
+                  <button id = '1' onClick = {() => {handleRating(1)}}>One</button>
+                  <button id = '2' onClick = {() => {handleRating(2)}}>Two</button>
+                  <button id = '3' onClick = {() => {handleRating(3)}}>Three</button>
+                  <button id = '4' onClick = {() => {handleRating(4)}}>Four</button>
+                  <button id = '5' onClick = {() => {handleRating(5)}}>Five</button>
+                </div>
             <input placeholder = 'Body' id = 'txtbody'></input>
             <input placeholder = 'Image URL' id = 'img'></input>
             <input placeholder = 'Email' id = 'email'></input>
