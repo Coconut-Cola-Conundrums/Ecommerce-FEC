@@ -728,3 +728,7 @@ a {
 #createReview:hover {
   background-color: #0069d9;
 }
+
+#ratingElement {
+  display:inline;
+}

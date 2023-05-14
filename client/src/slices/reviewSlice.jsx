@@ -12,11 +12,11 @@ const initialState = {
   characteristics: {}
 };
 
-export const getReviews = createAsyncThunk('/reviews', async(id, sort,  thunkAPI) => {
+export const getReviews = createAsyncThunk('/reviews', async({id, sort},  thunkAPI) => {
   return axios.get(`${baseAPIURL}reviews`, {
     params: {
       page: 1,
-      count: 5,
+      count: 20,
       sort: sort,
       product_id: id
     }
@@ -50,6 +50,7 @@ export const reviewSlice = createSlice({
       state.reviews = action.payload;
     },
     updateSort: (state, action) => {
+      console.log('state=>', state.sort)
       state.sort = action.payload;
     }
   },

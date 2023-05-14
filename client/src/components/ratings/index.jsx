@@ -12,11 +12,12 @@ const Reviews = () => {
   const product = useSelector(state => state.product);
   const reviewState = useSelector(state => state.reviews);
   const dispatch = useDispatch();
+  console.log(reviewState.sort)
 
   useEffect(() => {
     // console.log('review running')
     if (product.id) {
-      dispatch(getReviews(product.id, reviewState.sort))
+      dispatch(getReviews({id: product.id, sort: reviewState.sort}))
       .then(dispatch(getMetaData(product.id)))
       .then(() => {
         // console.log('This is reviewState =====>', reviewState)

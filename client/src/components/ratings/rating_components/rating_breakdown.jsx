@@ -34,11 +34,11 @@ export const RatingBreakdown = ({ratings}) => {
       <h1>Rating Breakdown</h1>
       <h2>Average Rating = {(fixedAvg).toFixed(2)}</h2>
       <div><Stars rating = {(fixedAvg).toFixed(2)}/></div>
-      <div onClick = {() => {handleClick(1)}}>1 Star- {<ProgressBar   className = 'ratingBar'  bgColor="#64B8B5" completed={((one/max)*100).toFixed(0)}/>}</div>
-      <div onClick = {() => {handleClick(2)}}>2 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((two/max)*100).toFixed(0)}/>}</div>
-      <div onClick = {() => {handleClick(3)}}>3 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((three/max)*100).toFixed(0)}/>}</div>
-      <div onClick = {() => {handleClick(4)}}>4 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((four/max)*100).toFixed(0)}/>}</div>
-      <div onClick = {() => {handleClick(5)}}>5 Star-{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((five/max)*100).toFixed(0)}/>}</div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(1)}}><label>1 Star</label> {<ProgressBar   className = 'ratingBar'  bgColor="#64B8B5" completed={((one/max)*100).toFixed(0)}/>}</div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(2)}}><label>2 Star</label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((two/max)*100).toFixed(0)}/>}</div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(3)}}><label>3 Star</label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((three/max)*100).toFixed(0)}/>}</div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(4)}}><label>4 Star</label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((four/max)*100).toFixed(0)}/>}</div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(5)}}><label>5 Star</label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((five/max)*100).toFixed(0)}/>}</div>
     </div>
   )
 }
