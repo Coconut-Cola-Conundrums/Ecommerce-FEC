@@ -12,7 +12,7 @@ const Reviews = () => {
   const product = useSelector(state => state.product);
   const reviewState = useSelector(state => state.reviews);
   const dispatch = useDispatch();
-  console.log(reviewState.sort)
+  // console.log(reviewState.sort)
 
   useEffect(() => {
     // console.log('review running')

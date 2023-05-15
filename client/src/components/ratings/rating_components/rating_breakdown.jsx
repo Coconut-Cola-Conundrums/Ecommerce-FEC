@@ -17,6 +17,8 @@ export const RatingBreakdown = ({ratings}) => {
   const numerator = (1*one + 2*two + 3*three + 4*four + 5*five);
   const denominator = one + two + three + four + five;
   var max = Math.max(one, two, three, four, five)
+  var total = one + two + three + four + five
+  var percentOne = ((one/total)*100).toFixed(0);
 
   var average = (numerator/denominator);
   var fixedAvg = average;
@@ -32,13 +34,32 @@ export const RatingBreakdown = ({ratings}) => {
   return (
     <div data-testid="rating-breakdown-div">
       <h1>Rating Breakdown</h1>
-      <h2>Average Rating = {(fixedAvg).toFixed(2)}</h2>
+      <h2>Average Rating   {(fixedAvg).toFixed(1)}</h2>
       <div><Stars rating = {(fixedAvg).toFixed(2)}/></div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(1)}}><label>1 Star</label> {<ProgressBar   className = 'ratingBar'  bgColor="#64B8B5" completed={((one/max)*100).toFixed(0)}/>}</div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(2)}}><label>2 Star</label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((two/max)*100).toFixed(0)}/>}</div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(3)}}><label>3 Star</label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((three/max)*100).toFixed(0)}/>}</div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(4)}}><label>4 Star</label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((four/max)*100).toFixed(0)}/>}</div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(5)}}><label>5 Star</label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={((five/max)*100).toFixed(0)}/>}</div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(1)}}>
+        <label>1 Star
+        </label>
+        {<ProgressBar className = 'ratingBar'  bgColor="#64B8B5" completed={Number(((one/total)*100).toFixed(0))}/>}
+      </div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(2)}}>
+        <label>2 Star
+        </label>
+        {<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={Number(((two/total)*100).toFixed(0))}/>}
+      </div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(3)}}>
+        <label>3 Star
+        </label>
+        {<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={Number(((three/total)*100).toFixed(0))}/>}
+      </div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(4)}}>
+        <label>4 Star
+        </label>
+        {<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={Number(((four/total)*100).toFixed(0))}/>}
+      </div>
+      <div id = 'ratingElement' onClick = {() => {handleClick(5)}}>
+        <label>5 Star
+        </label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={Number(((five/total)*100).toFixed(0))}/>}
+      </div>
     </div>
   )
 }

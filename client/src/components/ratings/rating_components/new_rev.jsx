@@ -41,6 +41,7 @@ export const NewRev = () => {
       characteristics: characteristicsObj
     }).then((res) => {console.log('success')})
     .catch((err) => {alert('Input is invalid')});
+    setModalState(!modalState)
   }
 
   const modalStyles = {
@@ -93,9 +94,12 @@ export const NewRev = () => {
     e.preventDefault();
     var recommendButton = document.getElementById('recommend');
     if (recommend === false) {
-      recommendButton.style.backgroundColor = 'green'
+      recommendButton.style.backgroundColor = '#BCE5B5'
+      recommendButton.style.color = 'black';
     } else {
       recommendButton.style.backgroundColor = '#4e4e4e'
+      recommendButton.style.color = 'white';
+
     }
     setRecommend(!recommend);
   }
