@@ -26,17 +26,20 @@ export const SortOptions = () => {
   }
 
   return (
-    <div>
-      <form onSubmit = {subHandler}>
-        <input placeholder = 'Keyword' onChange = {(e) =>{setSearch(e.target.value)}}></input>
-        <button>Search</button>
+    <div id = 'sortContainer'>
+      <form onSubmit = {subHandler} id = 'searchForm'>
+        <input id = 'inputSearch' placeholder = 'Keyword' onChange = {(e) =>{setSearch(e.target.value)}}></input>
+        <button id = 'buttonSearch' >Search</button>
       </form>
-      <label >Sorted by:</label>
-      <select id="sort" name="sort" onChange = {handleSort}>
-        <option value = 'newest'>Newest</option>
-        <option value = 'helpful'>Helpful</option>
-        <option value = 'relevant'>Relevant</option>
-      </select>
+      <div id = 'sortSelector'>
+        <label id = 'selectLabel'>Sorted by:</label>
+        <select id="sort" name="sort" onChange = {handleSort}>
+          <option value = 'newest'>Newest</option>
+          <option value = 'helpful'>Helpful</option>
+          <option value = 'relevant'>Relevant</option>
+        </select>
+      </div>
+
 
     </div>
   )
