@@ -9,7 +9,7 @@ const ProductDescription = () => {
   useEffect(() => {
 
   }, [product.id])
-
+  console.log(product);
   return (
     <div style={{left: "4vh", top: "5vh", position: "relative", width: "78vh"}}>
       {productInformation.slogan ?

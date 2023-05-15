@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --env=jsdom",
+    "test-product": "jest spec/overview.spec.js --env=jsdom",
     "test-review": "jest spec/ratings.spec.js --env=jsdom",
     "dev": "npx webpack --watch --mode development & npx nodemon --watch ./server ./server/index.js",
     "build": "npx webpack --mode production",

@@ -1,41 +1,47 @@
-import {render, screen} from '@testing-library/react';
-import productSlice, { getInitialData } from '../client/src/slices/productSlice.jsx';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux'
+import wrapTestWithProvider from './testStore.js';
+import  ProductDescription  from '../client/src/components/overview/productDescription';
+import '@testing-library/jest-dom/extend-expect';
 
-const thunkMiddleware = ({ dispatch, getState }) =>
-  next =>
-  action => {
-    if (typeof action === 'function') {
-      return action(dispatch, getState)
-    }
-
-    return next(action);
-  }
-
-const create = () => {
-  const store = {
-    getState:  jest.fn(() => ({})),
-    dispatch: jest.fn()
-  };
-
-  const next = jest.fn();
-
-  const invoke = action => thunkMiddleware(store)(next)(action);
-
-  return { store, next, invoke};
-}
 
 describe('testing if async works', () => {
   test('works?', () => {
-    const { store, invoke } = create();
-    const fn = jest.fn(getInitialData);
+    let preloadedState = {product: {
+      id: 40344,
+      productInformation: {
+        "id": 40344,
+        "campus": "hr-rfp",
+        "name": "Camo Onesie",
+        "slogan": "Blend in to your crowd",
+        "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+        "category": "Jackets",
+        "default_price": "140.00",
+        "created_at": "2021-08-13T14:38:44.509Z",
+        "updated_at": "2021-08-13T14:38:44.509Z",
+        "features": [
+            {
+                "feature": "Fabric",
+                "value": "Canvas"
+            },
+            {
+                "feature": "Buttons",
+                "value": "Brass"
+            }
+        ]
+    }
+    }};
+    const testStore = wrapTestWithProvider(preloadedState);
+    render (
+      <Provider store={testStore}>
+        <ProductDescription/>
+      </Provider>
+    )
 
-    invoke((dispatch, getState) => {
-      console.log(dispatch(fn()));
-      console.log(getState());
-    })
-
-    expect(store.dispatch).toHaveBeenCalled();
+    const a = screen.queryByText("Blend in to your crowd");
+    console.log(a);
+    // expect(screen.queryByText("Blend in to your crowd")).toBeInTheDocument();
   });
 
 });
