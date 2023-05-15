@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Stars} from './stars.jsx';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
+import {getReviews, getMetaData, reducers} from '../../../slices/reviewSlice.jsx'
 
 var URL = 'http://localhost:3000';
 
 export const RevList = () => {
+  const dispatch = useDispatch();
   const reviews = useSelector(state => state.reviews);
   // console.log(reviews)
 
@@ -42,7 +44,12 @@ export const RevList = () => {
   } else {
     alert("Can only report once")
   }
+  }
 
+  var showMorehandler = (e) => {
+    e.preventDefault();
+    var filteredReviews = reviews.allReviews.slice(0, reviews.reviews.length + 2)
+    dispatch(reducers.updateReviews(filteredReviews));
   }
 
 
@@ -83,6 +90,7 @@ export const RevList = () => {
           </div>
         </div>)}
       </div>
+      <button id = 'moreReviews' onClick = {showMorehandler}>Show More Reviews!</button>
     </div>
   )
 }

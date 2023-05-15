@@ -50,17 +50,14 @@ export const reviewSlice = createSlice({
       state.reviews = action.payload;
     },
     updateSort: (state, action) => {
-      console.log('state=>', state.sort)
+      // console.log('state=>', state.sort)
       state.sort = action.payload;
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(getReviews.fulfilled, (state, action) => {
-        // state = action.payload;
-        // console.log('this is the action payload', action.payload)
-        // console.log(JSON.stringify(action.payload))
-        state.reviews = action.payload;
+        state.reviews = action.payload.slice(0, 2);
         state.allReviews = action.payload;
       })
       .addCase(getReviews.rejected, (state, action) => {

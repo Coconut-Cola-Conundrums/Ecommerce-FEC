@@ -8,7 +8,7 @@ const URL = "http://localhost:3000/";
 export const NewRev = () => {
   const product = useSelector(state => state.product);
   const characteristics = useSelector(state => state.reviews.characteristics);
-  const [recommend, setRecommend] = useState(false)
+  const [recommend, setRecommend] = useState(false);
   const [modalState, setModalState] = useState(false);
   const [rating, setRating] = useState('');
   // console.log(characteristics);
