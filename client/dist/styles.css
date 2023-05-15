@@ -709,6 +709,15 @@ a {
   font-family: sans-serif;
 }
 
+.questionList {
+
+  position: relative;
+  width: 600px;
+  text-align: left;
+
+
+}
+
 #rrContainer {
   position: absolute;
   left: 50%;
@@ -800,4 +809,42 @@ a {
 
 #ratingElement {
   display:inline;
+}
+
+.questionSearch{
+
+  width: 74vh;
+  height: 56px;
+  border-radius: 4px;
+  position: relative;
+  background-color: rgba(255,255,255,0.3);
+  transition: 0.3s all;
+  font-size:medium;
+}
+
+.searchButton {
+
+  height: 62px;
+  width:100px;
+  background-color: #9cc0e6;
+  color: #000000;
+  border: black solid 1px;
+  font-size: medium;
+  margin: 5px;
+}
+
+.q {
+  width: 100vh;
+  position: relative;
+  padding:5vh;
+}
+
+ /* .helpful {
+position: relative;
+left: 50vh;
+bottom: 5vh;
+} */
+
+.credits {
+  font-size: small;
 }
