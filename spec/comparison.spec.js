@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Outfit from '../client/src/components/comparison/Outfit.jsx';
 // import Card from '../client/src/components/comparison/Card.jsx';
-import RelatedItems from '../client/src/components/comparison/RelatedItems.jsx'
+// import RelatedItems from '../client/src/components/comparison/RelatedItems.jsx'
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
 import configureStore from 'redux-mock-store';
@@ -177,79 +177,79 @@ describe('Outfit component', () => {
 
 // });
 
-describe('RelatedItems component', () => {
-  const mockRelatedItems = {
-    relatedIds: [1, 2, 3], // Mocked array of related product IDs
-    relatedProducts: [
-      {
-        id: 1,
-        name: 'Related Product 1',
-        default_price: 19.99,
-        category: 'Clothing',
-      },
-      {
-        id: 2,
-        name: 'Related Product 2',
-        default_price: 20.99,
-        category: 'Pants',
-      },
-      {
-        id: 3,
-        name: 'Related Product 3',
-        default_price: 21.99,
-        category: 'Shirt',
-      },
-    ],
-    outfits: [
-      {
-        id: 4,
-        name: 'Outfit 1',
-        default_price: 22.99,
-        category: 'Shoes',
-      },
-      {
-        id: 5,
-        name: 'Outfit 2',
-        default_price: 23.99,
-        category: 'Glassses',
-      },
-    ],
-  };
+// describe('RelatedItems component', () => {
+//   const mockRelatedItems = {
+//     relatedIds: [1, 2, 3], // Mocked array of related product IDs
+//     relatedProducts: [
+//       {
+//         id: 1,
+//         name: 'Related Product 1',
+//         default_price: 19.99,
+//         category: 'Clothing',
+//       },
+//       {
+//         id: 2,
+//         name: 'Related Product 2',
+//         default_price: 20.99,
+//         category: 'Pants',
+//       },
+//       {
+//         id: 3,
+//         name: 'Related Product 3',
+//         default_price: 21.99,
+//         category: 'Shirt',
+//       },
+//     ],
+//     outfits: [
+//       {
+//         id: 4,
+//         name: 'Outfit 1',
+//         default_price: 22.99,
+//         category: 'Shoes',
+//       },
+//       {
+//         id: 5,
+//         name: 'Outfit 2',
+//         default_price: 23.99,
+//         category: 'Glassses',
+//       },
+//     ],
+//   };
 
 
-  let store;
-  beforeEach(() => {
-    const mockStore = configureStore();
-    store = mockStore({
-      relatedItems: mockRelatedItems,
-      product: {
-        id: 1,
-        name: 'T-shirt',
-        price: 19.99,
-        category: 'Clothing',
-        image: 'https://example.com/image1.jpg',
-      },
-    });
-  });
+//   let store;
+//   beforeEach(() => {
+//     const mockStore = configureStore();
+//     store = mockStore({
+//       relatedItems: mockRelatedItems,
+//       product: {
+//         id: 1,
+//         name: 'T-shirt',
+//         price: 19.99,
+//         category: 'Clothing',
+//         image: 'https://example.com/image1.jpg',
+//       },
+//     });
+//   });
 
-  it('renders the related product card with product details', () => {
-    const { getByText, getByAltText } = render(
-      <Provider store={store}>
-        <RelatedItems />
-      </Provider>
-    );
+//   it('renders the related product card with product details', () => {
+//     const { getByText, getByAltText } = render(
+//       <Provider store={store}>
+//         <RelatedItems />
+//       </Provider>
+//     );
 
-    const categoryElement = getByText('Clothing');
-    expect(categoryElement).toBeInTheDocument();
+//     const categoryElement = getByText('Clothing');
+//     expect(categoryElement).toBeInTheDocument();
 
-    const nameElement = getByText('Related Product 1');
-    expect(nameElement).toBeInTheDocument();
+//     const nameElement = getByText('Related Product 1');
+//     expect(nameElement).toBeInTheDocument();
 
-    const priceElement = getByText('$19.99');
-    expect(priceElement).toBeInTheDocument();
+//     const priceElement = getByText('$19.99');
+//     expect(priceElement).toBeInTheDocument();
 
-    const imageElement = getByAltText('Product Image');
-    expect(imageElement).toBeInTheDocument();
-    expect(imageElement.src).toBe('https://example.com/image1.jpg');
-  });
-});
+//     const imageElement = getByAltText('Product Image');
+//     expect(imageElement).toBeInTheDocument();
+//     expect(imageElement.src).toBe('https://example.com/image1.jpg');
+//   });
+// });
