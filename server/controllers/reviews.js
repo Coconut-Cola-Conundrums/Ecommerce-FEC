@@ -58,8 +58,9 @@ module.exports = {
     var reviewId = req.params.review_id;
     console.log(reviewId);
 
-    axios.put(`${URL}/reviews/${reviewId}/helpful`, true, {headers})
+    axios.put(`${URL}/reviews/${reviewId}/helpful`,{review_id: reviewId}, {headers})
     .then((response) => {
+      // console.log(response);
       res.sendStatus(204);
     })
     .catch(err => {
@@ -69,6 +70,17 @@ module.exports = {
 
   putReviewReport:(req, res) => {
     //TODO
+    console.log('report')
+    var reviewId = req.params.review_id;
+    console.log(reviewId)
+
+    axios.put(`${URL}/reviews/${reviewId}/helpful`,{review_id: reviewId}, {headers})
+    .then((response) => {
+      res.sendStatus(204);
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
 };
