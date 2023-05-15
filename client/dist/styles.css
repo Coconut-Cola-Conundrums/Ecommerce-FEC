@@ -110,7 +110,7 @@ body {
 
 .enterZoomView {
   transform: scale(2.5);
-  transform-origin: top left;
+  transform-origin: center;
   object-fit: cover;
 }
 
