@@ -50,7 +50,9 @@ const Overview = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(getStyles());
+    if (Object.keys(product.productInformation).length) {
+      dispatch(getStyles());
+    }
   }, [product.productInformation]);
 
   return (
@@ -59,7 +61,7 @@ const Overview = () => {
         <ImageGallery />
         <ProductDescription />
       </div>
-      <div className="absolute rightOverviewDivs">
+      <div className="absolute" style={{left: "67.5vh", height: "60vh", top:"6vh"}}>
         <ProductDetails />
         <StyleSelector />
         <AddToCart />
