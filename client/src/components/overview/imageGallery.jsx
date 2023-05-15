@@ -113,7 +113,7 @@ const ImageGallery = () => {
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
           <div className="absolute">
 
-            <FaExpand className={showModal ? "expandInZoom" : "expandIcon right"} size="3vh" onClick={onClickExpandPhoto}/>
+            {!zoom ? <FaExpand className={showModal ? "expandInZoom" : "expandIcon right"} size="3vh" onClick={onClickExpandPhoto}/> : null}
 
             <img id="main" className="mainPhoto" src={currentStyle.photos[mainPhoto].url || defaultUrl} alt="" />
 

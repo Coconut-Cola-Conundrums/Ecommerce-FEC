@@ -61,7 +61,7 @@ const Overview = () => {
         <ImageGallery />
         <ProductDescription />
       </div>
-      <div className="absolute" style={{left: "67.5vh", height: "60vh", top:"6vh"}}>
+      <div className="absolute" style={{left: "67.5vh", height: "60vh", top:"6vh", maxWidth: "32.5vh"}}>
         <ProductDetails />
         <StyleSelector />
         <AddToCart />

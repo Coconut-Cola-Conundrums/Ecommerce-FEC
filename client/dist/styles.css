@@ -203,11 +203,18 @@ a {
   margin-bottom: 20vh;
 }
 
+.styleBox {
+  height: 6vh;
+  width: 6vh;
+  position: relative;
+  display: inline-block;
+}
+
 .styleElement {
   height: 5vh;
   width: 5vh;
   object-fit: cover;
-  margin-left: 1vh;
+  /* margin-left: 1vh; */
   border-radius: 50%;
   position: relative;
   cursor: pointer;
@@ -215,14 +222,14 @@ a {
 }
 
 .selectedStyleElement {
-  margin: 0vh;
-  padding: 0vh;
+  /* margin: 0vh;
+  padding: 0vh; */
 }
 
 .checkSelectedStyleElement {
   padding: 0vh;
-  position: relative;
-  left: 1vh;
+  position: absolute;
+  left: 4vh;
   z-index: 10;
 }
 
