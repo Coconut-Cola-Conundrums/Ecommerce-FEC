@@ -11,6 +11,7 @@ module.exports = {
   ],
 
   moduleNameMapper: {
+    "\\.(css|less)$": "<rootDir>/file-mock.js",
     "\\.(png)$": "<rootDir>/file-mock.js"
   },
 
@@ -21,6 +22,11 @@ module.exports = {
   coverageDirectory: "coverage",
 
   testEnvironment: "jsdom",
+
+  transformIgnorePatterns: [
+    '/node_modules/',
+    '\\.css$' // Add this line to ignore CSS files
+  ],
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
