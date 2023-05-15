@@ -114,7 +114,7 @@ body {
   object-fit: cover;
 }
 
-.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active {
+.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active, .expandInZoom:active{
   color:  rgb(81, 80, 80);
   transform: scale(0.8);
 }
