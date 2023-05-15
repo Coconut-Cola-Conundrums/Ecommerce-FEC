@@ -58,8 +58,8 @@ let Questions = () => {
   //console.log('Answers---', answers);
   //console.log(product);
   return (
-    <div>
-    <h2>Questions & Answers</h2>
+    <div className='q'>
+    <h1>Questions & Answers</h1>
     <Search />
     <QuestionList questions={questions.results} answers={answers}/>
      </div>

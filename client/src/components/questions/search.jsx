@@ -5,8 +5,8 @@ let Search = () => {
   return (
     <div>
       <form >
-        <input className='questionSearch' type='text' placeholder='Search for a question...' name='name' />
-        <input className='searchButton' type='submit' value='Search' placeholder='Search for a question...' />
+        <input className='questionSearch' type='text' placeholder='Have a question? Search for answers…' name='name' />
+        <input className='searchButton' type='submit' value='Search' />
       </form>
     </div>
   )
