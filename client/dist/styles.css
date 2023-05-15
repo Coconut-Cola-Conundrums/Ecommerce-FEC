@@ -275,9 +275,10 @@ a {
 
 .relatedItemsContainer {
   position: relative;
-  width: 2820px; /* 2100 for 3 cards, 2820 for 4 cards*/
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
+  justify-content: flex-start; /*  added this to align to the left  */
 }
 
 .carouselContainer {
@@ -286,8 +287,8 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: calc(47%);
-  margin: 0 auto;
+  width: calc(63%); /* 47% for 3 cards */
+  margin: 0 auto;  /* changed from 0 auto to 0 100px */
   overflow-y: hidden;
 }
 
@@ -297,9 +298,11 @@ a {
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
-  width: 2820px; /* 2100 for 3 cards, 2820 for 4 cards*/
+  width: 100%;
+  justify-content: flex-start;
   margin: 0 auto;
 }
+
 
 .outfitsCarouselContainer {
   display: flex;
@@ -307,7 +310,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: calc(47%);
+  width: calc(63%); /* 47% for 3 cards */
   margin: 0 auto;
   overflow-y: hidden;
 }
@@ -326,11 +329,11 @@ a {
 }
 
 .leftArrow {
-  left: 0;
+  left: 300px;
 }
 
 .rightArrow {
-  right: 0;
+  right: 300px;
 }
 
 .carouselArrow:focus {
