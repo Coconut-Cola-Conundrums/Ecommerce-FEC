@@ -460,7 +460,7 @@ a {
 .carousel-root {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* Customize the carousel slides */
@@ -475,7 +475,7 @@ a {
 /* Set the width and height of carousel images */
 .carousel .slide img {
   width: 100%;
-  height: 100%;
+  height: 260px;
   object-fit: cover;
   object-position: center 90%;
 }
