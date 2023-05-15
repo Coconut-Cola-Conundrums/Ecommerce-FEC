@@ -16,9 +16,9 @@ export const RatingBreakdown = ({ratings}) => {
   const five = Number(ratings[5]);
   const numerator = (1*one + 2*two + 3*three + 4*four + 5*five);
   const denominator = one + two + three + four + five;
-  var max = Math.max(one, two, three, four, five)
+  // var max = Math.max(one, two, three, four, five)
   var total = one + two + three + four + five
-  var percentOne = ((one/total)*100).toFixed(0);
+  // var percentOne = ((one/total)*100).toFixed(0);
 
   var average = (numerator/denominator);
   var fixedAvg = average;
