@@ -102,7 +102,7 @@ export const NewRev = () => {
 
   return (
     <div>
-      <button onClick = {() => {setModalState(!modalState)}}>Create Review!</button>
+      <button id = 'createReview' onClick = {() => {setModalState(!modalState)}}>Create Review!</button>
         <Modal
                   isOpen= {modalState}
                   onRequestClose={() => {setModalState(false)}}

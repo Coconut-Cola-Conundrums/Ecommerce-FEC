@@ -14,6 +14,10 @@ body {
   display: block;
 }
 
+.relative {
+  position: relative;
+}
+
 .inlineBlock {
   display: inline-block;
   position: relative;
@@ -21,7 +25,7 @@ body {
 }
 
 .photoContainer {
-  display: flex;
+  /* display: flex; */
   position: relative;
   width: 45vh;
   height: 67.5vh;
@@ -33,6 +37,86 @@ body {
   height: 100%;
   object-fit: cover;
   position: absolute;
+  /* z-index: 1; */
+}
+
+.zoomed {
+  object-fit: cover;
+  width: 100vw;
+  /* min-height: 100%; */
+  position: absolute;
+  cursor: pointer;
+  top: 5vh;
+}
+
+.modal {
+  background: white;
+  border: 1px solid #ccc;
+  transition: 1.1s ease-out;
+  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+  filter: blur(0);
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  left: -5vh;
+  top: -5vh;
+  position: absolute;
+}
+
+.mainPhotoArrowBox {
+  position: absolute;
+  width: 70vh;
+  left: -7.5vh;
+  top: 55vh;
+}
+
+.mainPhotoBoxOverModal {
+  position: absolute;
+  top: 0vh;
+  width: 25vw;
+  z-index: 101;
+}
+
+.mainPhotoArrow {
+  cursor: pointer;
+  padding: 2vh;
+  z-index: 102;
+}
+
+.mainPhotoArrowOverModal {
+  cursor: pointer;
+  z-index: 103;
+  position: relative;
+  top: -5vh;
+}
+
+.expandIcon {
+  z-index: 1;
+  position: relative;
+  padding: 2vh;
+  cursor: pointer;
+}
+
+.expandInZoom {
+  z-index: 1000;
+  position: absolute;
+  top: -3.5vh;
+  left: -3vh;
+  cursor: pointer;
+}
+
+.enterZoomView {
+  transform: scale(2.5);
+  transform-origin: center;
+  object-fit: cover;
+}
+
+.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active {
+  color:  rgb(81, 80, 80);
+  transform: scale(0.8);
 }
 
 .absolute {
@@ -48,10 +132,6 @@ body {
 .thumbnailArrow {
   position: absolute;
   cursor: pointer;
-  /* margin-top: 1vh;
-  margin-bottom: 1vh;
-  margin-top: 1vh;
-  margin-left: 2.2vh; */
   object-fit: cover;
   max-width: 2vh;
   max-height: 3vh;
@@ -67,6 +147,14 @@ body {
 .down {
   position: relative;
   top: 4vh;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
 
 .thumbnail {
@@ -93,15 +181,6 @@ a {
   text-decoration: underline;
 }
 
-.mainPhotoArrowBox {
-  /* display: flex; */
-  /* justify-content: space-between; */
-  position: absolute;
-  width: 70vh;
-  left: -7.5vh;
-  top: 55vh;
-}
-
 .shareIcons {
   padding-right: 2vh;
   padding-top: 2vh;
@@ -111,16 +190,6 @@ a {
 
 .shareIcons:hover {
   cursor: pointer;
-}
-
-.mainPhotoArrow {
-  cursor: pointer;
-  padding: 2vh;
-}
-
-.mainPhotoArrow:active, .thumbnailArrow:active {
-  color:  rgb(81, 80, 80);
-  transform: scale(0.8);
 }
 
 .rightOverviewDivs {
@@ -154,7 +223,7 @@ a {
   padding: 0vh;
   position: relative;
   left: 1vh;
-  z-index: 100;
+  z-index: 10;
 }
 
 .originalPriceOnSale {
@@ -645,6 +714,137 @@ a {
   position: relative;
   width: 600px;
   text-align: left;
-  display: block;
 
+
+}
+
+#rrContainer {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  background-color: rgb(220, 240, 255);
+}
+
+#sortContainer {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: 600px;
+}
+
+#sort {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 6px 10px;
+  width: 200px;
+  margin: 10px;
+}
+
+#sort:hover {
+  cursor:context-menu;
+}
+
+#searchForm {
+  display: flex;
+  justify-content: center;
+}
+
+#inputSearch {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 10px;
+  width: 400px;
+}
+
+#buttonSearch {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  padding: 10px;
+  width: 100px;
+}
+
+#buttonSearch:hover {
+  background-color: #0069d9;
+}
+
+#sortSelector {
+  padding-left: 275px;
+  width: 400px;
+}
+
+#selectLabel {
+  margin-top: 17px;
+}
+
+#createReview {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  padding: 10px;
+  width: 150px;
+}
+
+#createReview:hover {
+  background-color: #0069d9;
+}
+
+#ratingElement {
+  display:inline;
+}
+
+.questionSearch{
+
+  width: 74vh;
+  height: 56px;
+  border-radius: 4px;
+  position: relative;
+  background-color: rgba(255,255,255,0.3);
+  transition: 0.3s all;
+  font-size:medium;
+}
+
+.searchButton {
+
+  height: 62px;
+  width:100px;
+  background-color: #9cc0e6;
+  color: #000000;
+  border: black solid 1px;
+  font-size: medium;
+  margin: 5px;
+}
+
+.q {
+  width: 100vh;
+  position: relative;
+  padding:5vh;
+}
+
+ /* .helpful {
+position: relative;
+left: 50vh;
+bottom: 5vh;
+} */
+
+.credits {
+  font-size: small;
 }

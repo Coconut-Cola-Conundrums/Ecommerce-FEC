@@ -14,18 +14,17 @@ let QuestionList = ({questions,answers}) => {
   }
 
 if(questions) {
- //if(questions.length > 1 ) {
 
   return (
-    <div>
-      <span>Questions</span>
+    <div className='QuestionsBox'>
       {questions.slice(0,4).map((question)=>(
         <div className="questionList" key={question.question_id}>
-        <h3>Q: {question.question_body}</h3>
+        <h2>Q: {question.question_body}</h2>
+        <button className='helpful'>Helpful?</button>
 
         {answers.slice(0,2).map((answer)=> (
           <div key={answer.answer_id}>
-          <h4 className='answer'>A: {answer.body}</h4>
+          <h3 className='answer'>A: {answer.body}</h3>
           {answer.photos !== [] ? (
             <div>
             {answer.photos.map((photo)=>(
@@ -35,7 +34,9 @@ if(questions) {
           ):(
             <span></span>
           )}
-          <span>by {answer.answerer_name}, {changeDate(answer.date)}</span>
+          <span className='credits'>by {answer.answerer_name}, {changeDate(answer.date)}</span>
+          <button>Helpful?</button>
+          <button>Report</button>
           </div>
 
         ))}
@@ -53,7 +54,7 @@ if(questions) {
       } else {
         return <h3>** No Questions **</h3>
       }
-  //}
-}
+  }
+
 
 export default QuestionList;
