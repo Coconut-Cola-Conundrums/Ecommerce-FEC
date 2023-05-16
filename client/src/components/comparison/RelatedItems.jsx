@@ -200,7 +200,6 @@ const RelatedItems = () => {
         </button>
         )}
 
-
       </div>
     </div>
   );
