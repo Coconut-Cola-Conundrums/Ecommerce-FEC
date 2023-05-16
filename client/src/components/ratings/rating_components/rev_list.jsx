@@ -9,7 +9,8 @@ var URL = 'http://localhost:3000';
 export const RevList = () => {
   const dispatch = useDispatch();
   const reviews = useSelector(state => state.reviews);
-  // console.log(reviews)
+  console.log(reviews)
+
 
   var helpfulHandler = (e, id) => {
     e.preventDefault();
@@ -26,7 +27,6 @@ export const RevList = () => {
     } else {
       alert("Can mark helpful once")
     }
-
   }
 
   var reportHandler = (e, id) => {
@@ -54,7 +54,7 @@ export const RevList = () => {
 
 
   return (
-    <div>
+    <div data-testid="review-list-div">
       <h1 id = 'revListHeader'>Review List</h1>
       <div >
         {reviews.reviews.map((rev) =>

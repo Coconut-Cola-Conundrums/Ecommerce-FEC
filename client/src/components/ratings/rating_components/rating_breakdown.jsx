@@ -24,7 +24,7 @@ export const RatingBreakdown = ({ratings}) => {
   var fixedAvg = average;
 
   var handleClick = (rating) => {
-    console.log('1star clicked')
+    // console.log('1star clicked')
     var filteredReviews = reviews.filter((review) => {
       return rating === review.rating;
     })

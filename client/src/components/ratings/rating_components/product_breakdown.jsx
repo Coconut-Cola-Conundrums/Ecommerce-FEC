@@ -14,7 +14,7 @@ export const ProductBreakdown = () => {
   }
   var keys = Object.keys(characteristics)
   return (
-    <div>
+    <div data-testid="product-breakdown-div">
       <h1>Product Breakdown</h1>
       <div>{keys.map((char) => {
         return <div key = {char}>
