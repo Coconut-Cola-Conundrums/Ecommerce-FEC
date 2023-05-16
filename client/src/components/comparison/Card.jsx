@@ -76,6 +76,7 @@ const Card = ({ product }) => {
   };
 
   const handleThumbnailClick = (index, e) => {
+    console.log('is this happening');
     e.preventDefault();
     e.stopPropagation();
     setCardImg(product.productStyles[0].photos[index].url);
@@ -88,7 +89,6 @@ const Card = ({ product }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-
 
 
 

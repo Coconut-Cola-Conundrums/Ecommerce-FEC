@@ -287,7 +287,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: calc(63%); /* 47% for 3 cards */
+  width: 46vw; /* 47% for 3 cards, 63 for 4 */
   margin: 0 auto;
   overflow-y: hidden;
 }
@@ -310,7 +310,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: calc(63%); /* 47% for 3 cards */
+  width: 46vw; /* 47% for 3 cards */
   margin: 0 auto;
   overflow-y: hidden;
 }
@@ -351,7 +351,7 @@ a {
 .relatedItemCard {
   position: relative;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  width: 300px;
+  flex: 0 0 calc(100% / 5 - 10px);
   height: 400px;
   margin-right: 10px;
   background-color: #FAEDCA;
