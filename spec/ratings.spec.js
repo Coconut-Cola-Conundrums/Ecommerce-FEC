@@ -99,7 +99,7 @@ describe('Ratings and Reviews', () => {
         <RatingBreakdown {...props}/>
       </Provider>)
     const divElement = getByTestId('rating-breakdown-div');
-    screen.logTestingPlaygroundURL()
+    // screen.logTestingPlaygroundURL()
     expect(divElement).toBeInTheDocument();
   });
   //testing Review List Render
@@ -168,6 +168,9 @@ describe('Ratings and Reviews', () => {
       </Provider>
     )
     fireEvent.click(getByTestId('newRev'));
+    fireEvent.click(getByTestId('1'))
+    fireEvent.click(getByTestId('Fit'));
+    fireEvent.click(getByTestId('recommend'));
     fireEvent.click(getByTestId('submitTest'));
     expect(mockAxiosPost).toHaveBeenCalledTimes(1);
   })
