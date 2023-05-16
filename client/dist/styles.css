@@ -18,6 +18,10 @@ body {
   position: relative;
 }
 
+path {
+  pointer-events: none;
+}
+
 .inlineBlock {
   display: inline-block;
   position: relative;
@@ -139,7 +143,7 @@ body {
   max-height: 3vh;
   background-color: #dfdfdf;
   border-radius: 50%;
-  left: 2vh;
+  left: 2.25vh;
 }
 
 .up {
@@ -338,11 +342,11 @@ a {
 }
 
 .leftArrow {
-  left: 300px;
+  left: 1vh;
 }
 
 .rightArrow {
-  right: 300px;
+  right: 1vh;
 }
 
 .carouselArrow:focus {

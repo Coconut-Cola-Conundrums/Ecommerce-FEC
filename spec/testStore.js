@@ -5,7 +5,6 @@ import { reviewSlice } from '../client/src/slices/reviewSlice.jsx';
 import { questionsSlice } from '../client/src/slices/questionSlice.jsx';
 
 const wrapTestWithProvider = (preloadedState = {}) => {
-  console.log(preloadedState);
 
   let testStore = configureStore({
     reducer: {
@@ -13,8 +12,10 @@ const wrapTestWithProvider = (preloadedState = {}) => {
       relatedItems: comparisonSlice.reducer,
       questions: questionsSlice.reducer,
       reviews: reviewSlice.reducer
-    }
-  }, preloadedState)
+    },
+    preloadedState,
+  })
+
   return testStore
 }
 

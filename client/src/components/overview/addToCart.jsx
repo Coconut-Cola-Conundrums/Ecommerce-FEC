@@ -42,7 +42,7 @@ const AddToCart = () => {
     } else {
       dispatch(addToCart({sku_id: Number(selectedSku.sku)}));
     }
-    setTimeout(() => {dispatch(resetMessages()); setSelectedOrder({})}, 20000)
+    setTimeout(() => {dispatch(resetMessages()); setSelectedOrder({})}, 6000)
   }
 
   useEffect(() => {
