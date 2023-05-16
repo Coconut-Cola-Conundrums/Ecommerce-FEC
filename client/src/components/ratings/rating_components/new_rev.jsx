@@ -106,7 +106,7 @@ export const NewRev = () => {
 
   return (
     <div>
-      <button id = 'createReview' onClick = {() => {setModalState(!modalState)}}>Create Review!</button>
+      <button id = 'createReview' onClick = {() => {setModalState(!modalState)}}data-testid = 'newRev'>Create Review!</button>
         <Modal
                   isOpen= {modalState}
                   onRequestClose={() => {setModalState(false)}}
@@ -114,7 +114,7 @@ export const NewRev = () => {
                   ariaHideApp={false}
                   style={modalStyles}>
                     <h1>New Review</h1>
-          <form onSubmit = {submitHandler} id = 'review-form'>
+          <form onSubmit = {submitHandler} id = 'review-form' data-testid = 'reviewForm'>
             <button id = 'recommend' onClick = {recommendHandler}>Recommend</button>
             <input placeholder = 'Name' id = 'name'></input>
             <div >Rating
@@ -140,7 +140,7 @@ export const NewRev = () => {
                 </div>
               )
             })}
-            <button id = 'subButton' type = 'submit'>Submit</button>
+            <button id = 'subButton' type = 'submit' data-testid = 'submitTest'>Submit</button>
           </form>
         </Modal>
     </div>
