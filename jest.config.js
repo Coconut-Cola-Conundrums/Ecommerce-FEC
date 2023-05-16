@@ -5,14 +5,14 @@
 
 module.exports = {
   transformIgnorePatterns: [
-    "/node_modules/",
+    '/node_modules/(?!react-responsive-carousel/lib/styles)',
     "\\.pnp\\.[^\\/]+$",
-    "\\.png$" // Exclude PNG files from transformation
+    "\\.(png|css)$" // Exclude PNG and CSS files from transformation
   ],
 
   moduleNameMapper: {
-    "\\.(css|less)$": "<rootDir>/file-mock.js",
-    "\\.(png)$": "<rootDir>/file-mock.js"
+    "\\.(png)$": "<rootDir>/file-mock.js",
+    '\\.(css|less)$': 'identity-obj-proxy',
   },
 
   // Indicates whether the coverage information should be collected while executing the test
@@ -23,10 +23,6 @@ module.exports = {
 
   testEnvironment: "jsdom",
 
-  transformIgnorePatterns: [
-    '/node_modules/',
-    '\\.css$' // Add this line to ignore CSS files
-  ],
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 

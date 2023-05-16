@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Stars} from '../ratings/rating_components/stars.jsx';
 import { getSpecificProduct } from '../../slices/productSlice.jsx';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+// import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 
 const Card = ({ product }) => {
@@ -133,8 +133,8 @@ const Card = ({ product }) => {
           />
         )}
         </div>
-        <div>{product.category}</div>
-        <div>
+        <div data-testid="category">{product.category}</div>
+        <div data-testid="name">
           <strong>{product.name}</strong>
         </div>
 

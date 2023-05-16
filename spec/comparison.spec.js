@@ -1,11 +1,12 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Outfit from '../client/src/components/comparison/Outfit.jsx';
-// import Card from '../client/src/components/comparison/Card.jsx';
+import Card from '../client/src/components/comparison/Card.jsx';
 // import RelatedItems from '../client/src/components/comparison/RelatedItems.jsx'
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
 import configureStore from 'redux-mock-store';
+
 
 
 describe('summation test test', () => {
@@ -74,6 +75,19 @@ describe('Outfit component', () => {
     expect(imageElement.src).toBe('https://example.com/image1.jpg');
   });
 
+
+  it('displays the outfit image with the correct source', () => {
+
+    const { getByAltText } = render(
+      <Provider store={store}>
+        <Outfit outfit={outfit} index={0} />
+      </Provider>
+    );
+
+    const imageElement = getByAltText('Product Image');
+    expect(imageElement.src).toBe('https://example.com/image1.jpg');
+  });
+
   // it('calls handleXclick when X button is clicked', () => {
   //   const mockStore = configureStore();
   //   const store = mockStore({
@@ -95,18 +109,81 @@ describe('Outfit component', () => {
   //   expect(handleXclick).toHaveBeenCalledWith(0);
   // });
 
-  it('displays the outfit image with the correct source', () => {
+});
 
-    const { getByAltText } = render(
+describe('Card', () => {
+  const initialState = {
+    product: {
+      productInformation: {
+        name: 'Sample Product',
+        description: 'This is a sample product',
+        default_price: 9.99,
+      },
+      availableStyles: [
+        { styleId: 1, name: 'Style 1', price: 19.99 },
+        { styleId: 2, name: 'Style 2', price: 29.99 },
+      ],
+      currentStyle: {
+        styleId: 1,
+        name: 'Style 1',
+        price: 19.99,
+      },
+    },
+  };
+
+  const product = {
+    id: 1,
+    productStyles: [
+      {
+        photos: [
+          { url: 'https://example.com/image1.jpg' },
+          { url: 'https://example.com/image2.jpg' },
+        ],
+      },
+    ],
+    outfitRatings: {
+      1: 2,
+      2: 3,
+      3: 4,
+      4: 5,
+      5: 6,
+    },
+    category: 'Clothing',
+    name: 'T-shirt',
+    default_price: 10.99,
+  };
+
+  let store;
+  beforeEach(() => {
+    const mockStore = configureStore();
+    store = mockStore(initialState);
+  });
+
+  it('renders the card', () => {
+    render(
       <Provider store={store}>
-        <Outfit outfit={outfit} index={0} />
+        <Card product={product} index={0} />
+      </Provider>
+    );
+  });
+
+  it('renders the card with category, name, and price', () => {
+    render(
+      <Provider store={store}>
+        <Card product={product} index={0} />
       </Provider>
     );
 
-    const imageElement = getByAltText('Product Image');
-    expect(imageElement.src).toBe('https://example.com/image1.jpg');
+    const categoryElement = screen.getByText('Clothing');
+    const nameElement = screen.getByText('T-shirt');
+
+    expect(categoryElement).toBeInTheDocument();
+    expect(nameElement).toBeInTheDocument();
   });
 });
+
+
+
 
 // describe('Card component', () => {
 //   const product = {
@@ -133,33 +210,46 @@ describe('Outfit component', () => {
 
 //   let store;
 //   beforeEach(() => {
-//     const mockStore = configureStore();
-//     store = mockStore({
-//       relatedItems: {
-//         outfits: [],
+//     const mockStore = configureStore([]);
+//     const initialState = {
+//       product: {
+//         productInformation: {
+//           name: 'Sample Product',
+//           description: 'This is a sample product',
+//           default_price: 9.99,
+//         },
+//         availableStyles: [
+//           { styleId: 1, name: 'Style 1', price: 19.99 },
+//           { styleId: 2, name: 'Style 2', price: 29.99 },
+//         ],
+//         currentStyle: {
+//           styleId: 1,
+//           name: 'Style 1',
+//           price: 19.99,
+//         },
 //       },
-//     });
+//     };
+//     store = mockStore(initialState);
 //   });
 
 //   it('renders the card with product details', () => {
-//     const { getByText, getByAltText } = render(
+//     const { getByTestId, getByAltText } = render(
 //       <Provider store={store}>
-//        <Outfit Card product={product} />
+//         <Card product={product} />
 //       </Provider>
 //     );
 
-//     // Add your assertions here to ensure the component renders correctly
-//     const categoryElement = getByText('Clothing');
+//     const categoryElement = getByTestId('category');
 //     expect(categoryElement).toBeInTheDocument();
+//     expect(categoryElement.textContent).toBe('Clothing');
 
-//     const nameElement = getByText('T-shirt');
+//     const nameElement = getByTestId('name');
 //     expect(nameElement).toBeInTheDocument();
+//     expect(nameElement.textContent).toBe('T-shirt');
 
 //     const imageElement = getByAltText('Product Image');
 //     expect(imageElement).toBeInTheDocument();
 //     expect(imageElement.src).toBe('https://example.com/image1.jpg');
-
-//     // Add more assertions for other elements and data in the card
 //   });
 
 //   // it('renders the card with default image if product image is not available', () => {
@@ -172,8 +262,6 @@ describe('Outfit component', () => {
 //   //   const defaultImageElement = getByAltText('Product Image');
 //   //   expect(defaultImageElement.src).toBe('https://www.warnersstellian.com/Content/images/product_image_not_available.png');
 //   // });
-
-//   // Add more test cases to cover other rendering scenarios
 
 // });
 
