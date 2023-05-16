@@ -328,30 +328,24 @@ describe('RelatedItems component', () => {
     })
   });
 
-  it('renders the RelatedItems component without errors', async () => {
+  it('renders the RelatedItems component without errors', () => {
     render(
       <Provider store={store}>
         <RelatedItems />
       </Provider>
     );
   });
+
+  it('renders the "Your Outfits" section', () => {
+
+    const { getByText } = render(
+    <Provider store={store}>
+      <RelatedItems />
+    </Provider>);
+
+    // Assert
+    expect(getByText('Your Outfits')).toBeInTheDocument();
+  });
+
 });
 
-// describe('Product Description Section', () => {
-//   test('Component accesses state and displays product information', async() => {
-
-//     let productState = {...initialState};
-//     let relatedItemsState = {...relatedItemsStub}
-
-//     const testStore = wrapTestWithProvider({product: productState, relatedItems: relatedItemsState});
-
-//     render (
-//       <Provider store={testStore}>
-//         <RelatedItems/>
-//       </Provider>
-//     )
-
-//     const relatedProductCards = screen.getAllByTestId('related-product-card');
-//     expect(relatedProductCards).toHaveLength(relatedItemsStub.relatedProducts.length);
-//   });
-// });
