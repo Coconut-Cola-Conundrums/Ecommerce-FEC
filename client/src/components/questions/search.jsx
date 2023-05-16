@@ -1,6 +1,15 @@
 import React,{useState} from 'react';
 
-let Search = () => {
+let Search = ({questions}) => {
+
+const [filter, setFilter] = useState([]);
+
+let submitHandler = () => {
+
+
+
+}
+
 
   return (
     <div>
