@@ -11,7 +11,13 @@ const AddToCart = () => {
 
   const dispatch = useDispatch();
 
-  const [availableSizes, setAvailableSizes] = useState({});
+  const [availableSizes, setAvailableSizes] = useState({
+    '1394769': 'XS',
+    '1394770': 'S',
+    '1394771': 'M',
+    '1394772': 'L',
+    '1394773': 'XL'
+  });
   const [selectedSku, setSelectedSku] = useState({});
   const [selectedOrder, setSelectedOrder] = useState({
     size: '',
@@ -49,18 +55,19 @@ const AddToCart = () => {
     // if product id or the current style has changed, reset the available sizes
     setSelectedSku({});
     // if there is a current style in state, add all available sizes and quantities to available sizes
-    if (currentStyle.style_id) {
-      let newSizes = {};
-      Object.keys(currentStyle.skus).map((sku) => {
-        if (!Object.values(newSizes).includes(currentStyle.skus[sku].size)) {
-          newSizes[Number(sku)] = currentStyle.skus[sku].size;
-        }
-      })
-      setAvailableSizes(newSizes);
-    }
+    // if (currentStyle.style_id) {
+    //   let newSizes = {};
+    //   Object.keys(currentStyle.skus).map((sku) => {
+    //     if (!Object.values(newSizes).includes(currentStyle.skus[sku].size)) {
+    //       newSizes[Number(sku)] = currentStyle.skus[sku].size;
+    //     }
+    //   })
+    //   setAvailableSizes(newSizes);
+    // }
 
   }, [product.id, currentStyle, product.successMessage]);
-
+  // console.log(currentStyle, product)\
+  console.log(availableSizes);
   return (
     <div>
        <div className="addToCart">
@@ -72,6 +79,7 @@ const AddToCart = () => {
                 styles={{control: (baseStyles) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
                 className="sizeSelectors"
                 placeholder="Select Size"
+                data-testid="select-size"
                 menuIsOpen={openMenu}
                 options={Object.keys(availableSizes).map((sku) => ({value: sku, label: currentStyle.skus[sku].size}))}
                 getOptionLabel={option => option.label}
