@@ -60,7 +60,7 @@ let Questions = () => {
   return (
     <div className='q'>
     <h1>Questions & Answers</h1>
-    <Search />
+    <Search questions={questions.results}/>
     <QuestionList questions={questions.results} answers={answers}/>
      </div>
   )
