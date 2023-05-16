@@ -4,10 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Stars} from '../ratings/rating_components/stars.jsx';
 import { getSpecificProduct } from '../../slices/productSlice.jsx';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+// import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 
 const Card = ({ product }) => {
+  const abc = useSelector((state) => state)
+  console.log('please: ', abc);
   const [isModalOpen, setIsModalOpen] = useState(false);
   let mainProductInfo = useSelector((state) => state.product.productInformation);
   // let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
@@ -73,6 +75,8 @@ const Card = ({ product }) => {
     e.preventDefault();
     e.stopPropagation();
     setSelectedImageIndex(index);
+    //setCardImg(product.productStyles[0].photos[index].url);
+    //on change... set new backgroundImage
   };
 
   const handleThumbnailClick = (index, e) => {
@@ -97,6 +101,7 @@ const Card = ({ product }) => {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   if (product.productStyles && product.productRatings) {
+    console.log('lw;kejrle;kwjrkwejrwer: ')
     const one = Number(product.productRatings[1]);
     const two = Number(product.productRatings[2]);
     const three = Number(product.productRatings[3]);

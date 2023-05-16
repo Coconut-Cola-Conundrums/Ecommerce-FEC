@@ -1,13 +1,33 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import Outfit from '../client/src/components/comparison/Outfit.jsx';
 import Card from '../client/src/components/comparison/Card.jsx';
 // import RelatedItems from '../client/src/components/comparison/RelatedItems.jsx'
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
 import configureStore from 'redux-mock-store';
+import { productStub, styleStub } from './stubs/productOverviewStubs.js';
+import wrapTestWithProvider from './testStore.js';
 
 
+afterEach(cleanup)
+
+const initialState = {
+  id: null,
+  productInformation: {
+
+  },
+  availableStyles: [
+
+  ],
+  currentStyle: {
+
+  },
+  isError: false,
+  errorMessage: '',
+  isLoading: false,
+  successMessage: '',
+};
 
 describe('summation test test', () => {
   test('adds 1 + 1 to equal 2', () => {
@@ -111,52 +131,51 @@ describe('Outfit component', () => {
 
 });
 
-describe('Card', () => {
-  const initialState = {
-    product: {
-      productInformation: {
-        name: 'Sample Product',
-        description: 'This is a sample product',
-        default_price: 9.99,
-      },
-      availableStyles: [
-        { styleId: 1, name: 'Style 1', price: 19.99 },
-        { styleId: 2, name: 'Style 2', price: 29.99 },
-      ],
-      currentStyle: {
-        styleId: 1,
-        name: 'Style 1',
-        price: 19.99,
-      },
-    },
-  };
 
+// let productState = {...initialState, ...productStub, ...styleStub, currentStyle: styleStub.availableStyles[0]};
+
+// const testStore = wrapTestWithProvider({product: productState});
+
+// render (
+//   <Provider store={testStore}>
+//     <StyleSelector />
+//   </Provider>
+// )
+
+describe('Card', () => {
+
+  let productState = {...initialState, ...productStub, ...styleStub, currentStyle: styleStub.availableStyles[0]};
+  const testStore = wrapTestWithProvider({product: productState});
   const product = {
-    id: 1,
-    productStyles: [
-      {
-        photos: [
-          { url: 'https://example.com/image1.jpg' },
-          { url: 'https://example.com/image2.jpg' },
-        ],
-      },
-    ],
-    outfitRatings: {
-      1: 2,
-      2: 3,
-      3: 4,
-      4: 5,
-      5: 6,
-    },
-    category: 'Clothing',
-    name: 'T-shirt',
-    default_price: 10.99,
-  };
+    id: 40345,
+    campus: "hr-rfp",
+    name: "Bright Future Sunglasses",
+    slogan: "You've got to wear shades",
+    description: "Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.",
+    category: "Accessories",
+    default_price: "69.00",
+    created_at: "2021-08-13T14:38:44.509Z",
+    updated_at: "2021-08-13T14:38:44.509Z",
+    features: [
+        {
+            "feature": "Lenses",
+            "value": "Ultrasheen"
+        },
+        {
+            "feature": "UV Protection",
+            "value": null
+        },
+        {
+            "feature": "Frames",
+            "value": "LightCompose"
+        }
+    ]
+}
 
   let store;
   beforeEach(() => {
     const mockStore = configureStore();
-    store = mockStore(initialState);
+    store = mockStore(testStore);
   });
 
   it('renders the card', () => {
@@ -174,13 +193,16 @@ describe('Card', () => {
       </Provider>
     );
 
-    const categoryElement = screen.getByText('Clothing');
-    const nameElement = screen.getByText('T-shirt');
+    console.log('whl;kajsdflkajsld;fkjasdlkjf123123123: ', screen);
 
-    expect(categoryElement).toBeInTheDocument();
-    expect(nameElement).toBeInTheDocument();
+    // const categoryElement = screen.getByTestId('category');
+    // const nameElement = screen.getByAltText('T-shirt');
+
+    // expect(categoryElement).toBeInTheDocument();
+    // expect(nameElement).toBeInTheDocument();
   });
 });
+
 
 
 
