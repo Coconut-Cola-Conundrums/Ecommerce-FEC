@@ -8,11 +8,9 @@ import { saveOutfits, grabOutfits } from './outfitStorage.js';
 import { comparisonSlice } from '../../slices/comparisonSlice';
 
 const RelatedItems = () => {
-
   const dispatch = useDispatch();
   let comparisonState = useSelector((state) => state.relatedItems)
   let productId = useSelector((state) => state.product.id);
-
 
   const handleOutfitClick = (id) => {
     const outfitExists = comparisonState.outfits.some((outfit) => outfit.id === id);
@@ -201,7 +199,6 @@ const RelatedItems = () => {
           &gt;
         </button>
         )}
-
 
       </div>
     </div>

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Stars} from '../ratings/rating_components/stars.jsx';
 import { getSpecificProduct } from '../../slices/productSlice.jsx';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+// import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 
 const Card = ({ product }) => {
@@ -73,9 +73,12 @@ const Card = ({ product }) => {
     e.preventDefault();
     e.stopPropagation();
     setSelectedImageIndex(index);
+    //setCardImg(product.productStyles[0].photos[index].url);
+    //on change... set new backgroundImage
   };
 
   const handleThumbnailClick = (index, e) => {
+    console.log('is this happening');
     e.preventDefault();
     e.stopPropagation();
     setCardImg(product.productStyles[0].photos[index].url);
@@ -111,30 +114,29 @@ const Card = ({ product }) => {
       <div className="individualCard" onClick={handleCardClick}>
         <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
         <div className="imageContainer" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        {isHovered ? (
-          <Carousel
-            selectedItem={selectedImageIndex}
-            showStatus={false}
-            showIndicators={false}
-            onChange={handleThumbnailChange}
-          >
-            {product.productStyles[0].photos.map((photo, index) => (
-              <div key={index} onClick={(e) => handleThumbnailClick(index, e)}>
-                    <img src={photo.url} alt="Product Image"
-                    />
-              </div>
-            ))}
-          </Carousel>
-        ) : (
-          <img
-            className="sampleImage"
-            src={cardImg || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
-            alt="Product Image"
-          />
-        )}
+          {isHovered ? (
+            <Carousel
+              selectedItem={selectedImageIndex}
+              showStatus={false}
+              showIndicators={false}
+              onChange={handleThumbnailChange}
+            >
+              {product.productStyles[0].photos.map((photo, index) => (
+                <div key={index} onClick={(e) => handleThumbnailClick(index, e)} >
+                      <img src={photo.url} alt="Product Image" />
+                </div>
+              ))}
+            </Carousel>
+          ) : (
+            <img
+              className="sampleImage"
+              src={cardImg || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+              alt="Product Image"
+            />
+          )}
         </div>
-        <div>{product.category}</div>
-        <div>
+        <div data-testid="category">{product.category}</div>
+        <div data-testid="name">
           <strong>{product.name}</strong>
         </div>
 

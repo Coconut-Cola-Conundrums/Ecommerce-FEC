@@ -11,6 +11,7 @@ export const RevList = () => {
   const reviews = useSelector(state => state.reviews);
   // console.log(reviews)
 
+
   var helpfulHandler = (e, id) => {
     e.preventDefault();
     var helpfulButton = document.getElementById(`helpful${id}`);
@@ -26,11 +27,11 @@ export const RevList = () => {
     } else {
       alert("Can mark helpful once")
     }
-
   }
 
   var reportHandler = (e, id) => {
     e.preventDefault();
+    // alert("Review has been reported!")
     var reportButton = document.getElementById(`report${id}`);
     if (reportButton.style.backgroundColor !== '#FFA8A6') {
     axios.put(`${URL}/reviews/${id}/report`)
@@ -54,7 +55,7 @@ export const RevList = () => {
 
 
   return (
-    <div>
+    <div data-testid="review-list-div">
       <h1 id = 'revListHeader'>Review List</h1>
       <div >
         {reviews.reviews.map((rev) =>
@@ -85,8 +86,8 @@ export const RevList = () => {
           return <img key = {photo.url} src = {photo.url} width = '150'/>
           })}
           <div id = 'putButtons'>
-            <button id = {`helpful${rev.review_id}`} className = 'helpful' onClick = {(event) => {helpfulHandler(event, rev.review_id)}}>Helpful</button>
-            <button id = {`report${rev.review_id}`} className = 'report' onClick = {(e) => {reportHandler(e, rev.review_id)}}>Report</button>
+            <button id = {`helpful${rev.review_id}`} data-testid = {`helpful1279687`} className = 'helpful' onClick = {(event) => {helpfulHandler(event, rev.review_id)}}>Helpful</button>
+            <button id = {`report${rev.review_id}`} data-testid = {`report1279687`} className = 'report' onClick = {(e) => {reportHandler(e, rev.review_id)}}>Report</button>
           </div>
         </div>)}
       </div>
