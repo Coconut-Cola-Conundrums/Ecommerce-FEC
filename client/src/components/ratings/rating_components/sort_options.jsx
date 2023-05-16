@@ -16,17 +16,14 @@ export const SortOptions = () => {
     var filteredReviews = reviews.filter((rev) => {
       return rev.summary.includes(search) || rev.body.includes(search);
     })
-
     dispatch(reducers.updateReviews(filteredReviews));
   }
-
   var handleSort = (e) => {
-
     dispatch(reducers.updateSort(e.target.value));
   }
 
   return (
-    <div id = 'sortContainer'>
+    <div id = 'sortContainer' data-testid = 'sortTest'>
       <form onSubmit = {subHandler} id = 'searchForm'>
         <input id = 'inputSearch' placeholder = 'Keyword' onChange = {(e) =>{setSearch(e.target.value)}}></input>
         <button id = 'buttonSearch' >Search</button>
