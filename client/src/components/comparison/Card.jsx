@@ -112,27 +112,26 @@ const Card = ({ product }) => {
       <div className="individualCard" onClick={handleCardClick}>
         <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
         <div className="imageContainer" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        {isHovered ? (
-          <Carousel
-            selectedItem={selectedImageIndex}
-            showStatus={false}
-            showIndicators={false}
-            onChange={handleThumbnailChange}
-          >
-            {product.productStyles[0].photos.map((photo, index) => (
-              <div key={index} onClick={(e) => handleThumbnailClick(index, e)}>
-                    <img src={photo.url} alt="Product Image"
-                    />
-              </div>
-            ))}
-          </Carousel>
-        ) : (
-          <img
-            className="sampleImage"
-            src={cardImg || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
-            alt="Product Image"
-          />
-        )}
+          {isHovered ? (
+            <Carousel
+              selectedItem={selectedImageIndex}
+              showStatus={false}
+              showIndicators={false}
+              onChange={handleThumbnailChange}
+            >
+              {product.productStyles[0].photos.map((photo, index) => (
+                <div key={index} onClick={(e) => handleThumbnailClick(index, e)} >
+                      <img src={photo.url} alt="Product Image" />
+                </div>
+              ))}
+            </Carousel>
+          ) : (
+            <img
+              className="sampleImage"
+              src={cardImg || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+              alt="Product Image"
+            />
+          )}
         </div>
         <div data-testid="category">{product.category}</div>
         <div data-testid="name">

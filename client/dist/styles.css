@@ -485,6 +485,7 @@ a {
   justify-content: center;
   width: 300px; /* makes the arrow centered... */
   height: 260px; /* makes the arrow centered... */
+  /* position: relative; */
 }
 
 /* Set the width and height of carousel images */
