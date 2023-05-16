@@ -28,7 +28,19 @@ describe('QuestionsList', () => {
         <QuestionList />
       </Provider>
     );
-
+      console.log(screen);
     expect(screen.getByText('Questions')).toBeInTheDocument();
   });
+
+
+it('should render a populated div', () => {
+  const { getByTestId } = render(
+    <Provider store = {store}>
+      <QuestionList/>
+    </Provider>)
+  ;
+  const divElement = getByTestId('g');
+  expect(divElement).toBeInTheDocument();
+});
+
 });
