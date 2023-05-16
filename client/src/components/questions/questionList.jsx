@@ -19,8 +19,10 @@ let QuestionList = ({questions,answers}) => {
     <div className='QuestionsBox' data-testid="question">
       {questions.slice(0,4).map((question)=>(
         <div className="questionList" key={question.question_id}>
-        <h2>Q: {question.question_body}</h2>
-        <button className='helpful'>Helpful?</button>
+        <span className='qHeader'>Q: {question.question_body}</span>
+        <button>Helpful?</button>
+        |
+        <button>Add an Answer</button>
 
         {answers.slice(0,2).map((answer)=> (
           <div key={answer.answer_id}>
