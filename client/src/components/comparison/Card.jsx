@@ -8,8 +8,6 @@ import { Carousel } from 'react-responsive-carousel';
 
 
 const Card = ({ product }) => {
-  const abc = useSelector((state) => state)
-  console.log('please: ', abc);
   const [isModalOpen, setIsModalOpen] = useState(false);
   let mainProductInfo = useSelector((state) => state.product.productInformation);
   // let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
@@ -101,7 +99,6 @@ const Card = ({ product }) => {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   if (product.productStyles && product.productRatings) {
-    console.log('lw;kejrle;kwjrkwejrwer: ')
     const one = Number(product.productRatings[1]);
     const two = Number(product.productRatings[2]);
     const three = Number(product.productRatings[3]);

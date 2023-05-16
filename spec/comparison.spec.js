@@ -2,32 +2,86 @@ import React from 'react';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import Outfit from '../client/src/components/comparison/Outfit.jsx';
 import Card from '../client/src/components/comparison/Card.jsx';
-// import RelatedItems from '../client/src/components/comparison/RelatedItems.jsx'
+import RelatedItems from '../client/src/components/comparison/RelatedItems.jsx';
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
-import configureStore from 'redux-mock-store';
-import { productStub, styleStub } from './stubs/productOverviewStubs.js';
+import configureMockStore from 'redux-mock-store';
+import { relatedItemsStub, productStub } from './stubs/comparisonStub.js';
 import wrapTestWithProvider from './testStore.js';
+// import { productSlice } from '../client/src/slices/productSlice.jsx';
+// import { comparisonSlice } from '../client/src/slices/comparisonSlice.jsx';
+// import { reviewSlice } from '../client/src/slices/reviewSlice.jsx';
+// import { questionsSlice } from '../client/src/slices/questionSlice.jsx';
+import thunk from 'redux-thunk'
 
-
-afterEach(cleanup)
+const product = {
+  id: 40345,
+  campus: "hr-rfp",
+  name: "Bright Future Sunglasses",
+  slogan: "You've got to wear shades",
+  description: "Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.",
+  category: "Accessories",
+  default_price: "69.00",
+  created_at: "2021-08-13T14:38:44.509Z",
+  updated_at: "2021-08-13T14:38:44.509Z",
+  features: [
+      {
+          "feature": "Lenses",
+          "value": "Ultrasheen"
+      },
+      {
+          "feature": "UV Protection",
+          "value": null
+      },
+      {
+          "feature": "Frames",
+          "value": "LightCompose"
+      }
+  ],
+  productStyles: [{style_id:240536,
+    name: "Zebra Stripe",
+    original_price: "900.00",
+    sale_price: null,
+    photos: [{thumbnail_url: "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+              url: "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}]
+            }],
+  productRatings: {
+    1: 2,
+    2: 3,
+    3: 4,
+    4: 5,
+    5: 6
+  }
+}
 
 const initialState = {
-  id: null,
-  productInformation: {
+  product: {
+    id: 40344,
+    productInformation: {
+      id: 40344,
+      campus: 'hr-rfp',
+      name: 'Camo Onesie',
+      slogan: 'Blend in to your crowd',
+      description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.',
+      category: 'Jackets',
+      default_price: '140.00',
+      created_at: '2021-08-13T14:38:44.509Z',
+      updated_at: '2021-08-13T14:38:44.509Z',
+      features: [
+        {
+          feature: 'Fabric',
+          value: 'Canvas'
+        },
+        {
+          feature: 'Buttons',
+          value: 'Brass'
+        }
+      ]
+    },
+    availableStyles: []
+  }
+}
 
-  },
-  availableStyles: [
-
-  ],
-  currentStyle: {
-
-  },
-  isError: false,
-  errorMessage: '',
-  isLoading: false,
-  successMessage: '',
-};
 
 describe('summation test test', () => {
   test('adds 1 + 1 to equal 2', () => {
@@ -60,7 +114,7 @@ describe('Outfit component', () => {
 
   let store;
   beforeEach(() => {
-    const mockStore = configureStore();
+    const mockStore = configureMockStore();
     store = mockStore({
       relatedItems: {
         outfits: [],
@@ -108,74 +162,14 @@ describe('Outfit component', () => {
     expect(imageElement.src).toBe('https://example.com/image1.jpg');
   });
 
-  // it('calls handleXclick when X button is clicked', () => {
-  //   const mockStore = configureStore();
-  //   const store = mockStore({
-  //     relatedItems: {
-  //       outfits: [],
-  //     },
-  //   });
-
-  //   const handleXclick = jest.fn();
-  //   const { getByTestId } = render(
-  //     <Provider store={store}>
-  //       <Outfit outfit={outfit} index={0} handleXclick={handleXclick} />
-  //     </Provider>
-  //   );
-
-  //   const xButton = getByTestId('x-button');
-  //   fireEvent.click(xButton);
-  //   expect(handleXclick).toHaveBeenCalledTimes(1);
-  //   expect(handleXclick).toHaveBeenCalledWith(0);
-  // });
-
 });
 
 
-// let productState = {...initialState, ...productStub, ...styleStub, currentStyle: styleStub.availableStyles[0]};
-
-// const testStore = wrapTestWithProvider({product: productState});
-
-// render (
-//   <Provider store={testStore}>
-//     <StyleSelector />
-//   </Provider>
-// )
-
 describe('Card', () => {
-
-  let productState = {...initialState, ...productStub, ...styleStub, currentStyle: styleStub.availableStyles[0]};
-  const testStore = wrapTestWithProvider({product: productState});
-  const product = {
-    id: 40345,
-    campus: "hr-rfp",
-    name: "Bright Future Sunglasses",
-    slogan: "You've got to wear shades",
-    description: "Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.",
-    category: "Accessories",
-    default_price: "69.00",
-    created_at: "2021-08-13T14:38:44.509Z",
-    updated_at: "2021-08-13T14:38:44.509Z",
-    features: [
-        {
-            "feature": "Lenses",
-            "value": "Ultrasheen"
-        },
-        {
-            "feature": "UV Protection",
-            "value": null
-        },
-        {
-            "feature": "Frames",
-            "value": "LightCompose"
-        }
-    ]
-}
-
   let store;
   beforeEach(() => {
-    const mockStore = configureStore();
-    store = mockStore(testStore);
+    const mockStore = configureMockStore();
+    store = mockStore(initialState)
   });
 
   it('renders the card', () => {
@@ -193,173 +187,171 @@ describe('Card', () => {
       </Provider>
     );
 
-    console.log('whl;kajsdflkajsld;fkjasdlkjf123123123: ', screen);
+    const categoryElement = screen.getByTestId('category');
+    const nameElement = screen.getByTestId('name');
+    const priceElement = screen.getByText(`$${product.default_price}`);
 
-    // const categoryElement = screen.getByTestId('category');
-    // const nameElement = screen.getByAltText('T-shirt');
+    expect(categoryElement).toBeInTheDocument();
+    expect(nameElement).toBeInTheDocument();
+    expect(priceElement).toBeInTheDocument();
+  });
 
-    // expect(categoryElement).toBeInTheDocument();
-    // expect(nameElement).toBeInTheDocument();
+  it('renders the card with image', () => {
+    render(
+      <Provider store={store}>
+        <Card product={product} index={0} />
+      </Provider>
+    );
+
+    const imageElement = screen.getByAltText('Product Image');
+    expect(imageElement).toBeInTheDocument();
+  });
+})
+
+describe('RelatedItems component', () => {
+  let store;
+
+  beforeEach(() => {
+    const middlewares = [thunk];
+    const mockStore = configureMockStore(middlewares);
+    store = mockStore({
+      product: {
+        id: 40344,
+        productInformation: {
+          id: 40344,
+          campus: "hr-rfp",
+          name: "Camo Onesie",
+          slogan: "Blend in to your crowd",
+          description: "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+          category: "Jackets",
+          default_price: "140.00",
+          created_at: "2021-08-13T14:38:44.509Z",
+          updated_at: "2021-08-13T14:38:44.509Z",
+          features: [
+              {
+                  "feature": "Fabric",
+                  "value": "Canvas"
+              },
+              {
+                  "feature": "Buttons",
+                  "value": "Brass"
+              }
+            ]
+          },
+          availableStyles: [{}],
+        },
+      relatedItems: {
+        relatedIds: [
+          40345,
+          40346,
+          40351,
+          40350
+        ],
+        relatedProducts: [{
+          id: 40345,
+          campus: "hr-rfp",
+          name: "Bright Future Sunglasses",
+          slogan: "You've got to wear shades",
+          description: "Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.",
+          category: "Accessories",
+          default_price: "69.00",
+          created_at: "2021-08-13T14:38:44.509Z",
+          updated_at: "2021-08-13T14:38:44.509Z",
+          features: [
+              {
+                  "feature": "Lenses",
+                  "value": "Ultrasheen"
+              },
+              {
+                  "feature": "UV Protection",
+                  "value": null
+              },
+              {
+                  "feature": "Frames",
+                  "value": "LightCompose"
+              }
+          ],
+          productStyles: [{style_id:240536,
+            name: "Zebra Stripe",
+            original_price: "900.00",
+            sale_price: null,
+            photos: [{thumbnail_url: "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+                      url: "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}]
+                    }],
+          productRatings: {
+            1: 2,
+            2: 3,
+            3: 4,
+            4: 5,
+            5: 6
+          }
+        }],
+        outfits: [{
+          id: 40347,
+          campus: 'hr-rfp',
+          name: 'Slacker\'s Slacks',
+          slogan: 'Comfortable for everything, or nothing',
+          description: 'I\'ll tell you how great they are after I nap for a bit.',
+          category: 'Pants',
+          default_price: '65.00',
+          created_at: '2021-08-13T14:38:44.509Z',
+          updated_at: '2021-08-13T14:38:44.509Z',
+          features: [
+            {
+              feature: 'Fabric',
+              value: '99% Cotton 1% Elastic'
+            },
+            {
+              feature: 'Cut',
+              value: 'Loose'
+            }
+          ],
+          productStyles: [{
+            style_id: 240516,
+            name: 'Black',
+            original_price: '65.00',
+            sale_price: null,
+            photos: [{
+              thumbnail_url: 'https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+              url: 'https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+            }]
+          }],
+          outfitRatings: {
+            '1': '5',
+            '2': '3',
+            '3': '81',
+            '4': '22',
+            '5': '12'
+          }
+        }]
+      }
+    })
+  });
+
+  it('renders the RelatedItems component without errors', async () => {
+    render(
+      <Provider store={store}>
+        <RelatedItems />
+      </Provider>
+    );
   });
 });
 
+// describe('Product Description Section', () => {
+//   test('Component accesses state and displays product information', async() => {
 
+//     let productState = {...initialState};
+//     let relatedItemsState = {...relatedItemsStub}
 
+//     const testStore = wrapTestWithProvider({product: productState, relatedItems: relatedItemsState});
 
-
-// describe('Card component', () => {
-//   const product = {
-//     id: 1,
-//     productStyles: [
-//       {
-//         photos: [
-//           { url: 'https://example.com/image1.jpg' },
-//           { url: 'https://example.com/image2.jpg' },
-//         ],
-//       },
-//     ],
-//     outfitRatings: {
-//       1: 2,
-//       2: 3,
-//       3: 4,
-//       4: 5,
-//       5: 6,
-//     },
-//     category: 'Clothing',
-//     name: 'T-shirt',
-//     default_price: 19.99,
-//   };
-
-//   let store;
-//   beforeEach(() => {
-//     const mockStore = configureStore([]);
-//     const initialState = {
-//       product: {
-//         productInformation: {
-//           name: 'Sample Product',
-//           description: 'This is a sample product',
-//           default_price: 9.99,
-//         },
-//         availableStyles: [
-//           { styleId: 1, name: 'Style 1', price: 19.99 },
-//           { styleId: 2, name: 'Style 2', price: 29.99 },
-//         ],
-//         currentStyle: {
-//           styleId: 1,
-//           name: 'Style 1',
-//           price: 19.99,
-//         },
-//       },
-//     };
-//     store = mockStore(initialState);
-//   });
-
-//   it('renders the card with product details', () => {
-//     const { getByTestId, getByAltText } = render(
-//       <Provider store={store}>
-//         <Card product={product} />
+//     render (
+//       <Provider store={testStore}>
+//         <RelatedItems/>
 //       </Provider>
-//     );
+//     )
 
-//     const categoryElement = getByTestId('category');
-//     expect(categoryElement).toBeInTheDocument();
-//     expect(categoryElement.textContent).toBe('Clothing');
-
-//     const nameElement = getByTestId('name');
-//     expect(nameElement).toBeInTheDocument();
-//     expect(nameElement.textContent).toBe('T-shirt');
-
-//     const imageElement = getByAltText('Product Image');
-//     expect(imageElement).toBeInTheDocument();
-//     expect(imageElement.src).toBe('https://example.com/image1.jpg');
-//   });
-
-//   // it('renders the card with default image if product image is not available', () => {
-//   //   const productWithoutImage = {
-//   //     // ... product data without image ...
-//   //   };
-
-//   //   const { getByAltText } = render(<Card product={productWithoutImage} />);
-
-//   //   const defaultImageElement = getByAltText('Product Image');
-//   //   expect(defaultImageElement.src).toBe('https://www.warnersstellian.com/Content/images/product_image_not_available.png');
-//   // });
-
-// });
-
-// describe('RelatedItems component', () => {
-//   const mockRelatedItems = {
-//     relatedIds: [1, 2, 3], // Mocked array of related product IDs
-//     relatedProducts: [
-//       {
-//         id: 1,
-//         name: 'Related Product 1',
-//         default_price: 19.99,
-//         category: 'Clothing',
-//       },
-//       {
-//         id: 2,
-//         name: 'Related Product 2',
-//         default_price: 20.99,
-//         category: 'Pants',
-//       },
-//       {
-//         id: 3,
-//         name: 'Related Product 3',
-//         default_price: 21.99,
-//         category: 'Shirt',
-//       },
-//     ],
-//     outfits: [
-//       {
-//         id: 4,
-//         name: 'Outfit 1',
-//         default_price: 22.99,
-//         category: 'Shoes',
-//       },
-//       {
-//         id: 5,
-//         name: 'Outfit 2',
-//         default_price: 23.99,
-//         category: 'Glassses',
-//       },
-//     ],
-//   };
-
-
-//   let store;
-//   beforeEach(() => {
-//     const mockStore = configureStore();
-//     store = mockStore({
-//       relatedItems: mockRelatedItems,
-//       product: {
-//         id: 1,
-//         name: 'T-shirt',
-//         price: 19.99,
-//         category: 'Clothing',
-//         image: 'https://example.com/image1.jpg',
-//       },
-//     });
-//   });
-
-//   it('renders the related product card with product details', () => {
-//     const { getByText, getByAltText } = render(
-//       <Provider store={store}>
-//         <RelatedItems />
-//       </Provider>
-//     );
-
-//     const categoryElement = getByText('Clothing');
-//     expect(categoryElement).toBeInTheDocument();
-
-//     const nameElement = getByText('Related Product 1');
-//     expect(nameElement).toBeInTheDocument();
-
-//     const priceElement = getByText('$19.99');
-//     expect(priceElement).toBeInTheDocument();
-
-//     const imageElement = getByAltText('Product Image');
-//     expect(imageElement).toBeInTheDocument();
-//     expect(imageElement.src).toBe('https://example.com/image1.jpg');
+//     const relatedProductCards = screen.getAllByTestId('related-product-card');
+//     expect(relatedProductCards).toHaveLength(relatedItemsStub.relatedProducts.length);
 //   });
 // });
