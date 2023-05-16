@@ -19,9 +19,9 @@ const ProductDescription = () => {
             <p>{productInformation.description}</p>
           </div>
           {productInformation.features &&
-            <div className="inlineBlock" style={{paddingLeft: "5vh", width: "30vh"}}>
+            <div className="inlineBlock" style={{paddingLeft: "5vh", width: "30vh"}} id="features">
             {productInformation.features.map((feature, index) =>
-              <p key={index}><FaCheckCircle />{feature.feature}: {feature.value}</p>
+              <p key={index} data-testid="feature"><FaCheckCircle />{feature.feature}: {feature.value}</p>
               )}
             </div>
           }

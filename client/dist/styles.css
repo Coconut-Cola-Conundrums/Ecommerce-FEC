@@ -18,6 +18,10 @@ body {
   position: relative;
 }
 
+path {
+  pointer-events: none;
+}
+
 .inlineBlock {
   display: inline-block;
   position: relative;
@@ -37,6 +41,7 @@ body {
   height: 100%;
   object-fit: cover;
   position: absolute;
+  border-radius: 2rem;
   /* z-index: 1; */
 }
 
@@ -65,6 +70,7 @@ body {
   top: -5vh;
   position: absolute;
 }
+
 
 .mainPhotoArrowBox {
   position: absolute;
@@ -114,7 +120,7 @@ body {
   object-fit: cover;
 }
 
-.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active {
+.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active, .expandInZoom:active{
   color:  rgb(81, 80, 80);
   transform: scale(0.8);
 }
@@ -137,7 +143,7 @@ body {
   max-height: 3vh;
   background-color: #dfdfdf;
   border-radius: 50%;
-  left: 2vh;
+  left: 2.25vh;
 }
 
 .up {
@@ -203,11 +209,18 @@ a {
   margin-bottom: 20vh;
 }
 
+.styleBox {
+  height: 6vh;
+  width: 6vh;
+  position: relative;
+  display: inline-block;
+}
+
 .styleElement {
   height: 5vh;
   width: 5vh;
   object-fit: cover;
-  margin-left: 1vh;
+  /* margin-left: 1vh; */
   border-radius: 50%;
   position: relative;
   cursor: pointer;
@@ -215,14 +228,14 @@ a {
 }
 
 .selectedStyleElement {
-  margin: 0vh;
-  padding: 0vh;
+  /* margin: 0vh;
+  padding: 0vh; */
 }
 
 .checkSelectedStyleElement {
   padding: 0vh;
-  position: relative;
-  left: 1vh;
+  position: absolute;
+  left: 4vh;
   z-index: 10;
 }
 
@@ -329,11 +342,11 @@ a {
 }
 
 .leftArrow {
-  left: 300px;
+  left: 1vh;
 }
 
 .rightArrow {
-  right: 300px;
+  right: 1vh;
 }
 
 .carouselArrow:focus {
@@ -622,8 +635,8 @@ a {
 
 #review-form {
   background-color: rgb(220, 254, 243);
-  height: 70vh;
-  width: 70vh;
+  height: 600px;
+  width: 650px;
   padding: 5px;
   margin: 10px;
   border-radius: 20px;
@@ -653,7 +666,7 @@ a {
 }
 
 .ratingBar {
-  width: 300px;
+  width: 250px;
   cursor: pointer;
 }
 
@@ -662,7 +675,7 @@ a {
 }
 
 .productBar {
-  width: 300px;
+  width: 250px;
 }
 
 .label {
@@ -713,7 +726,7 @@ a {
 }
 
 #recommend:hover {
-  background-color: #ff5733;
+  background-color: #8b8b8b;
   cursor: pointer;
 }
 
@@ -729,6 +742,15 @@ a {
   font-family: sans-serif;
 }
 
+.questionList {
+
+  position: relative;
+  width: 600px;
+  text-align: left;
+
+
+}
+
 #rrContainer {
   position: absolute;
   left: 50%;
@@ -742,10 +764,12 @@ a {
 
 #sortContainer {
   border: 1px solid #ccc;
+  background-color: #EDF2FD;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
+  padding-top: 15px;
   margin: 10px;
-  width: 600px;
+  width: 550px;
 }
 
 #sort {
@@ -794,7 +818,7 @@ a {
 }
 
 #sortSelector {
-  padding-left: 275px;
+  padding-left: 250px;
   width: 400px;
 }
 
@@ -820,4 +844,84 @@ a {
 
 #ratingElement {
   display:inline;
+}
+
+
+.helpful {
+  background-color: #f0f8f8;
+  border: 1px solid black;
+  border-radius: 4px;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  width: 70px;
+}
+
+.report {
+  background-color: #f0f8f8;
+  border: 1px solid black;
+  border-radius: 4px;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  width: 70px;
+}
+
+.helpful:hover, .report:hover {
+  background-color: #c8e0e0;
+}
+
+#moreReviews {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  padding: 5px;
+  width: 115px;
+}
+
+#moreReviews:hover {
+  background-color: #0059b9;
+
+.questionSearch{
+
+  width: 74vh;
+  height: 56px;
+  border-radius: 4px;
+  position: relative;
+  background-color: rgba(255,255,255,0.3);
+  transition: 0.3s all;
+  font-size:medium;
+}
+
+.searchButton {
+
+  height: 62px;
+  width:100px;
+  background-color: #9cc0e6;
+  color: #000000;
+  border: black solid 1px;
+  font-size: medium;
+  margin: 5px;
+}
+
+.q {
+  width: 100vh;
+  position: relative;
+  padding:5vh;
+}
+
+ /* .helpful {
+position: relative;
+left: 50vh;
+bottom: 5vh;
+} */
+
+.credits {
+  font-size: small;
 }

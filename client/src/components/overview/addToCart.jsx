@@ -42,7 +42,7 @@ const AddToCart = () => {
     } else {
       dispatch(addToCart({sku_id: Number(selectedSku.sku)}));
     }
-    setTimeout(() => {dispatch(resetMessages()); setSelectedOrder({})}, 20000)
+    setTimeout(() => {dispatch(resetMessages()); setSelectedOrder({})}, 6000)
   }
 
   useEffect(() => {
@@ -102,9 +102,9 @@ const AddToCart = () => {
             </div>
             <div style={{display: "flex"}}>
               <a href="https://twitter.com/intent/tweet?text=Checkout%20this%20cute%20item!">
-                <FaTwitterSquare className="inlineBlock shareIcons"/>
+                <FaTwitterSquare className="inlineBlock shareIcons" target="_blank" rel="noreferrer noopener"/>
               </a>
-              <FaFacebookSquare className="inlineBlock shareIcons"/>
+              <div data-href="https://localhost:3000" data-layout="button_count" data-size="small"><a target="_blank" rel="noreferrer noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse"><FaFacebookSquare className="inlineBlock shareIcons"/></a></div>
               <FaPinterestSquare className="inlineBlock shareIcons"/>
             </div>
           </div>
