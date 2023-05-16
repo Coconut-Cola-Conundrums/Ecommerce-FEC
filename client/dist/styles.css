@@ -18,6 +18,10 @@ body {
   position: relative;
 }
 
+path {
+  pointer-events: none;
+}
+
 .inlineBlock {
   display: inline-block;
   position: relative;
@@ -37,6 +41,7 @@ body {
   height: 100%;
   object-fit: cover;
   position: absolute;
+  border-radius: 2rem;
   /* z-index: 1; */
 }
 
@@ -65,6 +70,7 @@ body {
   top: -5vh;
   position: absolute;
 }
+
 
 .mainPhotoArrowBox {
   position: absolute;
@@ -114,7 +120,7 @@ body {
   object-fit: cover;
 }
 
-.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active {
+.mainPhotoArrow:active, .mainPhotoArrowOverModal:active, .thumbnailArrow:active, .expandIcon:active, .expandInZoom:active{
   color:  rgb(81, 80, 80);
   transform: scale(0.8);
 }
@@ -137,7 +143,7 @@ body {
   max-height: 3vh;
   background-color: #dfdfdf;
   border-radius: 50%;
-  left: 2vh;
+  left: 2.25vh;
 }
 
 .up {
@@ -203,11 +209,18 @@ a {
   margin-bottom: 20vh;
 }
 
+.styleBox {
+  height: 6vh;
+  width: 6vh;
+  position: relative;
+  display: inline-block;
+}
+
 .styleElement {
   height: 5vh;
   width: 5vh;
   object-fit: cover;
-  margin-left: 1vh;
+  /* margin-left: 1vh; */
   border-radius: 50%;
   position: relative;
   cursor: pointer;
@@ -215,14 +228,14 @@ a {
 }
 
 .selectedStyleElement {
-  margin: 0vh;
-  padding: 0vh;
+  /* margin: 0vh;
+  padding: 0vh; */
 }
 
 .checkSelectedStyleElement {
   padding: 0vh;
-  position: relative;
-  left: 1vh;
+  position: absolute;
+  left: 4vh;
   z-index: 10;
 }
 
@@ -329,11 +342,11 @@ a {
 }
 
 .leftArrow {
-  left: 300px;
+  left: 1vh;
 }
 
 .rightArrow {
-  right: 300px;
+  right: 1vh;
 }
 
 .carouselArrow:focus {
