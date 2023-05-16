@@ -19,7 +19,7 @@ const StyleSelector = () => {
 
   }, [availableStyles]);
 
-  console.log(product);
+  // console.log(availableStyles);
   return (
     <div className="relative">
       {product.availableStyles.length ?
@@ -30,12 +30,22 @@ const StyleSelector = () => {
             <div className="inlineBlock" key={index}>
               <div className="styleBox">
                 <FaCheckCircle className="checkSelectedStyleElement" id={index} />
-                <img className="styleElement selectedStyleElement" src={style.photos[0].thumbnail_url} alt="" id={style.style_id} onClick={onClickStyle} data-testid="selectedStyle"/>
+                <img
+                  className="styleElement selectedStyleElement"
+                  src={style.photos[0].thumbnail_url}
+                  alt="styleElement"
+                  id={style.style_id}
+                  onClick={onClickStyle} />
               </div>
             </div>
             :
-            <div className="styleBox">
-            <img className="styleElement" src={style.photos[0].thumbnail_url} alt="" key={index} id={style.style_id} onClick={onClickStyle} data-testid="unselectedStyle"/>
+            <div className="styleBox" key={index} >
+              <img
+                className="styleElement"
+                src={style.photos[0].thumbnail_url}
+                alt="styleElement"
+                id={style.style_id}
+                onClick={onClickStyle}/>
             </div>
           }
         )}

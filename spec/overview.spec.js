@@ -48,7 +48,8 @@ describe('Product Description Section', () => {
 });
 
 describe('Style Selector Section', () => {
-  test('Clicking new style updates the current style element' , async() => {
+
+  test('Clicking new style updates the current style element in state and displays new style name' , async() => {
     // mock user clicking onClickStyle which updates style
     let productState = {...initialState, ...productStub, ...styleStub, currentStyle: styleStub.availableStyles[0]};
 
@@ -60,8 +61,15 @@ describe('Style Selector Section', () => {
       </Provider>
     )
 
+    let styleToClick = await screen.queryAllByAltText("styleElement")[3];
+
     const user = userEvent.setup();
-    user.click(screen.queryAllByTestId("unselectedStyle")[3])
-    .then(() => expect(screen.queryAllByTestId("unselectedStyle")[3]).toHaveClass("selectedStyleElement"))
+    await user.click(styleToClick);
+    // new selected style should be the third in the style element array
+    screen.logTestingPlaygroundURL()
+    expect(await screen.queryAllByAltText("styleElement")[3]).toHaveClass("selectedStyleElement");
+    expect(await screen.getByText(/digital Red & Black/i)).toBeInTheDocument();
+
+
   })
 })
