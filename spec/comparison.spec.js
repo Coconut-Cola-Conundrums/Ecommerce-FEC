@@ -6,13 +6,8 @@ import RelatedItems from '../client/src/components/comparison/RelatedItems.jsx';
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
 import configureMockStore from 'redux-mock-store';
-import { relatedItemsStub, productStub } from './stubs/comparisonStub.js';
-import wrapTestWithProvider from './testStore.js';
-// import { productSlice } from '../client/src/slices/productSlice.jsx';
-// import { comparisonSlice } from '../client/src/slices/comparisonSlice.jsx';
-// import { reviewSlice } from '../client/src/slices/reviewSlice.jsx';
-// import { questionsSlice } from '../client/src/slices/questionSlice.jsx';
 import thunk from 'redux-thunk'
+import { getProductStyle, getOutfit, getMeta } from '../client/src/slices/comparisonSlice.jsx';
 
 const product = {
   id: 40345,
@@ -78,7 +73,13 @@ const initialState = {
         }
       ]
     },
-    availableStyles: []
+    availableStyles: [{style_id:240536,
+      name: "Zebra Stripe",
+      original_price: "900.00",
+      sale_price: null,
+      photos: [{thumbnail_url: "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+                url: "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}]
+              }]
   }
 }
 
@@ -205,6 +206,18 @@ describe('Card', () => {
 
     const imageElement = screen.getByAltText('Product Image');
     expect(imageElement).toBeInTheDocument();
+  });
+
+  it('opens the modal when caret is clicked', () => {
+    render(
+      <Provider store={store}>
+        <Card product={product} index={0} />
+      </Provider>
+    );
+
+
+    const caret = screen.getByTestId('caret');
+    fireEvent.click(caret);
   });
 })
 
@@ -345,6 +358,38 @@ describe('RelatedItems component', () => {
 
     // Assert
     expect(getByText('Your Outfits')).toBeInTheDocument();
+  });
+
+  it('renders the related products', () => {
+    const { getAllByTestId } = render(
+      <Provider store={store}>
+        <RelatedItems />
+      </Provider>
+    );
+
+    // Assert
+    const relatedProductCards = getAllByTestId('related-product-card');
+    expect(relatedProductCards.length).toBe(1);
+  });
+
+  it('dispatches the getOutfit action when clicking on the outfit card', () => {
+    store.dispatch = jest.fn(); // Mock dispatch function
+
+    const { container } = render(
+      <Provider store={store}>
+        <RelatedItems />
+      </Provider>
+    );
+
+    const outfitCard = container.querySelector('.plusButton');
+    const xButton = container.querySelector('.fa-x')
+
+
+    fireEvent.click(outfitCard);
+    fireEvent.click(xButton);
+
+
+    expect(store.dispatch).toHaveBeenCalledTimes(7);
   });
 
 });
