@@ -3,7 +3,7 @@ body {
 }
 
 #body {
-  background-color: rgb(235, 253, 253);
+  background-color: rgb(249, 249, 249);
 }
 
 .wrapper {
@@ -44,6 +44,7 @@ path {
   border-radius: 2rem;
   /* z-index: 1; */
 }
+
 
 .zoomed {
   object-fit: cover;
@@ -573,9 +574,9 @@ a {
 
 .reviewContainer {
   font-family: 'Candara', Verdana, monospace;
-  background-color: #e5fafa;
+  background-color: #dddddd;
   border: 1px solid #ccc;
-  border-radius: 15px;
+  border-radius: 5px;
   width: 700px;
   padding: 20px;
   margin: 10px;
@@ -621,8 +622,8 @@ a {
 }
 #stars {
   width: 130px;
-  border: 1px solid #ccc;
-  background-color: rgb(238, 245, 246);
+  /* border: 1px solid #ccc; */
+  /* background-color: rgb(238, 245, 246); */
   padding: 5px;
   text-align: center;
   border-radius: 20px;
@@ -634,12 +635,12 @@ a {
 }
 
 #review-form {
-  background-color: rgb(220, 254, 243);
+  background-color: rgb(192, 192, 192);
   height: 600px;
   width: 650px;
   padding: 5px;
   margin: 10px;
-  border-radius: 20px;
+  border-radius: 5px;
   border: 1px solid #000000;
 
 }
@@ -676,6 +677,9 @@ a {
 
 .productBar {
   width: 250px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-right: 20px;
 }
 
 .label {
@@ -688,9 +692,10 @@ a {
 }
 
 .charButton {
-  padding: 8px 16px;
-  border-radius: 20px;
-  width: 70px;
+  padding: 5px 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
   border: 1px solid #000000;
   background-color: #eee;
   color: #333;
@@ -719,9 +724,9 @@ a {
 #recommend {
   background-color: #4e4e4e;
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
-  padding: 12px 20px;
+  padding: 10px 10px;
   margin: 8px 0;
 }
 
@@ -735,9 +740,9 @@ a {
   word-wrap: break-word;
   height: 100px;
   margin: 20px;
-  background-color: white;
+  background-color: rgb(246, 246, 246);
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   font-family: sans-serif;
 }
@@ -755,17 +760,17 @@ a {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0%);
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 10px; */
   padding: 20px;
   margin: 10px;
-  background-color: rgb(220, 240, 255);
+  /* background-color: rgb(170, 170, 170); */
 }
 
 #sortContainer {
   border: 1px solid #ccc;
-  background-color: #EDF2FD;
-  border-radius: 10px;
+  background-color: #e3e3e3;
+  border-radius: 5px;
   padding: 10px;
   padding-top: 15px;
   margin: 10px;
@@ -802,7 +807,7 @@ a {
 }
 
 #buttonSearch {
-  background-color: #007bff;
+  background-color: #6a6a6a;
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -814,7 +819,7 @@ a {
 }
 
 #buttonSearch:hover {
-  background-color: #0069d9;
+  background-color: #7d7d7d;
 }
 
 #sortSelector {
@@ -827,7 +832,7 @@ a {
 }
 
 #createReview {
-  background-color: #007bff;
+  background-color: #6a6a6a;
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -839,12 +844,9 @@ a {
 }
 
 #createReview:hover {
-  background-color: #0069d9;
+  background-color: #7d7d7d;
 }
 
-#ratingElement {
-  display:inline;
-}
 
 
 
@@ -875,7 +877,7 @@ a {
 }
 
 #moreReviews {
-  background-color: #007bff;
+  background-color: #6a6a6a;
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -887,7 +889,7 @@ a {
 }
 
 #moreReviews:hover {
-  background-color: #0059b9;
+  background-color: #7d7d7d;
 }
 
 .questionSearch{
@@ -929,4 +931,16 @@ a {
     margin-left: 0;
     margin-right: 1vh;
     font-weight: bold;
+}
+
+#ratingElement .ratingBar {
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+
+#charLabel {
+  display: inline-block;
+  width: 80px;
+
 }

@@ -3,6 +3,7 @@ import {Stars} from './stars.jsx';
 import ProgressBar from "@ramonak/react-progress-bar";
 import {useSelector, useDispatch} from 'react-redux';
 import {reducers} from '../../../slices/reviewSlice.jsx'
+import StarImage from '../Images/icons8-star-24.png'
 
 export const RatingBreakdown = ({ratings}) => {
 
@@ -36,30 +37,33 @@ export const RatingBreakdown = ({ratings}) => {
       <h1>Rating Breakdown</h1>
       <h2>Average Rating   {(fixedAvg).toFixed(1)}</h2>
       <div><Stars rating = {(fixedAvg).toFixed(2)}/></div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(1)}}>
-        <label>1 Star
-        </label>
-        {<ProgressBar className = 'ratingBar'  bgColor="#64B8B5" completed={Number(((one/total)*100).toFixed(0))}/>}
-      </div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(2)}}>
-        <label>2 Star
-        </label>
-        {<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={Number(((two/total)*100).toFixed(0))}/>}
-      </div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(3)}}>
-        <label>3 Star
-        </label>
-        {<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={Number(((three/total)*100).toFixed(0))}/>}
-      </div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(4)}}>
-        <label>4 Star
-        </label>
-        {<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={Number(((four/total)*100).toFixed(0))}/>}
-      </div>
-      <div id = 'ratingElement' onClick = {() => {handleClick(5)}}>
-        <label>5 Star
-        </label>{<ProgressBar  className = 'ratingBar' bgColor="#64B8B5" completed={Number(((five/total)*100).toFixed(0))}/>}
-      </div>
+      <div id = 'ratingBars'>
+        <div id = 'ratingElement' onClick = {() => {handleClick(1)}}>
+          <label>1 <img src = {StarImage} width = "15"/> {Number(((one/total)*100).toFixed(0))}%
+          </label>
+          {<ProgressBar borderRadius = '5px' className = 'ratingBar' height = '10px' bgColor="black" labelColor = 'black' completed={Number(((one/total)*100).toFixed(0))}/>}
+        </div>
+        <div id = 'ratingElement' onClick = {() => {handleClick(2)}}>
+        <label>2 <img src = {StarImage} width = "15"/> {Number(((two/total)*100).toFixed(0))}%
+          </label>
+          {<ProgressBar borderRadius = '5px' className = 'ratingBar' height = '10px' bgColor="black" labelColor = 'black' completed={Number(((two/total)*100).toFixed(0))}/>}
+        </div>
+        <div id = 'ratingElement' onClick = {() => {handleClick(3)}}>
+        <label>3 <img src = {StarImage} width = "15"/> {Number(((three/total)*100).toFixed(0))}%
+          </label>
+          {<ProgressBar borderRadius = '5px' className = 'ratingBar' height = '10px' bgColor="black" labelColor = 'black' completed={Number(((three/total)*100).toFixed(0))}/>}
+        </div>
+        <div id = 'ratingElement' onClick = {() => {handleClick(4)}}>
+        <label>4 <img src = {StarImage} width = "15"/> {Number(((four/total)*100).toFixed(0))}%
+          </label>
+          {<ProgressBar borderRadius = '5px' className = 'ratingBar' height = '10px' bgColor="black" labelColor = 'black' completed={Number(((four/total)*100).toFixed(0))}/>}
+        </div>
+        <div id = 'ratingElement' onClick = {() => {handleClick(5)}}>
+        <label>5 <img src = {StarImage} width = "15"/> {Number(((five/total)*100).toFixed(0))}%
+          </label>
+          {<ProgressBar borderRadius = '5px' className = 'ratingBar' height = '10px' bgColor="black" labelColor = 'black' completed={Number(((five/total)*100).toFixed(0))}/>}
+        </div>
+        </div>
     </div>
   )
 }
