@@ -342,11 +342,11 @@ a {
 }
 
 .leftArrow {
-  left: 1vh;
+  left: 42vh;
 }
 
 .rightArrow {
-  right: 1vh;
+  right: 42vh;
 }
 
 .carouselArrow:focus {

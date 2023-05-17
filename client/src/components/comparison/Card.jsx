@@ -112,7 +112,7 @@ const Card = ({ product }) => {
 
     return (
       <div className="individualCard" onClick={handleCardClick}>
-        <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick}></i>
+        <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick} data-testid="caret"></i>
         <div className="imageContainer" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           {isHovered ? (
             <Carousel
@@ -120,6 +120,7 @@ const Card = ({ product }) => {
               showStatus={false}
               showIndicators={false}
               onChange={handleThumbnailChange}
+              data-testid="thumbnailCarousel"
             >
               {product.productStyles[0].photos.map((photo, index) => (
                 <div key={index} onClick={(e) => handleThumbnailClick(index, e)} >
@@ -159,6 +160,7 @@ const Card = ({ product }) => {
           contentLabel="Product Details Modal"
           ariaHideApp={false}
           style={modalStyles}
+          data-testid="modal"
         >
           <div className="modalContainer">
           <h2>Comparing</h2>
