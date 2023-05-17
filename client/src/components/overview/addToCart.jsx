@@ -72,6 +72,7 @@ const AddToCart = () => {
                 styles={{control: (baseStyles) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}}
                 className="sizeSelectors"
                 placeholder="Select Size"
+                data-testid="select-size"
                 menuIsOpen={openMenu}
                 options={Object.keys(availableSizes).map((sku) => ({value: sku, label: currentStyle.skus[sku].size}))}
                 getOptionLabel={option => option.label}
