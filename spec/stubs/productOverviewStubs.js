@@ -382,7 +382,7 @@ module.exports.styleStub = {
 }
 
 
-module.exports.productYeezyStub = {
+module.exports.yeezyProductStub = {
     "id": 40351,
     "campus": "hr-rfp",
     "name": "YEasy 350",
@@ -408,7 +408,7 @@ module.exports.productYeezyStub = {
     ]
 }
 
-module.exports.styleYeezyStub = {
+module.exports.yeezyStyleStub = {
     availableStyles: [
         {
     "style_id": 240536,

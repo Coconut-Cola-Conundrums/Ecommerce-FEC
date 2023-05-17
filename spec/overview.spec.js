@@ -104,7 +104,6 @@ describe('Style Selector Section', () => {
     const user = userEvent.setup();
     await user.click(styleToClick);
     // new selected style should be the third in the style element array
-    // screen.logTestingPlaygroundURL();
     expect(await screen.queryAllByTestId("styleElement")[3]).toHaveClass("selectedStyleElement");
     expect(await screen.getByText(/digital Red & Black/i)).toBeInTheDocument();
   });
@@ -251,6 +250,20 @@ describe('Image Gallery', () => {
     expect(await screen.queryByTestId("mainPhoto").alt).toEqual(allThumbnails[3].src);
   }),
 
+
+  test(('Should enter zoom view when user clicks on photo in expanded mode'), async() => {
+    render (
+      <Provider store={testStore}>
+        <ImageGallery />
+      </Provider>
+    )
+
+    const user = userEvent.setup();
+    await user.click(screen.getByTestId("expandIcon")); // user clicks expand icon
+    await user.click(screen.getByAltText("click-to-zoom")); // user clicks mainphoto while in zoom
+    expect(await screen.getByAltText("tracking-mouse")).toBeInTheDocument();
+  }),
+
   test(('When user clicks on the right arrow, the main photo is updated to the next photo'), async() => {
 
     render (
@@ -282,6 +295,7 @@ describe('Image Gallery', () => {
     expect(await screen.queryByTestId("rightArrow")).not.toBeInTheDocument();
   }),
 
+
   test(('Should render out further thumbnails when up/down arrows clicked'), async() => {
     let yeezyState = {
       product:
@@ -291,6 +305,20 @@ describe('Image Gallery', () => {
     }
 
     let yeezyStore = wrapTestWithProvider(yeezyState);
+
+    render(
+      <Provider store={yeezyStore}>
+        <ImageGallery />
+      </Provider>
+    )
+
+    const user = userEvent.setup();
+    const downButton = await screen.queryByTestId("down");
+    for (let i = 0; i < 4; i++) {
+      await user.click(downButton);
+    }
+
+    expect(await screen.queryByTestId('mainPhoto').alt).toEqual(yeezyStyleStub.availableStyles[0].photos[4].thumbnail_url)
 
   })
 })

@@ -122,7 +122,12 @@ const ImageGallery = () => {
             alt={currentStyle.photos[mainPhoto].thumbnail_url}
             />
 
-          <Modal show={showModal} mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl} onClickZoomPhoto={onClickZoomPhoto} zoom={zoom}/>
+          <Modal
+            show={showModal}
+            mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl}
+            onClickZoomPhoto={onClickZoomPhoto}
+            zoom={zoom}
+            />
 
           {thumbnailRange.from !== 0 ?
           <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} />
@@ -143,7 +148,11 @@ const ImageGallery = () => {
           )}
 
           {thumbnailRange.to !== currentStyle.photos.length ?
-            <FaRegArrowAltCircleDown className="thumbnailArrow down" id="down" onClick={onScrollThumbnails} />
+            <FaRegArrowAltCircleDown
+              className="thumbnailArrow down"
+              id="down"
+              data-testid="down"
+              onClick={onScrollThumbnails} />
             : null}
           <div className={showModal ? "mainPhotoBoxOverModal" : "mainPhotoArrowBox"}>
             {mainPhoto !== 0 ?
