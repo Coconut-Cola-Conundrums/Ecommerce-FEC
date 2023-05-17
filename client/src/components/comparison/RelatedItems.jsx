@@ -156,7 +156,7 @@ const RelatedItems = () => {
 
       <div ref={carouselRefForRelated} className="carouselContainer" onScroll={handleScrollForRelated}>
         {comparisonState.relatedProducts.map((product, i) => (
-          <div key={i} className="relatedItemCard">
+          <div key={i} className="relatedItemCard" data-testid="related-product-card">
             <Card product={product} />
           </div>
         ))}
@@ -181,7 +181,7 @@ const RelatedItems = () => {
         )}
 
         <div ref={carouselRefForOutfits} className="outfitsCarouselContainer" onScroll={handleScrollForOutfits}>
-          <div className="outfitCard">
+          <div className="outfitCard plusButton">
             <i className="fa-regular fa-square-plus fa-2xl" onClick={() => handleOutfitClick(productId)}></i>
           </div>
 
