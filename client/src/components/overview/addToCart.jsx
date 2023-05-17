@@ -110,7 +110,7 @@ const AddToCart = () => {
             </div>
           </div>
         :
-          <Select className="sizeSelectors" placeholder="OUT OF STOCK" />
+          <Select className="sizeSelectors"  styles={{control: (baseStyles) => ({...baseStyles, border: "0.1vh pink solid", cursor: "pointer"})}} placeholder="OUT OF STOCK" />
         }
       </div>
     </div>
