@@ -3,7 +3,7 @@ body {
 }
 
 #body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(253, 253, 253);
 }
 
 /* * {
@@ -371,7 +371,7 @@ a {
   flex: 0 0 calc(100% / 5 - 10px);
   height: 400px;
   margin-right: 10px;
-  background-color: #FAEDCA;
+  background-color: #cccccc;
   border: 1px solid #ccc;
   border-radius: 15px;
   padding: 10px;
