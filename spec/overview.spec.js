@@ -7,7 +7,9 @@ import ProductDescription from '../client/src/components/overview/productDescrip
 import ProductDetails from '../client/src/components/overview/productDetails';
 import StyleSelector from '../client/src/components/overview/styleSelector';
 import AddToCart from  '../client/src/components/overview/addToCart';
-import { productStub, styleStub } from './stubs/productOverviewStubs.js';
+import Modal from  '../client/src/components/overview/mainPhotoModal';
+import ImageGallery from  '../client/src/components/overview/ImageGallery';
+import { productStub, styleStub, yeezyProductStub, yeezyStyleStub } from './stubs/productOverviewStubs.js';
 import { ratingsStub } from './stubs/ratingsStubs.js';
 import { store } from '../client/src/store.jsx';
 import { rest } from 'msw';
@@ -97,13 +99,13 @@ describe('Style Selector Section', () => {
       </Provider>
     )
 
-    let styleToClick = await screen.queryAllByAltText("styleElement")[3];
+    let styleToClick = await screen.queryAllByTestId("styleElement")[3];
 
     const user = userEvent.setup();
     await user.click(styleToClick);
     // new selected style should be the third in the style element array
     // screen.logTestingPlaygroundURL();
-    expect(await screen.queryAllByAltText("styleElement")[3]).toHaveClass("selectedStyleElement");
+    expect(await screen.queryAllByTestId("styleElement")[3]).toHaveClass("selectedStyleElement");
     expect(await screen.getByText(/digital Red & Black/i)).toBeInTheDocument();
   });
 })
@@ -136,12 +138,12 @@ describe('Product Details Section', () => {
       </Provider>
     )
 
-    let styleToClick = await screen.queryAllByAltText("styleElement")[5];
+    let styleToClick = await screen.queryAllByTestId("styleElement")[5];
 
     const user = userEvent.setup();
     await user.click(styleToClick);
 
-    expect(await screen.queryByText(/170/)).toBeInTheDocument();
+    expect(screen.getByText(/170/)).toBeInTheDocument();
   })
 })
 
@@ -208,4 +210,87 @@ describe('Add to Cart', () => {
   //   expect(await screen.queryByText(/Added of Forest Green & Black in size M/i)).toBeInTheDocument();
 
   // })
+})
+
+describe('Image Gallery', () => {
+
+  const preloadedState = {
+    product:
+      {...initialState, ...productStub, ...styleStub, currentStyle: styleStub.availableStyles[0]},
+    reviews:
+      {...initialReviewsState, ...ratingsStub}
+  }
+
+  const testStore = wrapTestWithProvider(preloadedState);
+
+  test(('Should not show modal initially, but should show when user clicks on expand icon'), async() => {
+
+    render (
+      <Provider store={testStore}>
+        <ImageGallery />
+      </Provider>
+    )
+    const user = userEvent.setup();
+    expect(screen.queryByTestId("modal")).not.toBeInTheDocument(); // should not show initially
+    await user.click(screen.getByTestId("expandIcon")); // opens modal
+    expect(screen.getByTestId("modal")).toBeInTheDocument(); // modal should now be in view
+  }),
+
+  test(('When user clicks on a different thumbnail than the main photo, the selected thumbnail should become the main photo'), async() => {
+
+    render (
+      <Provider store={testStore}>
+        <ImageGallery />
+      </Provider>
+    )
+
+    const user = userEvent.setup();
+    const allThumbnails = await screen.queryAllByTestId("thumbnailPhoto"); // all the thumbnails
+    expect(await screen.queryByTestId("mainPhoto").alt).toEqual(allThumbnails[0].src); // initial photo should be the zeroth photo in the thumbnails
+    await user.click(allThumbnails[3]); // user clicks the third photo
+    expect(await screen.queryByTestId("mainPhoto").alt).toEqual(allThumbnails[3].src);
+  }),
+
+  test(('When user clicks on the right arrow, the main photo is updated to the next photo'), async() => {
+
+    render (
+      <Provider store={testStore}>
+        <ImageGallery />
+      </Provider>
+    )
+
+    const user = userEvent.setup();
+    const allThumbnails = screen.getAllByTestId("thumbnailPhoto"); // all the thumbnails
+    expect(screen.getByTestId("mainPhoto").alt).toEqual(allThumbnails[0].src); // initial photo should be the zeroth photo in the thumbnails
+    await user.click(screen.getByTestId("rightArrow")); // user clicks the next photo
+    expect(await screen.queryByTestId("mainPhoto").alt).toEqual(allThumbnails[1].src);
+  }),
+
+  test(('Should not have right arrow when on last photo'), async() => {
+    render(
+      <Provider store={testStore}>
+        <ImageGallery />
+      </Provider>
+    )
+
+    const user = userEvent.setup();
+    const allThumbnails = screen.getAllByTestId("thumbnailPhoto"); // all the thumbnails
+    expect(await screen.queryByTestId("leftArrow")).not.toBeInTheDocument(); // initially, right arrow but no left
+    expect(screen.getByTestId("rightArrow")).toBeInTheDocument();
+    await user.click(allThumbnails[5]); // user clicks the last photo
+    expect(screen.getByTestId("leftArrow")).toBeInTheDocument(); // after changing to last photo, left photo but no right
+    expect(await screen.queryByTestId("rightArrow")).not.toBeInTheDocument();
+  }),
+
+  test(('Should render out further thumbnails when up/down arrows clicked'), async() => {
+    let yeezyState = {
+      product:
+        {...initialState, ...yeezyProductStub, ...yeezyStyleStub, currentStyle: yeezyStyleStub.availableStyles[0]},
+      reviews:
+        {...initialReviewsState, ...ratingsStub}
+    }
+
+    let yeezyStore = wrapTestWithProvider(yeezyState);
+
+  })
 })

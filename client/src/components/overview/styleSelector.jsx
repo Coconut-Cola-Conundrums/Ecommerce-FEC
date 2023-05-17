@@ -33,7 +33,7 @@ const StyleSelector = () => {
                 <img
                   className="styleElement selectedStyleElement"
                   src={style.photos[0].thumbnail_url}
-                  alt="styleElement"
+                  data-testid="styleElement"
                   id={style.style_id}
                   onClick={onClickStyle} />
               </div>
@@ -43,7 +43,7 @@ const StyleSelector = () => {
               <img
                 className="styleElement"
                 src={style.photos[0].thumbnail_url}
-                alt="styleElement"
+                data-testid="styleElement"
                 id={style.style_id}
                 onClick={onClickStyle}/>
             </div>

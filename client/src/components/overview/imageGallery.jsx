@@ -113,11 +113,16 @@ const ImageGallery = () => {
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
         <div className="absolute">
 
-          {!zoom ? <FaExpand className={showModal ? "expandInZoom" : "expandIcon right"} size="3vh" onClick={onClickExpandPhoto}/> : null}
+          {!zoom ? <FaExpand className={showModal ? "expandInZoom" : "expandIcon right"} size="3vh" onClick={onClickExpandPhoto} data-testid="expandIcon"/> : null}
 
-          <img id="main" className="mainPhoto" src={currentStyle.photos[mainPhoto].url || defaultUrl} alt="" />
+          <img id="main"
+            data-testid="mainPhoto"
+            className="mainPhoto"
+            src={currentStyle.photos[mainPhoto].url || defaultUrl}
+            alt={currentStyle.photos[mainPhoto].thumbnail_url}
+            />
 
-          <Modal show={showModal} mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl} onClickZoomPhoto={onClickZoomPhoto} zoom={zoom} />
+          <Modal show={showModal} mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl} onClickZoomPhoto={onClickZoomPhoto} zoom={zoom}/>
 
           {thumbnailRange.from !== 0 ?
           <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} />
@@ -126,10 +131,11 @@ const ImageGallery = () => {
           {currentStyle.photos.slice(thumbnailRange.from, thumbnailRange.to).map((photo, index) =>
             <img className={currentStyle.photos[mainPhoto].thumbnail_url === photo.thumbnail_url ? "thumbnail selected" : "thumbnail"}
               src={photo.thumbnail_url || defaultUrl}
-              alt="" key={index} id={photo.thumbnail_url ? photo.thumbnail_url : 0}
+              data-testid="thumbnailPhoto"
+              key={index} id={photo.thumbnail_url ? photo.thumbnail_url : 0}
               onClick={onClick}
               onError={({image})=> {
-                console.log(image);
+
                 image.onerror = null;
                 image.src=defaultUrl}
               }
@@ -142,11 +148,21 @@ const ImageGallery = () => {
           <div className={showModal ? "mainPhotoBoxOverModal" : "mainPhotoArrowBox"}>
             {mainPhoto !== 0 ?
             <FaCaretLeft
-              className={showModal ? "mainPhotoArrowOverModal left" : "mainPhotoArrow left"} id="left" size="6vh" color="black" onClick={onViewThumbnails} />
+              className={showModal ? "mainPhotoArrowOverModal left" : "mainPhotoArrow left"}
+              data-testid="leftArrow"
+              id="left"
+              size="6vh"
+              color="black"
+              onClick={onViewThumbnails} />
             : null}
             {mainPhoto !== (currentStyle.photos.length - 1) ?
               <FaCaretRight
-                className={showModal? "mainPhotoArrowOverModal right" : "mainPhotoArrow right"} id="right" size="6vh" color="black" onClick={onViewThumbnails}/>
+                className={showModal? "mainPhotoArrowOverModal right" : "mainPhotoArrow right"}
+                data-testid="rightArrow"
+                id="right"
+                size="6vh"
+                olor="black"
+                onClick={onViewThumbnails}/>
               : null}
             </div>
           </div>

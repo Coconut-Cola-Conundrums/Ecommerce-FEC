@@ -26,7 +26,7 @@ const Modal = ({mainPhotoImg, show, onClickZoomPhoto, zoom }) => {
   }
   return (
     <div className="relative">
-      <div className="modal">
+      <div className="modal" data-testid="modal">
         {zoom ?
           <img style={styling} src={mainPhotoImg} alt="" onClick={onClickZoomPhoto} onMouseMove={onMouse} ref={imgRef}/>
           :
