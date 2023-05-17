@@ -8,7 +8,7 @@ import {RevList} from './rating_components/rev_list.jsx';
 import {SortOptions} from './rating_components/sort_options.jsx';
 
 
-const Reviews = () => {
+export const Reviews = () => {
   const product = useSelector(state => state.product);
   const reviewState = useSelector(state => state.reviews);
   const dispatch = useDispatch();
@@ -19,26 +19,24 @@ const Reviews = () => {
     if (product.id) {
       dispatch(getReviews({id: product.id, sort: reviewState.sort}))
       .then(dispatch(getMetaData(product.id)))
-      .then(() => {
-        // console.log('This is reviewState =====>', reviewState)
-      }).catch((err) => {console.log(err)})
+      .catch((err) => {console.log(err)})
 
     }
   }, [product.id, reviewState.sort])
 
-  useEffect(() => {
-    // console.log(reviewState)
-  }, [reviewState]);
+  // useEffect(() => {
+  //   // console.log(reviewState)
+  // }, [reviewState]);
 
 // on render set initial state with the current product ID.
 
   return (
 
-    <div id  = 'rrContainer'>
+    <div id  = 'rrContainer' >
       <div className = 'formContainer'>
         <div>
           <div className = 'ratingBreakdown'><RatingBreakdown ratings = {reviewState.ratings}/></div>
-          <div className = 'productBreakdown'><ProductBreakdown characteristics = {reviewState.characteristics}/></div>
+          <div data-testid = 'reviews-test' className = 'productBreakdown'><ProductBreakdown characteristics = {reviewState.characteristics}/></div>
         </div>
 
         <div>
@@ -46,6 +44,7 @@ const Reviews = () => {
           <div className = 'newRev'><NewRev/></div>
           <div className = 'revList' id="reviewsSection" ><RevList/></div>
         </div>
+
       </div>
 
 

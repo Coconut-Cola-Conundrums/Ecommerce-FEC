@@ -1,19 +1,22 @@
 //call to the getinitial data function to check the correct data is being retrieved with a given id
 //check if the initial state is updated
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen ,waitFor} from '@testing-library/react';
 // import Reviews from '../client/src/components/ratings/index.jsx';
 import {RatingBreakdown} from '../client/src/components/ratings/rating_components/rating_breakdown.jsx';
 import {RevList} from '../client/src/components/ratings/rating_components/rev_list.jsx';
 import {ProductBreakdown} from '../client/src/components/ratings/rating_components/product_breakdown.jsx'
 import {SortOptions} from '../client/src/components/ratings/rating_components/sort_options.jsx'
 import {NewRev} from '../client/src/components/ratings/rating_components/new_rev.jsx'
+import {Reviews} from '../client/src/components/ratings/index.jsx'
 // import {Stars} from '../client/src/components/ratings/rating_components/stars.jsx';
 // const Reviews = require('../client/src/components/ratings/index.jsx');
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';
 import configureStore from 'redux-mock-store';
+import configureMockStore from 'redux-mock-store';
 import axios from 'axios';
+import thunk from 'redux-thunk';
 
 describe('summation test test', () => {
   test('adds 1 + 1 to equal 2', () => {
@@ -35,10 +38,11 @@ describe('Ratings and Reviews', () => {
 
   let store;
   beforeEach(() => {
-    const mockStore = configureStore();
+    const middlewares = [thunk];
+    const mockStore = configureMockStore(middlewares);
     store = mockStore({
       product: {
-        id: 1
+        id: 40344
       },
       reviews: {
         allReviews: [
@@ -86,7 +90,15 @@ describe('Ratings and Reviews', () => {
               id: 135222,
               value: "3.3222698072805139"
           }
-      }
+        },
+        sort: 'newest',
+        ratings: {
+          1: 2,
+          2: 3,
+          3: 4,
+          4: 5,
+          5: 6,
+        }
       }
 
     })
@@ -99,7 +111,7 @@ describe('Ratings and Reviews', () => {
         <RatingBreakdown {...props}/>
       </Provider>)
     const divElement = getByTestId('rating-breakdown-div');
-    screen.logTestingPlaygroundURL()
+    // screen.logTestingPlaygroundURL()
     expect(divElement).toBeInTheDocument();
   });
   //testing Review List Render
@@ -168,7 +180,38 @@ describe('Ratings and Reviews', () => {
       </Provider>
     )
     fireEvent.click(getByTestId('newRev'));
+    fireEvent.click(getByTestId('1'))
+    fireEvent.click(getByTestId('Fit'));
+    fireEvent.click(getByTestId('recommend'));
     fireEvent.click(getByTestId('submitTest'));
     expect(mockAxiosPost).toHaveBeenCalledTimes(1);
   })
+
+  it('Should Render Ratings and Reviews',  async () => {
+
+
+    const {getByTestId} = render(
+      <Provider store = {store}>
+        <Reviews/>
+      </Provider>
+    )
+
+    try {
+      const response = await axios.get('http://localhost:3000/reviews/meta', {
+        params: {
+          product_id: 40344
+        }
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+
+    await waitFor(() => {
+      const divElement = getByTestId('reviews-test');
+      expect(divElement).toBeInTheDocument();
+    })
+
+  })
+
 });

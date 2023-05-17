@@ -115,10 +115,10 @@ export const NewRev = () => {
                   style={modalStyles}>
                     <h1>New Review</h1>
           <form onSubmit = {submitHandler} id = 'review-form' data-testid = 'reviewForm'>
-            <button id = 'recommend' onClick = {recommendHandler}>Recommend</button>
+            <button id = 'recommend' data-testid = 'recommend' onClick = {recommendHandler}>Recommend</button>
             <input placeholder = 'Name' id = 'name'></input>
             <div >Rating
-                  <button id = '1' onClick = {() => {handleRating(1)}}>One</button>
+                  <button id = '1' data-testid = '1' onClick = {() => {handleRating(1)}}>One</button>
                   <button id = '2' onClick = {() => {handleRating(2)}}>Two</button>
                   <button id = '3' onClick = {() => {handleRating(3)}}>Three</button>
                   <button id = '4' onClick = {() => {handleRating(4)}}>Four</button>
@@ -132,7 +132,7 @@ export const NewRev = () => {
               var charId = characteristics[char].id
               return (
                 <div key = {char}>{char}
-                  <button id = {'1' + charId} className = 'charButton' onClick = {() => {handleClick(charId, 1)}}>One</button>
+                  <button id = {'1' + charId} data-testid = {char} className = 'charButton' onClick = {() => {handleClick(charId, 1)}}>One</button>
                   <button id = {'2' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 2)}}>Two</button>
                   <button id = {'3' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 3)}}>Three</button>
                   <button id = {'4' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 4)}}>Four</button>
