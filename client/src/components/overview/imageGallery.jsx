@@ -20,7 +20,8 @@ const ImageGallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [zoom, setZoom] = useState(false);
 
-  let defaultUrl = "https://www.warnersstellian.com/Content/images/product_image_not_available.png";
+  // let defaultUrl = "https://www.warnersstellian.com/Content/images/product_image_not_available.png";
+  let defaultUrl = "https://images.pexels.com/photos/249210/pexels-photo-249210.jpeg?cs=srgb&dl=pexels-nitin-dhumal-249210.jpg&fm=jpg";
 
   const onClick = (e) => {
     e.preventDefault();
