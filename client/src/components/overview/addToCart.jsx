@@ -22,7 +22,8 @@ const AddToCart = () => {
 
   const onClickSize = (option) => {
     const size = option.label;
-    let quantity = currentStyle.skus[Number(option.value)].quantity > 15 ? 15 : currentStyle.skus[Number(option.value)].quantity
+    let quantity = currentStyle.skus[Number(option.value)].quantity > 15 ? 15 : currentStyle.skus[Number(option.value)].quantity;
+    console.log({sku: option.value,quantity: quantity}, selectedOrder, size)
     setSelectedSku({sku: option.value,quantity: quantity});
     setSelectedOrder((prevState) => ({...prevState, size: size}));
     setMessage("");
@@ -36,6 +37,7 @@ const AddToCart = () => {
 
   const onClickAddToBag = (e) => {
     e.preventDefault();
+    console.log(selectedOrder);
     if (!selectedOrder.size.length) { // no size has been selected
       setMessage("Please select a size before adding to bag.");
       setOpenMenu(true);
@@ -61,6 +63,7 @@ const AddToCart = () => {
 
   }, [product.id, currentStyle, product.successMessage]);
 
+  console.log(product.id, currentStyle)
   return (
     <div>
        <div className="addToCart">

@@ -64,7 +64,7 @@ const Overview = () => {
           <ProductDescription/>
         </div>
       </div>
-      <div style={{position: "relative", width: "20vw", zIndex: "1"}}>
+      <div style={{position: "relative" ,width: "20vw", zIndex: "1"}}>
         <ProductDetails />
         <StyleSelector />
         <AddToCart />

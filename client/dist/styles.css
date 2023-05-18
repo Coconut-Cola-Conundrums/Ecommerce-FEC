@@ -43,19 +43,20 @@ path {
 }
 
 .mainPhoto {
-  width: 95%;
-  height: 95%;
+  width: 93%;
+  height: 93%;
   object-fit: cover;
   position: absolute;
   /* z-index: 1; */
 }
 
 .zoomed {
+  /* position: absolute; */
   /* object-fit: cover; */
   width: 100vw;
-  /* min-height: 100%; */
-  position: absolute;
+  height: 100vh;
   cursor: pointer;
+  margin: 0 auto;
   /* top: 5vh; */
 }
 
@@ -66,17 +67,18 @@ path {
   /* box-shadow: -2rem 2rem 2rem rgba(black, 0.2); */
   transform: scale(1);
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 9999;
   position: fixed;
+  left: 0vh;
 }
 
 
 .mainPhotoArrowBox {
   position: absolute;
-  width: 68vh;
-  left: -7.5vh;
+  width: 66vh;
+  left: -7vh;
   top: 50vh;
   z-index: 100;
 }
@@ -105,6 +107,7 @@ path {
   z-index: 1;
   position: relative;
   padding: 2vh;
+  padding-right: 3vh;
   right: 5%;
   cursor: pointer;
 }
@@ -113,7 +116,7 @@ path {
   z-index: 1000;
   position: absolute;
   top: -3.5vh;
-  left: -3vh;
+  left: -2vh;
   cursor: pointer;
 }
 
@@ -146,7 +149,7 @@ path {
   max-height: 3vh;
   background-color: #dfdfdf;
   border-radius: 50%;
-  left: 2.25vh;
+  left: 2vh;
 }
 
 .up {

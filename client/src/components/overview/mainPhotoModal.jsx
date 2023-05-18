@@ -25,14 +25,19 @@ const Modal = ({mainPhotoImg, show, onClickZoomPhoto, zoom }) => {
     return null
   }
   return (
-    <div >
       <div className="modal" data-testid="modal">
         {zoom ?
           <img style={styling} src={mainPhotoImg} alt="tracking-mouse" onClick={onClickZoomPhoto} onMouseMove={onMouse} ref={imgRef}/>
           :
-          <img className="zoomed" src={mainPhotoImg} alt="click-to-zoom" onClick={onClickZoomPhoto} style={{maxHeight: "100%", objectFit: "contain"}}/>}
+          <img
+            className="zoomed"
+            src={mainPhotoImg}
+            alt="click-to-zoom"
+            onClick={onClickZoomPhoto}
+            // style={{maxHeight: "100%", objectFit: "contain"}}}
+            style={{objectFit: "contain"}}
+            />}
       </div>
-    </div>
   )
 }
 
