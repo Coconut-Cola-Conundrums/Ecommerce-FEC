@@ -1082,6 +1082,9 @@ a {
   cursor: pointer;
 }
 
+#newStars p:hover {
+  cursor: pointer;
+}
 
 /* background-color: Transparent;
   background-repeat:no-repeat;

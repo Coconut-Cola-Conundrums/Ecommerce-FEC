@@ -16,7 +16,7 @@ export const getReviews = createAsyncThunk('/reviews', async({id, sort},  thunkA
   return axios.get(`${baseAPIURL}reviews`, {
     params: {
       page: 1,
-      count: 50,
+      count: 200,
       sort: sort,
       product_id: id
     }
