@@ -126,22 +126,22 @@ export const NewRev = () => {
           <form onSubmit = {submitHandler} id = 'review-form' data-testid = 'reviewForm'>
             <button id = 'recommend' data-testid = 'recommend' onClick = {recommendHandler}>Recommend</button>
             <input placeholder = 'Name' id = 'name'></input>
-            <div style = {{display: "flex", backgroundColor: '#C0C0C0'}}>
+            <div style = {{display: "flex", backgroundColor: 'white'}}>
               <b style = {{padding: "15px 20px"  }}>Rating</b>
                 <p id = '1' data-testid = '1' onClick = {() => {handleRating(1)}}>{
-                  rating >= 1 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0',}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 1 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' />
                 }</p>
                 <p id = '2' onClick = {() => {handleRating(2)}}>{
-                  rating >= 2 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 2 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: 'white'}}/>
                 }</p>
                 <p id = '3' onClick = {() => {handleRating(3)}}>{
-                  rating >= 3 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 3 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: 'white'}}/>
                 }</p>
                 <p id = '4' onClick = {() => {handleRating(4)}}>{
-                  rating >= 4 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 4 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: 'white'}}/>
                 }</p>
                 <p id = '5' onClick = {() => {handleRating(5)}}>{
-                  rating >= 5 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 5 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: 'white'}} />
                 }</p>
             </div>
             <textarea placeholder = 'Body' id = 'txtbody'></textarea>

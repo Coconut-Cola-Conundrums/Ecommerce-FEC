@@ -688,14 +688,14 @@ a {
 }
 
 #review-form {
-  background-color: rgb(192, 192, 192);
+  background-color: rgb(255, 255, 255);
 
   width: 650px;
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
   border: 1px solid #000000;
-
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 #name, #txtbody, #rating, #img, #email{
@@ -761,30 +761,30 @@ a {
 }
 
 #subButton {
-  background-color: #4e4e4e;
-  color: white;
+  background-color: #9CC0E7;
+  color: rgb(0, 0, 0);
   border-radius: 10px;
-  border: none;
+  border: 1px solid black;
   padding: 12px 20px;
   margin: 8px 0;
 }
 
 #subButton:hover {
-  background-color: #ff5733;
+  background-color: #6c87a4;
   cursor: pointer;
 }
 
 #recommend {
-  background-color: #4e4e4e;
-  color: white;
+  background-color: #9CC0E7;
+  color: rgb(0, 0, 0);
   border-radius: 5px;
-  border: none;
+  border: 1px solid black;
   padding: 10px 10px;
   margin: 8px 0;
 }
 
 #recommend:hover {
-  background-color: #8b8b8b;
+  background-color: #738eac;
   cursor: pointer;
 }
 
