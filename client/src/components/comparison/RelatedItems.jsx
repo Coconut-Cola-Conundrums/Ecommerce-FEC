@@ -143,8 +143,8 @@ const RelatedItems = () => {
 
 
   return (
-    <div>
-      <h1>Related Products</h1>
+    <div className='relatedItemsWrapper'>
+      <h1 className='relatedHeader'>Related Products</h1>
 
       <div className="relatedItemsContainer">
 
@@ -171,7 +171,7 @@ const RelatedItems = () => {
 
       </div>
 
-      <h1>Your Outfits</h1>
+      <h1 className='relatedHeader'>Your Outfits</h1>
       <div className="outfitsContainer">
 
         {showLeftArrowForOutfits && (
