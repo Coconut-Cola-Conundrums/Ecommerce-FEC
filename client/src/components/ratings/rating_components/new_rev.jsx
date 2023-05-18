@@ -124,19 +124,19 @@ export const NewRev = () => {
             <div style = {{display: "flex", backgroundColor: '#C0C0C0'}}>
               <b style = {{padding: "15px 20px"  }}>Rating</b>
                 <p id = '1' data-testid = '1' onClick = {() => {handleRating(1)}}>{
-                  rating >= 1 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 1 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0',}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
                 }</p>
                 <p id = '2' onClick = {() => {handleRating(2)}}>{
-                  rating >= 2 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 2 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
                 }</p>
                 <p id = '3' onClick = {() => {handleRating(3)}}>{
-                  rating >= 3 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 3 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
                 }</p>
                 <p id = '4' onClick = {() => {handleRating(4)}}>{
-                  rating >= 4 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 4 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
                 }</p>
                 <p id = '5' onClick = {() => {handleRating(5)}}>{
-                  rating >= 5 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 5 ? <img src = {Star} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: '#C0C0C0'}}/>
                 }</p>
             </div>
             <textarea placeholder = 'Body' id = 'txtbody'></textarea>
@@ -147,11 +147,11 @@ export const NewRev = () => {
               var charId = characteristics[char].id
               return (
                 <div key = {char}><b id = 'charLabel'>{char}</b>
-                  <button id = {'1' + charId} data-testid = {char} className = 'charButton' onClick = {() => {handleClick(charId, 1)}}>One</button>
-                  <button id = {'2' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 2)}}>Two</button>
-                  <button id = {'3' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 3)}}>Three</button>
-                  <button id = {'4' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 4)}}>Four</button>
-                  <button id = {'5' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 5)}}>Five</button>
+                  <button id = {'1' + charId} data-testid = {char} className = 'charButton' onClick = {() => {handleClick(charId, 1)}}><FaStar/></button>
+                  <button id = {'2' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 2)}}><FaStar/></button>
+                  <button id = {'3' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 3)}}><FaStar/></button>
+                  <button id = {'4' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 4)}}><FaStar/></button>
+                  <button id = {'5' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 5)}}><FaStar/></button>
                 </div>
               )
             })}

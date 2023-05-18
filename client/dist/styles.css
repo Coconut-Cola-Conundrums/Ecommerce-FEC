@@ -294,11 +294,11 @@ a {
   cursor: pointer;
 }
 
-.relatedItemsWrapper {
+/* .relatedItemsWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .relatedHeader {
   align-self: flex-start;
@@ -691,7 +691,7 @@ a {
 
 #review-form {
   background-color: rgb(192, 192, 192);
-  height: 600px;
+
   width: 650px;
   padding: 5px;
   margin: 10px;
@@ -973,6 +973,8 @@ a {
   width: 100vh;
   position: relative;
   padding:5vh;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 .credits {

@@ -13,6 +13,7 @@ module.exports = {
     const count = req.query.count;
     const page = req.query.page;
     const sort = req.query.sort;
+    console.log(sort)
     // console.log('this is the sort===>', req.query.sort);
     //would need to extract page, count, sort? and product ID from req
     axios.get(`${URL}/reviews/`, { headers, params: {page: page, count: count, sort: sort, product_id: product_id } })
