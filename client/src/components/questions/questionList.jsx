@@ -22,14 +22,14 @@ console.log(answers);
 
   return (
     <div className='QuestionsBox' data-testid="question">
-      {questions.map((question)=>(
+      {questions.slice(0,4).map((question)=>(
         <div className="questionList" key={question.question_id}>
           <span className='qHeader'>Q: {question.question_body}</span>
           <button className='qbutton'>Helpful?</button>
           |
           <button className='qbutton'>Add an Answer</button>
 
-          {answers.map((answer)=> (
+          {answers.slice(0,2).map((answer)=> (
           <div key={answer.answer_id}>
             <h3 className='answer'>A: {answer.body}</h3>
               <div>

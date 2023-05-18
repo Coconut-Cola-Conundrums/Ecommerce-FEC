@@ -70,6 +70,7 @@ export const questionsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getAnswers.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.answers = action.payload;
       })
       .addCase(getAnswers.rejected, (state, action) => {

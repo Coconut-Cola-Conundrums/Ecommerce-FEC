@@ -63,7 +63,7 @@ const AddToCart = () => {
 
   }, [product.id, currentStyle, product.successMessage]);
 
-  console.log(product.id, currentStyle)
+  // console.log(product.id, currentStyle)
   return (
     <div>
        <div className="addToCart">
