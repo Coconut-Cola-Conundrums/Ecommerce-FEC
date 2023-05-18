@@ -24,7 +24,7 @@ const AddToCart = () => {
   const onClickSize = (option) => {
     const size = option.label;
     let quantity = currentStyle.skus[Number(option.value)].quantity > 15 ? 15 : currentStyle.skus[Number(option.value)].quantity;
-    console.log({sku: option.value,quantity: quantity}, selectedOrder, size)
+    // console.log({sku: option.value,quantity: quantity}, selectedOrder, size)
     dispatch(resetMessages());
     setSelectedSku({sku: option.value, quantity: quantity});
     setSelectedOrder((prevState) => ({...prevState, size: size}));
@@ -34,12 +34,13 @@ const AddToCart = () => {
 
   const onClickQuantity = (option) => {
     let quantity = option.value;
+    dispatch(resetMessages());
     setSelectedOrder((prevState) => ({...prevState, quantity: quantity}));
   }
 
   const onClickAddToBag = (e) => {
     e.preventDefault();
-    console.log(selectedOrder);
+    // console.log(selectedOrder);
 
     if (!selectedOrder.size.length) { // no size has been selected
       setMessage("Please select a size before adding to bag.");
@@ -75,7 +76,7 @@ const AddToCart = () => {
 
   }, [product.id, currentStyle]);
 // product.successMessage
-  console.log("selectedSku", selectedSku, "selectedOrder", selectedOrder)
+  // console.log("selectedSku", selectedSku, "selectedOrder", selectedOrder)
   return (
     <div>
        <div className="addToCart">
@@ -114,7 +115,7 @@ const AddToCart = () => {
                 <p style={{fontSize: "16px"}}>Add to bag</p>
                 <FaPlus className="plusIcon"/>
               </button>
-              {product.successMessage.length ? <div><p className="inlineBlock">{product.successMessage}</p> <p>Added {selectedOrder.quantity} of {currentStyle.name} in size {selectedOrder.size}</p> </div>: null}
+              {product.successMessage.length ? <div><p className="inlineBlock">{product.successMessage} Added {selectedOrder.quantity} of {currentStyle.name} in size {selectedOrder.size}</p> </div>: null}
             </div>
             <div style={{display: "flex"}}>
               <a href="https://twitter.com/intent/tweet?text=Checkout%20this%20cute%20item!">
