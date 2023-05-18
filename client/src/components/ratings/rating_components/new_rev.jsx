@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import {useSelector} from 'react-redux';
+import { FaStar, FaRegStar } from 'react-icons/fa'
+import Star from '../Images/icons8-star-24.png'
+import noStar from '../Images/icons8-star-32.png'
 const URL = "http://localhost:3000/";
 
 
@@ -79,6 +82,7 @@ export const NewRev = () => {
   var handleRating = (int) => {
     event.preventDefault();
     var ratingButton = document.getElementById(`${int}`);
+
     var options = [1,2,3,4,5];
     options.forEach((option) => {
       if (int !== option) {
@@ -117,13 +121,24 @@ export const NewRev = () => {
           <form onSubmit = {submitHandler} id = 'review-form' data-testid = 'reviewForm'>
             <button id = 'recommend' data-testid = 'recommend' onClick = {recommendHandler}>Recommend</button>
             <input placeholder = 'Name' id = 'name'></input>
-            <div ><b style = {{padding: "10px" }}>Rating</b>
-                  <button id = '1' data-testid = '1' onClick = {() => {handleRating(1)}}>One</button>
-                  <button id = '2' onClick = {() => {handleRating(2)}}>Two</button>
-                  <button id = '3' onClick = {() => {handleRating(3)}}>Three</button>
-                  <button id = '4' onClick = {() => {handleRating(4)}}>Four</button>
-                  <button id = '5' onClick = {() => {handleRating(5)}}>Five</button>
-                </div>
+            <div style = {{display: "flex", backgroundColor: '#C0C0C0'}}>
+              <b style = {{padding: "15px 20px"  }}>Rating</b>
+                <p id = '1' data-testid = '1' onClick = {() => {handleRating(1)}}>{
+                  rating >= 1 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                }</p>
+                <p id = '2' onClick = {() => {handleRating(2)}}>{
+                  rating >= 2 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                }</p>
+                <p id = '3' onClick = {() => {handleRating(3)}}>{
+                  rating >= 3 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                }</p>
+                <p id = '4' onClick = {() => {handleRating(4)}}>{
+                  rating >= 4 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                }</p>
+                <p id = '5' onClick = {() => {handleRating(5)}}>{
+                  rating >= 5 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                }</p>
+            </div>
             <textarea placeholder = 'Body' id = 'txtbody'></textarea>
             <input placeholder = 'Image URL' id = 'img'></input>
             <input placeholder = 'Email' id = 'email'></input>
