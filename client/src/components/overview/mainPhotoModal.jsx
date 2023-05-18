@@ -3,22 +3,14 @@ import PropTypes from 'prop-types';
 
 const Modal = ({mainPhotoImg, show, onClickZoomPhoto, zoom }) => {
   const imgRef = useRef();
-  const [styling, setStyling] = useState({transform: "scale(2.5)", height: "100vh", width: "100vw", cursor: "pointer", top:"5vh", position: "absolute"})
+  const [styling, setStyling] = useState({transform: "scale(2.5)",cursor: "pointer", top:"5vh", position: "absolute", width: "100vw", minHeight:"100vh",transformOrigin: "center"})
 
   const onMouse = (e) => {
-    // console.log(e.clientX, e.clientY, imgRef.current.getBoundingClientRect(), e.pageX, e.pageY);
-    let { width, height, x, y, right, bottom } = imgRef.current.getBoundingClientRect();
-    // console.log('width: ', width, 'height: ', height, 'x:', x, "y:", y, "right:", right, "bottom:", bottom, e.pageX, e.pageY)
-    // let newStyle = {transformOrigin: `${(e.clientX - x) / width}% ${(e.clientY - y) / height}%`};
-    // console.log(2.5 * 100 * e.pageX/width, 2.5 * 100 * e.pageY/height, e.pageX, e.pageY)
-    // console.log(2.5 * (e.clientX - x) / width, "and y transformed is", 2.5 * (e.clientY - y / height))
-    // console.log(2.5 * 100 * e.pageX/width,2.5 * 100 * (e.pageY / height))
-    // console.log(`${2.5 * 100 * e.pageX/width}vw ${5 + 2.5 * 100 * (e.pageY / height)}vh`)
-    // setStyling(prevState => ({...prevState, transformOrigin: `${100}vw ${100}vh`}))
-    // setStyling(prevState => ({...prevState, transformOrigin: `${100}% ${100}%`}))
-    setStyling(prevState => ({...prevState, transformOrigin: `${5 + 2.5 * 100 * e.pageX/width}vh ${5 + 2.5 * 100 * (e.pageY / height)}vw`}))
-    // console.log(2.5 * 100 * (e.pageY -y) / height, 2.5 * 100* (e.pageX - x) /width)
-    // setStyling(prevState => ({...prevState, transformOrigin: `${ 2.5 * 100 * (e.pageX - x) /width}vw ${5 + 2.5 * 100 * (e.pageY -y) / height}vh`}))
+    let { innerWidth: width, innerHeight: height } = window;
+    // let { imageWidth, imageHeight, left, top } = imgRef.current.getBoundingClientRect();
+    console.log(e.clientX/innerWidth * 100, width, e.clientY/innerHeight * 100, height)
+    setStyling(prevState => ({...prevState, transformOrigin: `${e.clientX/innerWidth * 100}% ${5 + (e.clientY/innerHeight * 100)}%`}))
+
   }
 
   if (!show) {
@@ -27,14 +19,20 @@ const Modal = ({mainPhotoImg, show, onClickZoomPhoto, zoom }) => {
   return (
       <div className="modal" data-testid="modal">
         {zoom ?
-          <img style={styling} src={mainPhotoImg} alt="tracking-mouse" onClick={onClickZoomPhoto} onMouseMove={onMouse} ref={imgRef}/>
+          <img
+            style={styling}
+            src={mainPhotoImg}
+            alt="tracking-mouse"
+            onClick={onClickZoomPhoto}
+            onMouseMove={onMouse}
+            ref={imgRef}
+          />
           :
           <img
             className="zoomed"
             src={mainPhotoImg}
             alt="click-to-zoom"
             onClick={onClickZoomPhoto}
-            // style={{maxHeight: "100%", objectFit: "contain"}}}
             style={{objectFit: "contain"}}
             />}
       </div>
