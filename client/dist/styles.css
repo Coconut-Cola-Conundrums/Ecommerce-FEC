@@ -494,6 +494,11 @@ a {
   transform: translate(-50%, -50%);
   font-size: 100px;
   cursor: pointer;
+  color: hsl(0, 0%, 80%);
+  transition: color 0.3s ease-in-out;
+}
+.fa-regular.fa-square-plus.fa-2xl:hover {
+  color:rgb(143, 141, 141);
 }
 
 .fa {
@@ -588,12 +593,14 @@ a {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  /* position: relative; */
 }
 
 .comparisonTable th,
 .comparisonTable td {
   padding: 10px;
   /* border: 1px solid #ccc; */
+
 }
 
 .comparisonTable th {
@@ -626,6 +633,16 @@ a {
 .comparisonTable td.na {
   color: #888;
   font-style: italic;
+}
+
+.starsLeftModal {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.starsRightModal {
+  display: flex;
+  justify-content: flex-start;
 }
 
 
