@@ -136,8 +136,8 @@ const Card = ({ product }) => {
             />
           )}
         </div>
-        <div data-testid="category">{product.category}</div>
-        <div data-testid="name">
+        <div data-testid="category" className='cardCategory'>{product.category}</div>
+        <div data-testid="name" className='cardName'>
           <strong>{product.name}</strong>
         </div>
 
@@ -152,7 +152,7 @@ const Card = ({ product }) => {
           <div>${product.default_price}</div>
         )}
 
-        <div><Stars rating={fixedAvg}/></div>
+        <div className='cardStars'><Stars rating={fixedAvg}/></div>
 
         <Modal
           isOpen={isModalOpen}
