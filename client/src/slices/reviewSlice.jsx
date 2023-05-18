@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
 
-const baseAPIURL = "http://localhost:3000/";
+// const baseAPIURL = "http://localhost:3000/"
 
 const initialState = {
   sort: 'newest',
@@ -13,7 +13,7 @@ const initialState = {
 };
 
 export const getReviews = createAsyncThunk('/reviews', async({id, sort},  thunkAPI) => {
-  return axios.get(`${baseAPIURL}reviews`, {
+  return axios.get(`/reviews`, {
     params: {
       page: 1,
       count: 200,
@@ -29,7 +29,7 @@ export const getReviews = createAsyncThunk('/reviews', async({id, sort},  thunkA
 })
 
 export const getMetaData = createAsyncThunk('/reviews/meta', async(id, thunkAPI) => {
-  return axios.get(`${baseAPIURL}reviews/meta`, {
+  return axios.get(`/reviews/meta`, {
     params: {
       product_id: id
     }

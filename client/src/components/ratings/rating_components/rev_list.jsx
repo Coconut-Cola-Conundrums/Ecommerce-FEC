@@ -16,7 +16,7 @@ export const RevList = () => {
     e.preventDefault();
     var helpfulButton = document.getElementById(`helpful${id}`);
     if (helpfulButton.style.backgroundColor !== '#BCE5B5') {
-    axios.put(`${URL}/reviews/${id}/helpful`)
+    axios.put(`/reviews/${id}/helpful`)
     .then( () => {
       console.log('was helpful');
     })
@@ -34,7 +34,7 @@ export const RevList = () => {
     // alert("Review has been reported!")
     var reportButton = document.getElementById(`report${id}`);
     if (reportButton.style.backgroundColor !== '#FFA8A6') {
-    axios.put(`${URL}/reviews/${id}/report`)
+    axios.put(`/reviews/${id}/report`)
     .then( () => {
       console.log(`${id} was reported`)
     })
