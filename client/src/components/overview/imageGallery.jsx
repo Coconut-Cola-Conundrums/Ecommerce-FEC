@@ -20,7 +20,8 @@ const ImageGallery = () => {
   const [showModal, setShowModal] = useState(false);
   const [zoom, setZoom] = useState(false);
 
-  let defaultUrl = "https://www.warnersstellian.com/Content/images/product_image_not_available.png";
+  // let defaultUrl = "https://www.warnersstellian.com/Content/images/product_image_not_available.png";
+  let defaultUrl = "https://images.pexels.com/photos/249210/pexels-photo-249210.jpeg?cs=srgb&dl=pexels-nitin-dhumal-249210.jpg&fm=jpg";
 
   const onClick = (e) => {
     e.preventDefault();
@@ -93,38 +94,26 @@ const ImageGallery = () => {
         setMainPhoto(currentStyle.photos.length - 1);
         // we'd also need to update the thumbnail range accordingly as well
         setThumbnailRange({
-          from: (currentStyle.photos.length - 7) > -1 ? currentStyle.photos.length - 7 : 0, // if theres 10 photos, then we'd want to view photos 4-10, but if there's only 5 photos, we want to view photos 0-4
+          // from: (currentStyle.photos.length - 7) > -1 ? currentStyle.photos.length - 7 : 0, // if theres 10 photos, then we'd want to view photos 4-10, but if there's only 5 photos, we want to view photos 0-4
+          from: (currentStyle.photos.length - 7) > -1 ? currentStyle.photos.length - 7 : 0,
           to: currentStyle.photos.length
         });
       } else if (currentStyle.photos.length < thumbnailRange.to) { // if we are viewing photo 6, with a thumbnail range 6-12, and want to switch to a style with 10 photos, we'd want to view photo 6, with a range of 4-10
         setThumbnailRange({
-          from: (currentStyle.photos.length - 7) > -1 ? currentStyle.photos.length - 1 : 0, // if theres 10 photos, then we'd want to view photos 4-10, but if there's only 5 photos, we want to view photos 0-4
+          // from: (currentStyle.photos.length - 7) > -1 ? currentStyle.photos.length - 1 : 0, // if theres 10 photos, then we'd want to view photos 4-10, but if there's only 5 photos, we want to view photos 0-4
+          from: (currentStyle.photos.length - 7) > -1 ? currentStyle.photos.length - 7 : 0,
           to: currentStyle.photos.length
         });
       } else if ((thumbnailRange.to - thumbnailRange.from) < 7 && currentStyle.photos.length > (thumbnailRange.to - thumbnailRange.from)) { // if the old style only had 4 photos, and now we have 8 photos, we should update to view the max 7 photos. This will only happen when we are viewing a photo with 7 or less photos (which wouldn't have had its 'from' or 'to' value changed, as there aren't more photos to scroll through)
-        setThumbnailRange({from: 0, to: 7})
+      // however, if we move from a  style with one photo to a style with two photos, we need to set the 'to' not to 7, but to the length of the new style (which has more photos than the last style, but still less than 7)
+        let tempTo = currentStyle.photos.length <= 7 ? currentStyle.photos.length : 7;
+        setThumbnailRange({from: 0, to: tempTo});
+        // setThumbnailRange({from: 0, to: 7})
       }
     }
 
   }, [product.id, currentStyle]);
 
-  // if (showModal) {
-  //   return (
-  //     <div className="photoContainer">
-  //     {currentStyle.photos && currentStyle.photos[mainPhoto] ?
-  //       <div className="absolute">
-  //         {!zoom ? <FaExpand className={showModal ? "expandInZoom" : "expandIcon right"} size="3vh" onClick={onClickExpandPhoto} data-testid="expandIcon"/> : null}
-  //         <Modal
-  //             show={showModal}
-  //             mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl}
-  //             onClickZoomPhoto={onClickZoomPhoto}
-  //             zoom={zoom}
-  //         />
-  //       </div>
-  //     : null}
-  //     </div>
-  //   )
-  // }
   return (
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?

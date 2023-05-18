@@ -7,6 +7,8 @@ const StyleSelector = () => {
   const product = useSelector((state) => state.product);
   const {availableStyles, currentStyle} = product;
 
+  let defaultUrl = "https://images.pexels.com/photos/249210/pexels-photo-249210.jpeg?cs=srgb&dl=pexels-nitin-dhumal-249210.jpg&fm=jpg";
+
   const dispatch = useDispatch();
 
   const onClickStyle = (e) => {
@@ -18,6 +20,7 @@ const StyleSelector = () => {
   useEffect(() => {
 
   }, [availableStyles]);
+
 
   // console.log(availableStyles);
   return (
@@ -32,7 +35,7 @@ const StyleSelector = () => {
                 <FaCheckCircle className="checkSelectedStyleElement" id={index} />
                 <img
                   className="styleElement selectedStyleElement"
-                  src={style.photos[0].thumbnail_url}
+                  src={style.photos[0].thumbnail_url || defaultUrl}
                   data-testid="styleElement"
                   id={style.style_id}
                   onClick={onClickStyle} />
@@ -42,7 +45,7 @@ const StyleSelector = () => {
             <div className="styleBox" key={index} >
               <img
                 className="styleElement"
-                src={style.photos[0].thumbnail_url}
+                src={style.photos[0].thumbnail_url || defaultUrl}
                 data-testid="styleElement"
                 id={style.style_id}
                 onClick={onClickStyle}/>
