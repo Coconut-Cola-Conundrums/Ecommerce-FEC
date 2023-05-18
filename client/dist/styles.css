@@ -302,7 +302,7 @@ a {
 
 .relatedHeader {
   align-self: flex-start;
-  margin-left: 27%;
+  margin-left: 24%; /* change here for resolution */
 }
 
 .relatedItemsContainer {
@@ -319,7 +319,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: 46vw; /* 47% for 3 cards, 63 for 4 */
+  width: 51vw; /* change here for resolution */
   margin: 0 auto;
   overflow-y: hidden;
 }
@@ -353,7 +353,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: 46vw; /* 47% for 3 cards */
+  width: 51vw; /* change here for resolution */
   margin: 0 auto;
   overflow-y: hidden;
 }
