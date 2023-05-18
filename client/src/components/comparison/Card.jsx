@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Stars} from '../ratings/rating_components/stars.jsx';
 import { getSpecificProduct } from '../../slices/productSlice.jsx';
 import { Carousel } from 'react-responsive-carousel';
-// import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 
 const Card = ({ product }) => {
@@ -47,8 +47,8 @@ const Card = ({ product }) => {
     },
     content: {
       position: 'auto',
-      width: '500px',
-      height: '400px',
+      width: '700px',
+      height: '500px',
       padding: '20px',
       backgroundColor: '#fff',
       borderRadius: '4px'
@@ -131,7 +131,7 @@ const Card = ({ product }) => {
           ) : (
             <img
               className="sampleImage"
-              src={cardImg || "https://www.warnersstellian.com/Content/images/product_image_not_available.png"}
+              src={cardImg || "https://images.pexels.com/photos/249210/pexels-photo-249210.jpeg?cs=srgb&dl=pexels-nitin-dhumal-249210.jpg&fm=jpg"}
               alt="Product Image"
             />
           )}

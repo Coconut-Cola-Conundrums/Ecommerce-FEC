@@ -1,5 +1,5 @@
 body {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #body {
@@ -293,6 +293,17 @@ a {
   cursor: pointer;
 }
 
+.relatedItemsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.relatedHeader {
+  align-self: flex-start;
+  margin-left: 27%;
+}
+
 .relatedItemsContainer {
   position: relative;
   width: 100%;
@@ -312,6 +323,18 @@ a {
   overflow-y: hidden;
 }
 
+.carouselContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.carouselContainer::-webkit-scrollbar-track {
+  opacity: 0;
+}
+
+.carouselContainer::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
 .outfitsContainer {
   display: flex;
   flex-wrap: nowrap;
@@ -319,7 +342,6 @@ a {
   align-items: flex-start;
   position: relative;
   width: 100%;
-  justify-content: flex-start;
   margin: 0 auto;
 }
 
@@ -334,6 +356,19 @@ a {
   margin: 0 auto;
   overflow-y: hidden;
 }
+
+.outfitsCarouselContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.outfitsCarouselContainer::-webkit-scrollbar-track {
+  opacity: 0;
+}
+
+.outfitsCarouselContainer::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
 
 .carouselArrow {
   position: absolute;
@@ -370,30 +405,30 @@ a {
 
 .relatedItemCard {
   position: relative;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   flex: 0 0 calc(100% / 5 - 10px);
   height: 400px;
   margin-right: 10px;
-  background-color: #cccccc;
+  background-color: rgb(253, 253, 253);
   border: 1px solid #ccc;
-  border-radius: 15px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 8px;
   scroll-snap-align: start;
   transition: box-shadow 0.3s ease;
 }
 
 .outfitCard {
   position: relative;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   flex: 0 0 auto; /* Let the card grow and shrink based on content */
   min-width: 300px; /* Set a minimum width */
   max-width: 100%; /* Allow the card to take full width */
   height: 400px; /* Maintain a fixed height */
   margin-right: 10px;
-  background-color: #FAEDCA;
+  background-color: rgb(253, 253, 253);
   border: 1px solid #ccc;
-  border-radius: 15px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 8px; /*  change padding so card border isn't cut out  */
   scroll-snap-align: start;
   transition: box-shadow 0.3s ease;
 }
@@ -455,8 +490,8 @@ a {
 .relatedItemCard .fa-caret-up {
   color: hsl(0, 0%, 80%);
   position: absolute;
-  top: 1px;
-  right: 15px;
+  top: 0px;
+  right: 11px;
   cursor: pointer;
   font-size: 30px;
   transition: color 0.3s ease-in-out;
@@ -468,10 +503,10 @@ a {
 
 
 .outfitCard .fa-sharp.fa-solid.fa-x {
-  color: hsl(0, 0%, 80%);
+  color: hsl(0, 0%, 70%);
   position: absolute;
-  top: 7px;
-  right: 12px;
+  top: 5px;
+  right: 11px;
   cursor: pointer;
   font-size: 16px;
   transition: color 0.3s ease-in-out;
@@ -488,6 +523,7 @@ a {
   margin-bottom: 5px;
   width: 100%;
   position: relative;
+  border-radius: 3px;
 }
 
 
@@ -557,10 +593,19 @@ a {
 }
 
 .comparisonTable td:nth-child(2) {
+  width: 20%; /* Adjust the width as desired */
   text-align: center;
 }
 
+.comparisonTable td:nth-child(1),
+.comparisonTable td:nth-child(3) {
+  width: 40%; /* Adjust the width as desired */
+}
+
 .comparisonTable td:last-child {
+  text-align: right;
+}
+.comparisonTable th:last-child {
   text-align: right;
 }
 
@@ -579,7 +624,7 @@ a {
 }
 
 .reviewContainer {
-  font-family: 'Candara', Verdana, monospace;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: #e5fafa;
   border: 1px solid #ccc;
   border-radius: 15px;
@@ -616,7 +661,7 @@ a {
 
 .answer {
   color: #544f4f;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .answerSearch {
@@ -746,7 +791,7 @@ a {
   padding: 5px;
   border-radius: 10px;
   border: 1px solid #ccc;
-  font-family: sans-serif;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .questionList {
@@ -784,7 +829,7 @@ a {
   border: 1px solid #ccc;
   border-radius: 4px;
   color: #333;
-  font-family: Arial, sans-serif;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 16px;
   padding: 6px 10px;
   width: 200px;
