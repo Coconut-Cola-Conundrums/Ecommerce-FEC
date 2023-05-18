@@ -69,12 +69,13 @@ export const NewRev = () => {
     var button = document.getElementById(`${value}${id}`)
     var options = [1,2,3,4,5];
     options.forEach((option) => {
-      if (value !== option) {
       var opt = document.getElementById(`${option}${id}`)
-      opt.style.backgroundColor = '#eee';
+      if (value >= option) {
+        opt.style.backgroundColor = 'grey';
+      } else {
+        opt.style.backgroundColor = '#eee';
       }
     })
-    button.style.backgroundColor = 'grey';
     characteristicsObj[id] = value;
     // console.log(characteristicsObj)
   }
@@ -110,7 +111,11 @@ export const NewRev = () => {
 
   return (
     <div>
-      <button id = 'createReview' onClick = {() => {setModalState(!modalState)}}data-testid = 'newRev'>Create Review!</button>
+      <button id = 'createReview' onClick = {() => {
+        setModalState(!modalState);
+        setRecommend(false);
+        setRating(0);
+        }}data-testid = 'newRev'>Create Review!</button>
         <Modal
                   isOpen= {modalState}
                   onRequestClose={() => {setModalState(false)}}
@@ -145,6 +150,7 @@ export const NewRev = () => {
 
             {Object.keys(characteristics).map((char) => {
               var charId = characteristics[char].id
+
               return (
                 <div key = {char}><b id = 'charLabel'>{char}</b>
                   <button id = {'1' + charId} data-testid = {char} className = 'charButton' onClick = {() => {handleClick(charId, 1)}}><FaStar/></button>
