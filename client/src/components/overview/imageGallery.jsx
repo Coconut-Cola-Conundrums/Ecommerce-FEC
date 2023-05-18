@@ -108,26 +108,44 @@ const ImageGallery = () => {
 
   }, [product.id, currentStyle]);
 
+  // if (showModal) {
+  //   return (
+  //     <div className="photoContainer">
+  //     {currentStyle.photos && currentStyle.photos[mainPhoto] ?
+  //       <div className="absolute">
+  //         {!zoom ? <FaExpand className={showModal ? "expandInZoom" : "expandIcon right"} size="3vh" onClick={onClickExpandPhoto} data-testid="expandIcon"/> : null}
+  //         <Modal
+  //             show={showModal}
+  //             mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl}
+  //             onClickZoomPhoto={onClickZoomPhoto}
+  //             zoom={zoom}
+  //         />
+  //       </div>
+  //     : null}
+  //     </div>
+  //   )
+  // }
   return (
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?
-        <div className="absolute">
+        <div className="relative" style={{height: "100%"}}>
 
           {!zoom ? <FaExpand className={showModal ? "expandInZoom" : "expandIcon right"} size="3vh" onClick={onClickExpandPhoto} data-testid="expandIcon"/> : null}
 
-          <img id="main"
+          {!showModal ? <img id="main"
             data-testid="mainPhoto"
             className="mainPhoto"
             src={currentStyle.photos[mainPhoto].url || defaultUrl}
             alt={currentStyle.photos[mainPhoto].thumbnail_url}
             />
+          : null}
 
           <Modal
-            show={showModal}
-            mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl}
-            onClickZoomPhoto={onClickZoomPhoto}
-            zoom={zoom}
-            />
+              show={showModal}
+              mainPhotoImg={currentStyle.photos[mainPhoto].url || defaultUrl}
+              onClickZoomPhoto={onClickZoomPhoto}
+              zoom={zoom}
+          />
 
           {thumbnailRange.from !== 0 ?
           <FaRegArrowAltCircleUp id="up" className="thumbnailArrow up" onClick={onScrollThumbnails} />
@@ -140,7 +158,6 @@ const ImageGallery = () => {
               key={index} id={photo.thumbnail_url ? photo.thumbnail_url : 0}
               onClick={onClick}
               onError={({image})=> {
-
                 image.onerror = null;
                 image.src=defaultUrl}
               }

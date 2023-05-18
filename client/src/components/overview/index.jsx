@@ -56,18 +56,24 @@ const Overview = () => {
   }, [product.productInformation]);
 
   return (
-    <div className="wrapper">
-      <div style={{position: "relative"}}>
+    <div style={{top: "5vh", position: "relative"}}>
+    <div className="wrapper" style={{justifyContent: "center", flexWrap: "wrap",}}>
+      <div style={{position: "relative", width: "56vh", height: "80vh", marginBottom: "20vh"}}>
         <ImageGallery />
-        <ProductDescription />
+        <div style={{}}>
+          <ProductDescription/>
+        </div>
       </div>
-      <div className="absolute" style={{left: "67.5vh", height: "60vh", top:"6vh", maxWidth: "32.5vh"}}>
+      <div style={{position: "relative" ,width: "20vw", zIndex: "1"}}>
         <ProductDetails />
         <StyleSelector />
         <AddToCart />
       </div>
     </div>
+    </div>
   )
 }
 
 export default Overview
+
+{/* <div className="absolute" style={{left: "67.5vh", height: "60vh", top:"6vh", maxWidth: "32.5vh"}}> */}
