@@ -37,8 +37,8 @@ const Outfit = ({ outfit, index }) => {
             alt="Product Image"
           />
         </div>
-        <div>{outfit.category}</div>
-        <div>
+        <div className='cardCategory'>{outfit.category}</div>
+        <div className='cardName'>
           <strong>{outfit.name}</strong>
         </div>
         <div>
@@ -53,7 +53,7 @@ const Outfit = ({ outfit, index }) => {
           <div>${outfit.default_price}</div>
         )}
         </div>
-        <div><Stars rating={fixedAvg}/></div>
+        <div className='cardStars'><Stars rating={fixedAvg}/></div>
       </div>
     )
   } else {
