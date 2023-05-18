@@ -18,13 +18,8 @@ export const ProductBreakdown = () => {
       <h1>Product Breakdown</h1>
       <div>{keys.map((char) => {
         return <div key = {char}>
-        {char}
-        <ProgressBar
-        className = "productBar"
-        completed={(characteristics[char].value/5*100).toFixed(0)}
-        bgColor="#64B8B5"
-
-        />
+        <label>{char} {(characteristics[char].value/5*100).toFixed(0)}%</label>
+        {<ProgressBar borderRadius = '5px' className = 'productBar' height = '10px' bgColor="black" labelColor = 'black' completed={(characteristics[char].value/5*100).toFixed(0)}/>}
         </div>
       })}</div>
     </div>
