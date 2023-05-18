@@ -150,6 +150,7 @@ export const productSlice = createSlice({
       })
       .addCase(addToCart.rejected, (state, action) => {
         state.errorMessage = action.payload;
+        console.log(action.payload);
       })
   }
 })
