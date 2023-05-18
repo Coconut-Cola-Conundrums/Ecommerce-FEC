@@ -69,12 +69,13 @@ export const NewRev = () => {
     var button = document.getElementById(`${value}${id}`)
     var options = [1,2,3,4,5];
     options.forEach((option) => {
-      if (value !== option) {
       var opt = document.getElementById(`${option}${id}`)
-      opt.style.backgroundColor = '#eee';
+      if (value >= option) {
+        opt.style.backgroundColor = 'grey';
+      } else {
+        opt.style.backgroundColor = '#eee';
       }
     })
-    button.style.backgroundColor = 'grey';
     characteristicsObj[id] = value;
     // console.log(characteristicsObj)
   }
@@ -110,7 +111,11 @@ export const NewRev = () => {
 
   return (
     <div>
-      <button id = 'createReview' onClick = {() => {setModalState(!modalState)}}data-testid = 'newRev'>Create Review!</button>
+      <button id = 'createReview' onClick = {() => {
+        setModalState(!modalState);
+        setRecommend(false);
+        setRating(0);
+        }}data-testid = 'newRev'>Create Review!</button>
         <Modal
                   isOpen= {modalState}
                   onRequestClose={() => {setModalState(false)}}
@@ -121,22 +126,22 @@ export const NewRev = () => {
           <form onSubmit = {submitHandler} id = 'review-form' data-testid = 'reviewForm'>
             <button id = 'recommend' data-testid = 'recommend' onClick = {recommendHandler}>Recommend</button>
             <input placeholder = 'Name' id = 'name'></input>
-            <div style = {{display: "flex", backgroundColor: '#C0C0C0'}}>
+            <div style = {{display: "flex", backgroundColor: 'white'}}>
               <b style = {{padding: "15px 20px"  }}>Rating</b>
                 <p id = '1' data-testid = '1' onClick = {() => {handleRating(1)}}>{
-                  rating >= 1 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 1 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' />
                 }</p>
                 <p id = '2' onClick = {() => {handleRating(2)}}>{
-                  rating >= 2 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 2 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: 'white'}}/>
                 }</p>
                 <p id = '3' onClick = {() => {handleRating(3)}}>{
-                  rating >= 3 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 3 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: 'white'}}/>
                 }</p>
                 <p id = '4' onClick = {() => {handleRating(4)}}>{
-                  rating >= 4 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 4 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: 'white'}}/>
                 }</p>
                 <p id = '5' onClick = {() => {handleRating(5)}}>{
-                  rating >= 5 ? <img src = {Star} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/> : <img src = {noStar} width = '20px' style = {{backgroundColor: '#C0C0C0'}}/>
+                  rating >= 5 ? <img src = {Star} width = '30px' style = {{backgroundColor: 'white'}}/> : <img src = {noStar} width = '30px' style = {{backgroundColor: 'white'}} />
                 }</p>
             </div>
             <textarea placeholder = 'Body' id = 'txtbody'></textarea>
@@ -145,13 +150,14 @@ export const NewRev = () => {
 
             {Object.keys(characteristics).map((char) => {
               var charId = characteristics[char].id
+
               return (
                 <div key = {char}><b id = 'charLabel'>{char}</b>
-                  <button id = {'1' + charId} data-testid = {char} className = 'charButton' onClick = {() => {handleClick(charId, 1)}}>One</button>
-                  <button id = {'2' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 2)}}>Two</button>
-                  <button id = {'3' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 3)}}>Three</button>
-                  <button id = {'4' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 4)}}>Four</button>
-                  <button id = {'5' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 5)}}>Five</button>
+                  <button id = {'1' + charId} data-testid = {char} className = 'charButton' onClick = {() => {handleClick(charId, 1)}}><FaStar/></button>
+                  <button id = {'2' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 2)}}><FaStar/></button>
+                  <button id = {'3' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 3)}}><FaStar/></button>
+                  <button id = {'4' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 4)}}><FaStar/></button>
+                  <button id = {'5' + charId} className = 'charButton'  onClick = {() => {handleClick(charId, 5)}}><FaStar/></button>
                 </div>
               )
             })}
