@@ -6,6 +6,10 @@ body {
   background-color: rgb(253, 253, 253);
 }
 
+/* * {
+  border:rgb(255, 47, 47) thin solid;
+} */
+
 .wrapper {
   display: flex;
 }
@@ -31,65 +35,65 @@ path {
 .photoContainer {
   /* display: flex; */
   position: relative;
-  width: 45vh;
-  height: 67.5vh;
-  padding: 5vh;
+  /* width: 45vh;
+  height: 67.5vh; */
+  width: 100%;
+  height: 100%;
+  padding-right: 10vh;
 }
 
 .mainPhoto {
-  width: 100%;
-  height: 100%;
+  width: 93%;
+  height: 93%;
   object-fit: cover;
   position: absolute;
-  border-radius: 2rem;
   /* z-index: 1; */
 }
 
 .zoomed {
-  object-fit: cover;
+  /* position: absolute; */
+  /* object-fit: cover; */
   width: 100vw;
-  /* min-height: 100%; */
-  position: absolute;
+  height: 100vh;
   cursor: pointer;
-  top: 5vh;
+  margin: 0 auto;
+  /* top: 5vh; */
 }
 
 .modal {
   background: white;
   border: 1px solid #ccc;
   transition: 1.1s ease-out;
-  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
-  filter: blur(0);
+  /* box-shadow: -2rem 2rem 2rem rgba(black, 0.2); */
   transform: scale(1);
-  opacity: 1;
-  visibility: visible;
-  width: 100vw;
   height: 100vh;
-  z-index: 100;
-  left: -5vh;
-  top: -5vh;
-  position: absolute;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  position: fixed;
+  left: 0vh;
 }
 
 
 .mainPhotoArrowBox {
   position: absolute;
-  width: 70vh;
-  left: -7.5vh;
-  top: 55vh;
+  width: 66vh;
+  left: -7vh;
+  top: 50vh;
+  z-index: 100;
 }
 
 .mainPhotoBoxOverModal {
   position: absolute;
   top: 0vh;
   width: 25vw;
-  z-index: 101;
+  z-index: 1000;
 }
 
 .mainPhotoArrow {
   cursor: pointer;
   padding: 2vh;
-  z-index: 102;
+  z-index: 10001;
 }
 
 .mainPhotoArrowOverModal {
@@ -103,6 +107,8 @@ path {
   z-index: 1;
   position: relative;
   padding: 2vh;
+  padding-right: 3vh;
+  right: 5%;
   cursor: pointer;
 }
 
@@ -110,7 +116,7 @@ path {
   z-index: 1000;
   position: absolute;
   top: -3.5vh;
-  left: -3vh;
+  left: -2vh;
   cursor: pointer;
 }
 
@@ -143,7 +149,7 @@ path {
   max-height: 3vh;
   background-color: #dfdfdf;
   border-radius: 50%;
-  left: 2.25vh;
+  left: 2vh;
 }
 
 .up {
@@ -241,6 +247,7 @@ a {
 
 .originalPriceOnSale {
   text-decoration: line-through;
+  color:rgb(255, 47, 47)
 }
 
 .verticleLine {
