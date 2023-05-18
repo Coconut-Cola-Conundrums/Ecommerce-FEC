@@ -113,7 +113,6 @@ const ImageGallery = () => {
     }
 
   }, [product.id, currentStyle]);
-  console.log(mainPhoto, thumbnailRange)
 
   return (
     <div className="photoContainer">
