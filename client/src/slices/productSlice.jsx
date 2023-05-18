@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
 
-const baseAPIURL = "http://localhost:3000";
+// const baseAPIURL = "http://localhost:3000";
 
 // important pieces of product state
   // current product overview
@@ -31,7 +31,7 @@ const initialState = {
 // Retrieves a list of product overview objects. API default query params gets first page and five results. Returns an array of products
 export const getInitialData = createAsyncThunk('product/getInitialData', async(_, thunkAPI) => {
   try {
-    return axios.get(`${baseAPIURL}/products`)
+    return axios.get(`/products`)
     .then(res => res.data)
     .catch(err => {throw new Error (err)});
   } catch (err) {
@@ -45,7 +45,7 @@ export const getSpecificProduct = createAsyncThunk('product/getSpecificProduct',
     if (!productId) {
       productId = thunkAPI.getState().product.id;
     }
-    return axios.get(`${baseAPIURL}/products/${productId}`)
+    return axios.get(`/products/${productId}`)
     .then(res => res.data)
     .catch(err => {throw new Error (err)});
   } catch (err) {
@@ -59,7 +59,7 @@ export const getStyles = createAsyncThunk('product/getStyles', async(productId, 
     if (!productId) {
       productId = thunkAPI.getState().product.id;
     }
-    return axios.get(`${baseAPIURL}/products/${productId}/styles`)
+    return axios.get(`/products/${productId}/styles`)
       .then(res => res.data)
       .catch(err => {throw new Error (err)});
   } catch(err) {
@@ -69,7 +69,7 @@ export const getStyles = createAsyncThunk('product/getStyles', async(productId, 
 
 export const addToCart = createAsyncThunk('product/addToCart', async(skuID, thunkAPI) => {
   try {
-    return axios.post(`${baseAPIURL}/cart`, skuID)
+    return axios.post(`/cart`, skuID)
       .then(res => res.data)
       .catch(err => {throw new Error(err)})
   } catch (err) {
