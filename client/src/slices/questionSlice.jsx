@@ -7,6 +7,7 @@ const initialState = {
   results: [],
   answers: [],
 
+
 };
 
 export const getQuestions = createAsyncThunk('questions/getQuestions', async(id, thunkAPI) => {
@@ -18,7 +19,7 @@ export const getQuestions = createAsyncThunk('questions/getQuestions', async(id,
         count: 5
       }
     }).then((res) => {
-      //console.log(res.data);
+      console.log(res.data);
       return res.data;
     }).catch((err)=>{
       throw new Error (err);
@@ -53,13 +54,16 @@ export const questionsSlice = createSlice({
   name: 'questions',
   initialState,
   reducers: {
-
+    updateReviews: (state, action) => {
+      state.reviews = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(getQuestions.fulfilled, (state, action) => {
         //console.log(action.payload);
         state.results = action.payload;
+
       })
       .addCase(getQuestions.rejected, (state, action) => {
         // console.log('error with payload: ', action.payload);

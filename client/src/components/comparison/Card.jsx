@@ -10,6 +10,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const Card = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   let mainProductInfo = useSelector((state) => state.product.productInformation);
+  let mainProductRatings = useSelector((state) => state.reviews.ratings);
   // let mainCurrentStyle = useSelector((state) => state.product.currentStyle);
   let mainAvailableStyles = useSelector((state) => state.product.availableStyles);
 
@@ -110,6 +111,17 @@ const Card = ({ product }) => {
     const average = numerator / denominator;
     const fixedAvg = average.toFixed(2);
 
+    const one1 = Number(mainProductRatings[1]);
+    const two2 = Number(mainProductRatings[2]);
+    const three3 = Number(mainProductRatings[3]);
+    const four4 = Number(mainProductRatings[4]);
+    const five5 = Number(mainProductRatings[5]);
+    const numeratorX = 1 * one1 + 2 * two2 + 3 * three3 + 4 * four4 + 5 * five5;
+    const denominatorX = one1 + two2 + three3 + four4 + five5;
+
+    const averageX = numeratorX / denominatorX;
+    const fixedAvgX = averageX.toFixed(2);
+
     return (
       <div className="individualCard" onClick={handleCardClick}>
         <i className="fa-solid fa-caret-up fa-2x" onClick={handleCaretClick} data-testid="caret"></i>
@@ -136,8 +148,8 @@ const Card = ({ product }) => {
             />
           )}
         </div>
-        <div data-testid="category">{product.category}</div>
-        <div data-testid="name">
+        <div data-testid="category" className='cardCategory'>{product.category}</div>
+        <div data-testid="name" className='cardName'>
           <strong>{product.name}</strong>
         </div>
 
@@ -152,7 +164,7 @@ const Card = ({ product }) => {
           <div>${product.default_price}</div>
         )}
 
-        <div><Stars rating={fixedAvg}/></div>
+        <div className='cardStars'><Stars rating={fixedAvg}/></div>
 
         <Modal
           isOpen={isModalOpen}
@@ -213,10 +225,16 @@ const Card = ({ product }) => {
                       <td>{product.features.map((feature, i) => <div key={i}>{feature.feature}: {feature.value || "NA"}</div>)}</td>
                   </tr>
                   <tr>
+                    <td className='starsLeftModal'><Stars rating={fixedAvgX}/></td>
+                    <td>Ratings</td>
+                    <td className='starsRightModal'><Stars rating={fixedAvg}/></td>
+                  </tr>
+                  <tr>
                     <td>{mainAvailableStyles.length}</td>
                     <td># of Available Styles</td>
                     <td>{product.productStyles.length}</td>
                   </tr>
+
                 </tbody>
               </table>
             </div>
