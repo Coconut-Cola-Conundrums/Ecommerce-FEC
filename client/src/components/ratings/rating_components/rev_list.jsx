@@ -57,7 +57,7 @@ export const RevList = () => {
   return (
     <div data-testid="review-list-div">
       <h1 id = 'revListHeader'>Review List</h1>
-      <div >
+      <div id = 'revListContainer'>
         {reviews.reviews.map((rev) =>
         <div  className = 'reviewContainer' key = {rev.review_id}><Stars rating = {rev.rating}/>
           <div>
