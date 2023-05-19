@@ -635,14 +635,21 @@ a {
   font-style: italic;
 }
 
-.starsLeftModal {
+.starsContainerLeft {
   display: flex;
   justify-content: flex-start;
+  margin-left: -15px;
+}
+
+.starsContainerRight {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: -15px;
 }
 
 .starsRightModal {
-  display: flex;
-  justify-content: flex-start;
+  text-align: right;
+  justify-content: right;
 }
 
 
