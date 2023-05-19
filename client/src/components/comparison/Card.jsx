@@ -225,9 +225,9 @@ const Card = ({ product }) => {
                       <td>{product.features.map((feature, i) => <div key={i}>{feature.feature}: {feature.value || "NA"}</div>)}</td>
                   </tr>
                   <tr>
-                    <td className='starsLeftModal'><Stars rating={fixedAvgX}/></td>
+                    <td> <div className="starsContainerLeft"> <Stars rating={fixedAvgX}/> </div></td>
                     <td>Ratings</td>
-                    <td className='starsRightModal'><Stars rating={fixedAvg}/></td>
+                    <td> <div className='starsContainerRight'><Stars rating={fixedAvg}/></div></td>
                   </tr>
                   <tr>
                     <td>{mainAvailableStyles.length}</td>

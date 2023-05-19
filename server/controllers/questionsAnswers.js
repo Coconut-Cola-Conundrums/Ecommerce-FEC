@@ -18,7 +18,7 @@ module.exports = {
     //would need to extract page and count from req and include it as a parameter inside the URL
     axios.get(`${URL}/qa/questions`, { headers, params: {product_id: product_id, count:count, page: page } })
     .then(response => {
-     console.log(response);
+     //console.log(response);
       res.json(response.data.results);
       console.log('Successful getQuestions call to the API');
     })
@@ -37,7 +37,7 @@ module.exports = {
     //would need to extract page and count from req and include it as a parameter inside the URL
     axios.get(`${URL}/qa/questions/${question_id}/answers`, { headers, params: {count:count, page: page } })
     .then(response => {
-     console.log(response.data.results);
+     //console.log(response.data.results);
       res.json(response.data.results);
       // console.log('Successful getAnswers call to the API');
     })
@@ -49,7 +49,7 @@ module.exports = {
 
   postQuestion: (req, res) => {
     //TODO
-    console.log(req.params)
+    //console.log(req.params)
     axios.post(`${URL}/qa/questions`, req.params , {headers})
     .then(() => {
       res.sendStatus(201);
