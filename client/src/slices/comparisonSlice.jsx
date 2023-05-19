@@ -9,8 +9,6 @@ const initialState = {
   error: null
 }
 
-const baseAPIURL = "http://localhost:3000"
-
 export const getRelatedIds = createAsyncThunk('products/getRelatedIds', async(id, thunkAPI) => {
   try {
     return axios.get(`/products/${id}/related`).then(res => res.data)
