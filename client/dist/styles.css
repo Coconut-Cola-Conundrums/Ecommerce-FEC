@@ -302,7 +302,7 @@ a {
 
 .relatedHeader {
   align-self: flex-start;
-  margin-left: 27%;
+  margin-left: 24%; /* change here for resolution */
 }
 
 .relatedItemsContainer {
@@ -319,7 +319,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: 46vw; /* 47% for 3 cards, 63 for 4 */
+  width: 51vw; /* change here for resolution */
   margin: 0 auto;
   overflow-y: hidden;
 }
@@ -353,7 +353,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: 46vw; /* 47% for 3 cards */
+  width: 51vw; /* change here for resolution */
   margin: 0 auto;
   overflow-y: hidden;
 }
@@ -635,14 +635,21 @@ a {
   font-style: italic;
 }
 
-.starsLeftModal {
+.starsContainerLeft {
   display: flex;
   justify-content: flex-start;
+  margin-left: -15px;
+}
+
+.starsContainerRight {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: -15px;
 }
 
 .starsRightModal {
-  display: flex;
-  justify-content: flex-start;
+  text-align: right;
+  justify-content: right;
 }
 
 
@@ -1082,9 +1089,18 @@ a {
   cursor: pointer;
 }
 
+#newStars p:hover {
+  cursor: pointer;
+}
 
 /* background-color: Transparent;
   background-repeat:no-repeat;
   border: none;
   cursor:pointer;
   overflow: hidden; */
+
+  #revListContainer {
+    scroll-behavior: 'auto';
+    overflow-y: scroll;
+    max-height: 1000px;
+  }

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
-const baseAPIURL = "http://localhost:3000/";
+// const baseAPIURL = "http://localhost:3000/";
 
 const initialState = {
   product_id: '',
@@ -12,7 +12,7 @@ const initialState = {
 
 export const getQuestions = createAsyncThunk('questions/getQuestions', async(id, thunkAPI) => {
   try {
-    return axios.get(`${baseAPIURL}qa/questions/`,{
+    return axios.get(`/qa/questions/`,{
       params: {
         product_id: id,
         page: 1,
@@ -31,7 +31,7 @@ export const getQuestions = createAsyncThunk('questions/getQuestions', async(id,
 
 export const getAnswers = createAsyncThunk('questions/getAnswers', async(id, thunkAPI) => {
   try {
-   return axios.get(`${baseAPIURL}qa/questions/${id}/answers`,{
+   return axios.get(`/qa/questions/${id}/answers`,{
     params: {
       page: 1,
       count: 5

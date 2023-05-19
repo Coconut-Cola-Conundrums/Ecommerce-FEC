@@ -16,7 +16,7 @@ export const RevList = () => {
     e.preventDefault();
     var helpfulButton = document.getElementById(`helpful${id}`);
     if (helpfulButton.style.backgroundColor !== '#BCE5B5') {
-    axios.put(`${URL}/reviews/${id}/helpful`)
+    axios.put(`/reviews/${id}/helpful`)
     .then( () => {
       console.log('was helpful');
     })
@@ -34,7 +34,7 @@ export const RevList = () => {
     // alert("Review has been reported!")
     var reportButton = document.getElementById(`report${id}`);
     if (reportButton.style.backgroundColor !== '#FFA8A6') {
-    axios.put(`${URL}/reviews/${id}/report`)
+    axios.put(`/reviews/${id}/report`)
     .then( () => {
       console.log(`${id} was reported`)
     })
@@ -57,7 +57,7 @@ export const RevList = () => {
   return (
     <div data-testid="review-list-div">
       <h1 id = 'revListHeader'>Review List</h1>
-      <div >
+      <div id = 'revListContainer'>
         {reviews.reviews.map((rev) =>
         <div  className = 'reviewContainer' key = {rev.review_id}><Stars rating = {rev.rating}/>
           <div>

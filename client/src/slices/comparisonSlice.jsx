@@ -9,11 +9,9 @@ const initialState = {
   error: null
 }
 
-const baseAPIURL = "http://localhost:3000"
-
 export const getRelatedIds = createAsyncThunk('products/getRelatedIds', async(id, thunkAPI) => {
   try {
-    return axios.get(`${baseAPIURL}/products/${id}/related`).then(res => res.data)
+    return axios.get(`/products/${id}/related`).then(res => res.data)
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
@@ -21,7 +19,7 @@ export const getRelatedIds = createAsyncThunk('products/getRelatedIds', async(id
 
 export const getRelatedProduct = createAsyncThunk('products/getRelatedProduct', async(id, thunkAPI) => {
   try {
-    return axios.get(`${baseAPIURL}/products/${id}`).then(res => res.data)
+    return axios.get(`/products/${id}`).then(res => res.data)
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
@@ -29,7 +27,7 @@ export const getRelatedProduct = createAsyncThunk('products/getRelatedProduct', 
 
 export const getOutfit = createAsyncThunk('products/getOutfit', async(id, thunkAPI) => {
   try {
-    return axios.get(`${baseAPIURL}/products/${id}`).then(res => res.data)
+    return axios.get(`/products/${id}`).then(res => res.data)
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
@@ -38,14 +36,14 @@ export const getOutfit = createAsyncThunk('products/getOutfit', async(id, thunkA
 //need another aysnc thunk func to axios.get /products/:product_id/styles and store it into your slice
 export const getProductStyle = createAsyncThunk('products/getProductStyle', async(id, thunkAPI) => {
   try {
-    return axios.get(`${baseAPIURL}/products/${id}/styles`).then(res => res.data)
+    return axios.get(`/products/${id}/styles`).then(res => res.data)
   } catch (err) {
     return thunkAPI.rejectWithValue(err);
   }
 })
 
 export const getMeta = createAsyncThunk('/products/getMeta', async(id, thunkAPI) => {
-  return axios.get(`${baseAPIURL}/reviews/meta`, {
+  return axios.get(`/reviews/meta`, {
     params: {
       product_id: id
     }
