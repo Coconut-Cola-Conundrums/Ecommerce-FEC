@@ -114,6 +114,15 @@ const ImageGallery = () => {
 
   }, [product.id, currentStyle]);
 
+  if (product.isLoading) {
+    return (
+      <div className="photoContainer">
+        <div className="loading">
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="photoContainer">
       {currentStyle.photos && currentStyle.photos[mainPhoto] ?

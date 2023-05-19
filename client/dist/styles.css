@@ -10,6 +10,25 @@ html {
 
 }
 
+.loading {
+	background: linear-gradient(-45deg,#e8e8e8, #b2b2b2, #707070, black);
+	background-size: 400% 400%;
+	animation: gradient 3s ease infinite;
+	height: 80vh;
+  width: 50vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 /* * {
   border:rgb(255, 47, 47) thin solid;
 } */
@@ -56,12 +75,17 @@ path {
 
 
 .zoomed {
-  /* position: absolute; */
+  position: absolute;
+  /* left: 2.5vh; */
   /* object-fit: cover; */
   width: 100vw;
   height: 100vh;
   cursor: pointer;
   margin: 0 auto;
+  display: block;
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
   /* top: 5vh; */
 }
 
@@ -77,6 +101,7 @@ path {
   z-index: 9999;
   position: fixed;
   left: 0vh;
+  /* text-align: justify; */
 }
 
 
@@ -89,10 +114,13 @@ path {
 }
 
 .mainPhotoBoxOverModal {
-  position: absolute;
+  position: fixed;
   top: 0vh;
-  width: 25vw;
+  width: 50vw;
+  left:25%;
+  /* width: 25vw; */
   z-index: 1000;
+  justify-content: center;
 }
 
 .mainPhotoArrow {
@@ -105,7 +133,7 @@ path {
   cursor: pointer;
   z-index: 103;
   position: relative;
-  top: -5vh;
+  /* top: -5vh; */
 }
 
 .expandIcon {
@@ -118,10 +146,14 @@ path {
 }
 
 .expandInZoom {
-  z-index: 1000;
-  position: absolute;
-  top: -3.5vh;
-  left: -2vh;
+  z-index: 10000;
+  position: fixed;
+  /* top: 2vh; */
+  left: 48vw;
+  top: 1.75vh;
+  align-self: center;
+  /* top: -3.5vh; */
+  /* left: 50%; */
   cursor: pointer;
 }
 
@@ -276,6 +308,7 @@ a {
   cursor: pointer;
   border-radius: 0.25rem;
   transition: border-color 0.2s ease-in-out;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .addToBagButton:hover {
@@ -306,7 +339,7 @@ a {
 
 .relatedHeader {
   align-self: flex-start;
-  margin-left: 27%;
+  margin-left: 24%; /* change here for resolution */
 }
 
 .relatedItemsContainer {
@@ -323,7 +356,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: 46vw; /* 47% for 3 cards, 63 for 4 */
+  width: 51vw; /* change here for resolution */
   margin: 0 auto;
   overflow-y: hidden;
 }
@@ -357,7 +390,7 @@ a {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  width: 46vw; /* 47% for 3 cards */
+  width: 51vw; /* change here for resolution */
   margin: 0 auto;
   overflow-y: hidden;
 }
@@ -639,14 +672,21 @@ a {
   font-style: italic;
 }
 
-.starsLeftModal {
+.starsContainerLeft {
   display: flex;
   justify-content: flex-start;
+  margin-left: -15px;
+}
+
+.starsContainerRight {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: -15px;
 }
 
 .starsRightModal {
-  display: flex;
-  justify-content: flex-start;
+  text-align: right;
+  justify-content: right;
 }
 
 
@@ -1050,6 +1090,9 @@ a {
   border-radius: 10px;
   background-color: rgb(253, 253, 253);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  scroll-behavior: 'auto';
+    overflow-y: scroll;
+    max-height: 1000px;
 
 }
 
@@ -1102,3 +1145,11 @@ a {
     max-height: 1000px;
   }
 
+
+ .questbutton {
+  margin-left:600px ;
+  font-size: medium;
+  border-radius: 5px;
+  background-color: #9cc0e6;
+  cursor:pointer;
+}

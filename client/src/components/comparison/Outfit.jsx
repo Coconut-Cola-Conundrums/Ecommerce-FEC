@@ -33,7 +33,7 @@ const Outfit = ({ outfit, index }) => {
         <div className="imageContainer">
           <img
             className="outfitImage"
-            src={outfit.productStyles[0].photos[0].url || 'https://www.warnersstellian.com/Content/images/product_image_not_available.png'}
+            src={outfit.productStyles[0].photos[0].url || "https://images.pexels.com/photos/249210/pexels-photo-249210.jpeg?cs=srgb&dl=pexels-nitin-dhumal-249210.jpg&fm=jpg"}
             alt="Product Image"
           />
         </div>
