@@ -1,9 +1,13 @@
 body {
   font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 #body {
   background-color: rgb(253, 253, 253);
+
 }
 
 .loading {
@@ -1141,10 +1145,11 @@ a {
     max-height: 1000px;
   }
 
+
  .questbutton {
   margin-left:600px ;
   font-size: medium;
   border-radius: 5px;
   background-color: #9cc0e6;
   cursor:pointer;
-  }
+}
