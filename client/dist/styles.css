@@ -1091,3 +1091,9 @@ a {
   border: none;
   cursor:pointer;
   overflow: hidden; */
+
+  #revListContainer {
+    scroll-behavior: 'auto';
+    overflow-y: scroll;
+    max-height: 1000px;
+  }
