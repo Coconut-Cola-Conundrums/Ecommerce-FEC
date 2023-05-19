@@ -6,6 +6,25 @@ body {
   background-color: rgb(253, 253, 253);
 }
 
+.loading {
+	background: linear-gradient(-45deg,#e8e8e8, #b2b2b2, #707070, black);
+	background-size: 400% 400%;
+	animation: gradient 3s ease infinite;
+	height: 80vh;
+  width: 50vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 /* * {
   border:rgb(255, 47, 47) thin solid;
 } */
@@ -285,6 +304,7 @@ a {
   cursor: pointer;
   border-radius: 0.25rem;
   transition: border-color 0.2s ease-in-out;
+  font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .addToBagButton:hover {
