@@ -1,9 +1,13 @@
 body {
   font-family: 'Questrial', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 #body {
   background-color: rgb(253, 253, 253);
+
 }
 
 /* * {
@@ -1096,4 +1100,8 @@ a {
     scroll-behavior: 'auto';
     overflow-y: scroll;
     max-height: 1000px;
+  }
+
+  #readReviews {
+    scroll-behavior: smooth;
   }

@@ -20,12 +20,13 @@ export default function App() {
   // make get request to /qa/questions with product_id from product state and dispatch the questions slice action to update the state of questions
   // .then => foreach question, make a get request to /qa/questions/:question_id/answers and update the question slice action to update the state of questions
   return (
-    <div id="App">
-      <Overview />
-      <Comparison />
-      <Questions />
-      <Reviews />
-
-    </div>
+    <scroll-container>
+      <div id="App">
+        <Overview />
+        <Comparison />
+        <Questions />
+        <Reviews />
+      </div>
+    </scroll-container>
   );
 }
