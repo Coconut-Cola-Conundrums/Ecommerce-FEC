@@ -19,7 +19,7 @@ export const getQuestions = createAsyncThunk('questions/getQuestions', async(id,
         count: 5
       }
     }).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       return res.data;
     }).catch((err)=>{
       throw new Error (err);
@@ -70,6 +70,7 @@ export const questionsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getAnswers.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.answers = action.payload;
       })
       .addCase(getAnswers.rejected, (state, action) => {

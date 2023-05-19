@@ -38,7 +38,6 @@ let Questions = () => {
     if (product) {
       dispatch(getQuestions(product))
       .then(() => {
-       // console.log('questions: ', questions)
         answers = questions.answers;
       })
       .catch(()=>{console.log('err')});
@@ -46,7 +45,7 @@ let Questions = () => {
 
   useEffect(()=> {
     const result = questions.results;
-    //console.log(questions);
+    console.log(questions);
         result.forEach((question) => {
           //console.log('Answer: ', question)
           dispatch(getAnswers(question.question_id));
@@ -54,8 +53,8 @@ let Questions = () => {
         });
   },[questions.results]);
 
-  //console.log('Results Array---',questions.results);
-  //console.log('Answers---', answers);
+  console.log('Results Array---',questions.results);
+  console.log('Answers---', answers);
   //console.log(product);
   return (
     <div className='q'>
