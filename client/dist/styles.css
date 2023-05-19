@@ -142,7 +142,7 @@ path {
 }
 
 .expandInZoom {
-  z-index: 1000;
+  z-index: 10000;
   position: fixed;
   /* top: 2vh; */
   left: 48vw;
