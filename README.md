@@ -51,7 +51,6 @@ npm run dev
 
 This component is shared across multiple sections of the page to render out stars respective of the overall rating of the products.
 ```
-javascript 
 export const Stars = ({rating}) => {
 
   var remainder = rating % 1;
@@ -89,7 +88,6 @@ credit @[mdelpape]
 
 This selection of code categorizes the functions called to render out the initial product and it's information upon landing on the home page.
 ```
-javascript
 // in the index file, on initial render, a sample of products is queried from the api, and the first product is set in the state as the default product in view. The specific information for that product is then queried using the 'getSpecificProduct' function
   useEffect(() => {
     if (!product.id) { // if no product has been loaded, then this is the initial render, and we need to fetch the default data
@@ -125,7 +123,6 @@ credit @[jacqueline-kelly]
 
 This code section describes behavior and view of the carousel module of the related products components.
 ```
-javascript
   {isHovered ? (
     <Carousel
       selectedItem={selectedImageIndex}
@@ -155,7 +152,6 @@ credit @[jerryrenn]
 
 This function describes how the questions are retrieved from the api.
 ```
-javascript
 module.exports = {
   getQuestions: (req, res) => {
     //TODO
