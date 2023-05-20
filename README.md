@@ -84,7 +84,7 @@ export const Stars = ({rating}) => {
   )
 }
 ```
-credit [@mdelpape]
+credit @[mdelpape]
 
 
 This selection of code categorizes the functions called to render out the initial product and it's information upon landing on the home page.
@@ -120,7 +120,7 @@ export const getSpecificProduct = createAsyncThunk('product/getSpecificProduct',
         state.isLoading = false;
       })
 ``` 
-credit @[@jacqueline-kelly]
+credit @[jacqueline-kelly]
 
 
 This code section describes behavior and view of the carousel module of the related products components.
@@ -148,7 +148,7 @@ javascript
     />
   )}
 ```
-credit @[@jerryrenn]
+credit @[jerryrenn]
 
 
 ### Node.js Route
@@ -176,7 +176,7 @@ module.exports = {
     });
   }
 ```
-credit @[@sahidadin]
+credit @[sahidadin]
 
 
 ## Authors and Contributors
