@@ -34,7 +34,7 @@ storeFront Solutions is a full-stack ecommerce web application that allows users
 
 ![storeFront Solutions Home Page](./storeFront_Solutions_Homepage.png)
 ![storefront_solutions_gif_360 2](https://github.com/Coconut-Cola-Conundrums/Ecommerce-FEC/assets/111204640/1309c519-f472-47c0-b8a1-fab3604fe45e)
-![storefront_solutions_gif_360](https://github.com/Coconut-Cola-Conundrums/Ecommerce-FEC/assets/111204640/59965588-d83a-40d3-acd5-d0a8639a46b6)
+
 
 
 ## Commands to Install and Run
