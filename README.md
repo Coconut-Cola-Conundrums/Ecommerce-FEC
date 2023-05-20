@@ -119,7 +119,8 @@ export const getSpecificProduct = createAsyncThunk('product/getSpecificProduct',
         state.currentStyle = {};
         state.isLoading = false;
       })
-``` [@jacqueline-kelly]
+``` 
+credit @[@jacqueline-kelly]
 
 
 This code section describes behavior and view of the carousel module of the related products components.
@@ -146,7 +147,8 @@ javascript
       alt="Product Image"
     />
   )}
-```[@jerryrenn]
+```
+credit @[@jerryrenn]
 
 
 ### Node.js Route
@@ -173,7 +175,8 @@ module.exports = {
       res.status(500);
     });
   }
-```[@sahidadin]
+```
+credit @[@sahidadin]
 
 
 ## Authors and Contributors
