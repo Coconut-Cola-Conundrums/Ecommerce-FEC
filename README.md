@@ -50,7 +50,8 @@ npm run dev
 ## Code Highlight
 
 This component is shared across multiple sections of the page to render out stars respective of the overall rating of the products.
-```javascript 
+```
+javascript 
 export const Stars = ({rating}) => {
 
   var remainder = rating % 1;
@@ -82,13 +83,13 @@ export const Stars = ({rating}) => {
 
   )
 }
-
 ```
 credit [@mdelpape]
 
 
 This selection of code categorizes the functions called to render out the initial product and it's information upon landing on the home page.
-```javascript
+```
+javascript
 // in the index file, on initial render, a sample of products is queried from the api, and the first product is set in the state as the default product in view. The specific information for that product is then queried using the 'getSpecificProduct' function
   useEffect(() => {
     if (!product.id) { // if no product has been loaded, then this is the initial render, and we need to fetch the default data
@@ -151,7 +152,8 @@ javascript
 ### Node.js Route
 
 This function describes how the questions are retrieved from the api.
-```javascript
+```
+javascript
 module.exports = {
   getQuestions: (req, res) => {
     //TODO
