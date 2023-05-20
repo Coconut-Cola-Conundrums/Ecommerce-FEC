@@ -183,8 +183,8 @@ credit @[@sahidadin]
 
 - [@jerryrenn](https://github.com/jerryrenn)
 - [@mdelpape](https://github.com/mdelpape)
-- [@sahidadin] (https://github.com/sahidadin)
-- [@jacqueline-kelly] (https://github.com/jacqueline-kelly)
+- [@sahidadin](https://github.com/sahidadin)
+- [@jacqueline-kelly](https://github.com/jacqueline-kelly)
 
 ## Wins and Improvements
 
